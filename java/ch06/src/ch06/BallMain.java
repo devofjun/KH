@@ -8,7 +8,7 @@ public class BallMain {
 		Ball aBall = new Ball();
 		aBall.number = 1;
 		aBall.color = "Orange";
-		boolean result = machine.pushBall(0, aBall);
+	//	boolean result = machine.pushBall(0, aBall);
 		machine.showBallInfo(0);
 	}
 }
