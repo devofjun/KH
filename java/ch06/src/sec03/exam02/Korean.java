@@ -7,12 +7,14 @@ public class Korean {
 		String name;
 		// 주민번호 (Social Secret Number)
 		String ssn;
-		
+		// 나이
+		int age;
 		// 개발자가 생성자를 정의 -> 컴파일러가 기본생성자인 Korean()는 만들어주지 않는다.
 		
-		Korean(String n, String s){
-			name = n;
-			ssn = s;
+		Korean(String name, String ssn){
+			this.name = name;
+			this.ssn = ssn;
 		}
+		
 		
 }
