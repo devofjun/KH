@@ -7,5 +7,6 @@ public class PhoneBookMain {
 		PhoneInfo info2 = new PhoneInfo("김범민","010-1234-5678");
 		info1.showInfo();
 		info2.showInfo();
+		
 	}
 }
