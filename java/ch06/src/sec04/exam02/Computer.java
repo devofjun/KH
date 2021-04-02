@@ -17,6 +17,7 @@ public class Computer {
 			sum +=values[i];
 		}
 		*/
+		System.out.println(values);
 		for(int value : values) {
 			sum += value;
 		}
