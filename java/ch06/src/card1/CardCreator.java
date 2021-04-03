@@ -2,7 +2,8 @@ package card1;
 
 public class CardCreator {
 	Card[][] createCards() {
-		// ♠ ◆ ♥ ♣
+		// 2~10, A J Q K = 13
+		// ♠ ◆ ♥ ♣ = 4
 		Card[][] cards = new Card[13][4];
 		for(int i=0; i<13; i++) {
 			cards[i][0] = new Card(i+1,"♠");
