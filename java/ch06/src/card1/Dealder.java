@@ -28,9 +28,18 @@ public class Dealder {
 		}
 	}
 
+	// 이 메소드가 호출 될 때 마다 index를 증가시켜서 배열의 다음 요소를 가르키게 한다. = 다음카드
+    // 현재 카드배열 [13][4]
 	Card giveOneCard() {
-		Card card = cards[indexNumber][indexShape];
-		indexShape++;
+	    Card card = cards[indexNumber][indexShape];
+	    if(indexShape>=cards[0].length-1 && indexNumber<cards.length){
+	        indexShape = 0;
+	        indexNumber++;
+	    } else if(indexShape<cards.length-1 && indexNumber<cards.length){
+	        indexShape++;
+	    } else {
+	        System.out.println("카드 없음");
+    	}
 		return card;
 	}
 	
