@@ -2,13 +2,13 @@ package card1;
 
 public class Dealder {
 	Card[][] cards;
-	int indexNumber;
-	int indexShape;
+	int indexNumber; // 카드배열의 인덱스, 최대 13
+	int indexShape; // 카드배열의 인덱스, 최대 4 
 	
 	void setCards(Card[][] cards) {
 		this.cards = cards;
 	}
-	
+	// 카드 섞기
 	void shuffleCards() {
 		for(int i=0; i<cards.length; i++) {
 			for(int j=0; j<cards[0].length; j++) {
@@ -20,6 +20,7 @@ public class Dealder {
 			}
 		}
 	}
+	//카드 배열 출력(테스트용)
 	void showCards() {
 		for(int i=0; i<cards.length; i++) {
 			for(int j=0; j<cards[0].length; j++) {
