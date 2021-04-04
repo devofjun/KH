@@ -2,23 +2,22 @@ package my_phonebook2;
 
 public class PhoneBookMain {
 	public static void main(String[] args) {
-		MenuViewer menu = new MenuViewer();
 		PhoneBook pBook = new PhoneBook();
 		outter:
 		while(true) {
-			int choice = menu.showStartMenu();
+			int choice = MenuViewer.showStartMenu();
 			switch(choice) {
-			case 1:
-				pBook.insertData(menu.getPhoneInfo());
+			case MenuViewer.INPUT :
+				pBook.insertData(MenuViewer.getPhoneInfo());
 				System.out.println("----입력완료----");
 				break;
-			case 2:
-				pBook.searchByName(menu.getSearchName());
+			case MenuViewer.SEARCH :
+				pBook.searchByName(MenuViewer.getSearchName());
 				break;
-			case 3:
-				menu.showExitMessage();
+			case MenuViewer.EXIT :
+				MenuViewer.showExitMessage();
 				break outter;
-			case 4:
+			case MenuViewer.ALL :
 				pBook.showAll();
 				break;
 			default:
