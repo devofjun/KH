@@ -9,6 +9,7 @@ public class PhoneInfo {
 		this.number = number;
 	}
 	void showInfo(){
+		System.out.println("------------------");
 		System.out.println(name+" : "+number);
 	}
 }
