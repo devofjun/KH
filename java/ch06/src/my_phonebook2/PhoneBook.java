@@ -17,6 +17,17 @@ public class PhoneBook {
 		infos = newInfos;
 	}
 	
+	void searchByName(String name) {
+		for(PhoneInfo info : infos) {
+			if(name.equals(info.getName())) {
+				System.out.println("찾았습니다.");
+				info.showInfo();
+				return;
+			}
+		}
+		System.out.println("찾지못했습니다.");
+	}
+	
 	void showAll() {
 		for(int i=0; i<idx; ++i) {
 			infos[i].showInfo();

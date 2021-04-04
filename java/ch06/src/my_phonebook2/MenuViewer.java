@@ -7,9 +7,7 @@ public class MenuViewer {
 	
 	
 	void showTopMenu() {
-		System.out.println("==============");
-		System.out.println(" 내 전화번호부  ");
-		System.out.println("==============");
+		System.out.println("===내 전화번호부===");
 	}
 	
 	int showStartMenu() {
@@ -29,5 +27,14 @@ public class MenuViewer {
 		System.out.print("전번>");
 		String number = scan.nextLine();
 		return new PhoneInfo(name,number);
+	}
+	
+	String getSearchName() {
+		System.out.print("이름으로 찾기>");
+		return scan.nextLine();
+	}
+	
+	void showExitMessage() {
+		System.out.println("프로그램을 종료합니다...");
 	}
 }

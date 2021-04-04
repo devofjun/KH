@@ -11,5 +11,9 @@ public class PhoneInfo {
 	void showInfo(){
 		System.out.println("------------------");
 		System.out.println(name+" : "+number);
+		System.out.println("------------------");
+	}
+	String getName() {
+		return name;
 	}
 }

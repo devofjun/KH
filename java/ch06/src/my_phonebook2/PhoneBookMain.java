@@ -10,12 +10,20 @@ public class PhoneBookMain {
 			switch(choice) {
 			case 1:
 				pBook.insertData(menu.getPhoneInfo());
-				pBook.showAll(); // testing
+				System.out.println("----입력완료----");
 				break;
 			case 2:
+				pBook.searchByName(menu.getSearchName());
 				break;
 			case 3:
+				menu.showExitMessage();
 				break outter;
+			case 4:
+				pBook.showAll();
+				break;
+			default:
+				System.out.println("잘못입력함 다시 입력하시오.");
+				break;
 			}			
 		}
 	}
