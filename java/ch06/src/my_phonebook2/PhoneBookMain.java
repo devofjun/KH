@@ -9,7 +9,6 @@ public class PhoneBookMain {
 			switch(choice) {
 			case MenuViewer.INPUT :
 				pBook.insertData(MenuViewer.getPhoneInfo());
-				System.out.println("----입력완료----");
 				break;
 			case MenuViewer.SEARCH :
 				pBook.searchByName(MenuViewer.getSearchName());

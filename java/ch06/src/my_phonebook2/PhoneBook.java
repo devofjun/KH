@@ -9,6 +9,7 @@ public class PhoneBook {
 		if(idx>=infos.length) {
 			sizeUp();
 		}
+		System.out.println("----입력완료----");
 	}
 	
 	void sizeUp() {
