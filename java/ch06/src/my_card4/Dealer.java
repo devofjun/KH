@@ -1,17 +1,17 @@
 package my_card4;
 
-public class Dealder {
+public class Dealer {
 	private Card[] cards;
 	private int index; 
-	private static Dealder instance;
+	private static Dealer instance;
 	
-	private Dealder() {
+	private Dealer() {
 		
 	}
-	
-	public static Dealder getInstance() {
+
+	public static Dealer getInstance() {
 		if(instance == null) {
-			instance = new Dealder();
+			instance = new Dealer();
 		}
 		return instance;
 	}
