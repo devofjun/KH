@@ -3,6 +3,18 @@ package my_card4;
 public class Dealder {
 	private Card[] cards;
 	private int index; 
+	private static Dealder instance;
+	
+	private Dealder() {
+		
+	}
+	
+	public static Dealder getInstance() {
+		if(instance == null) {
+			instance = new Dealder();
+		}
+		return instance;
+	}
 	
 	public void setCards(Card[] cards) {
 		this.cards = cards;
