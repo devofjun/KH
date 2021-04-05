@@ -40,32 +40,20 @@ public class Calculator {
 	// Method {
 	
 	//더하기
-	public int add(int a, int b) {
-		this.setNum1(a);
-		this.setNum2(b);
-		int result = num1+num2;
-		return result;
+	public int add() {
+		return num1+num2;
 	}
 	//빼기
-	public int substract(int a, int b) {
-		this.setNum1(a);
-		this.setNum2(b);
-		int result = num1-num2;
-		return result;
+	public int substract() {
+		return num1-num2;
 	}
 	//곱하기
-	public int multiply(int a, int b) {
-		this.setNum1(a);
-		this.setNum2(b);
-		int result = num1*num2;
-		return result;
+	public int multiply() {
+		return num1*num2;
 	}
 	//나누기
-	public int divide(int a, int b) {
-		this.setNum1(a);
-		this.setNum2(b);
-		int result = num1/num2;
-		return result;
+	public int divide() {
+		return num1/num2;
 	}
 	
 	// Method }

@@ -19,18 +19,26 @@ public class User {
 	
 	// 덧셈하기
 	void runAdd(int a, int b) {
-		System.out.println(a+" + "+b+" = "+calc.add(a, b));
+		calc.setNum1(a);
+		calc.setNum2(b);
+		System.out.println(a+" + "+b+" = "+calc.add());
 	}
 	// 뺄셈하기
 	void runSubtract(int a, int b) {
-		System.out.println(a+" - "+b+" = "+calc.substract(a, b));
+		calc.setNum1(a);
+		calc.setNum2(b);
+		System.out.println(a+" - "+b+" = "+calc.substract());
 	}
 	// 곱셈하기
 	void runMultiply(int a, int b) {
-		System.out.println(a+" * "+b+" = "+calc.multiply(a, b));
+		calc.setNum1(a);
+		calc.setNum2(b);
+		System.out.println(a+" * "+b+" = "+calc.multiply());
 	}
 	// 나눗셈하기
 	void runDivide(int a, int b) {
-		System.out.println(a+" / "+b+" = "+calc.divide(a, b));
+		calc.setNum1(a);
+		calc.setNum2(b);
+		System.out.println(a+" / "+b+" = "+calc.divide());
 	}
 }
