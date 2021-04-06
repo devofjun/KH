@@ -1,7 +1,7 @@
 package phonebook.ver4;
 
 public class PhoneInfoSocial extends PhoneInfo{
-	String company;
+	private String company;
 
 	public PhoneInfoSocial(String name, String number, String company) {
 		super(name, number);
