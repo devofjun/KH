@@ -2,6 +2,7 @@ package ex02;
 
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class MyFrame extends JFrame{ // 자동으로 import하는 단축키 ctrl+shift+o
 	
 	public MyFrame() {
