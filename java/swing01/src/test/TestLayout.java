@@ -1,22 +1,20 @@
 package test;
 
-import java.awt.Button;
+import java.awt.BorderLayout;
+
 import java.awt.Container;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class TestLayout extends JFrame{
 	Container c1 = getContentPane();
-	Button btn_N;
-	Button btn_S;
-	Button btn_W;
-	Button btn_E;
-	Button btn_C;
+	JButton[] btn1 = new JButton[5];
 	
 	public TestLayout() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		setTitle("test");
 		setComponent();
 		
 		setSize(500, 300);
@@ -24,16 +22,34 @@ public class TestLayout extends JFrame{
 	}
 	
 	private void setComponent() {
-		btn_N = new Button("북");
-		btn_S = new Button("남");
-		btn_E = new Button("동");
-		btn_W = new Button("서");
-		btn_C = new Button("중");
-		
-		
+		for(int i=0;i<btn1.length;++i) {
+			switch(i) {
+			case 0:
+				btn1[i] = new JButton("동");
+				c1.add(btn1[i],BorderLayout.EAST);
+				break;
+			case 1:
+				btn1[i] = new JButton("서");
+				c1.add(btn1[i],BorderLayout.WEST);
+				break;
+			case 2:
+				btn1[i] = new JButton("남");
+				c1.add(btn1[i],BorderLayout.SOUTH);
+				break;
+			case 3:
+				btn1[i] = new JButton("북");
+				c1.add(btn1[i],BorderLayout.NORTH);
+				break;
+			case 4:
+				btn1[i] = new JButton("중");
+				c1.add(btn1[i],BorderLayout.CENTER);
+				break;
+			}	
+		}
 	}
 	
 	public static void main(String[] args) {
+		System.out.println("동");
 		new TestLayout();
 	}
 }
