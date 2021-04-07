@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class TestLayout extends JFrame{
-	Container c1 = getContentPane();
+	Container c1 = this.getContentPane();
 	JButton[] btn1 = new JButton[5];
 	
 	public TestLayout() {
