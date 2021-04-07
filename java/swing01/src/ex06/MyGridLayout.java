@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class MyGridLayout extends JFrame{
 	
-	Container c = getContentPane();
+	Container c = getContentPane();                                                                                                            
 	
 	public MyGridLayout() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
