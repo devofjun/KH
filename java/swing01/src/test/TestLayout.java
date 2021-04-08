@@ -47,7 +47,6 @@ public class TestLayout extends JFrame{
 			}	
 		}
 	}
-	
 	public static void main(String[] args) {
 		System.out.println("동");
 		new TestLayout();
