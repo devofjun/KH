@@ -32,7 +32,7 @@ class ActionLsn implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("할 수 있다.");
+		System.out.println("Do it");
 	}
 	
 }
