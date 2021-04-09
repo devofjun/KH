@@ -17,6 +17,7 @@ public class MyFrame extends JFrame{
 		c.setLayout(null);
 		myLabel.setBounds(10, 10, 50, 30);
 		c.add(myLabel);
+		lsn.setlbl(myLabel);
 		c.addKeyListener(lsn);
 		setSize(500, 500);
 		setVisible(true);
