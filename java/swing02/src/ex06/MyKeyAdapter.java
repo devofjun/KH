@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 public class MyKeyAdapter extends KeyAdapter{
 	private static final int speed = 10;
 	private JLabel lbl = new JLabel();
+	
 	public void setlbl(JLabel lbl) {
 		this.lbl = lbl;
 	}
