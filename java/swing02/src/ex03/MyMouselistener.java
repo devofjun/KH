@@ -10,8 +10,7 @@ public class MyMouselistener implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		//System.out.println("클릭됨");
+		
 	}
 
 	@Override
