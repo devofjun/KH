@@ -15,7 +15,7 @@ public class MyFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("액션리스너");
 		lsn.setLblTarget(myLabel);
-		c.addMouseMotionListener(lsn);
+		c.addMouseMotionListener(lsn); // 해당 리스너에 맞는 메소드를 호출해야한다.
 		c.setLayout(null);
 		myLabel.setBounds(10, 10, 50, 30);
 		c.add(myLabel);
