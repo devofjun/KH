@@ -23,9 +23,10 @@ public class MyMouseListener implements MouseListener{
 			l.setVisible(false);
 		} else if(Integer.parseInt(s) != numCount+1 && chance<=0) {
 			System.out.println("실패");
+			System.exit(0);
 		} else {
+			System.out.printf("틀렸습니다. 기회는 %d번 남음\n",chance);
 			chance--;
-			System.out.println("Error");
 		}
 		if(numCount>=10) {
 			System.out.println("성공");
