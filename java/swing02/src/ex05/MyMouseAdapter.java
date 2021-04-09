@@ -14,21 +14,28 @@ public class MyMouseAdapter extends MouseAdapter{
 		lblTarget = label;
 	}
 	/*
-	@Override //MouseListener에 정의됨
-	public void mousePressed(MouseEvent e) {
+	@Override 
+	public void mousePressed(MouseEvent e) { //MouseListener에 정의됨
 		int x = e.getX();
 		int y = e.getY();
 		//Object obj = e.getSource(); // label이 아니기 때문에 필요가 없음
 		lblTarget.setLocation(x, y);
 	}
 	*/
-	@Override //MouseMotionListener에 정의됨
-	public void mouseMoved(MouseEvent e) {
+	/*
+	@Override 
+	public void mouseMoved(MouseEvent e) { //MouseMotionListener에 정의됨
 		int x = e.getX();
 		int y = e.getY();
 		lblTarget.setLocation(x, y);
 	}
-	
-	
+	*/
+
+	@Override 
+	public void mouseDragged(MouseEvent e) { //MouseMotionListener에 정의됨
+		int x = e.getX();
+		int y = e.getY();
+		lblTarget.setLocation(x, y);
+	}
 	
 }
