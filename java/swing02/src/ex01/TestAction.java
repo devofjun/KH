@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class TestAction extends JFrame{
 	Container ctn = getContentPane();
 	JButton btn = new JButton("");
