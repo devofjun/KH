@@ -6,8 +6,8 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 public class MyMouseListener implements MouseListener{
-	int numCount = 0;
-	int chance = 3;
+	
+	GameManager manager = GameManager.getInstance();
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
@@ -16,21 +16,15 @@ public class MyMouseListener implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		Object obj = e.getSource();
-		JLabel l = (JLabel)obj;
-		String s = l.getText();
-		if(Integer.parseInt(s) == numCount+1 && chance>0) {
-			numCount++;
-			l.setVisible(false);
-		} else if(Integer.parseInt(s) != numCount+1 && chance<=0) {
-			System.out.println("실패");
-			System.exit(0);
-		} else {
-			System.out.printf("틀렸습니다. 기회는 %d번 남음\n",chance);
-			chance--;
+		JLabel label = (JLabel)obj;
+		String text = label.getText();
+		int iText = Integer.parseInt(text);
+		boolean result = manager.judge(iText);		
+		if (result == true) {
+//			label.setText("");
+			label.setVisible(false);	
 		}
-		if(numCount>=10) {
-			System.out.println("성공");
-		}
+		
 	}
 
 	@Override
