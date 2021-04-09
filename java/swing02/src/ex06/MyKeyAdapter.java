@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 
 public class MyKeyAdapter extends KeyAdapter{
+	private static final int speed = 10;
 	private JLabel lbl = new JLabel();
 	public void setlbl(JLabel lbl) {
 		this.lbl = lbl;
@@ -17,19 +18,19 @@ public class MyKeyAdapter extends KeyAdapter{
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
 			//System.out.println("좌");
-			lbl.setLocation(lbl.getX()-10, lbl.getY());
+			lbl.setLocation(lbl.getX()-speed, lbl.getY());
 			break;
 		case KeyEvent.VK_UP:
 			//System.out.println("상");
-			lbl.setLocation(lbl.getX(), lbl.getY()-10);
+			lbl.setLocation(lbl.getX(), lbl.getY()-speed);
 			break;
 		case KeyEvent.VK_RIGHT:
 			//System.out.println("우");
-			lbl.setLocation(lbl.getX()+10, lbl.getY());
+			lbl.setLocation(lbl.getX()+speed, lbl.getY());
 			break;
 		case KeyEvent.VK_DOWN:
 			//System.out.println("하");
-			lbl.setLocation(lbl.getX(), lbl.getY()+10);
+			lbl.setLocation(lbl.getX(), lbl.getY()+speed);
 			break;
 		}
 	}
