@@ -26,7 +26,7 @@ public class Calc extends JFrame implements ActionListener{
 	//JLabel lbl = new JLabel();
 	JTextField tf = new JTextField();
 	JPanel panel = new JPanel();
-	
+	boolean inputSign = false;
 	
 	public Calc() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,15 +46,23 @@ public class Calc extends JFrame implements ActionListener{
 		Object obj = e.getSource();
 		JButton btn = (JButton)obj; 
 		String t = btn.getText();
-		if(btn.getText() == "C") {
+		
+		if(t == "C") {
 			tf.setText("");
-		} else if(btn.getText() == "<-") {
+		} else if(t == "<-") {
 			String txt = tf.getText();
 			tf.setText(txt.substring(0, txt.length()-1));
-		} else if(btn.getText() == "=") {
+		} else if(t == "=") {
 			tf.setText(calculation(tf.getText()));
+		} else if(t == "+" || t == "-" || t == "*" || t == "/" || t == "%" || t == ".") {
+			char c = tf.getText().charAt(tf.getText().length()-1);
+			if(c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '.') {
+				System.out.println(c);
+			} else {
+				tf.setText(tf.getText()+t);
+			}
 		} else {
-			tf.setText(tf.getText()+t);			
+			tf.setText(tf.getText()+t);
 		}
 	}
 	
@@ -66,6 +74,7 @@ public class Calc extends JFrame implements ActionListener{
 		String result = "";
 		int sign = 0;
 		if(formula.indexOf('+') != -1) {
+			
 			sign = formula.indexOf('+');
 			String a = formula.substring(0, sign);
 			String b = formula.substring(sign+1, formula.length());
