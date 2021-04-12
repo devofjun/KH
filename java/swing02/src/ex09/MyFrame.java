@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 public class MyFrame extends JFrame{
 	Container c = getContentPane();
 	JButton button = new JButton("버튼");
+	JButton button2 = new JButton("버튼2");
 	
 	public MyFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,8 +35,17 @@ public class MyFrame extends JFrame{
 			}
 		});
 		
+		// 익명클래스는 코드 재사용이 안된다는 단점이 있다.
+		button2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("action3");
+			}
+		});
+		
 		c.setLayout(new FlowLayout());
 		c.add(button);
+		c.add(button2);
 		setVisible(true);
 	}
 	
