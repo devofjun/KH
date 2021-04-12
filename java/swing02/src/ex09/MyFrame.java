@@ -36,12 +36,14 @@ public class MyFrame extends JFrame{
 		});
 		
 		// 익명클래스는 코드 재사용이 안된다는 단점이 있다.
+		/*
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("action3");
 			}
 		});
+		*/
 		
 		c.setLayout(new FlowLayout());
 		c.add(button);

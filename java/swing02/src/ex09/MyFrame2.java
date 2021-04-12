@@ -31,7 +31,7 @@ public class MyFrame2 extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
-		
+		// 같은 객체인지를 비교 = @값을 비교한다.
 		if(obj == button) {
 			System.out.println("button1");
 		} else if(obj == button2) {
