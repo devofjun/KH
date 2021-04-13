@@ -54,7 +54,7 @@ public class ImageWindow extends JFrame implements ActionListener{
 		Object obj = e.getSource();
 		if(obj == right) {
 			imgIndex++;
-			if(imgIndex>=4) {
+			if(imgIndex>=lblImg.length) {
 				imgIndex=0;
 				lbl.setIcon(lblImg[imgIndex]);
 			} else {
@@ -63,7 +63,7 @@ public class ImageWindow extends JFrame implements ActionListener{
 		} else if(obj == left) {
 			imgIndex--;
 			if(imgIndex<=-1) {
-				imgIndex=3;
+				imgIndex=lblImg.length-1;
 				lbl.setIcon(lblImg[imgIndex]);
 			} else {
 				lbl.setIcon(lblImg[imgIndex]);

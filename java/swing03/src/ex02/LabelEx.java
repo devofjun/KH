@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+// 레이블에 이미지 넣기
 public class LabelEx extends JFrame{
 	Container c = getContentPane();
 	// 텍스트 레이블

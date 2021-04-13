@@ -9,6 +9,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+
+// 체크박스에 아이템리스너 적용하기
 @SuppressWarnings("serial")
 public class CheckBoxItemEventEx extends JFrame{
 	MyListener listener = new MyListener();

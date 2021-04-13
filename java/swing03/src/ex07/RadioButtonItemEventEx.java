@@ -1,6 +1,7 @@
 package ex07;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ItemEvent;
@@ -13,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+
+// 라디오 버튼을 누를때 매칭되는 이미지 띄우기
 @SuppressWarnings("serial")
 public class RadioButtonItemEventEx extends JFrame{
 	Container c = getContentPane();

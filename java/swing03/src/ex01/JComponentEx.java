@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+
+// 버튼속성값 예제
 @SuppressWarnings("serial")
 public class JComponentEx extends JFrame implements ActionListener{
 	Container c= getContentPane();

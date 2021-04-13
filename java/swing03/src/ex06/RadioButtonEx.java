@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
+
+// 라디오버튼에 이미지 넣기
 @SuppressWarnings("serial")
 public class RadioButtonEx extends JFrame{
 	

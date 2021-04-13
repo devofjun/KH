@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+// 버튼의 이벤트메소드
 @SuppressWarnings("serial")
 public class ButtonEx extends JFrame{
 

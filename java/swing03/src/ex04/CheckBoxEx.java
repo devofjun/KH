@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 
+// 체크박스에 이미지 넣고 누를때 변하게하기
 @SuppressWarnings("serial")
 public class CheckBoxEx extends JFrame {
 	Container c = getContentPane();
