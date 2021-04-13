@@ -17,6 +17,7 @@ public class TextAreaEx extends JFrame{
 	Container c = getContentPane();
 	JTextField tf = new JTextField();
 	JTextArea ta = new JTextArea();
+	JTextField tf2 = new JTextField();
 	
 	public TextAreaEx() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,6 +38,9 @@ public class TextAreaEx extends JFrame{
 			}
 		});
 		c.add(tf,BorderLayout.NORTH);
+		c.add(tf2,BorderLayout.SOUTH);
+		tf2.setEnabled(false); // 비활성화
+		ta.setEditable(false); // 수정하지 못함.
 		c.add(new JScrollPane(ta)); // 스크롤바가 달린 텍스트 에어리어
 	}
 	
