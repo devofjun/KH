@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+
+// 텍스트필드에서 액션리스너 사용법
 @SuppressWarnings("serial")
 public class TextFieldAction extends JFrame implements ActionListener{
 	Container c = getContentPane();
@@ -36,6 +38,7 @@ public class TextFieldAction extends JFrame implements ActionListener{
 	}
 
 	private void setUI() {
+		// 폰트크기를 늘리면 칸 크기도 늘어난다.
 		txtNorth.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		txtSouth.setFont(new Font("굴림체", Font.BOLD, 40));
 		c.add(txtNorth, BorderLayout.NORTH);
