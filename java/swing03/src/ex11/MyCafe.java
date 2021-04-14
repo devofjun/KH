@@ -34,10 +34,10 @@ public class MyCafe extends JFrame implements ActionListener{
 	// 중간 체크박스
 	JCheckBox[] chkWon = new JCheckBox[6];
 	// 화폐단위, 가격
-	int[] intWon = {5000, 1000, 500, 100, 50, 10};
-	int[] priceArr = {1550,2320,3630};
+	static final int[] WON = {5000, 1000, 500, 100, 50, 10};
+	static final int[] PRICES = {1550,2320,3630};
 	// 하단레이블
-	JLabel lblPrice = new JLabel("에스프레소:"+priceArr[0]+"원 | 아메리카노:"+priceArr[1]+"원 | 카페라떼:"+priceArr[2]+"원");
+	JLabel lblPrice = new JLabel("에스프레소:"+PRICES[0]+"원 | 아메리카노:"+PRICES[1]+"원 | 카페라떼:"+PRICES[2]+"원");
 	// 버튼
 	JButton btn = new JButton("주문");
 	
@@ -107,11 +107,11 @@ public class MyCafe extends JFrame implements ActionListener{
 		// 거스름돈 출력
 		int price = 0;
 		if(radios[0].isSelected()) {
-			price = priceArr[0];
+			price = PRICES[0];
 		} else if(radios[1].isSelected()) {
-			price = priceArr[1];
+			price = PRICES[1];
 		} else if(radios[2].isSelected()) {
-			price = priceArr[2];
+			price = PRICES[2];
 		} else {
 			System.out.println("ERROR");
 		}
@@ -126,9 +126,10 @@ public class MyCafe extends JFrame implements ActionListener{
 			if(!chkWon[i].isSelected()) {
 				continue;
 			}
-			num = change / intWon[i];
+			num = change / WON[i];
 			if(num != 0) {
-				change = change - (intWon[i] * num);
+				change %= WON[i];
+				//change = change - (WON[i] * num);
 			}
 			tfWon[i].setText(String.valueOf(num));
 		}
