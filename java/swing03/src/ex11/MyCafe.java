@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,12 +25,15 @@ public class MyCafe extends JFrame implements ActionListener{
 	JTextField tfChange = new JTextField();
 	// 중간텍스트필드
 	JTextField[] tfWon = new JTextField[6];
-	// 상단레이블k
+	// 상단레이블
 	JLabel lblInput = new JLabel("투입");
 	JLabel lblChange = new JLabel("거스름돈");
-	// 중간레이블k
+	// 중간레이블
 	JLabel[] lblWon = new JLabel[6];
 	String[] won = {"5천원", "1천원", "500원", "100원", "50원", "10원"};
+	// 중간 체크박스
+	JCheckBox[] chkWon = new JCheckBox[6];
+	// 화폐단위, 가격
 	int[] intWon = {5000, 1000, 500, 100, 50, 10};
 	int[] priceArr = {1550,2320,3630};
 	// 하단레이블
@@ -73,12 +77,15 @@ public class MyCafe extends JFrame implements ActionListener{
 		
 		// 중간 거스름돈 
 		JPanel wonPnl = new JPanel();
-		wonPnl.setLayout(new GridLayout(6, 2, 10, 40));
+		wonPnl.setLayout(new GridLayout(0, 3, 10, 40));
 		for(int i=0; i<lblWon.length; ++i) {
 			lblWon[i] = new JLabel(won[i]);
 			wonPnl.add(lblWon[i]);
 			tfWon[i] = new JTextField();
 			wonPnl.add(tfWon[i]);
+			chkWon[i] = new JCheckBox();
+			chkWon[i].setSelected(true);
+			wonPnl.add(chkWon[i]);
 		}
 		
 		// 하단 가격표
@@ -116,6 +123,9 @@ public class MyCafe extends JFrame implements ActionListener{
 		int num = 0;
 		
 		for(int i=0; i<tfWon.length;i++) {
+			if(!chkWon[i].isSelected()) {
+				continue;
+			}
 			num = change / intWon[i];
 			if(num != 0) {
 				change = change - (intWon[i] * num);
