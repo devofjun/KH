@@ -24,6 +24,6 @@ void loop() {
   } else {
     digitalWrite(11,LOW);
     digitalWrite(10,LOW);
-    digitalWrite(9,LOW);
+    digitalWrite(9,HIGH);
   }
 }
