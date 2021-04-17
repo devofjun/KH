@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class MyCafe extends JFrame implements ActionListener{
 	Container c = getContentPane();
 	// 라디오 버튼 3개
@@ -35,9 +36,12 @@ public class MyCafe extends JFrame implements ActionListener{
 	JCheckBox[] chkWon = new JCheckBox[6];
 	// 화폐단위, 가격
 	static final int[] WON = {5000, 1000, 500, 100, 50, 10};
-	static final int[] PRICES = {1550,2320,3630};
+	final int ESPRESSO_PRICE = 1550;
+	final int AMERICANO_PRICE = 2320;
+	final int CAFELATTE_PRICE = 3630;
+	
 	// 하단레이블
-	JLabel lblPrice = new JLabel("에스프레소:"+PRICES[0]+"원 | 아메리카노:"+PRICES[1]+"원 | 카페라떼:"+PRICES[2]+"원");
+	JLabel lblPrice = new JLabel("에스프레소:"+ESPRESSO_PRICE+"원 | 아메리카노:"+AMERICANO_PRICE+"원 | 카페라떼:"+CAFELATTE_PRICE+"원");
 	// 버튼
 	JButton btn = new JButton("주문");
 	
@@ -104,37 +108,45 @@ public class MyCafe extends JFrame implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// 거스름돈 출력
-		int price = 0;
-		if(radios[0].isSelected()) {
-			price = PRICES[0];
-		} else if(radios[1].isSelected()) {
-			price = PRICES[1];
-		} else if(radios[2].isSelected()) {
-			price = PRICES[2];
-		} else {
-			System.out.println("ERROR");
-		}
-		int inputWon = Integer.parseInt(tfInput.getText());
-		int change = inputWon - price;
-		tfChange.setText(String.valueOf(change));
-		
-		// 거스름돈 단위별로 필요한 갯수 출력
-		int num = 0;
-		
-		for(int i=0; i<tfWon.length;i++) {
-			if(!chkWon[i].isSelected()) {
-				continue;
-			}
-			num = change / WON[i];
-			if(num != 0) {
-				change %= WON[i];
-				//change = change - (WON[i] * num);
-			}
-			tfWon[i].setText(String.valueOf(num));
+		// 재사용 가능한 코드
+		if(e.getSource().equals(btn)) { // 버튼이 눌렸을 경우 계산 메소드 호출
+			printExchange();
 		}
 	}
-
+	
+	private void printExchange() {
+		// 거스름돈 출력
+				int price = 0;
+				if(radios[0].isSelected()) {
+					price = ESPRESSO_PRICE;
+				} else if(radios[1].isSelected()) {
+					price = AMERICANO_PRICE;
+				} else if(radios[2].isSelected()) {
+					price = CAFELATTE_PRICE;
+				} else {
+					System.out.println("ERROR");
+				}
+				int inputWon = Integer.parseInt(tfInput.getText());
+				int change = inputWon - price;
+				tfChange.setText(String.valueOf(change));
+				
+				// 거스름돈 단위별로 필요한 갯수 출력
+				int num = 0;
+				
+				for(int i=0; i<tfWon.length;i++) {
+					if(!chkWon[i].isSelected()) { // 체크해제 되어있다면 0을 셋팅하고 넘어감
+						tfWon[i].setText("0");
+						continue;
+					}
+					num = change / WON[i];
+					if(num != 0) {
+						change %= WON[i];
+						//change = change - (WON[i] * num);
+					}
+					tfWon[i].setText(String.valueOf(num));
+				}
+	}
+	
 	public static void main(String[] args) {
 		new MyCafe();
 	}
