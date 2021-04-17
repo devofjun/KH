@@ -108,6 +108,10 @@ public class MyCafe extends JFrame implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		/* instanceof를 이렇게 쓰지 못하면 어떻게 사용해야하는거지?
+		Object obj = e;
+		if(obj instanceof JButton) {}
+		*/
 		// 재사용 가능한 코드
 		if(e.getSource().equals(btn)) { // 버튼이 눌렸을 경우 계산 메소드 호출
 			printExchange();
