@@ -67,6 +67,7 @@ public class CalcFraction extends JFrame implements ActionListener{
 		pLTerm.add(new JLabel());
 		pLTerm.add(LDenominator);
 		// 부호 버튼
+		btnSign.addActionListener(this);
 		pSign.add(btnSign);
 		// 우항분수 세팅
 		pRTerm.add(new JLabel());
@@ -81,6 +82,7 @@ public class CalcFraction extends JFrame implements ActionListener{
 		pNorth.add(pRTerm);
 		c.add(pNorth,BorderLayout.CENTER);
 		// 결과식 세팅
+		btnEquals.addActionListener(this);
 		pEquals.add(btnEquals);
 		pResult.add(new JLabel());
 		pResult.add(Numerator);
@@ -99,7 +101,40 @@ public class CalcFraction extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource().equals(btnSign)) {
+			switch (btnSign.getText()) {
+			case "+":
+				btnSign.setText("-");
+				break;
+			case "-":
+				btnSign.setText("*");
+				break;
+			case "*":
+				btnSign.setText("/");
+				break;
+			case "/":
+				btnSign.setText("+");
+				break;
+			}
+		} else if(e.getSource().equals(btnEquals)) {
+			calculation();
+		}
+	}
+	
+	public void calculation() {
+		int LNumb = Integer.parseInt(LNumber.getText()); // 자연수 
+		int LNume = Integer.parseInt(LNumerator.getText()); // 분자
+		int LDeno = Integer.parseInt(LDenominator.getText()); // 분모
+		int RNumb = Integer.parseInt(RNumber.getText()); // 자연수 
+		int RNume = Integer.parseInt(RNumerator.getText()); // 분자
+		int RDeno = Integer.parseInt(RDenominator.getText()); // 분모
 		
+		if(LNumb != 0) { // 좌항 자연수가 있을때
+			LNume = LNume + (LNumb * LDeno); // 분모와 자연수를 곱하여 분자에 더한다.
+		}
+		if(RNumb != 0) { // 우항 자연수가 있을때
+			RNume = RNume + (RNumb * RDeno); // 분모와 자연수를 곱하여 분자에 더한다.
+		}
+		if() // 분모를 같게 한다.
 	}
 }
