@@ -16,7 +16,6 @@ public class EmpFrame extends JFrame{
 		c.add(textArea);
 		setSize(300, 300);
 		setVisible(true);
-		empDao.getEmpList();
 		EmpVo empVo = empDao.getEmpList();
 		int empno = empVo.getEmpno();
 		String ename = empVo.getEname();

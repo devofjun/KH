@@ -40,7 +40,7 @@ public class EmpDao { // 데이터베이스 접근 객체 - DAO(Data Access Obje
 					+ "   from emp" // 공백이 있어야 from과 select문과 구분이 된다.
 					+ "   order by empno asc";  // 마찬가지로 공백이 있어야 한다.
 			PreparedStatement pstmt = conn.prepareStatement(sql); // SQL 문장 전달(타이핑)
-			ResultSet rs = pstmt.executeQuery(); // Enter
+			ResultSet rs = pstmt.executeQuery(); // Enter -> 실행결과물을 받음.
 			boolean b = rs.next(); // 더 읽어올 데이터가 있다면 true
 			if(b == true) {
 				int empno = rs.getInt("empno");
