@@ -297,3 +297,29 @@ from dual;
 -- 숫자/날짜 데이터를 문자형으로 형변환(to_char);
 select 1230000, to_char(1230000), to_char(1230000, 'L999,999,999')
 from dual;
+
+
+-- 날짜형으로 변경 (to_date)
+-- 2007년 4월 2일에 입사한 사원의 이름과 입사일 조회
+-- 이름: ename, 입사일: hiredate
+select ename, hiredate
+from emp
+--where hiredate = '2007/04/02';
+where hiredate = to_date(20070402, 'YYYYMMDD');
+
+-- 올해 며칠이 지났는가
+-- 오늘날짜(sysdate) - 2021/01/01
+
+select floor(sysdate - to_date('2021/01/01'))
+from dual;
+
+-- 숫자로 변환 (to_number)
+-- to_number('수','형식')
+select to_number('20,000','99,999') - to_number('10,000', '99,999')
+from dual;
+
+-- 날짜도 내부적으로는 숫자데이터
+select sysdate 오늘, sysdate+1 내일, sysdate-1 어제, sysdate+12 다음달1일
+from dual;
+
+--

@@ -7,7 +7,7 @@ import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class EmpFrame extends JFrame{
-	EmpDao empDao = EmpDao.getInstance();
+	EmpDao empDao = EmpDao.getInstance(); // Dao 객체 만들기만함.
 	Container c = getContentPane();
 	JTextArea textArea = new JTextArea();
 	public EmpFrame() {
@@ -16,12 +16,16 @@ public class EmpFrame extends JFrame{
 		c.add(textArea);
 		setSize(300, 300);
 		setVisible(true);
-		EmpVo empVo = empDao.getEmpList();
-		int empno = empVo.getEmpno();
+		
+		// db에 연결하고 데이터를 받아온 vo객체 저장
+		EmpVo empVo = empDao.getEmpList(); 
+		// 객체가 가지고 있는데 데이터 하나씩 저장
+		int empno = empVo.getEmpno(); 
 		String ename = empVo.getEname();
 		String job = empVo.getJob();
 		int sal = empVo.getSal();
-		textArea.append(empno + " | ");
+		// 저장한 데이터 하나씩 출력
+		textArea.append(empno + " | "); 
 		textArea.append(ename + " | ");
 		textArea.append(job + " | ");
 		textArea.append(sal + " | ");
