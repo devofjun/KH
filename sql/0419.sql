@@ -148,7 +148,152 @@ from emp
 --where comm = null; --null 값은 정해져 있는 값이 아니라 논리연산이 안됨
 where comm is null;
 
--- 커시면이 정해진 사원 조회
+-- 커미션이 정해진 사원 조회
 select *
 from emp
 where comm is not null;
+
+-- <ol> : Ordered List (순서목록)
+-- order : 순서
+-- order by 컬럼명 : 해당 컬럼으로 순서를 정함 -> 정렬
+-- 2차,3차 .. n차 정렬이 필요하다면
+-- order by 컬럼명1, 컬럼명2, ...
+-- 기본 정렬은 오름차순(작은값에서 큰값순으로) : asc(ascending) -생략가능
+-- 내림차순(큰값->작은값)정렬 : desc(descending) -명시
+
+-- 사원정보를 입사일 순으로 정렬해서 조회
+select *
+from emp
+order by hiredate asc; -- asc는 생략가능
+
+-- 최근 입사한 순으로 사원 조회
+select *
+from emp
+order by hiredate desc;
+
+-- 급여순, 급여가 같다면 이름순(가나다순)으로 정렬 조회
+select *
+from emp
+order by sal, ename;
+-- 급여가 많으순(역정렬)으로, 같다면 이름순(순정렬)
+select *
+from emp
+order by sal desc, ename asc; -- 역정렬이 나오면 순정렬도 명시해주는게 좋다.
+
+-- 1. 사원의 이름과 급여와 입사일 조회
+select ename, sal, hiredate
+from emp;
+-- 2. 부서번호와 부서명 조회(별칭사용 '부서번호', '부서명')
+select deptno "부서번호", dname "부서명"
+from dept;
+-- 3. 직급을 중복하지 않고 한 번씩 나열해서 조회
+select distinct job
+from emp;
+-- 4. 급여가 300 이하인 사원 번호, 이름, 급여 조회
+select empno, ename, sal
+from emp
+where sal<=300;
+-- 5. 이름이 "오지호" 인 사원의 사원번호, 이름, 급여 조회
+select empno,ename,sal
+from emp
+where ename = '오지호';
+-- 6. 급여가 250이거나, 300이거나, 500인 사원들의 사번, 이름, 급여 조회
+select empno, ename, sal
+from emp
+where sal in(250, 300, 500);
+-- 7. 급여가 250도, 300도, 500도 아닌 사원의 사번, 이름, 급여 조회
+select empno, ename, sal
+from emp
+where sal not in(250, 300, 500);
+-- 8. 성씨가 김씨이거나 이름에 '기'가 들어있는 사원조회
+select *
+from emp
+where ename like '김%' OR ename like '%기%';
+-- 9. 상급자(mgr)가 없는 사원조회
+select *
+from emp
+where mgr is null;
+-- 10. 사원 테이블에서 최근 입사한 직원 순으로 사번, 이름, 직급, 입사일 조회
+select empno, ename, job, hiredate
+from emp
+order by hiredate desc;
+-- 11. 부서번호가 빠른 사원부터 출려하되, 같은 부서내의 사원인 경우 입사한지 오래된 사원부터 출력되도록 조회
+select *
+from emp
+order by deptno, emp.hiredate;
+
+-- dual 테이블
+-- 테이블 구조 보기
+-- desc 테이블명, describe(설명하다)
+desc emp; -- 구조를 본다.
+desc dual; 
+select 24 * 60
+from dual;
+-- 위와같이 임시로 결과를 볼 수 있는 테이블이다.
+
+-- 절대값
+select -10, abs(-10)
+from dual;
+
+-- 버림
+select 34.5678, floor(34.5678)
+from dual;
+
+-- 반올림
+select 34.5678, round(34.5678)
+from dual;
+
+select round(34.5678, 1), round(34.5678, -1)
+from dual;
+
+-- 나머지: %(x)
+select mod(27, 2), mod(27, 5), mod(27, 7)
+from dual;
+
+-- upper: 대문자로 변경, lower: 소문자로 변경
+-- initcap(단어의 첫글자만 대문자): 이니셜, capitalize(대문자)
+select 'Welcome to Oracle', upper('Welcome to Oracle'),
+    lower('Welcome to Oracle'),
+    initcap('Welcome to Oracle')
+from dual;
+
+-- length : 글자갯수
+-- lengthb : 바이트수
+select length('Oracle'), length('오라클'),
+    lengthb('Oracle'), lengthb('오라클')
+from dual;
+
+---------------------------
+-- 부분 문자열: substr
+-- substr(대상, 시작위치, 갯수)
+-- 인덱스는 1부터 시작
+select substr('Welcome to Oracle',4,3)
+from dual;
+
+-- 인덱스에 음수값을 사용하는 경우
+select substr('Welcome to Oracle',-4,3)
+from dual;
+
+-- instr: 위치(인덱스)찾기, index string
+-- instr(대상, 찾을글자)
+-- instr(대상, 찾을글자, 시작위치, 몇번째)
+-- 앞에서부터 시작하고 찾고있는 글자가 나오면 끝
+select instr('WELCOME TO ORACLE','O')
+from dual;
+-- 인덱스 6부터 찾기 시작해서 2번째 발견되는 'O'
+select instr('WELCOME TO ORACLE','O',6,2)
+from dual;
+
+--lpad, rpad(채우기): left padding, rigth padding
+-- lpad(대상, 자릿수, 채울문자)
+select lpad('Oracle', 20, '#'),
+    rpad('Oracle',20,'$')
+from dual;
+
+-- 오늘날짜
+select sysdate, to_char(sysdate, 'YYYY-MM-DD dy AM HH:MI:SS')
+from dual;
+
+-- 숫자/날짜 데이터를 문자형으로 형변환(to_char);
+select 1230000, to_char(1230000), to_char(1230000, 'L999,999,999')
+from dual;
