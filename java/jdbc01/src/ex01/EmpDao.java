@@ -42,7 +42,7 @@ public class EmpDao { // 데이터베이스 접근 객체 - DAO(Data Access Obje
 			PreparedStatement pstmt = conn.prepareStatement(sql); // SQL 문장 전달(타이핑)
 			ResultSet rs = pstmt.executeQuery(); // Enter -> 실행결과물을 받음.
 			boolean b = rs.next(); // 더 읽어올 데이터가 있다면 true
-			if(b == true) { // vo에 데이터를 하나씩 옮기기
+			if(b == true) { // vo에 데이터를 하나씩 옮기기.
 				int empno = rs.getInt("empno");
 				String ename = rs.getString("ename");
 				String job = rs.getString("job");
