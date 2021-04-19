@@ -20,7 +20,7 @@ public class EmpDao { // 데이터베이스 접근 객체 - DAO(Data Access Obje
 	private final String ID = "user01";
 	private final String PW = "1234";
 	
-	private Connection getConnection() {
+	private Connection getConnection() { // DB드라이버 매칭
 		try {
 			Class.forName(DRIVER_NAME); // SQL Command Line 띄우는거라고 생각하면됨
 			Connection conn = DriverManager.getConnection(URL, ID, PW); // SQL> conn user01/1234
@@ -32,9 +32,9 @@ public class EmpDao { // 데이터베이스 접근 객체 - DAO(Data Access Obje
 		}
 		return null;
 	}
-	public EmpVo getEmpList() {
+	public EmpVo getEmpList() { // 연결된 DB에서 데이터 가져오기
 		try {
-			Connection conn = getConnection();
+			Connection conn = getConnection(); // 데이터베이스와 연결하기
 			// SQL 문장 타이핑
 			String sql = "select empno, ename, job, sal"
 					+ "   from emp" // 공백이 있어야 from과 select문과 구분이 된다.
@@ -42,7 +42,7 @@ public class EmpDao { // 데이터베이스 접근 객체 - DAO(Data Access Obje
 			PreparedStatement pstmt = conn.prepareStatement(sql); // SQL 문장 전달(타이핑)
 			ResultSet rs = pstmt.executeQuery(); // Enter -> 실행결과물을 받음.
 			boolean b = rs.next(); // 더 읽어올 데이터가 있다면 true
-			if(b == true) {
+			if(b == true) { // vo에 데이터를 하나씩 옮기기
 				int empno = rs.getInt("empno");
 				String ename = rs.getString("ename");
 				String job = rs.getString("job");
