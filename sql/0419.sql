@@ -322,4 +322,5 @@ from dual;
 select sysdate 오늘, sysdate+1 내일, sysdate-1 어제, sysdate+12 다음달1일
 from dual;
 
---
+--420
+
