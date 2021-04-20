@@ -117,17 +117,21 @@ public class CalcFraction extends JFrame implements ActionListener{
 				break;
 			}
 		} else if(e.getSource().equals(btnEquals)) {
-			calculation();
+			calculation(btnSign.getText());
 		}
 	}
 	
-	public void calculation() {
-		int LNumb = Integer.parseInt(LNumber.getText()); // 자연수 
-		int LNume = Integer.parseInt(LNumerator.getText()); // 분자
-		int LDeno = Integer.parseInt(LDenominator.getText()); // 분모
-		int RNumb = Integer.parseInt(RNumber.getText()); // 자연수 
-		int RNume = Integer.parseInt(RNumerator.getText()); // 분자
-		int RDeno = Integer.parseInt(RDenominator.getText()); // 분모
+	public void calculation(String b) {
+		try {
+			int LNumb = Integer.parseInt(LNumber.getText()); // 자연수 
+			int LNume = Integer.parseInt(LNumerator.getText()); // 분자
+			int LDeno = Integer.parseInt(LDenominator.getText()); // 분모
+			int RNumb = Integer.parseInt(RNumber.getText()); // 자연수 
+			int RNume = Integer.parseInt(RNumerator.getText()); // 분자
+			int RDeno = Integer.parseInt(RDenominator.getText()); // 분모			
+		} catch() {
+			
+		}
 		
 		if(LNumb != 0) { // 좌항 자연수가 있을때
 			LNume = LNume + (LNumb * LDeno); // 분모와 자연수를 곱하여 분자에 더한다.
@@ -135,6 +139,35 @@ public class CalcFraction extends JFrame implements ActionListener{
 		if(RNumb != 0) { // 우항 자연수가 있을때
 			RNume = RNume + (RNumb * RDeno); // 분모와 자연수를 곱하여 분자에 더한다.
 		}
-		if() // 분모를 같게 한다.
+		
+		int nume = 0;
+		int deno = 0;
+		int numb = 0;
+		switch(b) {
+		case "+":
+			nume = (LNume*RDeno)+(RNume*LDeno);
+			deno = RDeno*LDeno;
+			numb = nume / deno;
+			nume %= deno; 
+			break;
+		case "-":
+			if(RDeno != LDeno) { // 분모를 같지 않다면 분모를 같게해준다.
+				int tmp = RDeno;
+				RDeno *= LDeno;
+				RNume *= LDeno;
+				LDeno *= tmp;
+				LNume *= tmp;
+			}
+			break;
+		case "*":
+			
+			break;
+		case "/":
+			
+			break;
+		}
+		Numerator.setText(String.valueOf(nume));
+		Denominator.setText(String.valueOf(deno));
+		Number.setText(String.valueOf(numb));
 	}
 }
