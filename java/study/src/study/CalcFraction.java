@@ -122,16 +122,16 @@ public class CalcFraction extends JFrame implements ActionListener{
 	}
 	
 	public void calculation(String b) {
-		try {
+		//try {
 			int LNumb = Integer.parseInt(LNumber.getText()); // 자연수 
 			int LNume = Integer.parseInt(LNumerator.getText()); // 분자
 			int LDeno = Integer.parseInt(LDenominator.getText()); // 분모
 			int RNumb = Integer.parseInt(RNumber.getText()); // 자연수 
 			int RNume = Integer.parseInt(RNumerator.getText()); // 분자
 			int RDeno = Integer.parseInt(RDenominator.getText()); // 분모			
-		} catch() {
+		//} catch() {
 			
-		}
+		//}
 		
 		if(LNumb != 0) { // 좌항 자연수가 있을때
 			LNume = LNume + (LNumb * LDeno); // 분모와 자연수를 곱하여 분자에 더한다.
