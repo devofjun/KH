@@ -134,7 +134,7 @@ public class EmpDao {
 			pstmt.setInt(7, empVo.getDeptno());
 			//pstmt.setInt(8, 1);
 			int count = pstmt.executeUpdate();
-			if(count > 0) {
+			if(count > 0) { 
 				return true;
 			}
 		} catch(Exception e) {
