@@ -81,6 +81,39 @@ public class EmpDao {
 		}
 		return null;
 	}
+	// 사원조회
+	public EmpVo selectByEmpno(int empno) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String sql = "select * from emp"
+					+ "   where empno = " + empno;
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next() == true) {
+				String ename = rs.getString("ename");
+				String job = rs.getString("job");
+				int mgr = rs.getInt("mgr");
+				Date hiredate = rs.getDate("hiredate");
+				int sal = rs.getInt("sal");
+				int comm = rs.getInt("comm");
+				int deptno = rs.getInt("deptno");
+				
+				EmpVo empVo = new EmpVo(empno, ename, job, mgr, hiredate, sal, comm, deptno);
+				return empVo;
+			}
+		} catch(Exception e) {
+			
+		} finally {
+			closeAll(rs,pstmt,conn);
+		}
+		
+		
+		return null;
+	}
+	
 	// 입력
 	public boolean insertData(EmpVo empVo) {
 		Connection conn = null;
@@ -112,7 +145,63 @@ public class EmpDao {
 		return false;
 	}
 	// 수정
-	
+	public boolean updateDate(EmpVo empVo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = getConnection();
+			String sql = "update emp"
+					+ "   set"
+					+ "		ename = ?,"
+					+ "		job = ?,"
+					+ "		mgr = ?,"
+					+ "		hiredate = sysdate,"
+					+ "		sal = ?,"
+					+ "		comm = ?,"
+					+ "		deptno = ?"
+					+ "   where empno = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, empVo.getName());
+			pstmt.setString(2, empVo.getJob());
+			pstmt.setInt(3, empVo.getMgr());
+			//pstmt.setString(4, empVo.getHiredate().toString());
+			pstmt.setInt(4, empVo.getSal());
+			pstmt.setInt(5, empVo.getComm());
+			pstmt.setInt(6, empVo.getDeptno());
+			pstmt.setInt(7, empVo.getNo());
+			int count = pstmt.executeUpdate();
+			if(count > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		
+		
+		return false;
+	}
 	// 삭제
-	
+	public boolean deleteData(int empno) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = getConnection();
+			String sql = "delete from emp"
+					+ "   where empno = " + empno;
+			pstmt = conn.prepareStatement(sql);
+			int count = pstmt.executeUpdate(); // insert, update, delete => executeUpdate()
+			if(count > 0) {
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		
+		return false;
+	}
 }

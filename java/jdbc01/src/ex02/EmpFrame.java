@@ -27,6 +27,7 @@ public class EmpFrame extends JFrame implements ActionListener{
 	JPanel pInput = new JPanel(new GridLayout(0,4)); 
 	
 	JButton btSelect = new JButton("전체조회");
+	JButton btEmp = new JButton("사원조회");
 	JButton btInsert = new JButton("입력");
 	JButton btUpdate = new JButton("수정");
 	JButton btDelete = new JButton("삭제");
@@ -71,10 +72,12 @@ public class EmpFrame extends JFrame implements ActionListener{
 	
 	private void setListerer() {
 		btSelect.addActionListener(this);
+		btEmp.addActionListener(this);
 		btInsert.addActionListener(this);
 		btUpdate.addActionListener(this);
 		btDelete.addActionListener(this);
 		pBTN.add(btSelect);
+		pBTN.add(btEmp);
 		pBTN.add(btInsert);
 		pBTN.add(btUpdate);
 		pBTN.add(btDelete);
@@ -110,36 +113,81 @@ public class EmpFrame extends JFrame implements ActionListener{
 						deptno;
 				ta.append(strEmp+ "\n");
 			}
-			//System.out.println(list);
-			//System.out.println("select");
+			
+		} else if(e.getSource().equals(btEmp)) { // "사원조회"버튼
+			try {
+				int empno = Integer.parseInt(tf[0].getText());
+				EmpVo empVo = empDao.selectByEmpno(empno);
+				tf[0].setText(String.valueOf(empVo.getNo()));
+				tf[1].setText(String.valueOf(empVo.getName()));
+				tf[2].setText(empVo.getJob());
+				tf[3].setText(String.valueOf(empVo.getMgr()));
+				tf[4].setText(empVo.getHiredate().toString());
+				tf[5].setText(String.valueOf(empVo.getSal()));
+				tf[6].setText(String.valueOf(empVo.getComm()));
+				tf[7].setText(String.valueOf(empVo.getDeptno()));
+			} catch(NumberFormatException ex) {
+				ta.append("-----사번은 숫자로 입력해 주세요-----\n");
+			}
 		} else if(e.getSource().equals(btInsert)) { // "입력"버튼
-			int empno = Integer.parseInt(tf[0].getText());
-			String ename = tf[1].getText();
-			String job = tf[2].getText();
-			int mgr = Integer.parseInt(tf[3].getText());
-			Date hiredate = null;//Date.valueOf(tf[4].getText());
-			int sal = Integer.parseInt(tf[5].getText());
-			int comm = Integer.parseInt(tf[6].getText());
-			int deptno = Integer.parseInt(tf[7].getText());
+			
 			
 			try {
-			EmpVo empVo = new EmpVo(empno, ename, job, mgr, hiredate, sal, comm, deptno); 
+				int empno = Integer.parseInt(tf[0].getText());
+				String ename = tf[1].getText();
+				String job = tf[2].getText();
+				int mgr = Integer.parseInt(tf[3].getText());
+				Date hiredate = null;//Date.valueOf(tf[4].getText());
+				int sal = Integer.parseInt(tf[5].getText());
+				int comm = Integer.parseInt(tf[6].getText());
+				int deptno = Integer.parseInt(tf[7].getText());
+				EmpVo empVo = new EmpVo(empno, ename, job, mgr, hiredate, sal, comm, deptno); 
 			
-			//System.out.println(empVo);
-			boolean result = empDao.insertData(empVo);
-			if(result == true) {
-				ta.append("----- 데이터 입력 성공 -----\n");
-			} else {
-				ta.append("----- 데이터 입력 실패 -----\n");
-			}
+				//System.out.println(empVo);
+				boolean result = empDao.insertData(empVo);
+				if(result == true) {
+					ta.append("----- 데이터 입력 성공 -----\n");
+				} else {
+					ta.append("----- 데이터 입력 실패 -----\n");
+				}
 			} catch (NumberFormatException ex) {
 				System.out.println("숫자로 변환할 수 없는 값이 있습니다.");
 			}
-			//System.out.println("insert");
 		} else if(e.getSource().equals(btUpdate)) { // "수정"버튼
-			//System.out.println("update");
+			try {
+				int empno = Integer.parseInt(tf[0].getText());
+				String ename = tf[1].getText();
+				String job = tf[2].getText();
+				int mgr = Integer.parseInt(tf[3].getText());
+				Date hiredate = null;//Date.valueOf(tf[4].getText());
+				int sal = Integer.parseInt(tf[5].getText());
+				int comm = Integer.parseInt(tf[6].getText());
+				int deptno = Integer.parseInt(tf[7].getText());
+				EmpVo empVo = new EmpVo(empno, ename, job, mgr, hiredate, sal, comm, deptno); 
+			
+				//System.out.println(empVo);
+				boolean result = empDao.updateDate(empVo);
+				if(result == true) {
+					ta.append("----- 데이터 수정 성공 -----\n");
+				} else {
+					ta.append("----- 데이터 수정 실패 -----\n");
+				}
+			} catch (NumberFormatException ex) {
+				System.out.println("숫자로 변환할 수 없는 값이 있습니다.");
+			}
+			
 		} else if(e.getSource().equals(btDelete)) { // "삭제"버튼
-			//System.out.println("delete");
+			String strEmpno = tf[0].getText();
+			try {
+				boolean result = empDao.deleteData(Integer.parseInt(strEmpno));
+				if(result == true) {
+					ta.append("-------데이터가 삭제되었습니다.-------\n");
+				} else {
+					ta.append("-------데이터가 삭제에 실패했습니다.-------\n");
+				}
+			} catch(NumberFormatException ex) {
+				ta.append("-------사번은 숫자 값으로 입력해 주세요.-------\n");
+			}
 		}
 	}
 	
