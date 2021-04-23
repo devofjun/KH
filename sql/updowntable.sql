@@ -15,7 +15,11 @@ values ('test', '1234', 'test');
 insert into tbl_score (u_id, score)
 values ('test', '100');
 
+delete from tbl_user;
+delete from tbl_score;
+
 commit;
 
-select * from gameuser;
+select * from tbl_user;
+select * from tbl_score;
 desc gameuser;

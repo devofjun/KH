@@ -4,7 +4,7 @@
 --  컬럼명1 데이터타입 제약조건
 -- );
 -- emp01 테이블생성(숫자형식(사번),문자형식(이름), 숫자(급여))
-create table emp01(
+create table emp02(
     empno number(4), -- 숫자4자리, 제약조건 없음
     ename varchar2(14), -- 문자 14자리(한글 3byte)
     sal number(7, 3) -- 전체 7자리, 소숫점이하 3자리

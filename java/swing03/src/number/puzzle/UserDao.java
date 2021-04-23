@@ -13,6 +13,7 @@ public class UserDao {
 		if(instance == null) {
 			instance = new UserDao();
 		}
+		//System.out.println("userdao 생성됨"+instance);
 		return instance;
 	}
 	// ====================singleton========================
@@ -69,7 +70,6 @@ public class UserDao {
 		} finally {
 			closeAll(rs, pstmt,conn);
 		}
-		user = null;
 		return user;
 	}
 	// 회원가입
@@ -85,7 +85,7 @@ public class UserDao {
 			pstmt.setString(1, userVo.getUid());
 			pstmt.setString(2, userVo.getUpw());
 			pstmt.setString(3, userVo.getUname());
-			int count = pstmt.executeUpdate(); // "몇 했이 삽입되었습니다." 에서 숫자를 리턴한다.
+			int count = pstmt.executeUpdate(); // "몇 행이 삽입되었습니다." 에서 숫자를 리턴한다.
 			if(count > 0) {
 				return true;
 			}

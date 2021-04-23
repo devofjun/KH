@@ -74,6 +74,7 @@ public class JoinFrame extends JFrame implements ActionListener{
 			userVo.setUname(uname);
 			boolean up = userDao.signup(userVo);
 			if(up) {
+				System.out.println("등록되었습니다.");
 				this.dispose();
 			} else {
 				System.out.println("회원가입이 되지 않았습니다.");

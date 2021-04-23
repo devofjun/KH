@@ -22,11 +22,11 @@ public class GameFrame extends JFrame implements ActionListener{
 	// 상단
 	JPanel pNorth = new JPanel();
 	JLabel lblInput = new JLabel("입력");
-	JTextField tfInput = new JTextField(7);
+	JTextField tfInput = new JTextField(3);
 	JButton btChk = new JButton("확인");
-	JTextField tfWinner = new JTextField("winner");
+	JTextField tfWinner = new JTextField(7);
 	JLabel lblRecord = new JLabel("기록");
-	JTextField tfRecord = new JTextField(7);
+	JTextField tfRecord = new JTextField(10);
 	JButton btNewGame = new JButton("새게임");
 	
 	// 중단
@@ -40,6 +40,8 @@ public class GameFrame extends JFrame implements ActionListener{
 	
 	GameManager GM = GameManager.getInstance();
 	
+	UserVo userVo;
+	
 	public GameFrame(UserVo userVo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("1~100 숫자 맞추기");
@@ -48,12 +50,15 @@ public class GameFrame extends JFrame implements ActionListener{
 		setUI();
 		
 		setVisible(true);
+		this.userVo = userVo;
 	}
 	
 	private void setUI() {
 		//pNorth.setLayout();
 		tfRecord.setEnabled(false);
 		tfWinner.setEnabled(false);
+		tfWinner.setText(GM.getWinnerID());
+		tfRecord.setText(String.valueOf(GM.getWinnerScore()));
 		pNorth.setBackground(Color.YELLOW);
 		pNorth.add(lblInput);
 		pNorth.add(tfInput);
@@ -103,9 +108,14 @@ public class GameFrame extends JFrame implements ActionListener{
 					 ta.append("Down\n");
 				 } else if(result==0 && GM.lifeCheck()) { // 같을때
 					 ta.append("OK\n");
+					 ta.append("맞췄습니다! 당신의 기록은 "+GM.getScore()+"입니다.");
+					 GM.saveScore(userVo);
+					 tfWinner.setText(GM.getWinnerID());
+					 tfRecord.setText(String.valueOf(GM.getWinnerScore()));
 				 }
 				 if(!GM.lifeCheck()){
 					 ta.append("기회를 모두 소진했습니다.\n");
+					 btChk.setEnabled(false);
 				 }
 			} catch(NumberFormatException ex) {
 				ta.append("숫자를 입력하세요.\n");
@@ -120,6 +130,7 @@ public class GameFrame extends JFrame implements ActionListener{
 			for(int i=0; i<GM.getLife(); i++) {
 				l+="♥";
 			}
+			btChk.setEnabled(true);
 			tfLife.setText(l);
 		}
 	}
