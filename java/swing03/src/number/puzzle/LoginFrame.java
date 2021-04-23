@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -20,7 +21,8 @@ public class LoginFrame extends JFrame implements ActionListener{
 	JLabel lID = new JLabel("아이디");
 	JLabel lPW = new JLabel("패스워드");
 	JTextField tfID = new JTextField(7);
-	JTextField tfPW = new JTextField(7);
+	//JTextField tfPW = new JTextField(7);
+	JPasswordField tfPW = new JPasswordField(7);
 	JButton btSignin = new JButton("로그인");
 	JButton btSignup = new JButton("사용자등록");	 
 	
@@ -62,7 +64,9 @@ public class LoginFrame extends JFrame implements ActionListener{
 		//로그인
 		if(e.getSource().equals(btSignin)) {
 			String sID = tfID.getText();
-			String sPW = tfPW.getText();
+			//String sPW = tfPW.getText();
+			char[] cPW = tfPW.getPassword();
+			String sPW = String.valueOf(cPW);
 			UserVo userVo = userDao.signin(sID, sPW);
 			if(userVo == null) {
 				System.out.println("로그인 실패");

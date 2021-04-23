@@ -69,6 +69,7 @@ public class GameFrame extends JFrame implements ActionListener{
 		pNorth.add(btNewGame);
 		btChk.addActionListener(this);
 		btNewGame.addActionListener(this);
+		tfInput.addActionListener(this);
 		
 		ta.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		
@@ -83,8 +84,9 @@ public class GameFrame extends JFrame implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
 		// 확인 버튼
-		if(e.getSource().equals(btChk)) { 
+		if(obj == tfInput || obj == btChk) { 
 			int inNum = 0;
 			int result = -1;
 			try {
