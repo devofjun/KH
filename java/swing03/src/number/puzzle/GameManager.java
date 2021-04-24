@@ -43,16 +43,20 @@ public class GameManager {
 		return true;
 	}
 	
+	private static final int SMALL = 1;
+	private static final int BIG = 2;
+	private static final int SAME = 0;
+	
 	public int check(int inNum) {
 		if(timer == false) {
 			startTime = System.nanoTime();
 			timer = true;
 		}
 		int result = -1;
-		if(inNum < random) {
-			result = 1; //Up
-		} else if(inNum > random) {
-			result = 2; //Down
+		if(inNum < random) { // 입력값이 작을때
+			result = SMALL;
+		} else if(inNum > random) { // 입력값이 클때
+			result = BIG;
 		} else {
 			endTime = System.nanoTime();
 			if(score == 0) {
@@ -62,7 +66,7 @@ public class GameManager {
 			startTime = 0;
 			endTime = 0;
 			System.out.println(score);
-			result = 0;
+			result = SAME;
 		}
 		return result;
 	}
