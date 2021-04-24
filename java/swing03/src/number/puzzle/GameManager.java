@@ -9,6 +9,8 @@ public class GameManager {
 		}
 		return instance;
 	}
+	// singleton
+	
 	
 	private int random;
 	private int life;
@@ -71,17 +73,17 @@ public class GameManager {
 		return result;
 	}
 	
-	public void saveScore(UserVo userVo) {
+	public void saveScore(UserVo userVo) { // DB에 점수 저장
 		scoreDao.setScore(userVo, score);
 	}
 	
-	public long getScore() {
+	public long getScore() { // 점수 가져오기
 		return score;
 	}
-	public int getLife() {
+	public int getLife() { // 남은 목숨 가져오기
 		return life;
 	}
-	public String getWinnerID() {
+	public String getWinnerID() { // 점수가 가장 좋은 사람의 ID 가져오기
 		String id = "";
 		ScoreVo scoreVo = scoreDao.getWinner();
 		if(scoreVo != null) {
@@ -89,10 +91,10 @@ public class GameManager {
 		}
 		return id;
 	}
-	public Long getWinnerScore() {
+	public Long getWinnerScore() { // 가장 좋은 점수 가져오기
 		Long score = null;
 		ScoreVo scoreVo = scoreDao.getWinner();
-		if(scoreVo != null) {
+		if(scoreVo != null) { // 데이터베이스에 한명도 없을 땐 score를 null로 반환
 			score = scoreVo.getScore();
 		}
 		return score;
