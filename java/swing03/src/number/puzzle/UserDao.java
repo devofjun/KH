@@ -27,7 +27,9 @@ public class UserDao {
 		if(pstmt != null) try {pstmt.close();} catch (SQLException e) {}
 		if(conn != null) try {conn.close();} catch (SQLException e) {}
 	}
-	private Connection getConnection() { // 커넥션을 연결하고 다시 반납하기 위해 private으로 하고 다른 메서드에서 접근하고 연결을 끊는다.
+	
+	// 커넥션을 연결하고 다시 반납하기 위해 private으로 하고 다른 메서드에서 접근하고 연결을 끊는다.
+	private Connection getConnection() { 
 		try {
 			Class.forName(DRIVER_NAME);
 			Connection conn = DriverManager.getConnection(URL, ID, PW);
@@ -72,6 +74,7 @@ public class UserDao {
 		}
 		return user;
 	}
+
 	// 회원가입
 	public boolean signup(UserVo userVo) {
 		Connection conn = null;
