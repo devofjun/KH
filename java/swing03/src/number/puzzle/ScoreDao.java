@@ -41,8 +41,8 @@ public class ScoreDao {
 		return null;
 	}
 	
-	
-	public boolean setScore(UserVo userVo, long score) {
+	// 유저정보와 점수를 가져와서 DB에 저장
+	public boolean setScore(UserVo userVo, long score) { 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -68,8 +68,8 @@ public class ScoreDao {
 		return false;
 	}
 	
-	
-	public ScoreVo getWinner() {
+	// DB에서 가장 좋은 기록 가져오기
+	public ScoreVo getWinner() {  
 		ScoreVo scoreVo = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
