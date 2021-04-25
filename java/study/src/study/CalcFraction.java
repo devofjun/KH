@@ -22,14 +22,14 @@ public class CalcFraction extends JFrame implements ActionListener{
 	//JLabel lblSpace = new JLabel();
 	//JLabel lblLine = new JLabel("----------");
 	// 좌항
-	JTextField LNumerator = new JTextField(); // 분자 
-	JTextField LDenominator = new JTextField(); // 분모
-	JTextField LNumber = new JTextField(); // 자연수
+	JTextField LNumerator = new JTextField("0"); // 분자 
+	JTextField LDenominator = new JTextField("0"); // 분모
+	JTextField LNumber = new JTextField("0"); // 자연수
 	JPanel pLTerm = new JPanel(new GridLayout(0, 2));
 	// 우항
-	JTextField RNumerator = new JTextField(); // 분자 
-	JTextField RDenominator = new JTextField(); // 분모
-	JTextField RNumber = new JTextField(); // 자연수
+	JTextField RNumerator = new JTextField("0"); // 분자 
+	JTextField RDenominator = new JTextField("0"); // 분모
+	JTextField RNumber = new JTextField("0"); // 자연수
 	JPanel pRTerm = new JPanel(new GridLayout(0, 2));
 	// 부호
 	JButton btnSign = new JButton("+");
@@ -41,9 +41,9 @@ public class CalcFraction extends JFrame implements ActionListener{
 	JButton btnEquals = new JButton("=");
 	JPanel pEquals = new JPanel();
 	// 결과분수
-	JTextField Numerator = new JTextField(); // 분자 
-	JTextField Denominator = new JTextField(); // 분모
-	JTextField Number = new JTextField(); // 자연수
+	JTextField Numerator = new JTextField("0"); // 분자 
+	JTextField Denominator = new JTextField("0"); // 분모
+	JTextField Number = new JTextField("0"); // 자연수
 	JPanel pResult = new JPanel(new GridLayout(0, 2));
 	// 결과가 들어갈 패널
 	JPanel pSouth = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -122,16 +122,24 @@ public class CalcFraction extends JFrame implements ActionListener{
 	}
 	
 	public void calculation(String b) {
-		//try {
-			int LNumb = Integer.parseInt(LNumber.getText()); // 자연수 
-			int LNume = Integer.parseInt(LNumerator.getText()); // 분자
-			int LDeno = Integer.parseInt(LDenominator.getText()); // 분모
-			int RNumb = Integer.parseInt(RNumber.getText()); // 자연수 
-			int RNume = Integer.parseInt(RNumerator.getText()); // 분자
-			int RDeno = Integer.parseInt(RDenominator.getText()); // 분모			
-		//} catch() {
+		int LNumb = 0;  // 자연수 
+		int LNume = 0;  // 분자
+		int LDeno = 0;  // 분모
+		int RNumb = 0;  // 자연수 
+		int RNume = 0;  // 분자
+		int RDeno = 0;  // 분모
+		
+		try {
+			LNumb = Integer.parseInt(LNumber.getText());
+			LNume = Integer.parseInt(LNumerator.getText());
+			LDeno = Integer.parseInt(LDenominator.getText());
+			RNumb = Integer.parseInt(RNumber.getText());
+			RNume = Integer.parseInt(RNumerator.getText());
+			RDeno = Integer.parseInt(RDenominator.getText());
 			
-		//}
+		} catch(NumberFormatException e) {
+			System.out.println("숫자 변환 오류");
+		}
 		
 		if(LNumb != 0) { // 좌항 자연수가 있을때
 			LNume = LNume + (LNumb * LDeno); // 분모와 자연수를 곱하여 분자에 더한다.
