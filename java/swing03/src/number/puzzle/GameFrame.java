@@ -45,7 +45,7 @@ public class GameFrame extends JFrame implements ActionListener{
 	public GameFrame(UserVo userVo) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("1~100 숫자 맞추기");
-		setSize(600,600);
+		setSize(600,250);
 		
 		setUI();
 		
@@ -71,7 +71,9 @@ public class GameFrame extends JFrame implements ActionListener{
 		btNewGame.addActionListener(this);
 		tfInput.addActionListener(this);
 		
-		ta.setFont(new Font("맑은 고딕", Font.BOLD, 17));
+		ta.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		ta.setText("1~100사이의 숫자를 맞추세요.\n");
+		ta.append("======================\n");
 		
 		pSouth.setBackground(Color.CYAN);
 		pSouth.add(lblLife);
@@ -110,7 +112,6 @@ public class GameFrame extends JFrame implements ActionListener{
 					 tfLife.setText(l);
 					 ta.append("Down\n");
 				 } else if(result==0 && GM.lifeCheck()) { // 같을때
-					 ta.append("OK\n");
 					 ta.append("맞췄습니다! 당신의 기록은 "+GM.getScore()+"입니다.");
 					 GM.saveScore(userVo);
 					 tfWinner.setText(GM.getWinnerID());
@@ -119,6 +120,7 @@ public class GameFrame extends JFrame implements ActionListener{
 				 if(!GM.lifeCheck()){
 					 ta.append("기회를 모두 소진했습니다.\n");
 					 btChk.setEnabled(false);
+					 tfInput.setEnabled(false);
 				 }
 			} catch(NumberFormatException ex) {
 				ta.append("숫자를 입력하세요.\n");
@@ -128,13 +130,15 @@ public class GameFrame extends JFrame implements ActionListener{
 		// 새게임 버튼
 		else if(e.getSource().equals(btNewGame)) {
 			tfInput.setText("");
-			ta.setText("");
+			ta.setText("1~100사이의 숫자를 맞추세요.\n");
+			ta.append("======================\n");
 			GM.gameStart();
 			String l = "";
 			for(int i=0; i<GM.getLife(); i++) {
 				l+="♥";
 			}
 			btChk.setEnabled(true);
+			tfInput.setEnabled(true);
 			tfLife.setText(l);
 		}
 	}
