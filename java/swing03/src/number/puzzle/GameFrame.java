@@ -89,6 +89,7 @@ public class GameFrame extends JFrame implements ActionListener{
 		if(obj == tfInput || obj == btChk) { 
 			int inNum = 0;
 			int result = -1;
+			
 			try {
 				 inNum = Integer.parseInt(tfInput.getText());				
 				 result = GM.check(inNum);
@@ -122,6 +123,7 @@ public class GameFrame extends JFrame implements ActionListener{
 			} catch(NumberFormatException ex) {
 				ta.append("숫자를 입력하세요.\n");
 			}
+			tfInput.setText("");
 		}
 		// 새게임 버튼
 		else if(e.getSource().equals(btNewGame)) {
