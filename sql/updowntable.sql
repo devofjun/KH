@@ -20,6 +20,8 @@ delete from tbl_score;
 
 commit;
 
+select * from tbl_score order by score;
+
 select * from tbl_user;
 select * from tbl_score;
 desc gameuser;
