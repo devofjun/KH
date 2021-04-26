@@ -179,3 +179,178 @@ create table tbl_score(
 );
 
 select * from tbl_user;
+
+-- 이위까진 컬럼레벨 방식 제약조건
+
+drop table emp02;
+create table emp02(
+    empno number(4),
+    ename varchar2(10)
+        constraint nn_emp02_ename not null, -- not null은 컬럼레벨로만 정의할 수 있다.
+    job varchar2(10),
+    deptno number(2), -- 이 아래로 테이블 레벨 제약조건 지정방식
+    constraint pk_emp02_empno primary key (empno),
+    constraint uk_emp02_job unique(job),
+    constraint fk_emp02_deptno foreign key (deptno) references dept(deptno)  
+);
+
+select *
+from user_constraints;
+
+-- 제약조건 변경하기
+drop table emp01;
+create table emp01(
+    empno number(4),
+    ename varchar2(20),
+    job varchar2(10),
+    deptno number(2)
+);
+
+select * from user_constraints
+where table_name = 'EMP01';
+
+-- 생성된 테이블(emp01)의 empno 컬럼에 기본키 제약 조건 추가
+alter table emp01
+add constraint pk_emp01_empno primary key (empno);
+
+-- 생성된 테이블(emp01)의 deptno 컬럼에 외래키 제약 조건 추가
+alter table emp01
+add constraint fk_emp01_deptno foreign key(deptno)
+    references dept(deptno);
+        
+-- not null은 추가한다는 개념이 아니라 수정하는거라고 생각해야 한다.
+alter table emp01
+modify ename constraint nn_emp01_ename not null;
+
+
+-- 제약조건 제거하기 -> 테이블 변경
+alter table emp01
+drop constraint nn_emp01_ename;
+
+--  기본키 제약 조건 삭제
+-- 제약조건명을 몰라도 설정된 기본키 제약 조건을 삭제
+alter table emp01
+drop primary key;
+
+select * from user_constraints
+where table_name = 'EMP01';
+-- 테이블 생성은 여기까지
+------------------------------------------------
+
+
+-- 테이블 조인 - 2개 이상의 테이블에서 데이터를 조회하기
+-- 김사랑이 근무하는 부서명
+select * from emp
+where ename = '김사랑';
+select dname from dept
+where deptno = 20;
+-- 이렇게 두번 select를 해야할 것을 한번에 기술하는 것을 조인이라 한다.
+
+-- 아무런 조건없이 테이블 두개를 조인 = 크로스 조인(Cross Join) 두개의 테이블 데이터를 곱한다.?
+select *
+from emp, dept;
+
+-- 이퀴조인(Equi Join) : Equal(이퀄) 을 사용하는 조인
+-- 서로 곱해지는 테이블에서 같은 데이터, 유효한 데이터를 골라내기 위해서 이퀴조인을 쓴다.
+
+-- 한 사원당 만들어지는 데이터 5개 중에서
+-- 사원테이블의 deptno와 부서테이블의 deptno 값이 같은 데이터만 추림
+select *
+from emp, dept -- 75개(크로스된 상태)
+where emp.deptno = dept.deptno -- 75 -> 15
+and ename = '김사랑'; -- 1개
+-- 일치하는 데이터만 추려냈을때.
+-- 순서가 바뀌어도 잘됨
+select *
+from emp, dept
+where ename = '김사랑'
+and emp.deptno = dept.deptno;
+
+
+-- 모호성
+-- 사원명, 부서번호, 부서명 
+-- deptno가 emp테이블의 deptno인지, dept 테이블의 deptno인지 모호하다(column ambiguously defined)
+select ename, deptno, dname
+from emp, dept
+where emp.deptno = dept.deptno;
+-- 모호한 속성을 테이블명을 명시해줌으로써 모호성을 해결한다.
+select ename, emp.deptno, dname
+from emp, dept
+where emp.deptno = dept.deptno;
+
+-- 테이블에 별칭 부여(emp -> e, dept -> d)
+select e.ename, e.empno, d.dname
+from emp e, dept d
+where e.deptno = d.deptno;
+
+
+-- Non-equi join 이퀄(=)을 사용하지 않는 조인
+-- salgrade(급여등급) 테이블
+desc salgrade;
+select * from salgrade;
+select * from emp;
+
+-- 사원이름(emp.ename), 급여(emp.sal), 급여등급(slagrade.grade)
+select e.ename, e.sal, s.grade
+from emp e, salgrade s
+-- where e.sal >= s.losal and e.sal <= s.hisal;
+where e.sal between s.losal and s.hisal; -- 위와 같은 조건이다.
+
+------------------------------------------------------------
+-- 조인 조건을 정할때는 (테이블갯수 - 1)개 만큼의 조인 조건이 필요함.
+-- 테이블 3개를 조인 : 조인조건은 2개 필요하다.
+------------------------------------------------------------
+-- 사원명(emp.ename), 부서명(dept.dname), 급여(emp.sal), 급여등급(salgrade)
+select e.ename, d.dname, e.sal, s.grade
+from emp e, dept d, salgrade s
+where e.deptno = d.deptno
+and e.sal between s.losal and s.hisal;
+
+
+
+-- 김사랑 사원의 사수(관리자)이름
+select ename, mgr
+from emp
+where ename = '김사랑';
+
+select ename
+from emp
+where empno = 1013;
+
+select * 
+from emp e1, emp e2;
+
+-- self join(자가 조인) -- 별칭 부여 필수
+select e.empno, e.ename, m.empno, m.ename
+from emp e, emp m
+where e.mgr = m.empno
+order by e.empno;
+
+
+-- 오라클 방식
+-- Cross Join
+--select *
+--from emp cross join dept
+--where emp.deptno = dept.deptno;
+
+-- ANSI(미국국가표준협회) JOIN
+select *
+from emp inner join dept
+on emp.deptno = dept.deptno;
+
+-- 이문세의 이름, 부서명, 부서번호를 ANSI Inner Join
+select ename, dname, emp.deptno
+from emp inner join dept
+on emp.deptno = dept.deptno -- 조인 조건은 on 절에
+where emp.ename = '이문세'; -- 컬럼 조건은 where 절에
+
+
+-- Outer Join - 없는 데이터도 조회하고자 할 때
+-- Oracle 방식
+select e.empno, e.ename, m.empno, m.ename
+from emp e, emp m
+where e.mgr = m.empno (+);
+
+select e.empno, e.ename, m.empno, m.ename
+from emp right outer join emp m
+on e.mgr = m.empno (+);
