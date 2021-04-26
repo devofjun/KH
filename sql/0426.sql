@@ -345,12 +345,179 @@ on emp.deptno = dept.deptno -- 조인 조건은 on 절에
 where emp.ename = '이문세'; -- 컬럼 조건은 where 절에
 
 
+select *
+from emp;
+
 -- Outer Join - 없는 데이터도 조회하고자 할 때
 -- Oracle 방식
 select e.empno, e.ename, m.empno, m.ename
 from emp e, emp m
 where e.mgr = m.empno (+);
 
+-- ANSI 방식
 select e.empno, e.ename, m.empno, m.ename
-from emp right outer join emp m
-on e.mgr = m.empno (+);
+from emp e left outer join emp m
+on e.mgr = m.empno;
+
+
+-- 1. 경리부에서 근무하는 사원의 이름, 입사일 조회
+select e.ename, e.hiredate
+from emp e, dept d
+where d.dname = '경리부' and d.deptno = e.deptno;
+
+-- 2. ANSI 조인을 사용해서 인천에서 근무하는 사원의 이름, 급여 조회
+select e.ename, e.sal
+from emp e inner join dept d
+on d.loc = '인천' and d.deptno = e.deptno;
+
+select * from emp;
+
+
+
+-- 서브쿼리 - ()안의 쿼리를 먼저 계산하고 그 결과로 임시테이블 만들어짐 -> 주 쿼리는 서브쿼리의 결과값을 사용함
+-- 조인으로 할 수도 있지만 서브쿼리로도 할 수 있다면 서브쿼리를 쓰는게 좋다.
+-- 조인을 하면 중간에 아주 큰 테이블이 만들어지기 때문에 좋지 않음.
+
+-- 이름이 이문세인 사원의 사번, 이름, 부서명
+select e.empno, e.ename, d.dname
+from emp e, dept d
+where e.deptno = d.deptno
+and e.ename = '이문세';
+
+-- 서브쿼리
+-- 이문세와 같은 부서에서 근무하는 사원이름, 부서번호
+-- 단일행 서브쿼리 : 서브쿼리의 결과가 하나인 쿼리
+select ename, deptno
+from emp
+where deptno = (select deptno
+                from emp
+                where ename = '이문세')
+and ename != '이문세';
+
+select deptno
+from emp
+where ename = '이문세';
+
+-- 평균 급여보다 많은 급여를 받는 사원의 이름, 급여
+select *
+from emp
+where sal > (select avg(sal) from emp);
+
+
+
+-- 다중행 서브쿼리 : 서브쿼리의 결과가 여러개 나올 수 있는 경우
+-- 다중행 연산자와 함께 사용
+-- IN
+-- 급여가 500 초과인 사원들 부서와 같은 부서에서 근무하는 사원
+select *
+from emp
+where deptno in (select distinct deptno
+                from emp
+                where sal > 500);
+
+-- 30번 부서의 최대 급여보다 많은 급여를 받는 사원
+select *
+from emp
+where sal > (select max(sal)
+            from emp
+            where deptno = 30);
+
+-- 30번 부서의 모든 사람들 보다 급여가 많은 사원
+select *
+from emp
+where sal > all (select sal
+                from emp
+                where deptno = 30);
+
+
+-- 30번 부서의 최소 급여보다 많은 급여를 받는 사원
+select min(sal)
+from emp
+where deptno = 30;
+
+-- 30번 부서의 근무하는 어떤 사원보다 많은 급여를 받는 사원
+select *
+from emp
+where sal > any (select sal
+                from emp
+                where deptno = 30);
+
+-- exists : 서브쿼리 결과의 유무 체크
+-- 10번부서에서 근무하는 사원이 있는 경우
+-- 부서테이블의 모든 데이터 조회
+select *
+from dept
+where exists (select *
+                from emp
+                where deptno = 10);
+
+
+-- 테이블의 구조와 내용 복사
+-- 제약조건은 해당없음
+drop table emp02;
+create table emp02
+as
+select * from emp;
+select *from emp02;
+
+-- 제약조건이 복사되지 않을걸 확인
+select *
+from user_constraints
+where table_name = 'EMP';
+
+select *
+from user_constraints
+where table_name = 'EMP02';
+
+
+-- 10번부서 테이블
+create table emp10
+as
+select * from emp
+where deptno = 10;
+select * from emp10;
+
+
+-- 테이블의 구조만 복사
+-- 가져올 테이블에서 조건에 만족하는 데이터가 없도록 함
+create table emp11
+as
+select * from emp
+where 0 = 1; -- 무조건 거짓
+
+select * from emp11;
+
+-- 서브쿼리를 이용한 데이터 삽입
+-- dept 테이블의 구조만 복사해서 dept02 테이블 생성
+create table dept02
+as
+select * from dept
+where 0 = 1;
+
+select * from dept02;
+
+insert into dept02
+select * from dept;
+
+select * from dept02;
+
+
+-- 서브쿼리를 이용한 데이터 편집
+-- 인천에 위치한 20번 부서는 40번 부서인 수원으로 이전
+update dept02
+set loc = (select loc from dept
+            where deptno = 40)
+where deptno = 20;
+
+select * from dept02;
+
+
+-- 서브쿼리를 이용한 데이터 삭제
+-- 영업부에서 근무하는 사원들 삭제
+delete from emp
+where deptno = (select deptno from dept
+                where dname = '영업부');
+                
+select e.empno, e.ename, e.deptno, d.dname
+from emp e, dept d
+where e.deptno = d.deptno;
