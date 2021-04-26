@@ -48,4 +48,57 @@ rename user02 to emp02;
 select constraint_name, constraint_type, table_name
 from user_constraints;
 
-select * from emp02;
+
+-- 사번(unique), 이름(not null), 직급, 부서번호
+create table emp03(
+    empno number(4) unique,
+    ename varchar(10) not null,
+    job varchar(10),
+    deptno number(2)
+);
+
+insert into emp03(empno, ename, job, deptno)
+values(1001, '김사랑', '사원', 10);
+
+insert into emp03(empno, ename, job, deptno)
+values(1001, '박사랑', '대리', 20); -- 오류발생 unique 제약조건 위반
+
+-- unique 제약조건이 적용된 empno 컬럼에 널값 넣어보자
+insert into emp03(empno, ename, job, deptno)
+values(null, '박사랑', '대리', 20); -- unique지만 널값은 허용됨
+-- unique : 중복되지 않는 데이터, 널값은 허용한다.
+
+-- 제약조건에 이름 넣기
+create table emp04(
+    empno number(4) constraint uk_emp04_empno unique,
+    ename varchar2(10) constraint nn_emp04_ename not null,
+    job varchar2(10),
+    deptno number(2)
+);
+
+-- primary key = unique + not null
+-- 다른행들과 구분하기 용도로 사용된다.
+-- primay key 적용해보기
+create table emp05(
+    empno number(4) constraint pk_emp05_empno primary key,
+    ename varchar2(10) constraint nn_emp05_ename not null,
+    job varchar2(10),
+    deptno number(2)
+);
+
+insert into emp05(empno, ename, job, deptno)
+values (null, '김사랑', '사원', 10); -- primary key에서 null값 허용하지 않음
+
+
+insert into emp05(empno, ename, job, deptno)
+values (1001, '김사랑', '사원', 10);
+
+insert into emp05(empno, ename, job, deptno)
+values (1001, '박사랑', '대리', 20); -- unique 제약조건에 위배됨
+
+
+
+
+select *
+from user_constraints;
+select * from emp05;
