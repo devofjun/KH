@@ -18,7 +18,7 @@ public class ComboBoxEx extends JFrame{
 		};
 		
 		String[] names = {
-				"이종형", "정병준", "장윤희", "윤수", "전승민"
+				"이이이", "정정정", "장장장", "윤윤", "전전전"
 		};
 		
 		Container c = getContentPane();
