@@ -76,7 +76,7 @@ where deptno = 30;
 
 -- 실제 존재하지 않는 employees라는 테이블를 강제생성하는 대한 뷰
 -- [force | noforce] : 기본값은 noforce
--- 테이블이 존재하지 않더라도 강제로 뷸르 생성 - force
+-- 테이블이 존재하지 않더라도 강제로 뷰를 생성 - force
 create or replace force view employees_view30
 as
 select * from employees
