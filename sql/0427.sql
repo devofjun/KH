@@ -145,7 +145,7 @@ select * from (select rownum rnum, a.* from(select empno, ename, deptno, hiredat
                                             from emp_copy
                                             order by hiredate desc) a)
 where rnum between 1 and 5;
--- select에서의 rownum과 where에서의 rownum은 다르기 때문에 인라인? 서브쿼리?를 한다
+-- select에서의 rownum과 where에서의 rownum은 다르기 때문에 별칭을 쓴다.
 -- 1. 우선 순서대로 정렬한다.
 -- 2. 정렬된 테이블에 rnum을 넣어준다.
 -- 3. 정렬된 테이블에서 rnum이 1~5까지의 데이터를 추려낸다.
