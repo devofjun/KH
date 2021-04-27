@@ -176,3 +176,16 @@ insert into emp_copy2(empno, ename)
 values (seq_empno.nextval, 'À¯°ü¼ø');
 
 select * from emp_copy2;
+
+--------------------------------------------------------------
+-- JDBC ½Ç½À
+
+-- ³Ñ°ÜÁÙ Äõ¸®
+select * from emp
+where ename = '±è»ç¶û';
+
+select * from emp
+where job = '';
+
+select * from emp
+where deptno = '';
