@@ -43,7 +43,7 @@ public class ListChangeEx extends JFrame{
 				// 이 안에서 this는 actionlistener를 가르킨다.
 				String text = txtName.getText();
 				vec.add(text);
-				list.setListData(vec);
+				list.setListData(vec); // vec의 데이터가 바뀔 때 마다 다시 setListData해줘야한다.
 				txtName.setText("");
 			}
 		});
