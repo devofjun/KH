@@ -105,7 +105,7 @@ create table emp06(
     empno number(4) constraint pk_emp06_empno primary key,
     ename varchar2(10) constraint nn_emp06_ename not null,
     job varchar2(10),
-    deptno number(2) 
+    deptno number(2) constraint fk_emp06_deptno references dept(deptno)
 );
 
 insert into emp06(empno, ename, job, deptno)
@@ -123,8 +123,8 @@ values (1001, '박사랑', '대리', 60); -- 60번 부서 허용하지 않음
 create table emp07(
     empno number(4) constraint pk_emp07_empno primary key,
     ename varchar2(10) constraint nn_emp07_ename not null,
-    sal number(7,2) constraint ck_emp07_sal check(sal between 500 and 5000),
-    gender varchar2(1) constraint ck_emp07_gender check(gender in ('M', 'F'))
+    sal number(7,2) constraint ck_emp07_sal check(sal between 500 and 5000), -- 500에서 5000사이
+    gender varchar2(1) constraint ck_emp07_gender check(gender in ('M', 'F')) -- M 이나 F 중에
 );
 
 -- 급여가 체크 범위를 벗어나는 데이터 입력
@@ -148,7 +148,7 @@ create table dept01(
 );
 
 -- loc에 값 제외하고 데이터 추가
-insert into dept01(deptno, dname)
+insert into dept01(deptno, dname) -- 값을 넣을 컬럼명만 기재해준다. 기재하지 않으면 default
 values (10, '경리부');
 
 select * from dept01;
@@ -165,12 +165,9 @@ drop table tbl_score;
 drop table tbl_user;
 
 create table tbl_user(
-    u_id varchar2(20)
-        constraint pk_user_id primary key,
-    u_pw varchar2(20)
-        constraint nn_user_pw not null,
-    u_name varchar2(20)
-        default '아무개'
+    u_id varchar2(20) constraint pk_user_id primary key,
+    u_pw varchar2(20) constraint nn_user_pw not null,
+    u_name varchar2(20) default '아무개'
 );
 
 create table tbl_score(
@@ -246,7 +243,7 @@ select dname from dept
 where deptno = 20;
 -- 이렇게 두번 select를 해야할 것을 한번에 기술하는 것을 조인이라 한다.
 
--- 아무런 조건없이 테이블 두개를 조인 = 크로스 조인(Cross Join) 두개의 테이블 데이터를 곱한다.?
+-- 아무런 조건없이 테이블 두개를 조인 = 크로스 조인(Cross Join) 두개의 테이블 데이터를 곱한것과 같다.
 select *
 from emp, dept;
 
