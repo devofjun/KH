@@ -24,9 +24,11 @@ public class ComboBoxEx extends JFrame{
 		Container c = getContentPane();
 		c.setLayout(new FlowLayout());
 		
+		// 생성하면서 데이터를 넘겨주기
 		JComboBox<String> combo1 = new JComboBox<String>(fruits);
 		c.add(combo1);
 		
+		// 생성후에 데이터 추가하기
 		JComboBox<String> combo2 = new JComboBox<String>();
 		for(String aName : names) {
 			combo2.addItem(aName);
