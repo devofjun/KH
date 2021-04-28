@@ -48,7 +48,6 @@ public class ListChangeEx extends JFrame{
 			}
 		});
 		
-		
 		setSize(200, 300);
 		setVisible(true);
 	}
