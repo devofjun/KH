@@ -29,7 +29,7 @@ public class GraphicsDrawLineEx4 extends JFrame{
 		c.add(pnl);
 	}
 	
-	class MyMouseAdapter extends MouseAdapter implements MouseMotionListener{
+	class MyMouseAdapter extends MouseAdapter{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			startX = e.getX();
@@ -41,7 +41,7 @@ public class GraphicsDrawLineEx4 extends JFrame{
 		public void mouseDragged(MouseEvent e) {
 			stopX = e.getX();
 			stopY = e.getY();
-			System.out.printf("mouseReleased: (%d, %d)\n",stopX,stopY);
+			System.out.printf("mouseDragged: (%d, %d)\n",stopX,stopY);
 			pnl.repaint(); // 패널을 다시 그리기 -> paintComponent()를 다시 호출한다.
 		}
 
