@@ -12,11 +12,15 @@ import javax.swing.JPanel;
 public class GraphicsColorFontEx extends JFrame{
 	Container c = getContentPane();
 	Mypanel pnl = new Mypanel();
+	
+	
+	
 	public GraphicsColorFontEx(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("컬러와 색상 사용 예제");
 		setSize(500, 500);
 		setVisible(true);
+		
 		c.add(pnl);
 	}
 	
