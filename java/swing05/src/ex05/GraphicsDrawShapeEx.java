@@ -30,7 +30,7 @@ public class GraphicsDrawShapeEx extends JFrame{
 	public GraphicsDrawShapeEx() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(500,500);
-		setTitle("");
+		setTitle("선,원,사각형 드래그로 그리기");
 		setVisible(true);
 		setUI();
 	}
