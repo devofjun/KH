@@ -27,12 +27,16 @@ public class GraphicsFillEx2 extends JFrame{
 			super.paintComponent(g);
 			int centerX = this.getWidth() / 2 - 100;
 			int centerY = this.getHeight() / 2 - 100;
-			g.setColor(Color.RED);
-			g.fillArc(centerX, centerY, 200, 200, 90, 120);
-			g.setColor(Color.BLUE);
-			g.fillArc(centerX, centerY, 200, 200, 210, 120);
-			g.setColor(Color.YELLOW);
-			g.fillArc(centerX, centerY, 200, 200, 330, 120);
+			
+			Color[] arcColor = {Color.RED, Color.BLUE, Color.YELLOW};
+			int arcWidth = 200;
+			int arcHeight = 200;
+			int angle = 360 / arcColor.length;
+			int startAngle = 90;
+			for(int i=0; i<arcColor.length; i++) {
+				g.setColor(arcColor[i]);
+				g.fillArc(centerX, centerY, arcWidth, arcHeight, startAngle+angle*i, angle);
+			}
 		}
 	}
 	
