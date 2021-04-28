@@ -14,7 +14,7 @@ public class GraphicsFillEx2 extends JFrame{
 	
 	public GraphicsFillEx2() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("여러 호를 가운데 그리기");
+		setTitle("3가지 원호를 가운데 그리기");
 		setSize(500,500);
 		setVisible(true);
 		
