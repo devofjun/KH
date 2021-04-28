@@ -76,26 +76,20 @@ public class GraphicsDrawShapeEx extends JFrame{
 				g.drawLine(startX, startY, stopX, stopY);
 			} else if(rbtn[1].isSelected()) { // 원
 				// 모든 방향 다 그러지게 하기 위한 판단문
-				if(startX > stopX && startY > stopY) {
-					g.drawOval(stopX, stopY, Math.abs(startX-stopX), Math.abs(startY-stopY));
-				} else if(startX > stopX && startY < stopY) {
-					g.drawOval(stopX, startY, Math.abs(startX-stopX), Math.abs(startY-stopY));
-				} else if(startX < stopX && startY > stopY) {
-					g.drawOval(startX, stopY, Math.abs(startX-stopX), Math.abs(startY-stopY));
-				} else {
-					g.drawOval(startX, startY, Math.abs(startX-stopX), Math.abs(startY-stopY));
-				}
+				int x = startX;
+				int y = startY;
+				if(startX > stopX) x = stopX;
+				if(startY > stopY) y = stopY;
+				g.drawOval(x, y, Math.abs(startX-stopX), Math.abs(startY-stopY));
+				
 			} else if(rbtn[2].isSelected()) { // 사각형
-				// 모든 방향 다 그려지게 하기 위한 판단문
-				if(startX > stopX && startY > stopY) {
-					g.drawRect(stopX, stopY, Math.abs(startX-stopX), Math.abs(startY-stopY));
-				} else if(startX > stopX && startY < stopY) {
-					g.drawRect(stopX, startY, Math.abs(startX-stopX), Math.abs(startY-stopY));
-				} else if(startX < stopX && startY > stopY) {
-					g.drawRect(startX, stopY, Math.abs(startX-stopX), Math.abs(startY-stopY));
-				} else {
-					g.drawRect(startX, startY, Math.abs(startX-stopX), Math.abs(startY-stopY));
-				}
+				// 모든 방향 다 그려지게 하기 위한 판단문			
+				int x = startX;
+				int y = startY;
+				if(startX > stopX) x = stopX;
+				if(startY > stopY) y = stopY;
+				g.drawRect(x, y, Math.abs(startX-stopX), Math.abs(startY-stopY));
+				
 			}
 			
 			//g.drawOval(200, 200, Math.abs(-200), Math.abs(-200));
