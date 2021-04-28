@@ -86,7 +86,7 @@ public class GraphicsDrawShapeEx extends JFrame{
 					g.drawOval(startX, startY, Math.abs(startX-stopX), Math.abs(startY-stopY));
 				}
 			} else if(rbtn[2].isSelected()) { // 사각형
-				//모든 방향 다 그려지게 하기 위한 판단문
+				// 모든 방향 다 그려지게 하기 위한 판단문
 				if(startX > stopX && startY > stopY) {
 					g.drawRect(stopX, stopY, Math.abs(startX-stopX), Math.abs(startY-stopY));
 				} else if(startX > stopX && startY < stopY) {
