@@ -11,7 +11,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 @SuppressWarnings("serial")
-public class SliderChangeEx extends JFrame implements ChangeListener{
+public class SliderChangeEx extends JFrame implements ChangeListener{ // 변하는걸 감지하는 리스너
 	Container c = getContentPane();
 	JSlider[] sliders = new JSlider[3];
 	Color[] colors = {Color.RED, Color.GREEN, Color.BLUE};
@@ -32,12 +32,12 @@ public class SliderChangeEx extends JFrame implements ChangeListener{
 		c.setLayout(new FlowLayout());
 		for(int i=0; i<sliders.length; i++) {
 			sliders[i] = new JSlider(JSlider.HORIZONTAL, 0, 255, 128);
-			sliders[i].setForeground(colors[i]);
-			sliders[i].setPaintLabels(true);
-			sliders[i].setPaintTicks(true);
-			sliders[i].setMajorTickSpacing(50);
-			sliders[i].setMinorTickSpacing(10);
-			sliders[i].addChangeListener(this);
+			sliders[i].setForeground(colors[i]); // 단위색 변경
+			sliders[i].setPaintLabels(true); // 단위글자 보이기
+			sliders[i].setPaintTicks(true); // 눈금 보이기
+			sliders[i].setMajorTickSpacing(50); // 큰 눈금 간격 지정
+			sliders[i].setMinorTickSpacing(10); // 작은 눈금 간격 지정
+			sliders[i].addChangeListener(this); // 슬라이더가 변할때마다 동작하는 리스너 
 			c.add(sliders[i]);
 		}
 		// 레이블은 초기 상태가 투명한 상태 -> 불투명하게 설정
