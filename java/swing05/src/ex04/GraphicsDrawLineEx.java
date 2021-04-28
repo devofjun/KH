@@ -48,7 +48,7 @@ public class GraphicsDrawLineEx extends JFrame{
 	
 	class MyPanel extends JPanel {
 		@Override
-		protected void paintComponent(Graphics g) {
+		protected void paintComponent(Graphics g) { // 콜백 메소드
 			super.paintComponent(g);
 			g.setColor(Color.RED);
 			g.drawLine(startX, startY, stopX, stopY);
