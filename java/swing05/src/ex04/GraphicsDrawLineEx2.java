@@ -32,17 +32,23 @@ public class GraphicsDrawLineEx2 extends JFrame{
 			int xFull = this.getWidth();
 			int yHalf = this.getHeight()/2;
 			int yFull = this.getHeight();
-			g.setColor(Color.RED);
-			g.drawLine(xHalf, 0, xFull, yHalf); // 12-3
-			g.drawLine(xFull, yHalf, xHalf, yFull); // 3-6
-			g.drawLine(xHalf, yFull, 0, yHalf); // 6-9
-			g.drawLine(0, yHalf, xHalf, 0); // 9-12
 			
-			g.setColor(Color.BLUE);
-			g.drawLine(xHalf, 20, xFull-20, yHalf); // 12-3
-			g.drawLine(xFull-20, yHalf, xHalf, yFull-20); // 3-6
-			g.drawLine(xHalf, yFull-20, 20, yHalf); // 6-9
-			g.drawLine(20, yHalf, xHalf, 20); // 9-12
+			int layer = 0;
+			for(int i=0; i<10; i++) {
+				int red = (int)(Math.random()*256); // 색은 0~255까지
+				int green = (int)(Math.random()*256);
+				int blue = (int)(Math.random()*256);
+				g.setColor(new Color(red,green,blue));
+				
+				layer = (i*25);
+				//layer = (this.getWidth()/10)*i;
+				g.drawLine(xHalf, 0+layer, xFull-layer, yHalf); // 12-3
+				g.drawLine(xFull-layer, yHalf, xHalf, yFull-layer); // 3-6
+				g.drawLine(xHalf, yFull-layer, 0+layer, yHalf); // 6-9
+				g.drawLine(0+layer, yHalf, xHalf, 0+layer); // 9-12
+			}
+			
+			
 		}
 	}
 	
