@@ -94,6 +94,7 @@ public class GraphicsDrawShapeEx extends JFrame{
 			// 리스트에 담겨 있는 도형들을 하나씩 빼내서 - 도형 하나의 정보 - 그리기
 			for(Shape aShape : list) {
 				//System.out.println(aShape);
+				// 그렸었던 도형에 대한 정보 받아오기
 				int startX = aShape.getStartX();
 				int startY = aShape.getStartY();
 				int stopX = aShape.getStopX();
