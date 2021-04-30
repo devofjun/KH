@@ -12,14 +12,8 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class DigitalClockFrame extends JFrame{
 	Container c = getContentPane();
-	/*
-	JLabel korT = new JLabel("시간");
-	JLabel seoul = new JLabel("서울");
-	JLabel newT = new JLabel("시간");
-	JLabel newyork = new JLabel("뉴욕");
-	*/
-	private static final int SEOUL = 0;
-	private static final int NEWYORK = 1;
+	//private static final int SEOUL = 0;
+	//private static final int NEWYORK = 1;
 	private static final int SEOULTIME = 2;
 	private static final int NEWYORKTIME = 3;
 	JLabel[] lbl = {
@@ -32,7 +26,7 @@ public class DigitalClockFrame extends JFrame{
 	public DigitalClockFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("시계");
-		setSize(400, 400);
+		setSize(400, 200);
 		setVisible(true);
 		c.setLayout(new GridLayout(2, 0));
 		for(int i=0; i<lbl.length; i++) {
