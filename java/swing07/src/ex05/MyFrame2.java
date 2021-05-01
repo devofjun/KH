@@ -59,13 +59,13 @@ public class MyFrame2 extends JFrame implements KeyListener{
 		manTh.start();
 		
 		lblTimer.setHorizontalAlignment(SwingConstants.CENTER);
-//		timerPanel.setSize(c.getWidth(), 100);
+
 		timerPanel.setBackground(Color.YELLOW);
-//		timerPanel.add(lblTimer);
+
 		c.add(pnlNorth, BorderLayout.NORTH);
 		c.add(pnl, BorderLayout.CENTER);
 		setVisible(true);
-//		timerPanel.repaint();
+
 		Thread th = new Thread(timerPanel);
 		th.start();
 	}
