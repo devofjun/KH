@@ -24,7 +24,7 @@ public class MyFrame2 extends JFrame implements KeyListener{
 	LabelMan[] lMans = new LabelMan[10]; 
 	Thread manTh;
 	JPanel pnl = new JPanel();
-	JLabel lblTimer = new JLabel("Timer");
+	JLabel lblTimer = new JLabel();
 	JPanel pnlNorth = new JPanel();
 	
 	TimerPanel timerPanel = new TimerPanel();
@@ -33,30 +33,32 @@ public class MyFrame2 extends JFrame implements KeyListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("이미지 옮기기");
 		setSize(1000, 1000);
-		
+		// 움직이는 영역
 		pnl.setLayout(null);
-		// 따라오는 이미지
+		
+		// 술래 이미지
 		lMans[0] = new LabelMan(new ImageIcon("images/man1.png"),lUser);
-		lMans[0].setBounds(800, 800, 80, 75);
+		int randX = (int)(Math.random()*(1000-80));
+		int randY = (int)(Math.random()*(1000-75));
+		System.out.println(randX+":"+ randY);
+		lMans[0].setBounds(randX, randY, 80, 75);
 		pnl.add(lMans[0]);
 		manTh = new Thread(lMans[0]);
 		manTh.start();
+		
 		// 유저 이미지
 		lUser.setBounds(50, 50, 80, 75);
 		pnl.add(lUser);
 		pnl.setFocusable(true);
 		pnl.addKeyListener(this);
 		
+		// 타이머 영역
 		pnlNorth.setLayout(new GridLayout(1, 2, 10, 0));
+		lblTimer.setText("Timer");
 		lblTimer.setFont(new Font("Consolas", Font.BOLD, 50));
 		pnlNorth.add(lblTimer);
 		pnlNorth.add(timerPanel);
 		
-		lMans[1] = new LabelMan(new ImageIcon("images/man1.png"),lUser);
-		lMans[1].setBounds(500, 800, 80, 75);
-		pnl.add(lMans[1]);
-		manTh = new Thread(lMans[1]);
-		manTh.start();
 		
 		lblTimer.setHorizontalAlignment(SwingConstants.CENTER);
 
