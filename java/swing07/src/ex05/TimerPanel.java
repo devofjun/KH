@@ -1,27 +1,24 @@
 package ex05;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.plaf.FontUIResource;
 
 @SuppressWarnings("serial")
 public class TimerPanel extends JPanel implements Runnable{
 	
-	LabelMan[] lMan;
-	int manCount = 1;
+	GameRules GR;
+	
 	int width = 2000;
-	public TimerPanel(/*LabelMan[] lMan*/) {
-		/*this.lMan = lMan;*/
-		//this.repaint();
+
+	public TimerPanel(GameRules GR/*LabelMan[] lMan*/) {
+		this.GR = GR;
+		// 처음 타이머가 시작 될 때 태거 하나 추가함.
+		GR.addTagger();
+		System.out.println("Game Start");
 	}
 	
-	
-	JLabel time = new JLabel("Timer");
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -34,20 +31,25 @@ public class TimerPanel extends JPanel implements Runnable{
 	
 	@Override
 	public void run() {
-		while (true) {
+		while (GR.gameState) {
 			try {
 				Thread.sleep(10);
-				width -= 2;
+				width -= 20;
 				repaint();
 				if (width < 0) {
-					break;
+					if(GR.addTagger()) {
+						width = 2000;
+					} else {
+						GR.gameState = false;
+						break;
+					}
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println("Game Over");
 	}
 
 }

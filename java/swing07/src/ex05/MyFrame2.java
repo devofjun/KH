@@ -20,50 +20,52 @@ public class MyFrame2 extends JFrame implements KeyListener{
 	
 	//UserLabel user = new UserLabel(new ImageIcon("images/man2.png"));
 	
-	JLabel lUser = new JLabel(new ImageIcon("images/man2.png"));
-	LabelMan[] lMans = new LabelMan[10]; 
-	Thread manTh;
+	JLabel user = new JLabel(new ImageIcon("images/man2.png"));
+	//TaggerLabel[] lblTagger = new TaggerLabel[10]; 
+	//Thread thTagger;
 	JPanel pnl = new JPanel();
 	JLabel lblTimer = new JLabel();
 	JPanel pnlNorth = new JPanel();
 	
-	TimerPanel timerPanel = new TimerPanel();
+	GameRules GR = GameRules.getInstance();
+	TimerPanel timerPanel;
+	
 	
 	public MyFrame2() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("이미지 옮기기");
 		setSize(1000, 1000);
+		
+		// 초기 설정
+		GR.setGame(pnl, timerPanel, user);
+		timerPanel = new TimerPanel(GR);
+		timerPanel.setBackground(Color.YELLOW);
 		// 움직이는 영역
 		pnl.setLayout(null);
-		
-		// 술래 이미지
-		lMans[0] = new LabelMan(new ImageIcon("images/man1.png"),lUser);
-		int randX = (int)(Math.random()*(1000-80));
-		int randY = (int)(Math.random()*(1000-75));
-		System.out.println(randX+":"+ randY);
-		lMans[0].setBounds(randX, randY, 80, 75);
-		pnl.add(lMans[0]);
-		manTh = new Thread(lMans[0]);
-		manTh.start();
-		
+
 		// 유저 이미지
-		lUser.setBounds(50, 50, 80, 75);
-		pnl.add(lUser);
+		user.setBounds(50, 50, 80, 75);
+		pnl.add(user);
 		pnl.setFocusable(true);
 		pnl.addKeyListener(this);
 		
-		// 타이머 영역
+		/* 타이머에서 생성되게 함.
+		// 술래 이미지
+		lblTagger[0] = new TaggerLabel(user);
+		lblTagger[0].printTagger(pnl);
+		//pnl.add(lMans[0]);
+		thTagger = new Thread(lblTagger[0]);
+		thTagger.start();
+		*/
+		// 타이머글자 영역
 		pnlNorth.setLayout(new GridLayout(1, 2, 10, 0));
 		lblTimer.setText("Timer");
 		lblTimer.setFont(new Font("Consolas", Font.BOLD, 50));
+		lblTimer.setHorizontalAlignment(SwingConstants.CENTER);
 		pnlNorth.add(lblTimer);
 		pnlNorth.add(timerPanel);
 		
 		
-		lblTimer.setHorizontalAlignment(SwingConstants.CENTER);
-
-		timerPanel.setBackground(Color.YELLOW);
-
 		c.add(pnlNorth, BorderLayout.NORTH);
 		c.add(pnl, BorderLayout.CENTER);
 		setVisible(true);
@@ -81,24 +83,24 @@ public class MyFrame2 extends JFrame implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int keycode = e.getKeyCode();
-		int x = lUser.getX();
-		int y = lUser.getY();
+		int x = user.getX();
+		int y = user.getY();
 		switch(keycode) {
 		case KeyEvent.VK_UP:
 			y -= 10;
-			lUser.setLocation(x, y);
+			user.setLocation(x, y);
 			break;
 		case KeyEvent.VK_DOWN:
 			y += 10;
-			lUser.setLocation(x, y);
+			user.setLocation(x, y);
 			break;
 		case KeyEvent.VK_RIGHT:
 			x += 10;
-			lUser.setLocation(x, y);
+			user.setLocation(x, y);
 			break;
 		case KeyEvent.VK_LEFT:
 			x -= 10;
-			lUser.setLocation(x, y);
+			user.setLocation(x, y);
 			break;
 		}
 	}

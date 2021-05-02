@@ -1,0 +1,66 @@
+package ex05;
+
+import java.awt.Point;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+// 유저를 따라 다니는 술래역할의 레이블 정의/구현
+@SuppressWarnings("serial")
+public class TaggerLabel extends JLabel implements Runnable{
+	JLabel lUser;
+	GameRules GR;
+	
+	public TaggerLabel(JLabel lUser, GameRules GR) {
+		super(new ImageIcon("images/man1.png"));
+		this.lUser = lUser;
+		this.GR = GR;
+	}
+	
+	public void printTagger(JPanel pnl) {
+		int randX = (int)(Math.random()*(1000-80));
+		int randY = (int)(Math.random()*(1000-75));
+		this.setBounds(randX, randY, 80, 75);
+		pnl.add(this);
+		//System.out.println(this);
+	}
+	
+	@Override
+	public void run() {
+		//System.out.println("생성");
+		while(GR.gameState) {
+			Point p = getLocation();
+			int x = (int)p.getX();
+			int y = (int)p.getY();
+			int userX = (int)lUser.getX();
+			int userY = (int)lUser.getY();
+			//System.out.println(x+":"+y+" || "+userX+":"+userY);
+			
+			// x값이 유저를 따라가게 한다. 
+			if(x > userX) {
+				x -= 1;
+			} else if(x < userX) {
+				x += 1;
+			}
+			// y값이 유저를 따라가게 한다.
+			if(y > userY) {
+				y -= 1;
+			} else if(y < userY) {
+				y += 1;
+			}
+			// 따라잡았다면
+			if(x == userX && y == userY) {
+				GR.gameState = false;
+			}
+			setLocation(x, y);
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("종료"+this);
+	}
+
+}
