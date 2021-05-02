@@ -17,9 +17,9 @@ public class GameRules {
 	// 필드
 	JPanel centerPnl;
 	JLabel user;
-	TaggerLabel[] Tagger = new TaggerLabel[10];
-	Thread[] thTagger = new Thread[10];
-	int countTagger = 0;
+	TaggerLabel[] Tagger = new TaggerLabel[10]; // 술래 레이블
+	Thread[] thTagger = new Thread[10]; // 술래 쓰레드
+	int countTagger = 0; // 술래 카운트
 	// 게임 상태
 	boolean gameState = true;
 	
@@ -32,15 +32,15 @@ public class GameRules {
 	// 술래 레이블 추가하기
 	public boolean addTagger() {
 		if(countTagger < 10) {
-			// 태거의 수 증가
+			// 술래 수 증가
 			int i = countTagger++;
-			// user를 따라가는 태거 생성
+			// user를 따라가는 술래 생성
 			Tagger[i] = new TaggerLabel(user, this);
-			// 태거를 centerPnl에 출력
+			// 술래를 centerPnl에 출력
 			Tagger[i].printTagger(centerPnl);
-			// 태거의 쓰레드를 생성
+			// 술래 쓰레드를 생성
 			thTagger[i] = new Thread(Tagger[i]);
-			// 태거의 쓰레드를 실행
+			// 술래 쓰레드를 실행
 			thTagger[i].start();
 			//System.out.println(countTagger);
 			return true;
