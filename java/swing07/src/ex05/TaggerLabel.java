@@ -49,18 +49,19 @@ public class TaggerLabel extends JLabel implements Runnable{
 			} else if(y < userY) {
 				y += 1;
 			}
+			setLocation(x, y);
 			// 따라잡았다면
 			if(x == userX && y == userY) {
-				GR.gameState = false;
+				System.out.println("잡힘!");
+				GR.gameState = false; // 반복문의 조건을 false로 만들면서 쓰레드들이 종료된다.
 			}
-			setLocation(x, y);
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("종료"+this);
+		//System.out.println("종료"+this);
 	}
 
 }

@@ -16,18 +16,16 @@ public class GameRules {
 	
 	// 필드
 	JPanel centerPnl;
-	TimerPanel timerPnl;
 	JLabel user;
 	TaggerLabel[] Tagger = new TaggerLabel[10];
 	Thread[] thTagger = new Thread[10];
 	int countTagger = 0;
-	
+	// 게임 상태
 	boolean gameState = true;
 	
 	// 접근 및 제어가 필요한 컴포넌트를 받아오는 메소드
-	public void setGame(JPanel pnl, TimerPanel timerPnl, JLabel user) {
+	public void setGame(JPanel pnl, JLabel user) {
 		this.centerPnl = pnl;
-		this.timerPnl = timerPnl;
 		this.user = user;
 	}
 	
