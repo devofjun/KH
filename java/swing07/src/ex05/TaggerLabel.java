@@ -57,8 +57,8 @@ public class TaggerLabel extends JLabel implements Runnable{
 			setLocation(x, y);
 			// 따라잡았다면
 			if(x == userX && y == userY) {
-				//System.out.println("잡힘!");
-				//GR.gameState = false; // 반복문의 조건을 false로 만들면서 쓰레드들이 종료된다.
+				System.out.println("잡힘!");
+				GR.gameState = false; // 반복문의 조건을 false로 만들면서 쓰레드들이 종료된다.
 			}
 			try {
 				Thread.sleep(10);
