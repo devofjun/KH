@@ -1,4 +1,4 @@
-package ex07;
+package ex08;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
