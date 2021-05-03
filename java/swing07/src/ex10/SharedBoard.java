@@ -10,6 +10,7 @@ public class SharedBoard {
 		int n = sum;
 		try {
 			Thread.sleep(10);
+			//Thread.yield();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
