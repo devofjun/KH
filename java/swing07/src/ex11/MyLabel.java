@@ -8,20 +8,26 @@ import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class MyLabel extends JLabel {
-	int nowWidth = 0;
+	int nowWidth = 200;
 	int maxWidth;
-	private final int HEIGHT = 40;
+	private final int HEIGHT = 30;
 	
 	
 	public MyLabel(int maxWidth){
-		this.maxWidth = maxWidth;
+		this.maxWidth = maxWidth-10;
 		setOpaque(true);
 		setBackground(Color.ORANGE);
 	}
 	
 	synchronized public void fill() {
 		if(nowWidth >= maxWidth) {
-			return;
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//return;
 		}
 		nowWidth++;
 		repaint();
@@ -45,7 +51,7 @@ public class MyLabel extends JLabel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.MAGENTA);
-		System.out.println("nowWidth:" + nowWidth);
-		g.fillRect(0, 0, nowWidth, HEIGHT);
+		//System.out.println("nowWidth:" + nowWidth);
+		g.fillRect(5, 5, nowWidth, HEIGHT);
 	}
 }
