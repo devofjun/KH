@@ -1,6 +1,7 @@
 package ex05;
 
 import java.awt.Point;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -18,9 +19,13 @@ public class TaggerLabel extends JLabel implements Runnable{
 		this.GR = GR;
 	}
 	
+	Random rand = new Random();
 	public void printTagger(JPanel pnl) {
-		int randX = (int)(Math.random()*(1000-80));
-		int randY = (int)(Math.random()*(1000-75));
+		// 창크기에 맞는 랜덤수
+		int randX = rand.nextInt(Math.abs(pnl.getWidth()-80));
+		int randY = rand.nextInt(Math.abs(pnl.getHeight()-75));
+		
+		System.out.println(randX+":"+ randY);
 		this.setBounds(randX, randY, 80, 75);
 		pnl.add(this);
 		//System.out.println(this);
@@ -52,8 +57,8 @@ public class TaggerLabel extends JLabel implements Runnable{
 			setLocation(x, y);
 			// 따라잡았다면
 			if(x == userX && y == userY) {
-				System.out.println("잡힘!");
-				GR.gameState = false; // 반복문의 조건을 false로 만들면서 쓰레드들이 종료된다.
+				//System.out.println("잡힘!");
+				//GR.gameState = false; // 반복문의 조건을 false로 만들면서 쓰레드들이 종료된다.
 			}
 			try {
 				Thread.sleep(10);

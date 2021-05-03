@@ -12,9 +12,9 @@ public class TimerPanel extends JPanel implements Runnable{
 	
 	int width = 2000;
 
-	public TimerPanel(GameRules GR/*LabelMan[] lMan*/) {
+	public TimerPanel(GameRules GR) {
 		this.GR = GR;
-		// 처음 타이머가 시작 될 때 태거 하나 추가함.
+		// 처음 타이머가 시작 될 때 술래 하나 생성함.
 		GR.addTagger();
 		System.out.println("Game Start");
 	}
