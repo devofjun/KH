@@ -24,8 +24,7 @@ public class TaggerLabel extends JLabel implements Runnable{
 		// 창크기에 맞는 랜덤수
 		int randX = rand.nextInt(Math.abs(pnl.getWidth()-80));
 		int randY = rand.nextInt(Math.abs(pnl.getHeight()-75));
-		
-		System.out.println(randX+":"+ randY);
+		//System.out.println(randX+":"+ randY);
 		this.setBounds(randX, randY, 80, 75);
 		pnl.add(this);
 		//System.out.println(this);
