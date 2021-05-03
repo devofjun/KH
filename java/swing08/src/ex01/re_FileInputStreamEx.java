@@ -5,7 +5,7 @@ import java.io.FileReader;
 
 public class re_FileInputStreamEx {
 	public static void main(String[] args) {
-		String path = "G:/stream/test.txt";
+		String path = "G:/stream/test2.txt";
 		try {
 			FileReader reader = new FileReader(path); // 메모리에 path파일을 연다.
 			while(true) {
