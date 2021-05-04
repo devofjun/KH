@@ -18,7 +18,7 @@ public class MyLabel extends JLabel {
 		setOpaque(true);
 		setBackground(Color.ORANGE);
 	}
-	
+	// 동기화된 늘리는 메소드
 	synchronized public void fill() {
 		if(nowWidth >= maxWidth) {
 			try {
@@ -33,7 +33,7 @@ public class MyLabel extends JLabel {
 		repaint();
 		notify(); // 입력이 있었다면 쓰래드를 깨운다.
 	}
-	
+	// 동기화된 줄이는 메소드
 	synchronized public void consume() {
 		if(nowWidth <= 0) {
 			try {
