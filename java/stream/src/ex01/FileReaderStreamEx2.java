@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class FileInputStreamEx2 extends JFrame implements ActionListener{
+public class FileReaderStreamEx2 extends JFrame implements ActionListener{
 	Container c = getContentPane();
 	JTextField tf = new JTextField(30);
 	JButton btn = new JButton("열기");
@@ -25,7 +25,7 @@ public class FileInputStreamEx2 extends JFrame implements ActionListener{
 	
 	FileReader reader = null;
 	
-	public FileInputStreamEx2() {
+	public FileReaderStreamEx2() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("파일 읽어오기");
 		setSize(500, 400);
@@ -39,7 +39,7 @@ public class FileInputStreamEx2 extends JFrame implements ActionListener{
 		setVisible(true);
 	}
 	public static void main(String[] args) {
-		new FileInputStreamEx2();
+		new FileReaderStreamEx2();
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

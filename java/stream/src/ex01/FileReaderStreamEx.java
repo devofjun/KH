@@ -3,7 +3,7 @@ package ex01;
 
 import java.io.FileReader;
 
-public class FileInputStreamEx {
+public class FileReaderStreamEx {
 	public static void main(String[] args) {
 		String filePath = "G:/stream/test.txt";
 		try {

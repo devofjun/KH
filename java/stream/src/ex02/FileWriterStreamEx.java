@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileOutputStreamEx {
+public class FileWriterStreamEx {
 	public static void main(String[] args) {
 		String fileName = "G:/stream/test.txt";
 		String copyName = "G:/stream/test2.txt";
