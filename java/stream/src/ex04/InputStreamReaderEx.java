@@ -12,7 +12,7 @@ public class InputStreamReaderEx {
 		InputStreamReader isr = null;
 		
 		try {
-			// file - FileInputStream - InputStreamReader - App
+			// file -> FileInputStream -> InputStreamReader -> App
 			fis = new FileInputStream(filePath);
 			isr = new InputStreamReader(fis,"utf-8");
 			while(true) {
@@ -25,17 +25,14 @@ public class InputStreamReaderEx {
 				System.out.print((char)data);
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				fis.close();
 				isr.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
