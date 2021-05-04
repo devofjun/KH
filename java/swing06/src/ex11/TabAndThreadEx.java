@@ -24,7 +24,7 @@ public class TabAndThreadEx extends JFrame{
 		
 		label.setBounds(40, 40, 300, 40);
 		c.add(label);
-		c.setFocusable(true);
+//		c.setFocusable(true);
 		c.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -32,7 +32,8 @@ public class TabAndThreadEx extends JFrame{
 			}
 		});
 		th.start(); // 줄이는 쓰레드 실행
-		setVisible(true);		
+		setVisible(true);
+		c.requestFocus(); // requestFocus는 setvisible 아래 와야한다.
 	}
 	public static void main(String[] args) {
 		new TabAndThreadEx();
