@@ -10,8 +10,9 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class TabAndThreadEx extends JFrame{
 	Container c = getContentPane();
+	// 레이블 생성
 	MyLabel label = new MyLabel(300);
-	
+	// 레이블 게이지를 줄이는 쓰레드 생성
 	ConsumerThread consumer = new ConsumerThread(label);
 	Thread th = new Thread(consumer);
 	
@@ -27,10 +28,10 @@ public class TabAndThreadEx extends JFrame{
 		c.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				label.fill();
+				label.fill(); // 키눌림이 발생하면 레이블을 채움
 			}
 		});
-		th.start();
+		th.start(); // 줄이는 쓰레드 실행
 		setVisible(true);		
 	}
 	public static void main(String[] args) {
