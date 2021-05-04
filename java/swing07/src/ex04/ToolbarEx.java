@@ -2,7 +2,6 @@ package ex04;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -11,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
+import javax.swing.ToolTipManager;
 
 @SuppressWarnings("serial")
 public class ToolbarEx extends JFrame{
@@ -21,6 +21,13 @@ public class ToolbarEx extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("툴바 예제");
 		setSize(800,800);
+		
+		// 툴팁 매니저 - 툴팁이 나타나는 지연시간, 사라지는 지연시간 설정
+		// 툴팁 매니저는 singleton으로 설계되어있다.
+		ToolTipManager ttm = ToolTipManager.sharedInstance();
+		ttm.setInitialDelay(1000); // 나타나는 지연시간
+		ttm.setDismissDelay(1000); // 사라지는 지연시간
+		
 		// 툴바 생성
 		JToolBar toolbar = new JToolBar("My Tool");
 		// 툴바 위치 고정
