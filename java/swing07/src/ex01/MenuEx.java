@@ -38,19 +38,20 @@ public class MenuEx extends JFrame{
 		JMenuItem miReShow = new JMenuItem("ReShow");
 		JMenuItem miExit = new JMenuItem("Exit");
 		
-		
+		// "Screen"항목메뉴안에 메뉴 넣기
 		mnuScreen.add(miLoad);
 		mnuScreen.add(miHide);
 		mnuScreen.addSeparator(); // 분리선
 		mnuScreen.add(miReShow);
 		mnuScreen.add(miExit);
 		
+		// 각 항목의 메뉴를 메뉴바에 넣기
 		menuBar.add(mnuScreen);
 		menuBar.add(mnuEdit);
 		menuBar.add(mnuSource);
 		menuBar.add(mnuProject);
 		menuBar.add(mnuRun);
-		
+		// 메뉴 넣기
 		setJMenuBar(menuBar);
 	}
 	
