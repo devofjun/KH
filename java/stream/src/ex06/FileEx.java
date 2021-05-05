@@ -23,7 +23,7 @@ public class FileEx {
 		//상위폴더명
 		System.out.println("상위폴더명: " + f.getParent());
 		
-		//파일 목록 얻기
+		//파일 목록 얻기 = 리눅스의 li
 		f = new File("C:/windows");
 		File[] files = f.listFiles();
 		for(File afile : files) {
