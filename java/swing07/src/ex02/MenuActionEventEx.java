@@ -77,6 +77,7 @@ public class MenuActionEventEx extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// 이벤트가 발생한 컴포넌트의 Command String을 받아온다.
 		String command = e.getActionCommand();
 		
 		// Screen 메뉴에 메뉴아이템(Load, Hide, ReShow, Exit) 달기

@@ -70,7 +70,7 @@ public class MenuActionEvent2 extends JFrame implements ActionListener{
 			lbl.setFont(new Font("맑은 고딕", Font.ITALIC, 30));
 			break;
 		case "Top":
-			lbl.setVerticalAlignment(SwingConstants.TOP);
+			lbl.setVerticalAlignment(SwingConstants.TOP); // 글자 배치만 바꿀때
 			/* 컨테이너 배치를 다시 할때 이렇게 할 수도 있다.
 			lbl.setVisible(false);
 			c.add(lbl, BorderLayout.NORTH);
@@ -79,7 +79,7 @@ public class MenuActionEvent2 extends JFrame implements ActionListener{
 			validate();
 			break;
 		case "Bottom":
-			lbl.setVerticalAlignment(SwingConstants.BOTTOM);
+			lbl.setVerticalAlignment(SwingConstants.BOTTOM); // 글자 배치만 바꿀때
 			/* 컨테이너 배치를 다시 할 때 이렇게 하는게 좋을듯하다.
 			c.add(lbl, BorderLayout.SOUTH);
 			c.validate();
