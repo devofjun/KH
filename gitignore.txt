@@ -1,12 +1,10 @@
-# KH
-
-
-
-===.gitignore===
 # 임시차단 폴더
 html/
 html_test/
 html2/
+# 안드로이드 임시차단
+android/
+
 
 # Compiled class file
 *.class
