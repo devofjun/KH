@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <!-- R.java 파일 자동 생성 -->
+    <!-- 정적 내부 클래스 id, layout, .... -->
+
+    <CheckBox
+        android:id="@+id/check1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="안드로이드폰"/>
+    <CheckBox
+        android:id="@+id/check2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="아이폰"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="남자"/>
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="여자"
+            android:checked="true"/>
+    </RadioGroup>
+
+    <Switch
+        android:id="@+id/alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알람"
+        android:checked="true"/>
+    <ToggleButton
+        android:id="@+id/alarmOnOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="켜짐"
+        android:textOff="꺼짐"
+        android:checked="true"/>
+
+</LinearLayout>

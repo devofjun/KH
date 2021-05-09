@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="선택을 시작하겠습니까?"
+        />
+    <CheckBox
+        android:id="@+id/chkStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시작함"/>
+
+    <TextView
+        android:id="@+id/txtLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="좋아하는 반려동물은?"
+        android:visibility="invisible"/>
+
+    <RadioGroup
+        android:id="@+id/rGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
+        <RadioButton
+            android:id="@+id/rdoDog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강아지"
+            android:checked="true"/>
+        <RadioButton
+            android:id="@+id/rdoCat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="고양이"
+            android:checked="false"/>
+        <RadioButton
+            android:id="@+id/rdoRabbit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="토끼"
+            android:checked="false"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="선택완료"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/imgPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dog"
+        android:visibility="invisible"/>
+
+</LinearLayout>

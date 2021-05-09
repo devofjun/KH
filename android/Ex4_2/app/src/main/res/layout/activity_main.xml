@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#0000ff"
+    android:orientation="vertical"
+    android:padding="50dp">
+
+    <!-- 주석은 태그 안에 하면 안된다. -->
+    <!-- 배경색: background, 버튼색: backgroundTint-->
+    <!-- 방향성: orientation
+         안쪽 여백 : padding
+         바깥쪽 여백 : margin -->
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:text="버튼1"
+        android:backgroundTint="#ff0000"
+        android:layout_margin="20dp"
+        />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:text="버튼2"
+        android:backgroundTint="#ff0000"
+        />
+    <!--
+     보이기 : visiblity
+     visible : 보임
+     invisible : 안보임 (공간 차지),(기본값)
+     gon : 안보임 (공간 안차지)
+     enabled : 활성화/비활성화
+     clickable : 클릭할수 있는지 여부
+     rotation : 회전
+     에디트 텍스트 : EditText
+    -->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:text="버튼3"
+        android:enabled="false"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:text="버튼4"
+        android:visibility="gone"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:text="버튼5"
+        android:visibility="invisible"
+        android:clickable="false"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:text="버튼6"
+        android:rotation="45"
+        />
+</LinearLayout>

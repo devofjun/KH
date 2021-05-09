@@ -1,0 +1,2 @@
+rootProject.name = "Self4_3"
+include ':app'
