@@ -25,7 +25,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
+        setContentView(R.layout.activity_main);
+        switchStart = findViewById(R.id.switchStart);
+        txtLike = findViewById(R.id.txtLike);
+        rGroup = findViewById(R.id.rGroup);
+        rdoP = findViewById(R.id.rdoP);
+        rdoQ = findViewById(R.id.rdoQ);
+        rdoR = findViewById(R.id.rdoR);
+        imgAndroid = findViewById(R.id.imgAndroid);
+        btnFinish = findViewById(R.id.btnFinish);
+        btnRestart = findViewById(R.id.btnRestart);
         // 시작 스위치 동작
         switchStart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -56,25 +65,55 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    
+                    imgAndroid.setImageResource(R.drawable.pie);
                 }
             }
         });
         // 큐 라디오버튼 동작
-
+        rdoQ.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    imgAndroid.setImageResource(R.drawable.q10);
+                }
+            }
+        });
         // 알 라디오버튼 동작
+        rdoR.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    imgAndroid.setImageResource(R.drawable.r11);
+                }
+            }
+        });
+        // 종료 버튼 동작
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        // 처음으로 버튼 동작
+        btnRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                init();
+            }
+        });
     }
 
     private void init() {
-        setContentView(R.layout.activity_main);
-        switchStart = findViewById(R.id.switchStart);
-        txtLike = findViewById(R.id.txtLike);
-        rGroup = findViewById(R.id.rGroup);
-        rdoP = findViewById(R.id.rdoP);
-        rdoQ = findViewById(R.id.rdoQ);
-        rdoR = findViewById(R.id.rdoR);
-        imgAndroid = findViewById(R.id.imgAndroid);
-        btnFinish = findViewById(R.id.btnFinish);
-        btnRestart = findViewById(R.id.btnRestart);
+        imgAndroid.setImageResource(R.drawable.pie);
+        rdoP.setChecked(true);
+        switchStart.setChecked(false);
+        txtLike.setVisibility(View.INVISIBLE);
+        rGroup.setVisibility(View.INVISIBLE);
+        rdoP.setVisibility(View.INVISIBLE);
+        rdoQ.setVisibility(View.INVISIBLE);
+        rdoR.setVisibility(View.INVISIBLE);
+        imgAndroid.setVisibility(View.INVISIBLE);
+        btnFinish.setVisibility(View.INVISIBLE);
+        btnRestart.setVisibility(View.INVISIBLE);
     }
 }
