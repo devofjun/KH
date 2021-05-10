@@ -13,17 +13,17 @@
         android:text="선택을 시작하겠습니까?"
         />
 
-    <CheckBox
-        android:id="@+id/chkStart"
+    <Switch
+        android:id="@+id/switchStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="시작함"/>
+        android:text="@string/시작함" />
 
     <TextView
         android:id="@+id/txtLike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="좋아하는 반려동물은?"
+        android:text="좋아하는 안드로이드 버전은?"
         android:visibility="invisible"/>
 
     <RadioGroup
@@ -32,37 +32,44 @@
         android:layout_height="wrap_content"
         android:visibility="invisible">
         <RadioButton
-            android:id="@+id/rdoDog"
+            android:id="@+id/rdoP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="강아지"
+            android:text="파이(9.0)"
             android:checked="true"/>
         <RadioButton
-            android:id="@+id/rdoCat"
+            android:id="@+id/rdoQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="고양이"
+            android:text="Q(10.0)"
             android:checked="false"/>
         <RadioButton
-            android:id="@+id/rdoRabbit"
+            android:id="@+id/rdoR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="토끼"
+            android:text="R(11.0)"
             android:checked="false"/>
     </RadioGroup>
+
+    <ImageView
+        android:id="@+id/imgAndroid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pie"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/btnFinish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="선택완료"
+        android:text="종료"
         android:visibility="invisible"/>
 
-    <ImageView
-        android:id="@+id/imgPet"
+    <Button
+        android:id="@+id/btnRestart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/dog"
+        android:text="처음으로"
         android:visibility="invisible"/>
 
 </LinearLayout>

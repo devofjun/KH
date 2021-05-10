@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         btnFinish = findViewById(R.id.btnFinish);
         imgPet = findViewById(R.id.imgPet);
 
+        // 시작하기를 체크했을때
         chkStart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -47,6 +48,19 @@ public class MainActivity extends AppCompatActivity {
                     rGroup.setVisibility(View.INVISIBLE);
                     btnFinish.setVisibility(View.INVISIBLE);
                     imgPet.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(rdoDog.isChecked()){ // 강아지 사진
+                    imgPet.setImageResource(R.drawable.dog);
+                } else if(rdoCat.isChecked()) { // 고양이 사진
+                    imgPet.setImageResource(R.drawable.cat);
+                } else if(rdoRabbit.isChecked()) { // 토끼 사진
+                    imgPet.setImageResource(R.drawable.rabbit);
                 }
             }
         });
