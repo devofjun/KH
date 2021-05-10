@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     rGroup.setVisibility(View.INVISIBLE);
                     btnFinish.setVisibility(View.INVISIBLE);
                     imgPet.setVisibility(View.INVISIBLE);
+                    chkStart.setVisibility(View.VISIBLE);
                 }
             }
         });
