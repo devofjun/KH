@@ -24,38 +24,58 @@
         <Button
             android:id="@+id/btn0"
             android:text="0"/>
-        <Button android:text="1"/>
-        <Button android:text="2"/>
-        <Button android:text="3"/>
-        <Button android:text="4"/>
+        <Button android:text="1"
+            android:id="@+id/btn1"/>
+        <Button android:text="2"
+            android:id="@+id/btn2"/>
+        <Button android:text="3"
+            android:id="@+id/btn3"/>
+        <Button android:text="4"
+            android:id="@+id/btn4"/>
     </TableRow>
     <TableRow android:layout_weight="1">
-        <Button android:text="5"/>
-        <Button android:text="6"/>
-        <Button android:text="7"/>
-        <Button android:text="8"/>
-        <Button android:text="9"/>
+        <Button android:text="5"
+            android:id="@+id/btn5"/>
+        <Button android:text="6"
+            android:id="@+id/btn6"/>
+        <Button android:text="7"
+            android:id="@+id/btn7"/>
+        <Button android:text="8"
+            android:id="@+id/btn8"/>
+        <Button android:text="9"
+            android:id="@+id/btn9"/>
     </TableRow>
     <TableRow android:layout_weight="1">
-        <Button android:text="더하기"
+        <Button
+            android:id="@+id/addBtn"
+            android:text="더하기"
             android:layout_span="5"/>
     </TableRow>
     <TableRow android:layout_weight="1">
-        <Button android:text="빼기"
+        <Button
+            android:id="@+id/sumBtn"
+            android:text="빼기"
             android:layout_span="5"/>
     </TableRow>
     <TableRow android:layout_weight="1">
-        <Button android:text="곱하기"
+        <Button
+            android:id="@+id/mulBtn"
+            android:text="곱하기"
             android:layout_span="5"/>
     </TableRow>
     <TableRow android:layout_weight="1">
-        <Button android:text="나누기"
+        <Button
+            android:id="@+id/divBtn"
+            android:text="나누기"
             android:layout_span="5"/>
     </TableRow>
     <TableRow android:layout_weight="1">
         <TextView
+            android:id="@+id/resultTV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textSize="30dp"
+            android:textColor="#ff0000"
             android:text="계산결과"/>
     </TableRow>
 
