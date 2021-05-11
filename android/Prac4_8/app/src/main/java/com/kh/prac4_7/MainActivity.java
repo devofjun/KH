@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        text = findViewById(R.id.text);
 
         text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -36,5 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        text = findViewById(R.id.text);
     }
 }
