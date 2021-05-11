@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TimePicker timePicker;
     TextView txtResult;
     int selectedYear, selectedMonth, selectedDayOfMonth;
+    Calendar cal;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        cal = Calendar.getInstance();
         setUI();
         setListener();
     }
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 selectedYear = year;
                 selectedMonth = month;
                 selectedDayOfMonth = dayOfMonth;
+                cal.set(year, month, dayOfMonth);
             }
         });
     }
@@ -93,8 +96,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             chrono.stop();
             chrono.setTextColor(Color.BLUE);
             // 달력형 데이터
-            Calendar cal = Calendar.getInstance();
-            cal.set(selectedYear, selectedMonth, selectedDayOfMonth);
+//            cal = Calendar.getInstance();
+//            cal.set(selectedYear, selectedMonth, selectedDayOfMonth);
 
             // timePicker를 제대로 사용하려면 아래 설정을 바꿔야 한다.
             // Gradle Scripts / build.gradle(Module: -> minSdkVersion 23)
