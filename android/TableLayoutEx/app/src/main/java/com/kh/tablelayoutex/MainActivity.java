@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -80,24 +81,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String str2 = edt2.getText().toString();
         Log.d("mytag",str1);
         Log.d("mytag",str2);
-        int num1 = Integer.parseInt(str1);
-        int num2 = Integer.parseInt(str2);
-        if(v == btnAdd){
-            //Log.d("mytag","더하기");
-            int result = num1 + num2;
-            resultTV.setText("계산결과: " + String.valueOf(result));
-        } else if(v == btnSub) {
-            //Log.d("mytag","빼기");
-            int result = num1 - num2;
-            resultTV.setText("계산결과: " + String.valueOf(result));
-        } else if(v == btnMul) {
-            //Log.d("mytag","곱하기");
-            int result = num1 * num2;
-            resultTV.setText("계산결과: " + String.valueOf(result));
-        } else if(v == btnDiv) {
-            //Log.d("mytag","나누기");
-            int result = num1 / num2;
-            resultTV.setText("계산결과: " + String.valueOf(result));
+        try{
+            int num1 = Integer.parseInt(str1);
+            int num2 = Integer.parseInt(str2);
+            if(v == btnAdd){
+                //Log.d("mytag","더하기");
+                int result = num1 + num2;
+                resultTV.setText("계산결과: " + String.valueOf(result));
+            } else if(v == btnSub) {
+                //Log.d("mytag","빼기");
+                int result = num1 - num2;
+                resultTV.setText("계산결과: " + String.valueOf(result));
+            } else if(v == btnMul) {
+                //Log.d("mytag","곱하기");
+                int result = num1 * num2;
+                resultTV.setText("계산결과: " + String.valueOf(result));
+            } else if(v == btnDiv) {
+                //Log.d("mytag","나누기");
+                int result = num1 / num2;
+                resultTV.setText("계산결과: " + String.valueOf(result));
+            }
+        } catch(NumberFormatException e) {
+            Toast.makeText(getApplicationContext(), "숫자입력 제대로하셈", Toast.LENGTH_SHORT).show();
         }
     }
 }
