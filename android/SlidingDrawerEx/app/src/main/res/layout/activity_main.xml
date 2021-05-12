@@ -13,7 +13,7 @@
         android:text="여기는 서랍 밖입니다."
         android:textSize="30dp"/>
     <!-- 슬라이딩드로어: 버튼(핸들)을 누르거나 드래그하면 열리는 레이아웃(컨텐트) -->
-    <!-- handle 속성과 content속성이 꼭 들어가야한다. -->
+    <!-- handle 속성과 content속성이 한개씩 들어가야한다. -->
     <SlidingDrawer
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,6 +25,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="손잡이"/>
+        <Button
+            android:id="@+id/handle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="손잡이2"/>
         <LinearLayout
             android:id="@+id/content"
             android:layout_width="match_parent"
