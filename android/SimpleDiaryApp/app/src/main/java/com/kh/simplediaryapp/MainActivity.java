@@ -74,13 +74,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 파일쓰기 버튼
+        // 수정하기,파일쓰기 버튼
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String text = editText.getText().toString();
                 try {
                     FileOutputStream fos = openFileOutput(fileName, MODE_PRIVATE);
+                    // null값을 방지하기 위해 씀
                     OutputStreamWriter osw = new OutputStreamWriter(fos);
                     osw.write(text);
                     osw.close();
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // 일기 불러오기
     // 전달 받은 파일명의 데이터를 읽어서 string으로 반환한다.
     private String readDiary(String fileName) {
         String str = "";
