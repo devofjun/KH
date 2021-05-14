@@ -23,19 +23,26 @@ public class MainActivity extends AppCompatActivity {
         btn2 = findViewById(R.id.btn2);
         baseLayout = findViewById(R.id.baseLayout);
 
+        // 버튼에 대한 롱클릭 설정
         registerForContextMenu(btn1);
         registerForContextMenu(btn2);
     }
 
+    // 롱클릭이 되었을때
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
+        // 메뉴 전개자
         MenuInflater inflater = getMenuInflater();
+        // 어떤 버튼이 롱클릭 되었는지에 따라 다른 메뉴 전개
         if(v == btn1) {
+            // 보여질 메뉴 제목 설정
             menu.setHeaderTitle("배경색 변경");
+            // 만들어 놓은 메뉴 전개
             inflater.inflate(R.menu.menu1, menu);
         } else if (v == btn2) {
+            // 만들어 놓은 메뉴 전개2
             inflater.inflate(R.menu.menu2,menu);
         }
     }
