@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +41,19 @@ public class MainActivity extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH);
         int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
 
+        // 오늘날짜의 일기 바로 보이게하기
+        fileName = year + "_" + (month + 1) + "_" + dayOfMonth + ".txt";
+        String fileData = readDiary(fileName);
+        // 읽어온 데이터가 없으면 null
+        if(fileData == null){
+            editText.setText("");
+            editText.setHint("일기 없음");
+            btn.setText("작성하기");
+        } else {
+            editText.setText(fileData);
+            btn.setText("수정하기");
+        }
+
         // DatePicker를 사용하기 위해선 init함수를 사용해야함
         datePicker.init(year, month, dayOfMonth, new DatePicker.OnDateChangedListener() {
             // 날짜가 선택될때마다
@@ -50,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 // 읽어온 데이터가 없으면 null
                 if(fileData == null){
                     editText.setText("");
-                    editText.setHint("내용 없음");
+                    editText.setHint("일기 없음");
                     btn.setText("작성하기");
                 } else {
                     editText.setText(fileData);
@@ -67,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 String text = editText.getText().toString();
                 try {
                     FileOutputStream fos = openFileOutput(fileName, MODE_PRIVATE);
-                    byte[] bytes = text.getBytes();
-                    fos.write(bytes);
+                    OutputStreamWriter osw = new OutputStreamWriter(fos);
+                    osw.write(text);
+                    osw.close();
                     fos.close();
                     Toast.makeText(MainActivity.this, "작성완료", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
