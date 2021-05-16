@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn);
         edtxt = findViewById(R.id.edtxt);
 
+        // 파일에 대한 권한 받아오기 클래스
+        PermissionUtil.requestPermission(this);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
