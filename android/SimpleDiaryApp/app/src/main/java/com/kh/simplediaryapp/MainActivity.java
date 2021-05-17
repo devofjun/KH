@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String text = editText.getText().toString();
                 try {
+                    // 앱 내부 폴더에 파일을 생성함.
+                    // openFileOutput의 fileName에는 경로가 들어갈 수 없음.
                     FileOutputStream fos = openFileOutput(fileName, MODE_PRIVATE);
                     // null값을 방지하기 위해 씀
                     OutputStreamWriter osw = new OutputStreamWriter(fos);
