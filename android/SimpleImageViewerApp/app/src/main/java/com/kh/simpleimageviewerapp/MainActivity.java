@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //Log.d("mytag", "list: "+files[i].toString());
             String filename = files[i].toString();
             String extension = filename.substring(filename.lastIndexOf(".")+1);
-            Log.d("mytag", "list: "+files[i].toString()+"|ext|: " + extension);
+            //Log.d("mytag", "list: "+files[i].toString()+"|ext|: " + extension);
             if(extension.equals("jpg") || extension.equals("png") || extension.equals("gif")){
                 imgFiles.add(files[i]);
             } else {
-                Log.d("mytag","noImgIdx:"+i);
+               // Log.d("mytag","noImgIdx:"+i);
             }
         }
         myView.filePath = files[index].toString();
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 index = 0;
             }
         }
-        Log.d("mytag", "index: "+index);
+        //Log.d("mytag", "index: "+index);
         myView.filePath = imgFiles.get(index).toString();
         myView.invalidate(); // 무효화하다. -> 다시 그리기 요청
         textView.setText((index+1)+"/"+(imgFiles.size()));
