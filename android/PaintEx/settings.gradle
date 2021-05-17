@@ -1,0 +1,2 @@
+rootProject.name = "PaintEx"
+include ':app'
