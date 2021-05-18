@@ -13,6 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button btnVote;
     ImageView[] imageViews = new ImageView[9];
+    // 이미지뷰에 대한 아이디값 배열
     int[] ivIDs = {
             R.id.iv1, R.id.iv2, R.id.iv3,
             R.id.iv4, R.id.iv5, R.id.iv6,
@@ -23,7 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             "이레느깡 단 베르앙", "잠자는 소녀", "테라스의 두 자매",
             "피아노 레슨", "피아노 앞의 소녀들", "해변에서"
     };
+    // 투표 배열
     int [] voteCounts = new int[9];
+    // 최대 투표수
     final int MAX_COUNT = 5;
 
     @Override
@@ -35,18 +38,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setUI() {
-        // 이미지뷰 등록
+        // 이미지뷰
         for(int i=0; i<imageViews.length; i++){
             imageViews[i] = findViewById(ivIDs[i]);
             imageViews[i].setOnClickListener(this);
         }
+        // 버튼
         btnVote = findViewById(R.id.btnVote);
         btnVote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 새로운 액티비티를 생성할 준비
                 Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
+                // 액티비티에 넘겨줄 데이터
                 intent.putExtra("imgNames", imgNames);
                 intent.putExtra("VoteCounts", voteCounts);
+                // 액티비티 실행 = 새로운 창 열기
                 startActivity(intent);
             }
         });
@@ -54,15 +61,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        //Log.d("mytag", v.toString());
         for(int i=0; i<imageViews.length; i++){
+            // 클릭된 이미지 찾기
             if (v == imageViews[i]){
-                //Log.d("mytag", ""+i);
+                // 해당 이미지의 투표수 올리기 (최대 5)
                 if(voteCounts[i] < MAX_COUNT) {
                     ++voteCounts[i];
                     String message = imgNames[i] + ": 총 " + voteCounts[i] + "표";
                     Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
                 }
+                // 클릭된 이미지 찾았으니 for문 종료
                 break;
             }
         }

@@ -48,34 +48,37 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = getIntent();
         imgNames = intent.getStringArrayExtra("imgNames");
         voteCounts = intent.getIntArrayExtra("VoteCounts");
+
+        // Test Code
 //        for(int i=0; i< imgNames.length; i++){
 //            Log.d("mytag", imgNames[i]+": "+voteCounts[i]);
 //        }
-
         setUI();
     }
     private void setUI() {
+        // MainActivity로 부터 넘어온 데이터로 변경
         for(int i=0; i<tvIds.length; i++){
             textViews[i] = findViewById(tvIds[i]);
             ratingBars[i] = findViewById(rBardIds[i]);
             textViews[i].setText(imgNames[i]);
             ratingBars[i].setRating(voteCounts[i]);
+            // 제일 높은 투표수를 받은 그림을 인덱스로 저장
             if(topRating < voteCounts[i]){
                 topRating = voteCounts[i];
                 topRatingIdx = i;
             }
         }
-
+        // 제일 높은 투표수의 그림과 이름으로 변경
         topImgName = findViewById(R.id.topImgName);
         topImg = findViewById(R.id.topImg);
         topImgName.setText(imgNames[topRatingIdx]);
         topImg.setImageResource(imgIds[topRatingIdx]);
-
+        // 돌아가기 버튼
         btnReturn = findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finish(); // 종료
             }
         });
     }
