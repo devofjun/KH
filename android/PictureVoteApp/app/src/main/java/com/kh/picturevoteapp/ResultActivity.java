@@ -7,10 +7,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
+    ImageView topImg;
+    TextView topImgName;
+    int[] imgIds = {
+            R.drawable.pic1, R.drawable.pic2, R.drawable.pic3,
+            R.drawable.pic4, R.drawable.pic5, R.drawable.pic6,
+            R.drawable.pic7, R.drawable.pic8, R.drawable.pic9
+    };
+
     TextView[] textViews = new TextView[9];
     RatingBar[] ratingBars = new RatingBar[9];
     Button btnReturn;
@@ -26,6 +35,10 @@ public class ResultActivity extends AppCompatActivity {
     };
     String[] imgNames;
     int[] voteCounts;
+
+    int topRating = 0;
+    int topRatingIdx = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +60,17 @@ public class ResultActivity extends AppCompatActivity {
             ratingBars[i] = findViewById(rBardIds[i]);
             textViews[i].setText(imgNames[i]);
             ratingBars[i].setRating(voteCounts[i]);
+            if(topRating < voteCounts[i]){
+                topRating = voteCounts[i];
+                topRatingIdx = i;
+            }
         }
+
+        topImgName = findViewById(R.id.topImgName);
+        topImg = findViewById(R.id.topImg);
+        topImgName.setText(imgNames[topRatingIdx]);
+        topImg.setImageResource(imgIds[topRatingIdx]);
+
         btnReturn = findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
