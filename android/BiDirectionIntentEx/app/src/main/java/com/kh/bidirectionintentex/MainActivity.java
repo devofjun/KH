@@ -14,6 +14,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     EditText edtNum1, edtNum2;
     Button btnAdd;
+    final int SECOND_CODE = 1001;
+    final int THIRED_CODE = 1002;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("num1", num1);
                     intent.putExtra("num2", num2);
                     // result를 받기위한 startActivity 메소드
-                    startActivityForResult(intent, 0);
+                    startActivityForResult(intent, SECOND_CODE);
                 } catch(NumberFormatException e){
                     Toast.makeText(MainActivity.this, "입력값 확인바람", Toast.LENGTH_SHORT).show();
                 }
@@ -48,10 +50,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
-            Log.d("mytag", "정상종료됐음");
-            int result = data.getIntExtra("result",0);
-            Toast.makeText(MainActivity.this, "합계: "+result, Toast.LENGTH_SHORT).show();
+        // 어떤 액티비티를 불렀었는지 확인하기 위한 코드 : requestCode
+        if(requestCode == SECOND_CODE) {
+            if (resultCode == RESULT_OK) {
+                Log.d("mytag", "정상종료됐음");
+                int result = data.getIntExtra("result", 0);
+                Toast.makeText(MainActivity.this, "합계: " + result, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
