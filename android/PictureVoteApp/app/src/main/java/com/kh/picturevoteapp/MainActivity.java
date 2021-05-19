@@ -29,7 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // 최대 투표수
     final int MAX_COUNT = 5;
 
-    @Override
+    // 토스트
+    Toast toast;
+
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -68,7 +71,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(voteCounts[i] < MAX_COUNT) {
                     ++voteCounts[i];
                     String message = imgNames[i] + ": 총 " + voteCounts[i] + "표";
-                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                    // 토스트 메세지를 최신 메세지로 출력시키기
+                    try{
+                        // 설정되지 않은 토스트를 캔슬시키면 오류가 발생하기 때문에 try에서 실행함.
+                        toast.cancel();
+                    } catch(Exception e) {
+                    } finally {
+                        // 메세지설정과 출력하기는 꼭 해야하기 때문에 finally에서 실행함.
+                        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                 }
                 // 클릭된 이미지 찾았으니 for문 종료
                 break;
