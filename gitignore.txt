@@ -36,6 +36,10 @@ hs_err_pid*
 
 
 # 안드로이드 스튜디오 자바
+android/**/.idea/modules.xml
+android/**/.idea/workspace.xml
+android/**/.idea/modules
+android/**/.idea/libraries
 
 # Built application files
 *.apk
