@@ -50,11 +50,23 @@
             android:layout_height="wrap_content"
             android:text="입력"/>
         <Button
-            android:id="@+id/btnSelect"
+            android:id="@+id/btnUpdate"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="조회"/>
+            android:text="수정"/>
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="삭제"/>
+        <Button
+        android:id="@+id/btnSelect"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="조회"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,12 +77,14 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="#00ff00"/>
+            android:background="#00ff00"
+           android:gravity="center"/>
         <EditText
             android:id="@+id/edtNumberResult"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="#ffff00"/>
+            android:background="#ffff00"
+            android:gravity="center"/>
     </LinearLayout>
 </LinearLayout>

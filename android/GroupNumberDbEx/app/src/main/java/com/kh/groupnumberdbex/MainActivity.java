@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     EditText edtName, edtNum;
-    Button btnInit, btnInsert, btnSelect;
+    Button btnInit, btnInsert, btnSelect, btnUpdate, btnDelete;
     EditText edtNameResult, edtNumberResult;
 
     MyDBHelper helper;
@@ -32,12 +32,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnInit = findViewById(R.id.btnInit);
         btnInsert = findViewById(R.id.btnInsert);
         btnSelect = findViewById(R.id.btnSelect);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        btnDelete = findViewById(R.id.btnDelete);
         edtNameResult = findViewById(R.id.edtNameResult);
         edtNumberResult = findViewById(R.id.edtNumberResult);
 
         btnInit.setOnClickListener(this);
         btnInsert.setOnClickListener(this);
         btnSelect.setOnClickListener(this);
+        btnDelete.setOnClickListener(this);
+        btnUpdate.setOnClickListener(this);
 
         helper = new MyDBHelper(MainActivity.this, "groupDB", null, 1);
 
@@ -63,22 +67,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             db.execSQL(sql);
             db.close();
             Toast.makeText(this, "데이터 입력됨", Toast.LENGTH_SHORT).show();
+            btnSelect.callOnClick();
         } else if(v == btnSelect) { // 조회 버튼 동작
-            SQLiteDatabase db = helper.getReadableDatabase();
-            String sql = "select * from groupTBL";
-            String strGroup = "그룹 이름\n------------\n";
-            String strNumber = "인원\n------------\n";
-            Cursor cursor = db.rawQuery(sql, null);
-            while (cursor.moveToNext()){
-                strGroup += cursor.getString(0) + "\n";
-                strNumber += cursor.getString(1) + "\n";
-            }
-            edtNameResult.setText(strGroup);
-            edtNumberResult.setText(strNumber);
-            cursor.close();
-            db.close();
+            select();
             Toast.makeText(this, "조회됨", Toast.LENGTH_SHORT).show();
+        } else if(v == btnUpdate) { // 수정 버튼 동작
+            String name = edtName.getText().toString();
+            String strNum = edtNum.getText().toString();
+            int number = Integer.parseInt(strNum);
+            String sql = "update groupTBL set gNumber = "+number+" where gName = '"+name+"'";
+
+            SQLiteDatabase db = helper.getWritableDatabase();
+            db.execSQL(sql);
+            db.close();
+            Toast.makeText(this, "수정됨", Toast.LENGTH_SHORT).show();
+            select();
+            btnSelect.callOnClick();
+        } else if(v == btnDelete) {
+            String name = edtName.getText().toString();
+            String sql = "delete from groupTBL where gName='"+name+"'";
+            SQLiteDatabase db = helper.getWritableDatabase();
+            db.execSQL(sql);
+            db.close();
+            Toast.makeText(this, "삭제됨", Toast.LENGTH_SHORT).show();
+            btnSelect.callOnClick();
         }
+    }
+
+    private void select() {
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String sql = "select * from groupTBL";
+        String strGroup = "그룹 이름\n------------\n";
+        String strNumber = "인원\n------------\n";
+        Cursor cursor = db.rawQuery(sql, null);
+        while (cursor.moveToNext()){
+            strGroup += cursor.getString(0) + "\n";
+            strNumber += cursor.getString(1) + "\n";
+        }
+        edtNameResult.setText(strGroup);
+        edtNumberResult.setText(strNumber);
+        cursor.close();
+        db.close();
     }
 
     class MyDBHelper extends SQLiteOpenHelper{
