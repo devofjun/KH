@@ -17,21 +17,18 @@ public class MyGridAdapter extends BaseAdapter {
 
     Context context;
     int cell_view; // res/layout/cell_view.xml
-    int[] poster;
-    String[] title;
-    String[] director;
+    ArrayList<MovieVo> mvList;
 
+    // 생성자(보여질
     public MyGridAdapter(Context context, int cell_view, ArrayList<MovieVo> mvList) {
         this.context = context;
         this.cell_view = cell_view;
-        this.poster = poster;
-        this.title = title;
-        this.director = director;
+        this.mvList = mvList;
     }
 
     @Override
     public int getCount() {
-        return poster.length;
+        return mvList.size();
     }
 
     @Override
@@ -52,16 +49,18 @@ public class MyGridAdapter extends BaseAdapter {
         }
         LinearLayout lnLayout = convertView.findViewById(R.id.lnLayout);
         if(position%2 == 0) {
-            lnLayout.setBackgroundColor(Color.parseColor("#a5ea89"));
+            lnLayout.setBackgroundColor(Color.parseColor("#D5F5E3"));
         } else {
-            lnLayout.setBackgroundColor(Color.parseColor("#89a5ea"));
+            lnLayout.setBackgroundColor(Color.parseColor("#D6EAF8"));
         }
         ImageView imageView = convertView.findViewById(R.id.imageView);
-        imageView.setImageResource(poster[position]);
+        imageView.setImageResource(mvList.get(position).getImgResource());
+        //
         TextView tvTitle = convertView.findViewById(R.id.tvTitle);
-        tvTitle.setText(title[position]);
+        tvTitle.setText(mvList.get(position).getMovieName());
+        // 감독 이름
         TextView tvDirector = convertView.findViewById(R.id.tvDirector);
-        tvDirector.setText("감독 : "+director[position]);
+        tvDirector.setText("감독 : "+mvList.get(position).getDirector());
         return convertView;
     }
 }
