@@ -19,7 +19,7 @@ public class MyGridAdapter extends BaseAdapter {
     int cell_view; // res/layout/cell_view.xml
     ArrayList<MovieVo> mvList;
 
-    // 생성자(보여질
+    // 생성자(유지될 context, 그리려는 뷰, 그려질 목록)
     public MyGridAdapter(Context context, int cell_view, ArrayList<MovieVo> mvList) {
         this.context = context;
         this.cell_view = cell_view;
