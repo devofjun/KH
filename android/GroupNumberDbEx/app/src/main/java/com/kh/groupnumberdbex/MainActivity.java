@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             db.execSQL(sql);
             db.close();
             Toast.makeText(this, "수정됨", Toast.LENGTH_SHORT).show();
-            select();
             btnSelect.callOnClick();
         } else if(v == btnDelete) {
             String name = edtName.getText().toString();
