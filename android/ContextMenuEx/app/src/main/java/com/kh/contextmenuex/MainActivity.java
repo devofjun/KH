@@ -50,19 +50,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.itemRed:
+            // "배경색 변경"
+            case R.id.itemRed: // "배경색(빨강)"
                 baseLayout.setBackgroundColor(Color.RED);
                 break;
-            case R.id.itemGreen:
+            case R.id.itemGreen: // "배경색(초록)"
                 baseLayout.setBackgroundColor(Color.GREEN);
                 break;
-            case R.id.itemBlue:
+            case R.id.itemBlue: // "배경색(파랑)"
                 baseLayout.setBackgroundColor(Color.BLUE);
                 break;
-            case R.id.itemRotate:
+                // "버튼 변경"
+            case R.id.itemRotate: // "45도 회전"
                 btn2.setRotation(btn2.getRotation()+45);
                 break;
-            case R.id.itemSize:
+            case R.id.itemSize: // "2배 확대"
                 btn2.setScaleX(btn2.getScaleX()*2);
                 btn2.setScaleY(btn2.getScaleY()*2);
                 break;
