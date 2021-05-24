@@ -9,35 +9,25 @@ div {  padding: 5px 5px 5px 5px }
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-// $(document).ready(function() {});
-$(function() {
-	$("#selectBtn").click(function() {
-		var chk = $("input[type=checkbox]:checked");
-		var v = "";
-		chk.each(function(i) {
-			var sp = $(this).prev().text();
-			v += sp;
-			if (i < chk.length - 1) {
-				v += ",";
-			}
+	// $().each(function(index){})
+	// each - 각각의 요소
+	// 체크된 체크박스
+	$(function() {
+		// 취미선택 버튼을 클릭하면
+		$("#selectBtn").click(function() {
+			// 체크된 체크박스 찾기
+			var chk = $("input[type=checkbox]:checked");
+			var prevSpan = chk.prev();
+			var hobbies ="";
+			// 각각의 요소마다 함수가 반복된다.
+			prevSpan.each(function(i){
+				var text = $(this).text();
+				hobbies += text + " ";
+			});
+			$("#contents").text(hobbies);
 		});
-		$("#contents").text($("#contents").text() + ": " + v);
-		/*
-// 		console.log(chk);
-		var v = "";
-		chk.each(function() {
-			var sp = $(this).prev().text();
-// 			console.log(sp);
-			v += sp + ",";
-		});
-		var v2 = v.trim(); // 좌우 공백 제거 (중간 공백은 아님)
-		var text = v2.substring(0, v2.length-2); // substring(시작인덱스, 끝인덱스)
-// 		console.log("-----------" + text + "------------");
-		var text2 = $("#contents").text() + ":" + text;
-		$("#contents").text(text2);
-		*/
-	});
-});
+	})
+	
 </script>
 </head>
 <body>
