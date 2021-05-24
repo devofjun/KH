@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>페이지가 렌더링된 후 CSS 변경하기</title>
+<style type="text/css">
+	span { font-size: 30pt   }
+	.redtext   { color : #f00   }
+	.italictext { font-style: italic;   }
+	#myID {font-weight: bold;}
+</style>
+<script src="../js/jquery.js"></script>
+<script type="text/javascript">
+	// 코드가 위에서부터 실행되기 때문에 여기선 엘리먼트를 찾을 수 없음	
+// 	var elem = $("#myID");
+// 	console.log("elem", elem);
+// 	var elem2 = $("span");
+// 	console.log("elem2",elem2);
+// 	var elem3 = $(".redtext");
+// 	console.log("elem3",elem3);
+</script>	
+</head>
+<body>
+
+<span id="myID"> simple </span>
+<span class="redtext"> 두번째 </span>
+<span class="redtext"> 세번째 </span>
+<p class="redtext">네번째</p>
+<p class="italictext">다섯번째</p>
+<p id="myID" class="italictext">여섯번째</p>
+
+<script type="text/javascript">
+	var elem = $("#myID");
+	console.log("elem", elem);
+	var elem2 = $("span");
+	console.log("elem2",elem2);
+	var elem3 = $(".redtext");
+	console.log("elem3",elem3);
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>페이지가 렌더링된 후 CSS 변경하기</title>
+<style type="text/css">
+/*
+	태그명 { 속성명: 속성값 }
+	.클래스명 {}
+	#아이디명 {} = 문서내에서 한개만 지정 할 수 있음.
+*/
+	span { font-size: 30pt   }
+	.redtext   { color : #f00   }
+	.italictext { font-style: italic;   }
+	#myID {font-weight: bold;}
+</style>
+<script src="../js/jquery.js"></script>
+<script type="text/javascript">
+// 	var elem = $("#myID");
+// 	console.log("elem", elem);
+	// 여기선 엘리먼트가 아직 생성되지 않았기 때문에 엘리먼트가 찾아지지 않는다.
+</script>	
+</head>
+<body>
+<span id="myID"> simple </span>
+<span class="redtext">두번째</span>
+<span class="redtext">세번째</span>
+<p class="redtext">네번째</p>
+<p class="italictext">다섯번째</p>
+<p class="italictext" id="myID">여섯번째</p>
+
+<script type="text/javascript">
+	//document.getElementById("myID");
+	var elem = $("#myID"); // $("") -> jQuery 수트를 입혔다. -> jQuery 객체형식으로 변환 -> jQuery 관련 기능(함수)
+	console.log("elem", elem);
+	
+	//document.getElementsByClassName("redtext");
+	var elem2 = $(".redtext");
+	console.log("elem2",elem2);
+	
+	//document.getElementsByTagname("span");
+	var elem3 = $("span");
+	console.log("elem3",elem3);
+</script>
+</body>
+</html>
