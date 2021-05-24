@@ -9,7 +9,12 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-   
+   // 인덱스가 짝수인 엘리먼트 필터링 - : even
+   // 인덱스가 홀수인 엘리먼트 필터링 - : odd
+   $(function() {
+	  $("tr:even").css("background-color", "yellow");
+	  $("tr:odd").css("background-color", "cyan");
+   });
 </script>
 </head>
 <body>
