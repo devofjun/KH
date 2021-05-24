@@ -10,7 +10,13 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("button").click(function() {
+		$("#myA").css("color", "red");
+		$("#myA").prev().css("background-color", "yellow");
+		$("#myA").next().css("background-color", "cyan");			
+		});
+	});
 </script>
 </head>
 <body>

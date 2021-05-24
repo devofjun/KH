@@ -10,7 +10,19 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		// 모든 엘리먼트에 대해서 글자색을 빨간색으로
+		$("*").css("color", "red");
+		// 클릭이 됐을때의 콜백함수
+		$("button").click(function() {
+			console.log("버튼 클릭됨");
+			$("#myA").css("color", "green");
+			// prev() : 바로 위의 형, 형제 관계에서 바로 이전의 엘리먼트
+			$("#myA").prev().css("background-color", "yellow");
+			// next() : 바로 밑의 동생, 형제 관계에서 바로 다음의 엘리먼트
+			$("#myA").next().css("background-color", "cyan");
+		});
+	});
 </script>
 </head>
 <body>
