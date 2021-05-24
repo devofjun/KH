@@ -9,7 +9,23 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-   
+	$(function() {
+		//$("input[type=button]") -> $(":button") 축약형은 왠만하면 쓰지 말자, 잘안됨.
+		// 폼양식 - value 속성을 가지는 엘리먼트 - val(), xxxx.value = "1"
+		// 단순 텍스트 - 텍스트 노트를 처리 - text(), xxx.innerHTML = "<span>hi</span>";
+		$("#regBtn").click(function() {
+		console.log("test");
+			var userID = $("#userId").val(); // value 값
+			if(userID == ""){
+				//alert("아이디를 입력해 주세요");
+				//$("#mySpan").text("결과: 아이디를 입력해주세요.");
+				$("#myInput").val("아이디를 입력헤 주세요.");
+				$("input[type=text]").css("background-color", "yellow");
+			} else {
+				$("input[type=text]").css("background-color", "cyan");
+			}
+		});
+	});
 </script>   
 </head>
 <body>
