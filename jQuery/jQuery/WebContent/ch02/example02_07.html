@@ -11,7 +11,12 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-   
+   // 선택된 것들 중에서 제일 첫번째 - : first
+   // 선택된 것들 중에서 제일 마지막 - : last
+   $(function() {
+	  $("tr:first").css("background-color", "red");
+	  $("tr:last").css("background-color","green");
+   });
 </script>
 </head>
 <body>
