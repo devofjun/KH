@@ -10,8 +10,21 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-	
-
+	// document - 자바스크립트의 내장객체 - 문서
+	// window - 자바스크립트의 내장객체 - 클라이언트 - 생략가능
+	// window.alert("Hello") -> alert("Hello")
+	console.log("document", document);
+	console.log("$(document)", $(document));
+	// document 객체를 jQuery의 객체 형태로 변환
+	// -> jQuery의 기능을 사용할 수 있다. -> jQuery 함수를 사용할 수 있다.
+	// $(document).ready(callback);
+	// -> 문서객체가 로딩완료되서 사용할 준비가 되면 callback 함수가 실행됨.(준비핸들러라고 부름)
+	$(document).ready(function() { // 익명 함수
+		var elem = $("span");
+		console.log("elem", elem);
+		// 셀렉팅한 엘리먼트에 대해서 스타일을 변경 - css("속성명", "속성값")
+		elem.css("background-color", "yellow");
+	});
 </script>
 </head>
 <body>

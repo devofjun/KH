@@ -5,9 +5,17 @@
 <title>$, jQuery 출력하기</title>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">	
-	
+	console.log("$",$);
+	console.log("jQuery", jQuery);
+	// css() -> 스타일을 적용해라
+	// jQuery() -> jQeury 형태로 만들어라
+	// $() -> jQuery()의 축약형
+	jQuery(document).ready(function() {
+		jQuery("span").css("background-color","yellow");
+	})
 </script>
 </head>
 <body>
+	<span>Span</span>
 </body>
 </html>
