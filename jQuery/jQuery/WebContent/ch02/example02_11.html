@@ -5,7 +5,14 @@
 <title>첫 번째와 마지막 자식 엘리먼트에 스타일 적용하기 :first-child, :last-child</title>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-   
+	// :first - 선택된 것들 중에서 첫번째
+	// :last - 선택된 것들 중에서 마지막
+	// :first-child - 첫번째 자식
+	// :last-child - 마지막 자식
+	$(function() {
+		$("div > span:first-child").css("background-color","yellow");
+		$("div > span:last-child").css("background-color", "cyan");
+	});
 </script> 
 </head> 
 <body> 
