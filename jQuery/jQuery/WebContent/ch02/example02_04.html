@@ -2,13 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>선택된 jQuery 확장 객체 집합에서 자손 엘리먼트에 스타일시트 적용하기-“ancestor descendant”</title>
+<title>선택된 jQuery 확장 객체 집합에서 자식 엘리먼트에 스타일시트 적용하기-“ancestor descendant”</title>
 <style type="text/css">
    em { font-size: 12pt; line-height: 40pt}
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-  
+	// 자식 - 해당 엘리먼트의 바로 아래(하위) 엘리먼트
+	// 자식 : > 로 표현한다.
+	$(function () {
+		$("div>em").css("background-color", "red");
+		$("span>em").css("background-color", "blue");
+	});
 </script>
 </head>
 <body>
