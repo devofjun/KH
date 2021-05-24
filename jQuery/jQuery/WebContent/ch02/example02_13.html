@@ -5,7 +5,10 @@
 <title>조건에 반대되는 엘리먼트 검색하기-:not()</title>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-   
+	$(function() {
+		$("input[type=checkbox]:checked").next().css("background-color","yellow");
+		$("input[type=checkbox]:not(:checked)").next().css("background-color", "cyan");
+	});
 </script>
 </head>
 <body>
