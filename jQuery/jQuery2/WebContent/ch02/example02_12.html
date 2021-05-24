@@ -9,7 +9,11 @@ span { color: blue; }
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-   
+	$(function() {
+		$("ul li:nth-child(odd)").css("color", "red");
+		$("ul li:nth-child(even)").css("color", "blue");
+		$("ul li:nth-child(2)").css("background-color", "cyan");
+	})
 </script>
 </head>
 <body>
