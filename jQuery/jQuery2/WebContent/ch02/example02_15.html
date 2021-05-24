@@ -15,13 +15,17 @@ $(function() {
 		var v = $("#userId").val();
 		if(v == ""){
 			$("#myInput").val("아이디를 입력하세요");
+			$("#userId").css("background-color", "red");
 		} else {
-			
+			$("#myInput").val("");
+			$("#userId").css("background-color", "white");
 		}
 		var p = $("#pwd").val();
 		var pc = $("#pwdConfirm").val();
 		if(p != pc){
-			$("#myInput").val("패스워드가 다릅니다.");
+			$("#myInput").val("암호가 일치하지 않습니다.");
+		} else {
+			$("#myInput").val("");
 		}
 	});
 });
