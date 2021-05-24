@@ -11,7 +11,13 @@ em {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-	
+	// 자손 : 자식 + 후손(공백으로 표현)
+	$(function() {
+		var v = $("p em");
+		console.log("v",v); // one, two, three
+		var v2 = $("p>em");
+		console.log("v2",v2); // one, two
+	});
 </script>
 </head>
 <body>
