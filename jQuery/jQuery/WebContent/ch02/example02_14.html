@@ -13,7 +13,23 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// $("span[id]") - span 엘리먼트 중에서 id라는 속성을 가지고 있는 엘리먼트
+	// $("span[id=simpletext1]") - span 엘리먼트중에서 id속성의 값이 simpletext1인 엘리먼트
+	// $("span[id^=simple]") - span 엘리먼트중에서 id속성의 값이 simple로 시작하는 엘리먼트
+	// $("span[id$=text1]") - span 엘리먼트중에서 id 속성의 값이 text1로 끝나는 엘리먼트
+	// $("span[id*=text]") - span 엘리먼트 중에서 id 속성의 값에 text가 들어있는 엘리먼트
+	$(function() {
+		var elems1 = $("span[id]");
+		console.log("elems", elems1);
+		var elems2 = $("span[id=simpletext1]");
+		console.log("elems2", elems2);
+		var elems3 = $("span[id^=com]");
+		console.log("elems3", elems3);
+		var elems4 = $("span[id$=text2]");
+		console.log("elems4", elems4);
+		var elems5 = $("span[id*=text]");
+		console.log("elems5", elems5);
+	})
 </script>
 </head>
 <body>
