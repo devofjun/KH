@@ -10,7 +10,10 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-   
+	$(function() {
+		$("td:gt(0)").css("background-color", "yellow");
+		$("td:lt(5)").css("background-color", "cyan");
+	});
 </script>
 </head>
 <body>

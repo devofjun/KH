@@ -10,7 +10,14 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-   
+   // gt : greater than(~보다 큰)
+   // lt : less than(~보다 작은)
+   $(function() {
+	   // 3보다 큰
+	   $("td:gt(3)").css("background-color","yellow");
+	   // 2보다 작은
+	   $("td:lt(2)").css("background-color", "cyan");
+   });
 </script>
 </head>
 <body>
