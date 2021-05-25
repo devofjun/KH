@@ -12,7 +12,19 @@ div {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+$(function() {
+	$("div").css("background-color", "yellow")
+	.filter(function(index, elem){
+// 		if(index%2 == 0){
+// 			return true;
+// 		}
+// 		return false;
+		// 굳이 id 값으로 찾는다면 이렇게 할 수 있다.
+		if($(elem).attr("id") == "first"){
+			return true;
+		}
+	}).css("border-color", "red");
+});
 </script>
 </head>
 <body>

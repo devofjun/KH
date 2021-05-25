@@ -13,16 +13,32 @@ div {
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
 
+$(function() {
+	$("div").css("background-color", "yellow")
+	// filter의 function에 들어가는 매개변수는 jQuery에서 정해져있다. -> 보고 싶다면 jQuery사이트에서 검색해서 알아보면됨.
+	.filter(function(index, elem){
+		// even에 해당하는 index가 짝수인 것만
+// 		if(index%2 == 0){
+// 			return true;
+// 		}
+// 		return false;
+// 		console.log(elem); // DOM 형태
+// 		console.log($(elem)); // jQuery 함수사용가능형태
+		if($(elem).text() == "2"){
+			return true;
+		}
+	}).css("border-color", "red");
+});
 </script>
 </head>
 <body>
-	<div id="first"></div>	
+	<div id="first">1</div>	
 
-	<div id="second" class="middle"></div>
-	<div id="third"  class="middle"></div>
-	<div id="fourth"  class="middle"></div>
-	<div id="fifth"  class="middle"></div>
+	<div id="second" class="middle">2</div>
+	<div id="third"  class="middle">3</div>
+	<div id="fourth"  class="middle">4</div>
+	<div id="fifth"  class="middle">5</div>
 	
-	<div id="sixth"></div> 
+	<div id="sixth">6</div> 
 </body>
 </html>
