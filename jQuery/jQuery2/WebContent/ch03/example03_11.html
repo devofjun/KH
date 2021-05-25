@@ -5,7 +5,18 @@
 <title>폼 엘리먼트에서 value 어트리뷰트 값 가져오고, 설정하기-val()</title>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+$(function() {
+	// 키보드를 눌렀다가 땔때
+	$("input[type=text]").keyup(function(e) {
+		var v = $(this).val();
+		$("#console").text(v);
+	});
+	
+	$("button").click(function() {
+		$("input[type=text]").val("");
+		$("#console").text("");
+	});
+});
 </script>
 </head>
 <body>
