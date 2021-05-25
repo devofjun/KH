@@ -8,7 +8,18 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("button").click(function() {
+			var names = ["아무개", "무아개", "개무아"];
+			$("div:first").html("<p> 학생목록 </p>");
+			var html = "<ul>";
+			for(var v=0; v<names.length; v++){
+				html += "<li>"+names[v]+"</li>";
+			}
+			html += "</ul>";
+			$("div:last").html(html);
+		});
+	});
 </script>
 </head>
 <body>  
