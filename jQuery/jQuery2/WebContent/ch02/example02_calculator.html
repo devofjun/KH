@@ -18,18 +18,14 @@
 				var num2 = parseInt(t2);
 			if(operater == "+"){
 				var result = num1 + num2;
-				$("td:last>input").val(result);
 			} else if(operater == "-"){
 				var result = num1 - num2;
-				$("td:last>input").val(result);
 			} else if(operater == "*"){
 				var result = num1 * num2;
-				$("td:last>input").val(result);
 			} else if(operater == "/"){
 				var result = num1 / num2;
-				$("td:last>input").val(result);
 			}
-			
+			$("td:last>input").val(result);
 		});
 	});
 </script>
