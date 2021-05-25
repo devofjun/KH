@@ -7,10 +7,17 @@
 	.red       {   background: red;     }
 	.green     {   background: green;   }
 	.yellow    {   background: yellow;   }
+	.font      {   font-size: 30px;   }
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("button").click(function(){
+			$("li:first").addClass("green");
+			$("li:eq(1)").removeClass("red").addClass("yellow");
+			$("li:last").addClass("red font");
+		});
+	});
 </script>
 </head>
 <body>

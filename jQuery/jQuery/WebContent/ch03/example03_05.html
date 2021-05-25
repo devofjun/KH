@@ -7,10 +7,21 @@
 	.red       {   background: red;     }
 	.green     {   background: green;   }
 	.yellow    {   background: yellow;   }
+	.font      {   font-size: 30px;   }
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// 클래스 추가 - addClass()
+	// 클래스 제거 - removeClass(클래스명)
+	// 클래스가 두개라면 class="red font" 이런식으로 된다.
+	$(function() {
+		$("button").click(function() {
+			$("li:first").addClass("green");
+			$("li:eq(1)").removeClass("red").addClass("yellow");
+			//$("li:last").addClass("red").addClass("font");
+			$("li:last").addClass("red font");
+		});
+	});
 </script>
 </head>
 <body>
