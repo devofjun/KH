@@ -9,7 +9,18 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("div").click(function(){
+			$("img:first").attr("src", "../images/im0.jpg")
+						  .attr("alt", "강아지")
+						  .attr("title", "안녕하세요");
+		});
+		$("img:first").click(function() {
+			$(this).next().attr("src", "../images/im0.jpg")
+			  			  .attr("alt", "강아지")
+			  			  .attr("title", "안녕하세요");
+		});
+	});
 </script>
 </head>
 <body>

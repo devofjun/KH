@@ -9,7 +9,38 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// 어트리뷰트(attribute) - 속성
+	// attr(속성명) - get
+	// attr(속성명, 속성값) - set
+	// click - button에만 적용할 수 있는게 아니고, 화면에 보이는 모든 뷰에 적용
+	
+	// div를 클릭하면 첫번째 img 엘리먼트에 images 폴더에 있는 im0.jpg 파일을 보이게
+	// 이미지 태그의 속성 src - 이미지 소스(경로)
+	// alt - 대체 텍스트
+	// title - 마우스커서를 이미지 위에 올렸을때 낱타나는 글자
+	// 어떤 jQuery 함수를 실행했을때 반환값 - 실행 대상(객체) - 메서드 체이닝 방식
+	$(function() {
+		$("div").click(function() {
+			// attr()를 한번 실행하면 $("img:first") 객체가 다시 반환된다.
+			$("img:first").attr("src", "../images/im0.jpg")
+						  .attr("alt", "강아지")
+						  .attr("title", "안녕하세요");
+			
+		});
+		// 첫번째 이미지를 클릭했을때
+		$("img:first").click(function() {
+			var src = $(this).attr("src");
+			var alt = $(this).attr("alt");
+			var title = $(this).attr("title");
+// 			$("img:last").attr("src", src)
+// 						 .attr("alt", alt)
+// 						 .attr("title", title);
+			$(this).next().attr("src", src)
+						  .attr("alt", alt)
+						  .attr("title", title);
+		});
+	});
+	
 </script>
 </head>
 <body>
