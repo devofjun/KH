@@ -12,7 +12,9 @@ div {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+$(function() {
+	$("div").css("background-color", "yellow").filter(".middle").css("border-color", "red");
+});
 </script>
 </head>
 <body>

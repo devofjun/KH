@@ -11,7 +11,15 @@ p{ clear:both;}
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+$(function() {
+	$("button").click(function() {
+		// div에 대해서 redBorder 클래스를 추가하고
+		// div와 p에 대해서 yellow 클래스를 추가
+// 		$("div").addClass("redBorder");
+// 		$("div,p").addClass("yellow");
+		$("div").addClass("redBorder").add("p").addClass("yellow");
+	});
+});
 </script>
 </head>
 <body>   

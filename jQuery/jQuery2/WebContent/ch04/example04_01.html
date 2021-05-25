@@ -11,7 +11,11 @@ p{ clear:both;}
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+$(function () {
+	$("button").click(function() {
+		$("div").addClass("redBorder").add("p").addClass("yellow");
+	});
+});
 </script>
 </head>
 <body>   

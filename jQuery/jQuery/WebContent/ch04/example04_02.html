@@ -12,7 +12,15 @@ div {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+// 골라내기 - 필터링 - filter()
+$(function() {
+	// div에 대해서 배경색을 노란색으로
+	// div중에서 class가 middle인 것에 대해서 테두리를 빨간색으로
+// 	$("div").css("background-color", "yellow");
+// 	$(".middle").css("border-color", "red");
+	//$("div").css("background-color", "yellow").filter(".middle").css("border-color","red");
+	$("div").css("background-color", "yellow").filter(".middle").css("border-color","red");
+});
 </script>
 </head>
 <body>
