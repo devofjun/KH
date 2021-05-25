@@ -12,8 +12,8 @@
 	$(function() {
 		$("button").click(function() {
 			var operater = $(this).text();
-				var t1 = $("td:eq(1)>input").val();
-				var t2 = $("td:eq(3)>input").val();
+				var t1 = $("input:eq(0)").val();
+				var t2 = $("input:eq(1)").val();
 				var num1 = parseInt(t1);
 				var num2 = parseInt(t2);
 			if(operater == "+"){
