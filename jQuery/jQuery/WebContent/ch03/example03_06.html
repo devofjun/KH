@@ -11,7 +11,23 @@ p {   margin: 4px;  font-size: 20px;  font-weight: bolder; }
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+$(function() {
+	$("p").addClass("red under");
+	$("button").click(function() {
+		var buttonText = $(this).text();
+		switch(buttonText){
+		case "removeClass":
+			// 짝수 인덱스를 가지는 p 엘리먼트에 대해서 red, under 클래스를 제거
+			$("p:even").removeClass("red under");
+			break;
+		case "changeClass" :
+			// 홀수 인덱스를 가지는 p 엘리먼트에 대해서 class를 highlight로 변경
+			// 기존 클래스를 삭제하고, 새로운 클래스 추가
+			$("p:odd").removeClass("red under").addClass("highlight");
+			break;
+		}
+	});	
+});
 </script>
 </head>
 <body>

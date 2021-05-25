@@ -11,7 +11,20 @@ p {   margin: 4px;  font-size: 20px;  font-weight: bolder; }
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("p").addClass("red under");
+		$("button").click(function() {
+			var t = $(this).text();
+			switch(t){
+			case "removeClass":
+				$("p:even").removeClass("red under");
+				break;
+			case "changeClass":
+				$("p:odd").removeClass("red under").addClass("highlight");
+				break;
+			}
+		});
+	});
 </script>
 </head>
 <body>
