@@ -10,7 +10,16 @@ p {    margin: 4px;   font-size: 16px;
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+// 토글 - 2가지 상태 값을 번갈아 바꿈, toggle
+// toggleClass(클래스명)
+$(function() {
+	$("p").click(function() {
+		// p가 2개 있는데, 클릭된 p
+		$(this).toggleClass("blue");
+		// 클릭된 p에 class="blue"가 있다면 removeClass("blue")
+		// 클릭된 p에 class="blue"가 없다면 addClass("blue")
+	});
+});
 </script>
 </head>
 <body>

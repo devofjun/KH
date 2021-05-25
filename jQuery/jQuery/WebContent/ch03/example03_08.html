@@ -10,7 +10,17 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+// toggleClass()로 처리해도 됨
+// hasClass(클래스명) : 해당 클래스를 가지고 있는지 여부
+$(function() {
+	$("div").click(function(){
+		if($(this).hasClass("toggleStyle")){
+			$(this).removeClass("toggleStyle");
+		} else {
+			$(this).addClass("toggleStyle");
+		}
+	});
+});
 </script>
 </head>
 <body>
