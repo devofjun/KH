@@ -5,7 +5,15 @@
 <title>해당 엘리먼트의 부모 엘리먼트 찾기</title>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+//parent() - 하나위
+	$(function() {
+		var el = $("b").parent();
+		console.log(el);
+		var name = el.prop("tagName");
+		$("b").append(name);
+	});
+// prop - property(속성)
+// append() - 자식 엘리먼트로 추가
 </script>
 </head>
 <body>
