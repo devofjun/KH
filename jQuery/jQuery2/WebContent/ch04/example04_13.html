@@ -5,7 +5,15 @@
 <title>해당 엘리먼트의 모든 부모 엘리먼트 찾기</title>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		var el = $("b").parents();
+		var arr = [];
+		el.each(function(i) {
+			arr[i] = $(this).prop("tagName").toLowerCase();
+		});
+		var str = arr.join("-");
+		$("b").append(str);
+	});
 </script>
 </head>
 <body>

@@ -5,7 +5,32 @@
 <title>해당 엘리먼트의 모든 부모 엘리먼트 찾기</title>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// parents()
+	// 배열 : []
+// 	var arr = ["장윤희", "문수정", "하윤지"];
+// 	// 배열의 원소를 역순으로 배치 - reverse()
+// 	arr.reverse();
+// 	console.log(arr[0]);
+// 	// join(delim) - delim 문자로 배열의 원소가 연결된 문자열을 반환
+// 	var v = arr.join("-");
+// 	console.log(v);
+// 문자열 -소문자로 변경 -toLowerCase()
+//      -대문자로 변경 - toUpperCase()
+	$(function() {
+		var el = $("b").parents();
+		//console.log(el);
+		var tagArr = [];
+		// 요소마다 반복
+		el.each(function(index) { 
+			tagArr[index] = $(this).prop("tagName");
+			tagArr[index] = tagArr[index].toLowerCase();
+		});
+		tagArr.reverse();
+		//console.log(tagArr);
+		var v = tagArr.join("-");
+		//console.log(v);
+		$("b").append(v);
+	});
 </script>
 </head>
 <body>
