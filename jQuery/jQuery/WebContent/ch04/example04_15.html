@@ -10,7 +10,30 @@ p {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+// li text를 새로운 ul에서 대문자로 다시 출력하기
+// 	$(function(){
+// 		var liArr = [];
+// 		$("ul>li").each(function(i) {
+// 			liArr[i] = "<li>";
+// 			liArr[i] += $(this).text().toUpperCase();
+// 			liArr[i] += "</li>";
+// 		});
+// 		var addhtml = "<ul>";
+// 		for(var i=0; i<liArr.length; i++){
+// 			addhtml += liArr[i];
+// 		}
+// 		addhtml += "</ul>";
+// 		$("body").append(addhtml);
+// 	});
+	$(function() {
+		var liArr = [];
+		$("li").each(function(i){
+			liArr[i] = $(this).text();
+			$(this).text(liArr[i].toUpperCase());
+		});
+		var v = liArr.join("-");
+		$("b").append(v);
+	});
 </script>
 </head>
 <body>
