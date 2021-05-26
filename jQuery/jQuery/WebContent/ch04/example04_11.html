@@ -6,12 +6,18 @@
 <style>
   ul { float:left; margin:5px; font-size:16px; font-weight:bold; } 
   p { color:blue; margin:10px 20px; font-size:16px; padding:5px;  
-      font-weight:bolder; } 
+      font-weight:bolder; clear:both;} 
   .yellow { background:yellow; } 
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// css 속성 clear:both; 중단하다?
+	// 모든 형제 엘리먼트 : siblings() -> prevAll(), nextAll()
+	$(function() {
+		var el = $(".yellow").siblings().css("background-color", "cyan");
+		var len = el.length;
+		$("b").text(len);
+	});
 </script>
 </head>
 <body>
