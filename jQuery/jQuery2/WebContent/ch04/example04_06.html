@@ -11,7 +11,11 @@
 // children() - 엘리먼트(o), 텍스트노드(x)
 // contents() - 내용물 : 엘리먼트 + 텍스트노드
 // remove() - 제거하기
-
+	$(function() {
+		$("button").click(function() {
+			$("div").contents().remove();
+		});
+	});
 </script>
 </head>
 <body>
