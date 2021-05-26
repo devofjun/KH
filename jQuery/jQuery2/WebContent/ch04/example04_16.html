@@ -10,7 +10,10 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		var el = $("div").find("p").addClass("background").end();
+		el.addClass("border");
+	});
 </script>
 </head>
 <body>

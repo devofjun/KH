@@ -10,7 +10,12 @@
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		// end는 맨처음 하나만 남기고 체인을 잘라내는것이다.
+		var el = $("div").find("p").addClass("background").end();
+		el.addClass("border");
+		console.log(el);
+	});
 </script>
 </head>
 <body>
