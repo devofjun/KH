@@ -15,7 +15,13 @@ div, span {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// 바로 앞(형)에 위치하는 엘리먼트 - prev()
+	$(function() {
+		$("button").click(function() {
+			$("#sixth").prev().addClass("before");
+			$("div").prev(".middle").addClass("selected");
+		});
+	});
 </script>
 </head>
 <body>
