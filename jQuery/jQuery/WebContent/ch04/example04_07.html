@@ -15,7 +15,17 @@ div, span {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// 바로 뒤(바로 아래 동생) 형제 엘리먼트 찾기 - next(), next(셀렉팅)
+	// sibling(형제)
+	$(function() {
+		$("button").click(function() {
+			var el = $("div").next();
+			console.log(el);
+			el.addClass("after");
+			var el2 = $("div").next("#fourth");
+			el2.addClass("selected");
+		});
+	});
 </script>
 </head>
 <body>
