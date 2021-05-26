@@ -8,7 +8,14 @@ span { display:block; }
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// append(), appendTo(), prepend(), prependTo()
+	// 주의사항 -> 기존에 존재하는 엘리먼트라면 -> 복사(x), 떼어 붙이기가 된다.
+	$(function() {
+		$("span:first").append($("b"));
+		$("b").appendTo($("span:last"));
+		$("span:first").prepend($("b"));
+		$("b").prependTo($("span:last"));
+	});
 </script>
 </head>
 <body>   
