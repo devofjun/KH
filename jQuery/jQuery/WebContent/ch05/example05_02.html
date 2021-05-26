@@ -8,7 +8,18 @@ div { float:left; margin:25px; }
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// a.prepend(b) - a에 b를 첫째 자식으로 추가
+	// a.prependTo(b) - a를 b의 첫째 자식으로 추가
+	$(function() {
+		var fruits = ["사과", "바나나", "망고", "딸기"];
+		var cars = ["소나타", "벤틀리", "제네시스"];
+		$.each(fruits, function(i, v){
+			$("#fruit_list").prepend("<li>"+v+"</li>");
+		});
+		$.each(cars, function(i, v){
+			$("<li>"+v+"</li>").prependTo($("#car_list"));
+		});
+	});
 </script>
 </head>
 <body>   
