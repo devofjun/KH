@@ -10,7 +10,14 @@ img{
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function() {
+		var selected = $("#sel>option:selected").val();
+		$("#img").attr("src", selected);
+		
+		$("#sel").change(function() {
+			$("#img").attr("src", $(this).val());
+		});
+	});
 </script>
 </head>
 <body>

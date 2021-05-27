@@ -10,7 +10,18 @@ img{
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+// select - change 이벤트
+	$(function() {
+		// 처음 이미지 맞춰주기
+		var selected = $("#sel > option:selected").val();
+		$("#img").attr("src", selected);
+		$("#sel").change(function() { // 값이 달라질때
+			//console.log("change");
+			var v = $(this).val();
+			console.log(v);
+			$("#img").attr("src",v);
+		});
+	});
 </script>
 </head>
 <body>
