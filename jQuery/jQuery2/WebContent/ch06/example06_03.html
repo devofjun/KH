@@ -10,7 +10,13 @@ img{
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-	
+	$(function() {
+		$("img").bind("click", function(e){
+			var target = e.target;
+			$(target).width(target.width*2);
+			$(target).height($(target).height()*2);
+		});
+	});
 </script>
 </head>
 <body>   

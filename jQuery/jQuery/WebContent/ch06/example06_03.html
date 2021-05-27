@@ -5,12 +5,26 @@
 <title>이벤트 객체</title>
 <style type="text/css">
 img{ 
-   width: 140px; height: 120px;		
+   width: 140px; height: 120px; cursor: pointer;		
 }
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-	
+	$(function() {
+		$("img").bind("click", function(e){
+			//console.log(e);
+			var target = e.target; // DOM형태
+			//var t = $(this); // 제이쿼리 형태
+			//console.log(target);
+			//console.log(t);
+			//console.log($(target));
+			// target.width 은 자바스크립트의 DOM 형태이고 width라는 속성을 사용하는것
+			// 하지만 width 라는 속성은 태그의 속성이 바로 보이는 속성도 아니기도 하고 없을 수도 있기 때문에
+			// 제이쿼리 형태를 사용하는 코드에서는 제이쿼리 형태로 사용하자.
+			$(target).width(target.width*2); // DOM 객체의 속성을 사용함 .
+			$(target).height($(target).height()*2); // 제이쿼리의 함수를 사용함.
+		});
+	});
 </script>
 </head>
 <body>   
