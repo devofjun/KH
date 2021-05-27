@@ -14,7 +14,21 @@ span { display :block }
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function() {
+		var w = $("div").width();
+		var ow = $("div").outerWidth();
+		var owt = $("div").outerWidth(true);
+		
+		var txt = "width: " + w + ", " + ow + ", " + owt;
+		$("#result1").text(txt);
+		
+		var h = $("div").height();
+		var oh = $("div").outerHeight();
+		var oht = $("div").outerHeight(true);
+		
+		var txt2 = "height: " + h + ", " + oh + ", " + oht;
+		$("#result2").text(txt2);
+	});
 </script>
 </head>
 <body>
