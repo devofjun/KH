@@ -9,13 +9,14 @@
 	// .bind({이벤트타입:f, ...})
 	$(function() {
 		$("img").bind({
-			mouseover : function() {
+			// 이벤트에 따옴표 없어서 됨.
+			"mouseover" : function() {
 				$(this).attr("src", "../images/but2.gif");
 			},
-			mouseout : function() {
+			"mouseout" : function() {
 				$(this).attr("src", "../images/but1.gif");
 			},
-			click : function() {
+			"click" : function() {
 				alert("버튼 클릭됨");
 			}
 		});
