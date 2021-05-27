@@ -11,7 +11,17 @@ div.abs{ width: 50px; height: 50px; position: absolute;
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function(){
+		$(".abs").click(function() {
+			var offset = $(this).offset();
+			var coords = "x:" +offset.left + ", y:" + offset.top;
+			$("#result").text(coords);
+			var w = $(this).width();
+			var h = $(this).height();
+			var size = "<span style='color:blue'> width:" + w + " height:" + h + "</span>";
+			$("#result").append(size);
+		});
+	});
 </script>
 </head>
 <body>

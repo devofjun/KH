@@ -11,7 +11,23 @@ div.abs{ width: 50px; height: 50px; position: absolute;
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	// position을 absolute로 해줘야한다.
+	// cursor: pointer 클릭 할 수 있다는걸 표시하기 위해씀
+	$(function() {
+		$(".abs").click(function() {
+			// 떨어진 정도 - offset
+			var offset = $(this).offset();
+			console.log(offset); // {}로 나오는것을 보면 객체로 나온다는 것을 알 수 있다. 객체면 .찍고 접근 할 수 있다.
+			console.log(offset.top);
+			console.log(offset.left);
+			var coords = "x:" + offset.left + ", y:" + offset.top;
+			$("#result").text(coords);
+			var w = $(this).width();
+			var h = $(this).height();
+			var size = "<span style='color:blue;'> width:" + w + ", height:" + h + "</span>";
+			$("#result").append(size);
+		});
+	});
 </script>
 </head>
 <body>
