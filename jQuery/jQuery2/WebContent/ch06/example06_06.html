@@ -10,10 +10,28 @@ img{
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+ $(function() {
+	 $("button").click(function() {
+		var btnText = $(this).text();
+		switch(btnText){
+		case "보이기":
+			$("img").show(100);
+			break;
+		case "숨기기":
+			$("img").hide(100);
+			break;
+		case "토글":
+			$("img").toggle(10);
+			break;
+		}
+	 });
+ });
 </script>
 </head>
 <body>
-	<img src="../images/e.jpg">
+<button type="button">보이기</button>
+<button type="button">숨기기</button>
+<button type="button">토글</button>
+	<div><img src="../images/e.jpg"></div>
 </body>
 </html>

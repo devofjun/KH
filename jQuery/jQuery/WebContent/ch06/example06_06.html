@@ -10,10 +10,46 @@ img{
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	//toggle 없어짐
+	// toggleClass("selected")
+	// -> selected 클래스가 적용되어 있다면 없애고
+	// 적용되어 있지 않다면 설정
+	// toggle(f,f) - 2개의 함수를 번갈아 실행
+	// 불투명도 - opacity : 0(투명)~1(불투명), 반투명: 0.5
+	//
+	
+	$(function() {
+		var img = $("img");
+		$("button").click(function() {
+			var buttonText = $(this).text();
+			switch(buttonText) {
+			case "보이기":
+				//img.show("slow"); // "fast", "normal", "slow"
+				img.show(3000);
+				break;
+			case "숨기기":
+				img.hide(5000);
+				break;
+			case "토글":
+				img.toggle(2000);
+				break;
+			}
+		});
+	});
 </script>
 </head>
 <body>
-	<img src="../images/e.jpg">
+<form action="">
+	<!-- 일반 버튼 -->
+	<input type="button" value="버튼"/>
+	<button type="button">보이기</button>
+	<button type="button">숨기기</button>
+	<button type="button">토글</button>
+	<!-- 전송 버튼 -->
+	<button type="submit">전송1</button>
+	<input type="submit" value="전송2"/>
+	<button>전송3</button>
+	<div><img src="../images/e.jpg"></div>
+</form>
 </body>
 </html>
