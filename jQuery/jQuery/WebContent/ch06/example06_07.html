@@ -9,10 +9,23 @@
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+// $(function(){})이 원래는 아래 코드이다.
+// $(document).ready(function() {});
+	$(function() {
+// 		$("p").click(function() { // 이때 리스너가 달리는 p는 문서가 로딩되면서 생성된 p
+// 			$(this).after("<p>또 다른p</p>"); // 문서가 다 로딩되고 만들어진 p는 리스너가 달리지 않는다.
+// 		});
+		// 일반적으로 적용하고자 하는 엘리먼트의 부모 엘리먼트에 적용
+		$("div").on("click", "p", function() {
+			//console.log(this); // DOM객체인 p가 나온다. 때문에 형제로 넣어줘야 한다.
+			$(this).after("<p>또 다른p</p>");
+		});
+	});
 </script>
 </head>
 <body>
-	 <p>Click me!</p> 
+	<div>
+		<p>Click me!</p>
+	</div> 
 </body>
 </html>

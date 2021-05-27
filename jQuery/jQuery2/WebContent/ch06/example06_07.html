@@ -9,10 +9,16 @@
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("div").on("click", "p", function() {
+			$(this).after("<p>또 다른p</p>");
+		});
+	});
 </script>
 </head>
 <body>
-	 <p>Click me!</p> 
+	<div>
+	 <p>Click me!</p>
+	 </div> 
 </body>
 </html>
