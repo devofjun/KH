@@ -11,7 +11,14 @@ div{ width: 70px; height: 50px; float:left;
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("div").click(function() {
+			// 클릭된 div에 대해서 폭을 30px로 변경
+			$(this).width(30)
+			.css("cursor", "auto")
+			.css("background-color", "blue");
+		});
+	});
 </script>
 </head>
 <body>
