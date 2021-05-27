@@ -10,7 +10,30 @@ span {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("button:eq(0)").click(function() {
+			$("span:eq(0)").show();
+		});
+		$("button:eq(1)").click(function() {
+			$("span:eq(0)").hide();
+		});
+		$("button:eq(2)").click(function() {
+			$("span:eq(1)").show(1000);
+		});
+		$("button:eq(3)").click(function() {
+			$("span:eq(1)").hide(1000);
+		});
+		$("button:eq(4)").click(function() {
+			$("span:eq(2)").show(1000, function() {
+				alert("ok");
+			});
+		});
+		$("button:eq(5)").click(function() {
+			$("span:eq(2)").hide(1000, function() {
+				alert("no");
+			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -21,5 +44,9 @@ span {
 	<button>Show It slow</button>
 	<button>Hide It slow</button>
 	<span>반갑습니다.</span>
+	<br>
+	<button>Show It function</button>
+	<button>Hide It function</button>
+	<span>hello</span>
 </body>
 </html>
