@@ -16,17 +16,19 @@ span { display :block }
 <script type="text/javascript">
 	$(function() {
 		var w = $("div").width();
+		var iw = $("div").innerWidth();
 		var ow = $("div").outerWidth();
 		var owt = $("div").outerWidth(true);
 		
-		var txt = "width: " + w + ", " + ow + ", " + owt;
+		var txt = "폭 정보: " + w + ", " + iw + ", " + ow + ", " + owt;
 		$("#result1").text(txt);
 		
 		var h = $("div").height();
+		var ih = $("div").innerHeight();
 		var oh = $("div").outerHeight();
 		var oht = $("div").outerHeight(true);
 		
-		var txt2 = "height: " + h + ", " + oh + ", " + oht;
+		var txt2 = "높이 정보: " + h + ", " + ih + ", " + oh + ", " +oht;
 		$("#result2").text(txt2);
 	});
 </script>

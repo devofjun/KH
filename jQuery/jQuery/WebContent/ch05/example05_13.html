@@ -15,21 +15,24 @@ span { display :block }
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
 	// DOM - 박스모델 - width + padding + border + margin
+	// innerWidth() - width + padding
 	// outerWidth() - width + padding + border
 	// outerWidth(true) - width + padding + border + margin
 	$(function() {
 		var w = $("div").width();
+		var iw = $("div").innerWidth();
 		var ow = $("div").outerWidth();
 		var owt = $("div").outerWidth(true);
 		
-		var text = "폭 정보: " + w + ", " + ow + ", " + owt;
+		var text = "폭 정보: " + w + ", " + iw + ", " + ow + ", " + owt;
 		$("#result1").text(text);
 		
 		var h = $("div").height();
+		var ih = $("div").innerWidth();
 		var oh = $("div").outerHeight();
 		var oht = $("div").outerHeight(true);
 		
-		var text2 = "높이 정보: " + h + ", " + oh + ", " +oht;
+		var text2 = "높이 정보: " + h + ", " + ih + ", " + oh + ", " +oht;
 		$("#result2").text(text2);
 	});
 </script>
