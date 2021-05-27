@@ -11,7 +11,17 @@ div{ width: 200px; height: 150px;
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+// 위치 : x, y -> 이벤트 객체
+// e.clientX, e.clientY : 현재 페이지 기준
+// e.screenX, e.screenY : 화면(모니터) 기준
+$(function() {
+	$("div").mousemove(function(e) {
+		var text1 = "페이지 기준, x:" + e.clientX + ", y:" + e.clientY;
+		var text2 = "화면 기준, x:" + e.screenX + ", y:" + e.screenY;
+		$("p:first").text(text1);
+		$("p:last").text(text2);
+	});
+});
 </script>
 </head>
 <body>   

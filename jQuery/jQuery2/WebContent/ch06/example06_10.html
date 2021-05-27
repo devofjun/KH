@@ -11,7 +11,14 @@ div{ width: 200px; height: 150px;
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("div").mousemove(function(e){
+			var t1 = "페이지 기준 x:"+e.clientX+", y:" +e.clientY;
+			var t2 = "페이지 기준 x:"+e.screenX+", y:" +e.screenY;
+			$("p:first").text(t1);
+			$("p:last").text(t2);
+		});
+	});
 </script>
 </head>
 <body>   
