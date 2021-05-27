@@ -25,6 +25,11 @@ span {
 				alert("보이기 완료");
 			});
 		});
+		$("button:eq(3)").click(function() {
+			// 트리거(trigger) - 방아쇠(연쇄작용)
+			// 3번째 버튼을 클릭하면 -> 2번째 버튼의 클릭 이벤트를 발생 시킴
+			$("button:eq(2)").trigger("click");
+		});
 	});
 </script>
 </head>
@@ -36,6 +41,9 @@ span {
 	<span>반갑습니다.</span>
 	<br>
 	<button>Show It slow Function</button>
+	<span>Hello</span>
+	<br>
+	<button>버튼</button>
 	<span>Hello</span>
 </body>
 </html>

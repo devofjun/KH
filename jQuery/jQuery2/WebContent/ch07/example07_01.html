@@ -19,7 +19,8 @@ span {
 		});
 		$("button:eq(2)").click(function(){
 			$(this).next().show("slow",function() {
-				alert("보이기 완료");
+				//alert("보이기 완료");
+				$(this).next().hide();
 			});
 		});
 	});
