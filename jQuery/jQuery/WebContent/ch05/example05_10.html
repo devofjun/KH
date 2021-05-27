@@ -8,7 +8,15 @@ span { display:block; }
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// append, prepend (자식을 추가한다. 동생으로, 형으로)
+	// 위에 것들은 "떼어 붙이기"가 된다
+	// 복제를 하려면 -> var v = a.clone()
+	$(function() {
+		$("b").appendTo("span"); // 떼어 붙이기가 일어남
+		// 복사가 일어난 후 붙여넣기가 되기 때문에 떼어지지 않음.
+		var v = $("em").clone().appendTo("span"); 
+	});
+	
 </script>
 </head>
 <body>   
