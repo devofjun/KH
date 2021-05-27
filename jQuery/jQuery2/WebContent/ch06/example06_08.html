@@ -10,7 +10,12 @@ img{
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("img").dblclick(function() {
+			$(this).width($(this).width() + 20);
+			$(this).height($(this).height() + 20);
+		});
+	});
 </script>
 </head>
 <body>   
