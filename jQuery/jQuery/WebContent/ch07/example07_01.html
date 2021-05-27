@@ -10,7 +10,22 @@ span {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// show(), show(duration), show(duration, f)
+	$(function() {
+		$("button:eq(0)").click(function() {
+			//$("span:eq(0)")
+			$(this).next().show();
+		});
+		$("button:eq(1)").click(function() {
+			$(this).next().show("slow"); // slow, fast, 1000
+		});
+		$("button:eq(2)").click(function() {
+			// 화면에 보이는 3초 애니메이션 동작이 완료되면 실행되는 함수
+			$(this).next().show(3000, function() {
+				alert("보이기 완료");
+			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -19,5 +34,8 @@ span {
 	<br>
 	<button>Show It slow</button>
 	<span>반갑습니다.</span>
+	<br>
+	<button>Show It slow Function</button>
+	<span>Hello</span>
 </body>
 </html>
