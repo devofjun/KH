@@ -10,7 +10,15 @@ img{
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function() {
+		// .one(이벤트 종류, f) - 이벤트가 한번만 적용됨
+		$("img").one("click", function(e) {
+			console.log("clicked");
+			var target = e.target;
+			$(target).width($(target).width()*2);
+			$(target).height($(target).height()*2);
+		});
+	});
 </script>
 </head>
 <body>   
