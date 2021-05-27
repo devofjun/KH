@@ -10,7 +10,17 @@ span {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// toggle() - show()/hide()
+	// toggle(duration, function)
+	$(function() {
+		$("button:eq(1)").click(function() {
+			$(this).next().toggle(2000, function() {
+				//console.log($(this));
+				$(this).css("background-color", "yellow");
+				// 한번만 2초뒤에 되고, 두번째부터는 한번에 적용됨
+			});
+		});
+	});
 </script>
 </head>
 <body>

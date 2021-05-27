@@ -10,7 +10,13 @@ span {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("button").click(function() {
+			$(this).next().toggle(100, function(){
+				$(this).css("background-color", "yellow");
+			});
+		});
+	});
 </script>
 </head>
 <body>
