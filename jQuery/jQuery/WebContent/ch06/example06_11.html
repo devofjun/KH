@@ -5,7 +5,22 @@
 <title>포커스를 받으면 글씨 지우고 포커스를 잃으면 글씨 나타내기</title>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+// focus - 포커스를 받으면 발생하는 이벤트
+// blur - 포커스를 받았다가 포커스를 읽으면 발생하는 이벤트
+// hint, placeholder
+$(function() {
+	var hintText = $("#id").val();
+	$("#id").bind({
+		"focus" : function() {
+			console.log("focus");
+			$(this).css("background-color", "yellow").val("");
+		},
+		"blur" : function() {
+			console.log("blur");
+			$(this).css("background-color", "white").val(hintText);
+		}
+	});
+});
 </script>
 </head>
 <body>
