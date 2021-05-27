@@ -10,10 +10,11 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		$(".A").show();
-		$(".A").slideUp();
+		// slideUp()은 display가 none이 된다. (안보이게)
+		// slideDown()은 display가 block이 된다. (보이게)
 		$("button").click(function() {
-			$(".A").slideToggle();
+			//$(".A").slideToggle();
+			$(".A").slideDown();
 		});
 		$(".Q:eq(0)").click(function() {
 			$(this).next().slideToggle();
