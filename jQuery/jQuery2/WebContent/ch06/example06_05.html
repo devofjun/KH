@@ -10,7 +10,24 @@ img{
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("img").bind({
+			"mouseover" : function(e){
+				// 이미지 돌아가는거 해보기
+				var target = $(e.target);
+				console.log("mouseover");
+			},
+			"mouseout" : function(){
+				var target = $(e.target);
+				console.log("mouseout");
+			},
+			"click" : function(){
+				var target = $(e.target);
+				console.log("click");
+				target.unbind();
+			}
+		});
+	});
 </script>
 </head>
 <body>   

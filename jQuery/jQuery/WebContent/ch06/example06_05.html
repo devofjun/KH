@@ -10,7 +10,28 @@ img{
 </style>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	// bind() <-> unbind()
+	// unbind(이벤트종류) - 해당 이벤트만 제거
+	// unbind() - 이벤트 모두 제거
+	$(function() {
+		$("img").bind({
+			"mouseover" : function(e) {
+				var target = $(e.target);
+				console.log("mouseover");
+				//target.unbind("mouseover");
+			},
+			"mouseout" : function(e) {
+				var target = $(e.target);
+				console.log("mouseout");
+				//target.unbind("mouseout");
+			},
+			"click" : function(e) {
+				var target = $(e.target);
+				console.log("click");
+				target.unbind();
+			}
+		});
+	});
 </script>
 </head>
 <body>   
