@@ -8,7 +8,13 @@ ul { float:left; margin:30px}
 <title>DOM 엘리멘트에 이벤트 적용하기</title>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("a").click(function(e) {
+			e.preventDefault();
+			var src = $(this).attr("href");
+			$("img").attr("src", src);
+		});
+	});
 </script>
 </head>
 <body>   

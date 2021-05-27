@@ -8,7 +8,16 @@ ul { float:left; margin:30px}
 <title>DOM 엘리멘트에 이벤트 적용하기</title>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
-
+	// a 태그 기능 - 링크 - 현재 페이지를 href의 값으로 이동
+	// 많이 쓰이는 방법
+	$(function() {
+		$("a").click(function(e) { // event
+			e.preventDefault(); // 기본을 막다(방지하다)
+			//console.log("클릭됨");
+			var src = $(this).attr("href");
+			$("img").attr("src", src);
+		});
+	});
 </script>
 </head>
 <body>   
