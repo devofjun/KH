@@ -30,6 +30,24 @@ span {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
+	$(function() {
+		$("#fadeIn").click(function() {
+			$("p").fadeIn(3000, function() {
+				alert("fadeIn종료");
+			});
+		});
+		$("#fadeOut").click(function() {
+			// 서서히 사라짐(3초동안, 끝나면 함수실행)
+			$("p").fadeOut(3000, function() {
+				alert("fadeOut종료");
+			});
+		});
+		$("#fadeToggle").click(function() {
+			$("p").fadeToggle(3000, function() {
+				alert("fadeToggle 종료");
+			});
+		});
+	});
 </script>
 </head>
 <body>
