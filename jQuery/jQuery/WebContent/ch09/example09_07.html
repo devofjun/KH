@@ -10,19 +10,46 @@ td {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
+// $.get : get 방식 요청, $.post : post 방식 요청
+// get 방식으로 요청
+// $.get(url, function(data){})
+$(function() {
+	$("button").click(function() {
+		// get방식 요청
+		//console.log(this); // 버튼에 대한 정보
+		$.get("item.xml", function(data){
+			//console.log(this); // xml파일에 대한 정보
+			//console.log(data); // xml파일 내용(document)
+			//console.log($(data)); // document를 제이쿼리 형식으로
+			var items = $(data).find("item"); // root가 <items>태그. 자식이 item
+			//console.log(items); // 6개의 item의 정보
+			items.each(function() { // 6개의 요소가 있어서 6번 반복한다.
+				var item = $(this); // 하나의 item 정보를 제이쿼리로 접근
+				var id = item.attr("id"); // item의 속성인 id의 값
+				var name = item.attr("name"); // item의 속성인 name의 값
+				var price = item.find("price").text(); // item의 자식인 price의 text값
+				var description = item.find("description").text(); // item의 자식인 description의 text값
+				//console.log(id+", " + name + ", " + price + ", " + description);
+				var tr = "<tr>";
+				tr += "<td>" + id + "</td>";
+				tr += "<td>" + name + "</td>";
+				tr += "<td>" + price + "</td>";
+				tr += "<td>" + description + "</td>";
+				tr += "</tr>";
+				$("#treeData").append(tr); // 테이블에 하나의 item을 이어붙임.
+			});
+		});
+	});
+});
 
 </script>
 </head>
 <body>
-<table style="display:none;" id="hiddenTable">
-	<tr>
-		<th>번호</th><th>이름</th><th>가격</th><th>설명</th>
-	</tr>
-	<tr>
-		<td></td><td></td><td></td><td></td>
-	</tr>
-</table>
 	<button type="button">데이터 가져오기</button>
-	<table id="treeData"></table>
+	<table id="treeData">
+		<tr>
+			<th>번호</th><th>이름</th><th>가격</th><th>설명</th>
+		</tr>
+	</table>
 </body>
 </html>
