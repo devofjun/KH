@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	span{
+		color:red;
+	}
+</style>
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#submitBtn").click(function() {
+			var userid = $("#userId").val();
+			var userpw = $("#userPw").val();
+			if(userid=="" || userpw==""){ // 공백이 있을때
+				if(userid==""){ // 아이디가 공백일때
+					$("#userId").css("background-color","yellow").next().text("아이디를 입력해주세요");
+				} else {
+					console.log("id");
+					$("#userId").css("background-color", "white").next().text("");
+				}
+				if(userpw==""){ // 패스워드가 공백일때
+					$("#userPw").css("background-color", "yellow").next().text("패스워드를 입력해주세요");
+				} else {
+					console.log("pw");
+					$("#userPw").css("background-color", "white").next().text("");
+				}
+			} else {
+				// 모두 공백이 아닐테니 경고 메세지는 지움
+				$("#userId").css("background-color", "white").next().text("");
+				$("#userPw").css("background-color", "white").next().text("");
+				// 실행될 jsp경로
+				var url = $("#loginForm").attr("action");
+				// 로그인 데이터
+				var sendData = {
+						"inputId" : userid,
+						"inputPw" : userpw
+				}
+				// jsp 실행
+				$.post(url, sendData, function(rData) {
+					//console.log(userid + ", " + userpw);
+					if(rData.trim() == "success") {
+						//console.log("성공");
+						alert("로그인 성공");
+					} else if(rData.trim() == "fail") {
+						//console.log("실패");
+						alert("로그인 실패");
+					}
+				});
+			}
+		});
+	});
+</script>
+
+</head>
+<body>
+	<form id="loginForm" method="post" action="login_run.jsp">
+		아이디: <input type="text" id="userId"/><span></span><br>
+		패스워드: <input type="password" id="userPw"/><span></span><br>
+		<button type="button" id="submitBtn">로그인</button>
+	</form>
+</body>
+</html>
