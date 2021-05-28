@@ -14,16 +14,11 @@ td {
 		$("button").click(function() {
 			$.getJSON("item.json", function(receivedData){
 				$.each(receivedData, function() {
-					var id = this.id;
-					var name = this.name;
-					var price = this.price;
-					var description = this.description;
-					
 					var tr = "<tr>";
-					tr += "<td>" + id + "</td>";
-					tr += "<td>" + name + "</td>";
-					tr += "<td>" + price + "</td>";
-					tr += "<td>" + description + "</td>";
+					tr += "<td>" + this.id + "</td>";
+					tr += "<td>" + this.name + "</td>";
+					tr += "<td>" + this.price + "</td>";
+					tr += "<td>" + this.description + "</td>";
 					tr += "</tr>";
 					
 					$("#treeData").append(tr);
