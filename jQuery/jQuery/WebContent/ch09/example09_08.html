@@ -10,7 +10,20 @@ td {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+// $.post(usr, {sendData}, function(receivedData))
+	$(function() {
+		$("#submit").click(function() {
+			var url = $("#frmName").attr("action"); // welcome.jsp
+			var sendData = {
+				"username" : $("input[name=username]").val()
+			};
+			// 비동기 방식
+			$.post(url, sendData, function(rData){
+				console.log(rData);
+				$("#message").html(rData);
+			});
+		});
+	});
 </script>
 </head>
 <body>

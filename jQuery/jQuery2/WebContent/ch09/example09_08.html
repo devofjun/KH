@@ -10,7 +10,17 @@ td {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	$(function() {
+		$("#submit").click(function() {
+			var sendData = {
+					username : $("input[name=username]").val()
+					};
+			var url = $("#frmName").attr("action");
+			$.post(url, sendData, function(rData){
+				$("#message").html(rData);
+			});
+		});
+	});
 </script>
 </head>
 <body>
