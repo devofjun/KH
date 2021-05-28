@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script src="../js/jquery.js" type="text/javascript"></script>
 <style>
 	.Q { cursor: pointer; }
@@ -10,26 +11,24 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-		// slideUp()은 display가 none이 된다. (안보이게)
-		// slideDown()은 display가 block이 된다. (보이게)
-		$("button").click(function() {
-			$(".A").slideToggle();
-			//$(".A").slideDown();
+		$("div.Q").click(function() {
+			$(this).next().slideDown();
 		});
-		$(".Q:eq(0)").click(function() {
-			$(this).next().slideToggle();
-		});
-		$(".Q:eq(1)").click(function() {
-			$(this).next().slideToggle();
-		});
-		$(".Q:eq(2)").click(function() {
-			$(this).next().slideToggle();
+		$("#btnShowAll").click(function() {
+			if($(this).text() == "모두보기"){
+				$("div.A").slideDown();
+				$(this).text("모두가리기");
+			} else {
+				$("div.A").slideUp();
+				$(this).text("모두보기");
+			}
 		});
 	});
 </script>
+
 </head>
 <body>
-	<button>모두보기</button>
+	<button type="button" id="btnShowAll">모두보기</button>
 	<div class="Q">1. 배송은 언제되나요?</div>
 	<div class="A">답변: 당일 가능합니다.</div>
 	<div class="Q">2. 교환은 가능한가요?</div>
