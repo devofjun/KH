@@ -31,6 +31,21 @@ div#blue {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
+	$(function() {
+		var index = 0;
+		var div = $("div");
+		var len = div.length;
+		$("span").click(function() {
+			// 나타내기 : fadeIn("fast/normal/slow/milisec")
+			//$("div:eq(0)").fadeIn(2000);
+			if(index >= len){
+				alert("다 나타나 있어요");
+			} else {
+				$("div").eq(index).fadeIn("slow");
+				index++;								
+			}
+		});
+	});
 </script>
 </head>
 <body>
