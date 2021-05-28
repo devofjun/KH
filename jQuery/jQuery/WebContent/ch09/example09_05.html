@@ -10,19 +10,47 @@ td {
 </style>
 <script src="../js/jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+	// JSON - 자바 스크립트 객체 
+	// item.json: [{객체},{객체},{객체}...]
+	// $.getJSON(url, function(data))
+	// $.each(배열, f)
+	$(function() {
+		$("button").click(function() {
+			// json 파일 요청
+			$.getJSON("item.json", function(receivedData){
+				console.log(receivedData);
+				// 받은 json 데이터로 반복문을 돌린다.
+				$.each(receivedData, function(i, v){
+					console.log(this);
+					var id = this.id;
+					var name = this.name;
+					var price = this.price;
+					var description = this.description;
+					//console.log(id + ", " + name + ", " + price + ", " + description);
+					var tr = "<tr>";
+					tr += "<td>"+id+"</td>";
+					tr += "<td>"+name+"</td>";
+					tr += "<td>"+price+"</td>";
+					tr += "<td>"+description+"</td>";
+					tr += "</tr>";
+					$("#treeData").append(tr);
+				});
+			});
+		});
+	});
 </script>
 </head>
 <body>
-<table style="display:none;">
-	<tr id="sample_tr">
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
+<table>
 </table>
 	<button type="button">데이터 가져오기</button>
-	<table id="treeData"></table>
+	<table id="treeData">
+		<tr>
+			<td>번호</td>
+			<td>상품명</td>
+			<td>가격</td>
+			<td>설명</td>
+		</tr>	
+	</table>
 </body>
 </html>
