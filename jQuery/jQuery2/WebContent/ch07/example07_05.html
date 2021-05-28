@@ -35,12 +35,13 @@ $(function() {
 	var index = 0;
 	var len = $("div").length;
 	$("span").click(function() {
-		if(index >= len){
-			alert("다 나타남");
-		} else {
+		if(index < len){
 			$("div").eq(index).fadeIn("slow");
 			index++;
+		} else {
+			alert("다 나타남");
 		}
+		console.log(index);
 	});
 });
 </script>
