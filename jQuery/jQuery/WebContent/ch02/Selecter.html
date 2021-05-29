@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+// 문서가 모두 로딩 되었을때 제이쿼리, 이 함수가 실행됨.
+// 	jQuery(document).ready(function() {
+// 		$("span").css("background-color","yellow");
+// 	});
+
+// jQuery => $ 로 줄여서 쓸 수 있음
+// 	$(document).ready(function() {
+// 		$("span").css("background-color","yellow");
+// 	});
+// 여기서 더 줄여서 쓰면 $(function(){}); 로 쓸 수 있다.
+// 하지만 다른 라이브러리를 쓰는 상황에서는 줄여서 쓸 수 없다.
+
+// $(*); - 모든(*) 엘리먼트 지정 
+// $("e1, e2"); - 여러(,) 엘리먼트 지정 
+// $("e1 > e2"); - 자식(>) 엘리먼트 지정 
+// $("e1 e2"); - 자손( ) 엘리먼트 지정 
+
+// $(e).prev(); - e의 바로 위 형 엘리먼트 지정 
+// $(e).next(); - e의 바로 아래 동생 엘리먼트 지정 
+
+// $("e:first"); - 지정된 엘리먼트들 중에 첫번째 하나 지정 
+// $("e:last"); - 지정된 엘리먼트들 중에 마지막 하나 지정 
+
+// $("e:even"); - 지정된 엘리먼트들 중에 인덱스가 짝수 
+// $("e:odd"); - 지정된 엘리먼트들 중에 인덱스가 홀수 
+
+// $("e:eq(0)"); - 지정된 엘리먼트들 중에 인덱스 번호로 지정 
+// 인덱스는 0번부터 시작
+
+// $("e:gt(3)"); - 인덱스 번호가 3보다 큰 엘리먼트 지정 
+// $("e:lt(2)"); - 인덱스 번호가 2보다 작은 엘리먼트 지정 
+
+// $("e1 > e2:first-child"); - e1의 자식인 e2중에 첫번째 엘리먼트들 지정 
+// $("e1 > e2:last-child"); - e1의 자식인 e2중에 마지막 엘리먼트들 지정 
+
+// $("e1 e2:nth-child(2)"); - e1의 자손중 e2가 2번째인 엘리먼트 지정 
+// $("e1 e2:nth-child(even)"); - e1의 자손중 e2가 짝수인 엘리먼트들 지정
+// $("e1 e2:nth-child(odd)"); - e1의 자손중 e2가 홀수인 엘리먼트들 지정
+
+// $("input[속성명=속성값]"); - input태그의 속성이 조건이 맞는 엘리먼트를 지정 
+// $("input:checked"); - input태그의 상태 값이 checked가 맞는 엘리먼트를 지정 
+// $("input[type=checkbox]:checked"); - 위 두 조건을 합치면 이렇게도 가능하다 
+// $("input[type=checkbox]:not(:checked)"); - 체크되지 않은걸 조건으로 달고 싶다면
+
+// $("span[id]") - span 엘리먼트 중에서 id라는 속성을 가지고 있는 엘리먼트
+// $("span[id=simpletext1]") - span 엘리먼트중에서 id속성의 값이 simpletext1인 엘리먼트
+// $("span[id^=simple]") - span 엘리먼트중에서 id속성의 값이 simple로 시작하는 엘리먼트
+// $("span[id$=text1]") - span 엘리먼트중에서 id 속성의 값이 text1로 끝나는 엘리먼트
+// $("span[id*=text]") - span 엘리먼트 중에서 id 속성의 값에 text가 들어있는 엘리먼트
+
+	$(function() {
+		$("input[type=checkbox]").click(function() {
+			if(this.checked){
+				$(this).next().css("background-color","red");
+			} else {
+				$(this).next().css("background-color","cyan")
+			}
+			console.log($("input[type=checkbox]:checked"));
+			
+		});
+	});
+
+</script>
+</head>
+<body>
+	<div>
+		<input type="checkbox" name="fruit" /> <span>사과</span>
+	</div>
+	<div>
+		<input type="checkbox" name="fruit" checked="checked"/> <span>오렌지</span>
+	</div>
+	<div>
+		<input type="text" name="name"/> <span>테스트</span>
+	</div>
+</body>
+</html>
