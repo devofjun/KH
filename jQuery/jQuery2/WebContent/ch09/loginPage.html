@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인 페이지</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$("button[type=submit]").click(function(e) {
+			e.preventDefault();
+			
+			var pHelp = $(".help-block");
+			
+			var email = $("#usr-email").val().trim();
+			var password = $("#usr-pw").val().trim();
+			//console.log(email+", "+password);
+			
+			if(email=="" || password==""){
+				pHelp.text("입력이 올바르지 못합니다.");
+			} else {
+				var url = "loginCheck.jsp";
+				var sendData = {
+					"inputId" : email,
+					"inputPw" : password
+				};
+				// jsp 실행
+				$.post(url, sendData, function(rData){
+					// 결과값
+					if(rData.trim() != "error"){
+						// xml 파일을 가져옴
+						var profile = "";
+						$.get(rData, function(data){
+							console.log("1");
+							profile = $(data).find("name").text() + ", ";
+							profile += $(data).find("age").text() + ", ";
+							profile += $(data).find("gender").text();
+							pHelp.text(profile);
+						});
+					} else {
+						pHelp.text("계정이 없거나 패스워드가 틀렸습니다.");
+					}
+				});
+			}
+			
+		});
+	});
+
+</script>
+</head>
+<body>
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-6">
+							<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+						</div>
+						<div class="col-md-6">
+							<form role="form">
+								<div class="form-group">
+									 
+									<label for="exampleInputEmail1">
+										Email address
+									</label>
+									<input type="email" class="form-control" id="usr-email" />
+								</div>
+								<div class="form-group">
+									 
+									<label for="exampleInputPassword1">
+										Password
+									</label>
+									<input type="password" class="form-control" id="usr-pw" />
+								</div>
+								<div class="checkbox">
+									 
+									<label>
+										<input type="checkbox" /> 로그인 정보 기억하기
+									</label>
+								</div> 
+								<div class="form-group">
+
+									<p class="help-block">
+										<!-- 여긴 도움말 -->
+										아이디나 패스워드가 기억나지 않으십니까?
+									</p>
+									<div class="btn-group btn-group-sm" role="group">
+										<button class="btn btn-secondary" type="button">
+											Forgot ID
+										</button> 
+										<button class="btn btn-secondary" type="button">
+											Forgot PW
+										</button> 
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary">
+									Submit
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
