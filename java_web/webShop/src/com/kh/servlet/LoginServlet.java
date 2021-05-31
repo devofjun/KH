@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 		
 		// hong/1234 로 저장 되 어 있다고 가정
 		String result = "fail";
-		if(user_id.equals("hong") && user_pw.equals("1234")) {
+		if(user_id.equals("hong") && user_pw.equals("12345")) {
 			result = "success";
 		}
 		//response.getWriter().print(result);
