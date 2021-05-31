@@ -19,4 +19,13 @@
   	<servlet-name>FirstServlet</servlet-name>
   	<url-pattern>/first</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Servlet2</servlet-name>
+  	<servlet-class>com.kh.servlet.SecondServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Servlet2</servlet-name>
+  	<url-pattern>/second</url-pattern>
+  </servlet-mapping>
 </web-app>
