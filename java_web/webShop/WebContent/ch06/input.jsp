@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/input" method="get">
+	<form action="/webShop/input" method="get">
 		<input type="checkbox" name="subject" value="java">자바
 		<input type="checkbox" name="subject" value="C">C언어
 		<input type="checkbox" name="subject" value="JSP">JSP
