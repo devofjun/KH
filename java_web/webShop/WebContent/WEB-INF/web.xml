@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- 서블릿 등록/설정 -->
+  <servlet>
+  	<servlet-name>FirstServlet</servlet-name>
+  	<servlet-class>com.kh.servlet.FirstServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FirstServlet</servlet-name>
+  	<url-pattern>/first</url-pattern>
+  </servlet-mapping>
 </web-app>
