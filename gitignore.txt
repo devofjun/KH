@@ -3,7 +3,8 @@ html/
 html_test/
 html2/
 
-
+# server
+*/servers
 
 # Compiled class file
 *.class
@@ -40,6 +41,7 @@ android/**/.idea/modules.xml
 android/**/.idea/workspace.xml
 android/**/.idea/modules
 android/**/.idea/libraries
+android/**/.idea/gradle.xml
 
 # Built application files
 *.apk
