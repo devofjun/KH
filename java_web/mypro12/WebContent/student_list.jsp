@@ -1,5 +1,12 @@
+<%@page import="com.kh.db.MyStudentVo"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.db.MyStudentDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	MyStudentDao dao = MyStudentDao.getInstance();
+	ArrayList<MyStudentVo> list = dao.listStudent();
+%>
 <%@ include file="include/header.jsp" %>
 <title>Insert title here</title>
 <%@ include file="include/bodystarter.jsp" %>
@@ -22,12 +29,14 @@
 					</tr>
 				</thead>
 				<tbody>
+				<% for(MyStudentVo vo : list) { %>
 					<tr>
-						<td>1001</td>
-						<td><a href="student_content.jsp">홍길동</a></td>
-						<td>생활체육</td>
-						<td>3</td>
+						<td><%=vo.getSt_num() %></td>
+						<td><a href="student_content.jsp"><%=vo.getSt_name() %></a></td>
+						<td><%=vo.getSt_major() %></td>
+						<td><%=vo.getSt_year() %></td>
 					</tr>
+				<% } %>
 				</tbody>
 			</table>
 		</div>

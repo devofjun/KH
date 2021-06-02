@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class MyStudentDao {
 	private static MyStudentDao instance;
@@ -30,6 +31,13 @@ public class MyStudentDao {
 		}
 		return null;
 	}
+	// 연결 닫기 메소드
+	private void closeAll(ResultSet rs, PreparedStatement pstmt, Connection conn) {
+		if(rs != null) try {rs.close();} catch(Exception e) {}
+		if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
+		if(conn != null) try {conn.close();} catch(Exception e) {}
+	}
+	
 	// insert 메소스
 	public boolean insertStudent(MyStudentVo studentVo) {
 		Connection conn = null;
@@ -57,11 +65,33 @@ public class MyStudentDao {
 		return false;
 	}
 	
-	// 연결 닫기 메소드
-	private void closeAll(ResultSet rs, PreparedStatement pstmt, Connection conn) {
-		if(rs != null) try {rs.close();} catch(Exception e) {}
-		if(pstmt != null) try {pstmt.close();} catch(Exception e) {}
-		if(conn != null) try {conn.close();} catch(Exception e) {}
+	// select
+	public ArrayList<MyStudentVo> listStudent() {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<MyStudentVo> list = new ArrayList<MyStudentVo>(); 
+		String sql = "select st_num, st_name, st_major, st_year"
+				+ "   from tbl_student"
+				+ "   order by st_num";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int num = rs.getInt("st_num");
+				String name = rs.getString("st_name");
+				String major = rs.getString("st_major");
+				int year = rs.getInt("st_year");
+				MyStudentVo vo = new MyStudentVo(num, name, major, year, 0, null);
+				list.add(vo);
+			}
+			closeAll(rs, pstmt, conn);
+			return list;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return null;
 	}
-	
 }
