@@ -4,6 +4,7 @@
 <%@ include file="include/header.jsp" %>
 <script>
 $(function() {
+	// 빈입력 체크
 	$("#frmStudent").submit(function() {
 		// 반복문으로 줄이기
 		if($("#st_num").val().trim() == "") {
@@ -33,6 +34,7 @@ $(function() {
 		}
 		$(this).submit();
 	});
+	// 학번체크버튼 클릭이벤트
 	$("#btnChecknum").click(function() {
 		var that = $(this);
 		var st_num = $("#st_num").val();

@@ -25,7 +25,8 @@
 		});
 		// 삭제완료버튼
 		$("#btnDeleteFinish").click(function() {
-			$("#frmStudent").attr("action", "student_delete_run.jsp").submit();
+			// 현재 form이 post방식이기 때문에 get방식으로 넘겨주려면 아래처럼 새로운 페이지를 열어야한다.
+			location.href = "student_delete_run.jsp?st_num=<%=vo.getSt_num() %>";
 		});
 	});
 	</script>
@@ -72,7 +73,7 @@
 
 						<label for="st_etc"> 비고 </label> <textarea
 							class="form-control readonly" id="st_etc" 
-							name="st_etc" readonly><%=vo.getSt_etc() %></textarea>
+							name="st_etc" readonly><%=(vo.getSt_etc() == null) ? "" : vo.getSt_etc() %></textarea>
 					</div>
 					<a class="btn btn-primary" href="student_list.jsp">목록</a>
 					<button type="button" class="btn btn-success" id="btnModify">수정</button>

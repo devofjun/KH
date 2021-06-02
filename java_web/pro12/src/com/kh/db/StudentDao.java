@@ -126,14 +126,16 @@ public class StudentDao {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		// 같은 학번이 있으면 카운트 올라감
 		String sql = "select count(*) cnt from tbl_student"
 				+ "   where st_num = " + st_num;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
+				// 같은 학번이 있는 개수가 0개보다 적다면 true 반환  
 				int count = rs.getInt("cnt");
-				if(count == 0) {
+				if(count < 0) {
 					return true;
 				}
 			}
@@ -141,6 +143,58 @@ public class StudentDao {
 			e.printStackTrace();
 		} finally {
 			closeAll(rs, pstmt, conn);
+		}
+		return false;
+	}
+	// 학생 정보 수정
+	public boolean updateStudent(StudentVo studentVo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "update tbl_student set" +
+					"    st_name = ?,"+ 
+					"    st_major = ?," + 
+					"    st_year = ?," + 
+					"    st_score = ?," + 
+					"    st_etc = ?" + 
+					"    where st_num = ?";
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, studentVo.getSt_name());
+			pstmt.setString(2, studentVo.getSt_major());
+			pstmt.setInt   (3, studentVo.getSt_year());
+			pstmt.setInt   (4, studentVo.getSt_score());
+			pstmt.setString(5, studentVo.getSt_etc());
+			pstmt.setInt   (6, studentVo.getSt_num());
+			int count = pstmt.executeUpdate(); // insert, update, delete // select -> executeQuery()
+			if(count > 0) {
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		return false;
+	}
+	// 학생 정보 삭제
+	public boolean deleteStudent(int st_num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "delete from tbl_student"
+					+ "	  where st_num = ?";
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, st_num);
+			int count = pstmt.executeUpdate(); // insert, update, delete // select -> executeQuery()
+			if(count > 0) {
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
 		}
 		return false;
 	}
