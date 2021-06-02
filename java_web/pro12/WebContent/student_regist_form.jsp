@@ -33,7 +33,22 @@ $(function() {
 		}
 		$(this).submit();
 	});
-	
+	$("#btnChecknum").click(function() {
+		var that = $(this);
+		var st_num = $("#st_num").val();
+		var url = "/pro12/checkNum";
+		var sendData = {
+			"st_num" : st_num
+		};
+		$.get(url, sendData, function(rData) {
+			console.log(rData);
+			var message = "등록된 학번입니다.";
+			if(rData == "true"){
+				message = "등록 가능한 학번입니다.";
+			} 
+			that.next().text(message);
+		});
+	});
 });
 </script>
 <title>학생 등록 양식</title>
@@ -47,7 +62,10 @@ $(function() {
 				<form id="frmStudent"role="form" action="student_regist_run.jsp" method="post">
 					<div class="form-group">
 						<!-- 서버로 전송 되어야 하니깐 name값도 추가한다. -->
-						<label for="st_num"> 학번 </label> <input
+						<label for="st_num"> 학번 </label>
+						<button type="button" class="btn btn-success" id="btnChecknum">학번체크</button>
+						<span></span>
+						<input
 							type="number" class="form-control" id="st_num"
 							name="st_num" />
 					</div>

@@ -120,4 +120,28 @@ public class StudentDao {
 		}
 		return null;
 	}
+	
+	// 등록된 학번 체크
+	public boolean checkStNum(int st_num) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) cnt from tbl_student"
+				+ "   where st_num = " + st_num;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int count = rs.getInt("cnt");
+				if(count == 0) {
+					return true;
+				}
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return false;
+	}
 }
