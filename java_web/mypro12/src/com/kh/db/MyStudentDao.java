@@ -27,7 +27,7 @@ public class MyStudentDao {
 			System.out.println("conn: " + conn);
 			return conn;
 		} catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return null;
 	}
@@ -58,7 +58,7 @@ public class MyStudentDao {
 				return true;
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} finally {
 			closeAll(null, pstmt, conn);
 		}
@@ -88,7 +88,34 @@ public class MyStudentDao {
 			closeAll(rs, pstmt, conn);
 			return list;
 		} catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return null;
+	}
+	
+	// 한 학생의 정보
+	public MyStudentVo getondeStudent(int st_num) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from tbl_student where st_num="+st_num;
+		try{
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) { // 다음에 읽을 데이터가 있으면 커서를 다음 데이터로 옮기고 true를 리턴한다.
+				String st_name = rs.getString("st_name");
+				String st_major = rs.getString("st_major");
+				int st_year = rs.getInt("st_year");
+				int st_score = rs.getInt("st_score");
+				String st_etc = rs.getString("st_etc");
+				MyStudentVo vo = new MyStudentVo(st_num, st_name, st_major, st_year, st_score, st_etc);
+				closeAll(rs, pstmt, conn);
+				return vo;
+			}
+		} catch(Exception e) {
+			//e.printStackTrace();
 		} finally {
 			closeAll(rs, pstmt, conn);
 		}
