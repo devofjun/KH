@@ -139,7 +139,7 @@ public class MyStudentDao {
 				}
 			}
 		} catch(Exception e) {
-			
+			e.printStackTrace();
 		} finally {
 			closeAll(rs, pstmt, conn);
 		}
