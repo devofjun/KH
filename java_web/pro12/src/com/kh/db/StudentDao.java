@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class StudentDao {
 	private static StudentDao instance;
@@ -60,5 +61,35 @@ public class StudentDao {
 			closeAll(null, pstmt, conn);
 		}
 		return false;
+	}
+	
+	public ArrayList<StudentVo> listStudent() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<StudentVo> list = new ArrayList<StudentVo>();
+		try {
+			String sql = "select st_num, st_name, st_major, st_year"
+					+ "   from tbl_student"
+					+ "   order by st_num";
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int st_num = rs.getInt("st_num");
+				String st_name = rs.getString("st_name");
+				String st_major = rs.getString("st_major");
+				int st_year = rs.getInt("st_year");
+				StudentVo vo = new StudentVo(st_num, st_name, st_major, st_year, 0, null);
+				list.add(vo);
+			}
+			// System.out.println(list);
+			return list;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return null;
 	}
 }

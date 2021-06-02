@@ -2,6 +2,40 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="include/header.jsp" %>
+<script>
+$(function() {
+	$("#frmStudent").submit(function() {
+		// 반복문으로 줄이기
+		if($("#st_num").val().trim() == "") {
+			alert("학번을 입력해주세요");
+			$("#st_num").focus();
+			return false;
+		}
+		if($("#st_name").val().trim() == "") {
+			alert("이름을 입력해주세요");
+			$("#st_name").focus();
+			return false;
+		}
+		if($("#st_major").val().trim() == "") {
+			alert("전공을 입력해주세요");
+			$("#st_major").focus();
+			return false;
+		}
+		if($("#st_year").val().trim() == "") {
+			alert("학년을 입력해주세요");
+			$("#st_year").focus();
+			return false;
+		}
+		if($("#st_score").val().trim() == "") {
+			alert("점수을 입력해주세요");
+			$("#st_score").focus();
+			return false;
+		}
+		$(this).submit();
+	});
+	
+});
+</script>
 <title>학생 등록 양식</title>
 <%@ include file="include/bodystarter.jsp" %>
 		<div class="row">
@@ -10,7 +44,7 @@
 					<h2>학생 등록</h2>
 					<p>학생 정보를 올바르게 입력해 주세요.</p>
 				</div>
-				<form role="form" action="student_regist_run.jsp" method="post">
+				<form id="frmStudent"role="form" action="student_regist_run.jsp" method="post">
 					<div class="form-group">
 						<!-- 서버로 전송 되어야 하니깐 name값도 추가한다. -->
 						<label for="st_num"> 학번 </label> <input
