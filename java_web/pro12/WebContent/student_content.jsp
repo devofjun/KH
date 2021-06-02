@@ -17,6 +17,7 @@
 		});
 		// 수정완료버튼
 		$("#btnModifyFinish").click(function() {
+			// post 방식
 			$("#frmStudent").attr("action", "student_modify_run.jsp").submit();
 		});
 		// 삭제버튼
