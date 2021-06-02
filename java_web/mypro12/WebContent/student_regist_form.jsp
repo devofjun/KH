@@ -42,7 +42,7 @@
 							name="st_score"/>
 					</div>
 					<div class="form-group">
-
+				
 						<label for="st_etc"> 비고 </label> <textarea
 							class="form-control" id="st_etc" 
 							name="st_etc"></textarea>

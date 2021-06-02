@@ -56,6 +56,7 @@ public class MyStudentDao {
 		}
 		return false;
 	}
+	
 	// 연결 닫기 메소드
 	private void closeAll(ResultSet rs, PreparedStatement pstmt, Connection conn) {
 		if(rs != null) try {rs.close();} catch(Exception e) {}
