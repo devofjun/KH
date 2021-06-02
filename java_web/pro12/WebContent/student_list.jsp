@@ -35,7 +35,7 @@
 				%>
 					<tr>
 						<td><%=vo.getSt_num() %></td>
-						<td><a href="student_content.jsp"><%=vo.getSt_name() %></a></td>
+						<td><a href="student_content.jsp?st_num=<%=vo.getSt_num()%>"><%=vo.getSt_name() %></a></td>
 						<td><%=vo.getSt_major() %></td>
 						<td><%=vo.getSt_year() %></td>
 					</tr>

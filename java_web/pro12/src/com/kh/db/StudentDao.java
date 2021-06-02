@@ -92,4 +92,32 @@ public class StudentDao {
 		}
 		return null;
 	}
+	
+	// 한 학생의 정보(키:학번(st_num))
+	public StudentVo getoneStudent(int st_num) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from tbl_student"
+				+ "   where st_num = " + st_num;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String st_name = rs.getString("st_name");
+				String st_major = rs.getString("st_major");
+				int st_year = rs.getInt("st_year");
+				int st_score = rs.getInt("st_score");
+				String st_etc = rs.getString("st_etc");
+				
+				StudentVo vo = new StudentVo(st_num, st_name, st_major, st_year, st_score, st_etc);
+				return vo;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return null;
+	}
 }
