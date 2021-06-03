@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 //                    player.start();
                 } else {
                     // 중지
-//                    player.stop();
+                    // player.stop();
                     // 미디어플레이어를 중지하면 다시 create를 해줘야 다시 미디어를 재생시킬수있다.
 
                 }
