@@ -59,6 +59,15 @@ $(function() {
 			$("#valCheck").text("전공을 입력해주세요");
 			return false;
 		} else if(!(syear>=0 && syear<=10)){
+			$("#valCheck").text("점수을 입력해주세요");
+			return false;
+		}
+		
+		if(!(syear>0 && syear<10)){
+			$("#valCheck").text("학년은 한자리수입니다.");
+			return false;
+		}
+		if(!(syear>=0 && syear<=10)){
 			$("#valCheck").text("점수는 0부터100까지 유효합니다.");
 			return false;
 		}
