@@ -19,6 +19,8 @@ $(function() {
 		if(inputSno.trim() == ""){
 			btn.next().text("학번을 입력하고 다시 체크해주세요.");
 			$("#btnRegist").hide();
+			alert("학번은 필수 입력사항입니다.");
+			$("#frmRegist").attr("action","");
 			return;
 		}
 		// 학번 전송
@@ -27,14 +29,19 @@ $(function() {
 				btn.next().attr("color","blue");
 				$("#btnRegist").show(100);
 				btn.next().text("유효한 학번");
+				alert("사용할 수 있는 학번입니다.");
+				$("#frmRegist").attr("action","/regist_run.jsp");
 			} else {
 				$("#btnRegist").hide();
 				btn.next().text("유효하지 않은 학번");
+				alert("사용할 수 없는 학번입니다.");
+				$("#frmRegist").attr("action","");
 			}
 		});
 	});
 	// 등록 이벤트
 	$("#frmRegist").submit(function(e) {
+		//e.preventDefualt();
 		var sno = $("#snoInput").val().trim();
 		var sname = $("#snameInput").val().trim();
 		var syear = $("#syearInput").val().trim();
@@ -45,37 +52,36 @@ $(function() {
 		
 		// 입력 데이터 조절
 		if(sno == ""){
-			$("#valCheck").text("학번을 입력해주세요");
+			alert("학번을 입력해주세요");
+			$("#snoInput").focus();
 			return false;
 		} else if(sname == ""){
-			$("#valCheck").text("이름을 입력해주세요");
+			alert("이름을 입력해주세요");
+			$("#snameInput").focus();
 			return false;
 		} else if(!(syear>0 && syear<10)){
-			$("#valCheck").text("학년은 한자리수로 입력해주세요.");
+			alert("학년은 한자리수로 입력해주세요.");
+			$("#syearInput").focus();
 			return false;
 		} else if(man == false && woman == false){
-			$("#valCheck").text("성별을 입력해주세요");
+			alert("성별을 선택해주세요");
 			return false;
 		} else if(major == ""){
-			$("#valCheck").text("전공을 입력해주세요");
+			alert("전공을 입력해주세요");
+			$("#majorInput").focus();
 			return false;
 		} else if(!(score>=0 && score<=100)){
-			$("#valCheck").text("점수는 0~100까지의 값만 넣어주세요. 기본값은 0입니다.");
-			$("#scoreInput").val("0");
+			alert("점수는 0~100까지의 값만 넣어주세요. 기본값은 0입니다.");
+			$("#scoreInput").val(0);
+			$("#scoreInput").focus();
+			return false;
+		} else if(score == ""){
+			alert("점수는 0~100까지의 값만 넣어주세요. 기본값은 0입니다.");
+			$("#scoreInput").val(0);
+			$("#scoreInput").focus();
 			return false;
 		}
 		
-		if(!(syear>0 && syear<10)){
-			$("#valCheck").text("학년은 한자리수입니다.");
-			return false;
-		}
-		if(!(syear>=0 && syear<=10)){
-			$("#valCheck").text("점수는 0부터100까지 유효합니다.");
-			return false;
-		}
-		
-		
-		//console.log(sno, sname, syear, man, woman, major, score);
 		$(this).submit();
 	});	
 });
@@ -90,7 +96,7 @@ $(function() {
 				<h2>학생 상세 정보</h2>
 				<p>학생 정보 상세보기입니다.</p>
 			</div>
-			<form id="frmRegist" role="form" action="/regist_run.jsp" method="post">
+			<form id="frmRegist" role="form" action="" method="post">
 				<div class="form-group">
 					
 					<label for="snoInput"> 학번 </label> 
@@ -136,7 +142,6 @@ $(function() {
 				</div>
 				<a class="btn btn-primary" href="index.jsp">전체보기</a>
 				<button type="submit" class="btn btn-success" id="btnRegist" style="display:none">등록</button>
-				<span id="valCheck"></span>
 			</form>
 		</div>
 	</div>

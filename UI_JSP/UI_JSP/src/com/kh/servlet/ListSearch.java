@@ -16,10 +16,12 @@ import com.kh.db.UIVo;
 /**
  * Servlet implementation class ListSearch
  */
+
+
 @WebServlet("/ListSearch")
 public class ListSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	// 학생목록을 비동기방식으로 검색하기위한 서블릿
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
@@ -31,19 +33,22 @@ public class ListSearch extends HttpServlet {
 		ArrayList<UIVo> voList = null;
 		
 		if(sname != null && major == null){
+			// 아무것도 입력하지 않았을때는 모든 학생 검색, 입력이 있다면 그에 해당하는 값 select
 			if(sname.equals("")) {
 				voList = dao.getSelectAll();
 			} else {
 				voList = dao.getSelectName(sname);						
 			}
 		} else if(sname == null && major != null){
+			// 아무것도 입력하지 않았을때는 모든 학생 검색, 입력이 있다면 그에 해당하는 값 select
 			if(major.equals("")) {
 				voList = dao.getSelectAll();
 			} else {
 				voList = dao.getSelectMajor(major);
 			}
 		}
-		//System.out.println(voList);
+		
+		// html table 생성
 		String tbl = "";
 		for(UIVo vo : voList) {
 			tbl += "<tr>\r\n" + 
@@ -56,7 +61,6 @@ public class ListSearch extends HttpServlet {
 					"</tr>";
 		}
 		PrintWriter out = response.getWriter();
-		//System.out.println(tbl);
 		out.print(tbl);
 	}
 	

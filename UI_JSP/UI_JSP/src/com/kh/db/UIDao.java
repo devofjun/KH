@@ -139,9 +139,7 @@ public class UIDao {
 		}
 		return null;
 	}
-//	public void getSelect(String name, String major) {
-//		
-//	}
+
 	// 학생 정보 가져오기
 	public UIVo getContent(String sno) {
 		Connection conn = getConnection();
@@ -206,7 +204,7 @@ public class UIDao {
 			pstmt.setString(4, vo.getGENDER());
 			pstmt.setString(5, vo.getMAJOR());
 			pstmt.setInt   (6, vo.getSCORE());
-			int count = pstmt.executeUpdate(); // insert, update, delete // select -> executeQuery()
+			int count = pstmt.executeUpdate();
 			if(count > 0) {
 				closeAll(null, pstmt, conn);
 				return true;
@@ -238,7 +236,7 @@ public class UIDao {
 			pstmt.setString(4, vo.getMAJOR());
 			pstmt.setInt   (5, vo.getSCORE());
 			pstmt.setString(6, vo.getSNO());
-			int count = pstmt.executeUpdate(); // insert, update, delete // select -> executeQuery()
+			int count = pstmt.executeUpdate();
 			if(count > 0) {
 				closeAll(null, pstmt, conn);
 				return true;

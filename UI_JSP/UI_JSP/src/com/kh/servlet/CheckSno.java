@@ -17,7 +17,7 @@ import com.kh.db.UIDao;
 @WebServlet("/CheckSno")
 public class CheckSno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+	// 학번이 유효한지 확인하기 위한 비동기방식의 서블릿
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
