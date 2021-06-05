@@ -26,12 +26,49 @@ $(function() {
 	});
 	// 수정완료버튼 클릭
 	$("#btnModifyFinish").click(function() {
+		var sno = $("#snoInput").val().trim();
+		var sname = $("#snameInput").val().trim();
+		var syear = $("#syearInput").val().trim();
+		var man = $("#genderMan").is(":checked");
+		var woman = $("#genderWoman").is(":checked");
+		var major = $("#majorInput").val().trim();
+		var score = $("#scoreInput").val().trim();
+		
+		// 입력 데이터 조절
+		if(sno == ""){
+			$("#valCheck").text("학번을 입력해주세요");
+			return false;
+		} else if(sname == ""){
+			$("#valCheck").text("이름을 입력해주세요");
+			return false;
+		} else if(!(syear>0 && syear<10)){
+			$("#valCheck").text("학년은 한자리수로 입력해주세요.");
+			return false;
+		} else if(man == false && woman == false){
+			$("#valCheck").text("성별을 입력해주세요");
+			return false;
+		} else if(major == ""){
+			$("#valCheck").text("전공을 입력해주세요");
+			return false;
+		} else if(!(score>=0 && score<=100)){
+			$("#valCheck").text("점수는 0~100까지의 값만 넣어주세요. 기본값은 0입니다.");
+			$("#scoreInput").val("0");
+			return false;
+		}
+		
+		// 수정 실행
 		$("#frmContent").attr("action", "s_modify_run.jsp").submit();
 	});
-	
+	// 삭제버튼 클릭
 	$("#btnDelete").click(function() {
 		$("#btnDeleteFinish").show(100);
 	});
+	// 삭제완료버튼 클릭
+	$("#btnDeleteFinish").click(function() {
+		//$("#frmContent").attr("action", "s_delete_run.jsp").submit();
+		location.href = "s_delete_run.jsp?SNO=<%=vo.getSNO()%>";
+	});
+	
 });
 </script>
 
@@ -93,6 +130,7 @@ $(function() {
 				<button type="button" class="btn btn-info" id="btnDelete">삭제</button>
 				<button type="button" class="btn btn-warning" id="btnModifyFinish"style="display:none">수정완료</button>
 				<button type="button" class="btn btn-danger" id="btnDeleteFinish"style="display:none">삭제완료</button>
+				<span id="valCheck"></span>
 			</form>
 		</div>
 	</div>

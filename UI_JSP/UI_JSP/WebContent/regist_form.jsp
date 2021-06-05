@@ -40,7 +40,6 @@ $(function() {
 		var syear = $("#syearInput").val().trim();
 		var man = $("#genderMan").is(":checked");
 		var woman = $("#genderWoman").is(":checked");
-		var gender;
 		var major = $("#majorInput").val().trim();
 		var score = $("#scoreInput").val().trim();
 		
@@ -76,7 +75,7 @@ $(function() {
 		}
 		
 		
-		console.log(sno, sname, syear, man, woman, major, score);
+		//console.log(sno, sname, syear, man, woman, major, score);
 		$(this).submit();
 	});	
 });

@@ -34,7 +34,7 @@
 						"SNAME" : $("#textSearch").val()
 				};
 				// 검색 결과 테이블
-				$.post(url, sendData,function(rData) {
+				$.post(url, sendData, function(rData) {
 					//console.log(rData);
 					$("#TableList").empty();
 					$("#TableList").html(rData);
@@ -46,7 +46,19 @@
 						"MAJOR" : $("#textSearch").val()
 				};
 				// 검색 결과 테이블
-				$.post(url, sendData,function(rData) {
+				$.post(url, sendData, function(rData) {
+					//console.log(rData);
+					$("#TableList").empty();
+					$("#TableList").html(rData);
+				});
+				// 아무것도 선택하지 않았을 때
+			} else {
+				var url = $("#frmSearch").attr("action");
+				var sendData = {
+						"SNAME" : ""
+				};
+				// 검색 결과 테이블
+				$.post(url, sendData, function(rData) {
 					//console.log(rData);
 					$("#TableList").empty();
 					$("#TableList").html(rData);

@@ -29,10 +29,19 @@ public class ListSearch extends HttpServlet {
 		String major = request.getParameter("MAJOR");
 		UIDao dao = UIDao.getInstance();
 		ArrayList<UIVo> voList = null;
+		
 		if(sname != null && major == null){
-			voList = dao.getSelectName(sname);		
+			if(sname.equals("")) {
+				voList = dao.getSelectAll();
+			} else {
+				voList = dao.getSelectName(sname);						
+			}
 		} else if(sname == null && major != null){
-			voList = dao.getSelectMajor(major);
+			if(major.equals("")) {
+				voList = dao.getSelectAll();
+			} else {
+				voList = dao.getSelectMajor(major);
+			}
 		}
 		//System.out.println(voList);
 		String tbl = "";

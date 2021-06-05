@@ -142,7 +142,7 @@ public class UIDao {
 //	public void getSelect(String name, String major) {
 //		
 //	}
-	// 상세정보 가져오기
+	// 학생 정보 가져오기
 	public UIVo getContent(String sno) {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
@@ -191,7 +191,7 @@ public class UIDao {
 		return false;
 	}
 	
-	// 학생 등록
+	// 학생 정보 등록
 	public boolean insertContent(UIVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -219,19 +219,18 @@ public class UIDao {
 		return false;
 	}
 	
-	// 학생 업데이트
+	// 학생 정보 수정
 	public boolean updateContent(UIVo vo) {
-		Connection conn = null;
+		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
+		String sql = "update tbl_student set" +
+				"    SNAME = ?,"+ 
+				"    SYEAR = ?," + 
+				"    GENDER = ?," + 
+				"    MAJOR = ?," + 
+				"    SCORE = ?" + 
+				"    where SNO = ?";
 		try {
-			String sql = "update tbl_student set" +
-					"    SNAME = ?,"+ 
-					"    SYEAR = ?," + 
-					"    GENDER = ?," + 
-					"    MAJOR = ?," + 
-					"    SCORE = ?" + 
-					"    where SNO = ?";
-			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getSNAME());
 			pstmt.setInt   (2, vo.getSYEAR());
@@ -240,6 +239,27 @@ public class UIDao {
 			pstmt.setInt   (5, vo.getSCORE());
 			pstmt.setString(6, vo.getSNO());
 			int count = pstmt.executeUpdate(); // insert, update, delete // select -> executeQuery()
+			if(count > 0) {
+				closeAll(null, pstmt, conn);
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		return false;
+	}
+	
+	// 학생 정보 삭제
+	public boolean deleteContent(String sno) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		String sql = "delete from TBL_STUDENT"
+				+ "   where SNO = "+sno;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int count = pstmt.executeUpdate();
 			if(count > 0) {
 				closeAll(null, pstmt, conn);
 				return true;
