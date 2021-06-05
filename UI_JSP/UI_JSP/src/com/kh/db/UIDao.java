@@ -190,4 +190,32 @@ public class UIDao {
 		}
 		return false;
 	}
+	
+	// 학생 등록
+	public boolean insertContent(UIVo vo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "insert into TBL_STUDENT(SNO, SNAME, SYEAR, GENDER, MAJOR, SCORE)"
+					+ "   values(?, ?, ?, ?, ?, ?)";
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getSNO());
+			pstmt.setString(2, vo.getSNAME());
+			pstmt.setInt   (3, vo.getSYEAR());
+			pstmt.setString(4, vo.getGENDER());
+			pstmt.setString(5, vo.getMAJOR());
+			pstmt.setInt   (6, vo.getSCORE());
+			int count = pstmt.executeUpdate(); // insert, update, delete // select -> executeQuery()
+			if(count > 0) {
+				closeAll(null, pstmt, conn);
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		return false;
+	}
 }

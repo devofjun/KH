@@ -1,3 +1,4 @@
+
 <%@page import="com.kh.db.UIVo"%>
 <%@page import="com.kh.db.UIDao"%>
 <%@page import="sun.security.jca.GetInstance"%>
@@ -9,24 +10,25 @@
 	//System.out.println(sno);
 	UIDao dao = UIDao.getInstance();
 	UIVo vo = dao.getContent(sno);
-	System.out.println(vo);
+	//System.out.println(vo);
 %>
 
 <%@ include file="include/header.jsp"%>
 <title>Insert title here</title>
 <script>
 $(function() {
-	// 수정버튼
+	// 수정버튼 클릭
 	$("#btnModify").click(function() {
 		// 비활성화 -> 활성화
-		$("#snameInput").attr("readonly", false);
-		$("#syearInput").attr("readonly", false);
-		$("#genderMan").attr("disabled", false);
-		$("#genderWoman").attr("disabled", false);
-		$("#majorInput").attr("readonly", false);
-		$("#scoreInput").attr("readonly", false);
+		$(".readonly").attr("readonly", false);
+		$(".disabled").attr("disabled", false);
 		$("#btnModifyFinish").show(100);
 	});
+	// 수정완료버튼 클릭
+	$("#btnModifyFinish").click(function() {
+		$("#frmContent").attr("action", "content_modify.jsp").submit();
+	});
+	
 	$("#btnDelete").click(function() {
 		$("#btnDeleteFinish").show(100);
 	});
@@ -42,47 +44,49 @@ $(function() {
 				<h2>학생 상세 정보</h2>
 				<p>학생 정보 상세보기입니다.</p>
 			</div>
-			<form role="form" action="">
+			<form id="frmContent" method="post" role="form" action="">
 				<div class="form-group">
 
 					<label for="snoInput"> 학번 </label> <input
 						type="text" class="form-control" id="snoInput" readonly
-						value="<%=vo.getSNO()%>"/>
+						name="SNO" value="<%=vo.getSNO()%>"/>
 				</div>
 				<div class="form-group">
 
 					<label for="snameInput"> 이름 </label> <input
-						type="text" class="form-control" id="snameInput" readonly
-						value="<%=vo.getSNAME()%>"/>
+						type="text" class="form-control readonly" id="snameInput" readonly
+						name="SNAME" value="<%=vo.getSNAME()%>"/>
 				</div>
 				<div class="form-group">
 
 					<label for="syearInput"> 학년 </label> <input
-						type="number" class="form-control" id="syearInput" readonly
-						value="<%=vo.getSYEAR()%>"/>
+						type="number" class="form-control readonly" id="syearInput" readonly
+						name="SYEAR" value="<%=vo.getSYEAR()%>"/>
 				</div>
 				<div class="form-group">
 					
 					<label for="genderInput"> 남자 </label> <input
-						type="radio" id="genderMan" name="gender" disabled
+						type="radio" id="genderMan" class="disabled" disabled
+						name="GENDER" value="남" 
 						<%if(vo.getGENDER().equals("남")){ %> checked="checked" <% } %>
 						/>
 					<label for="genderInput"> 여자 </label> <input
-						type="radio" id="genderWoman" name="gender" disabled
+						type="radio" id="genderWoman" class="disabled" disabled
+						name="GENDER" value="여" 
 						<%if(vo.getGENDER().equals("여")){ %> checked="checked" <% } %>
 						/>
 				</div>
 				<div class="form-group">
 
 					<label for="majorInput"> 전공 </label> <input
-						type="text" class="form-control" id="majorInput" readonly
-						value="<%=vo.getMAJOR()%>"/>
+						type="text" class="form-control readonly" id="majorInput" readonly
+						name="MAJOR" value="<%=vo.getMAJOR()%>"/>
 				</div>
 				<div class="form-group">
 
 					<label for="scoreInput"> 점수 </label> <input
-						type="number" class="form-control" id="scoreInput" readonly
-						value="<%=vo.getSCORE()%>"/>
+						type="number" class="form-control readonly" id="scoreInput" readonly
+						name="SCORE" value="<%=vo.getSCORE()%>"/>
 				</div>
 				<a class="btn btn-primary" href="index.jsp">전체보기</a>
 				<button type="button" class="btn btn-success" id="btnModify">수정</button>

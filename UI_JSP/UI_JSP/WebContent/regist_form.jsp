@@ -1,4 +1,4 @@
-<%@page import="com.kh.db.UIDao"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -42,7 +42,8 @@ $(function() {
 		var woman = $("#genderWoman").is(":checked");
 		var major = $("#majorInput").val().trim();
 		var score = $("#scoreInput").val().trim();
-			
+		
+		// 입력 데이터 조절
 		if(sno == ""){
 			$("#valCheck").text("학번을 입력해주세요");
 			return false;
@@ -58,8 +59,9 @@ $(function() {
 		} else if(major == ""){
 			$("#valCheck").text("전공을 입력해주세요");
 			return false;
-		} else if(!(syear>=0 && syear<=10)){
-			$("#valCheck").text("점수을 입력해주세요");
+		} else if(!(score>=0 && score<=100)){
+			$("#valCheck").text("점수는 0~100까지의 값만 넣어주세요. 기본값은 0입니다.");
+			$("#scoreInput").val("0");
 			return false;
 		}
 		
@@ -72,7 +74,7 @@ $(function() {
 			return false;
 		}
 		
-		console.log(sno, sname, syear, man, woman, major, score);
+		//console.log(sno, sname, syear, man, woman, major, score);
 		$(this).submit();
 	});	
 });

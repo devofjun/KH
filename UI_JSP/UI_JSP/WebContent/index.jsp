@@ -1,6 +1,8 @@
+
 <%@page import="com.kh.db.UIVo"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.db.UIDao"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -61,7 +63,7 @@
 				<h2>학생 목록</h2>
 				<p>학생 정보 등록 하려면 아래 버튼</p>
 				<p>
-					<a class="btn btn-primary btn-large" href="#">학생 등록</a>
+					<a class="btn btn-primary btn-large" href="regist_form.jsp">학생 등록</a>
 				</p>
 			</div>
 			<div>
