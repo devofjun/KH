@@ -34,7 +34,7 @@ public class ListSearch extends HttpServlet {
 		} else if(sname == null && major != null){
 			voList = dao.getSelectMajor(major);
 		}
-		System.out.println(voList);
+		//System.out.println(voList);
 		String tbl = "";
 		for(UIVo vo : voList) {
 			tbl += "<tr>\r\n" + 
@@ -47,7 +47,7 @@ public class ListSearch extends HttpServlet {
 					"</tr>";
 		}
 		PrintWriter out = response.getWriter();
-		System.out.println(tbl);
+		//System.out.println(tbl);
 		out.print(tbl);
 	}
 	

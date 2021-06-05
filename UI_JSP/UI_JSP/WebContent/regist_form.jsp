@@ -40,6 +40,7 @@ $(function() {
 		var syear = $("#syearInput").val().trim();
 		var man = $("#genderMan").is(":checked");
 		var woman = $("#genderWoman").is(":checked");
+		var gender;
 		var major = $("#majorInput").val().trim();
 		var score = $("#scoreInput").val().trim();
 		
@@ -74,7 +75,8 @@ $(function() {
 			return false;
 		}
 		
-		//console.log(sno, sname, syear, man, woman, major, score);
+		
+		console.log(sno, sname, syear, man, woman, major, score);
 		$(this).submit();
 	});	
 });
@@ -113,10 +115,12 @@ $(function() {
 				<div class="form-group">
 					
 					<label for="genderInput"> 남자 </label> <input
-						type="radio" id="genderMan" name="gender" value="남"
+						type="radio" id="genderMan" class="gender"
+						name="GENDER" value="남" 
 						/>
 					<label for="genderInput"> 여자 </label> <input
-						type="radio" id="genderWoman" name="gender" value="여"
+						type="radio" id="genderWoman" class="gender"
+						name="GENDER" value="여" 
 						/>
 				</div>
 				<div class="form-group">

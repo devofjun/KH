@@ -35,7 +35,7 @@
 				};
 				// 검색 결과 테이블
 				$.post(url, sendData,function(rData) {
-					console.log(rData);
+					//console.log(rData);
 					$("#TableList").empty();
 					$("#TableList").html(rData);
 				});
@@ -47,7 +47,7 @@
 				};
 				// 검색 결과 테이블
 				$.post(url, sendData,function(rData) {
-					console.log(rData);
+					//console.log(rData);
 					$("#TableList").empty();
 					$("#TableList").html(rData);
 				});

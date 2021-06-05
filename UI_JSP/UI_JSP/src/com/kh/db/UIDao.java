@@ -218,4 +218,37 @@ public class UIDao {
 		}
 		return false;
 	}
+	
+	// 학생 업데이트
+	public boolean updateContent(UIVo vo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "update tbl_student set" +
+					"    SNAME = ?,"+ 
+					"    SYEAR = ?," + 
+					"    GENDER = ?," + 
+					"    MAJOR = ?," + 
+					"    SCORE = ?" + 
+					"    where SNO = ?";
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getSNAME());
+			pstmt.setInt   (2, vo.getSYEAR());
+			pstmt.setString(3, vo.getGENDER());
+			pstmt.setString(4, vo.getMAJOR());
+			pstmt.setInt   (5, vo.getSCORE());
+			pstmt.setString(6, vo.getSNO());
+			int count = pstmt.executeUpdate(); // insert, update, delete // select -> executeQuery()
+			if(count > 0) {
+				closeAll(null, pstmt, conn);
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		return false;
+	}
 }

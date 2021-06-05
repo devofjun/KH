@@ -16,6 +16,8 @@
 	int i_syear = Integer.parseInt(syear);
 	int i_score = Integer.parseInt(score);
 
+	//System.out.println(sno + " " + sname + " " + syear + " " + gender + " " + major + " " + score );
+	
 	UIVo vo = new UIVo(sno, sname, i_syear, gender, major, i_score);
 	System.out.println("regist_vo:" + vo);
 	UIDao dao = UIDao.getInstance();

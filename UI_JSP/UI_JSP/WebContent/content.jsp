@@ -26,7 +26,7 @@ $(function() {
 	});
 	// 수정완료버튼 클릭
 	$("#btnModifyFinish").click(function() {
-		$("#frmContent").attr("action", "content_modify.jsp").submit();
+		$("#frmContent").attr("action", "s_modify_run.jsp").submit();
 	});
 	
 	$("#btnDelete").click(function() {
