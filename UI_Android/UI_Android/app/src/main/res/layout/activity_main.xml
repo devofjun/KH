@@ -1,18 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="#DCDCDC"
+        android:gravity="center"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:text="학생정보 관리앱"
+            android:textSize="30dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="검색조건: " />
+
+            <RadioButton
+                android:id="@+id/rdoNameSch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="이름" />
+
+            <RadioButton
+                android:id="@+id/rdoMajorSch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전공" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/edtSch"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#F5F5F5"
+            android:gravity="center"
+            android:hint="이름으로 검색합니다." />
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="검색" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:background="#595959">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:background="#dcdcdc"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:textSize="12dp"
+            android:text="학번" />
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#dcdcdc"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:textSize="12dp"
+            android:text="이름"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#dcdcdc"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:textSize="12dp"
+            android:text="학년"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#dcdcdc"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:textSize="12dp"
+            android:text="성별"/>
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#dcdcdc"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:textSize="12dp"
+            android:text="전공"/>
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#dcdcdc"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"
+            android:textSize="12dp"
+            android:text="점수"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="12">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="등록하기" />
+</LinearLayout>
