@@ -28,6 +28,7 @@ public class TabbedPaneEx extends JFrame{
 		tabPane.add("TextArea", new JTextArea());
 		c.add(tabPane);
 		setVisible(true);
+		System.out.println("test");
 	}
 	public static void main(String[] args) {
 		new TabbedPaneEx();
