@@ -36,6 +36,7 @@ public class UIDAO extends SQLiteOpenHelper {
                 "    constraint score_chk check(SCORE between 0 and 100)," +
                 "    constraint syear_chk check(SYEAR between 0 and 9)" +
                 ");";
+        db.execSQL(sql);
     }
 
     @Override
@@ -66,10 +67,23 @@ public class UIDAO extends SQLiteOpenHelper {
     }
 
     // 등록하기
-    public boolean insertStudent(String SNO, String SNAME, int SYEAR, String GENDER, String MAJOR, int SCORE){
-        String sql = "insert into ";
+    public void insertStudent(UIVO vo){
+        String SNO = vo.getSNO();
+        String SNAME = vo.getSNAME();
+        int SYEAR = vo.getSYEAR();
+        String GENDER = vo.getGENDER();
+        String MAJOR = vo.getMAJOR();
+        int SCORE = vo.getSCORE();
+
+        String sql = "insert into TBL_STUDENT(SNO, SNAME, SYEAR, GENDER, MAJOR, SCORE)" +
+                "     values('" + SNO + "', '" + SNAME + "', " + SYEAR + ", " +
+                "'" + GENDER + "', '" + MAJOR + "', " + SCORE + ")";
         SQLiteDatabase db = this.getWritableDatabase();
-        // insert 완성하기
-        return false;
+        db.execSQL(sql);
+        db.close();
+    }
+
+    public void updateStudent() {
+
     }
 }

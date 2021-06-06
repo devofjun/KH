@@ -63,6 +63,7 @@
             android:gravity="center"
             android:hint="이름으로 검색합니다." />
         <Button
+            android:id="@+id/btnSearch"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"

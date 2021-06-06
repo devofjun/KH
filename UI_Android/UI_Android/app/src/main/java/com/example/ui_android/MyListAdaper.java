@@ -75,4 +75,5 @@ public class MyListAdaper extends BaseAdapter {
         cellSCORE.setText(String.valueOf(voList.get(position).getSCORE()));
         return convertView;
     }
+
 }
