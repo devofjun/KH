@@ -89,7 +89,7 @@ public class UIDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<UIVo> list = new ArrayList<UIVo>();
-		String sql = "select * from TBL_STUDENT where SNAME='"+name+"' order by SNO";
+		String sql = "select * from TBL_STUDENT where SNAME like '%"+name+"%' order by SNO";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -117,7 +117,7 @@ public class UIDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<UIVo> list = new ArrayList<UIVo>();
-		String sql = "select * from TBL_STUDENT where MAJOR='"+major+"' order by SNO";
+		String sql = "select * from TBL_STUDENT where MAJOR like '%"+major+"%' order by SNO";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
