@@ -60,16 +60,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String search = edtSch.getText().toString();
             if (search.trim().equals("")) { // 검색창에 아무 입력이 없다면 전체 검색
                 voList = dao.selectAll();
-                listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
-                listView.setOnItemClickListener(MainActivity.this);
             } else {
                 if (rdoNameSch.isChecked()) { // 이름으로 검색
-
+                    voList = dao.selectName(search);
                 } else if (rdoMajorSch.isChecked()) { // 전공으로 검색
-
+                    voList = dao.selectMajor(search);
                 }
             }
-
+            listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
+            listView.setOnItemClickListener(MainActivity.this);
         } else if (v == btnCreate) { // 등록하기 버튼
             // 다이얼로그 전개자
             LayoutInflater inflater = getLayoutInflater();
@@ -107,18 +106,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         GENDER = "여";
                     }
                     // 입력 데이터 확인
-                    boolean result = valueCheck(SNAME, SYEAR, GENDER, MAJOR, SCORE);
+                    boolean result = valueCheck(SNO, SNAME, SYEAR, GENDER, MAJOR, SCORE);
                     // 올바른 입력이라면 데이터베이스에 추가하고 리스트를 다시 연다.
                     if (result) {
                         int iSYEAR = Integer.parseInt(SYEAR);
                         int iSCORE = Integer.parseInt(SCORE);
                         UIVO vo = new UIVO(SNO, SNAME, iSYEAR, GENDER, MAJOR, iSCORE);
-                        dao.insertStudent(vo);
-                        toast.setText("등록되었습니다.");
-                        // 리스트 다시 그리기
-                        voList = dao.selectAll();
-                        listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
-                        listView.setOnItemClickListener(MainActivity.this);
+                        boolean inResult = dao.insertStudent(vo);
+                        if(inResult){
+                            toast.setText("등록되었습니다.");
+                            toast.show();
+                            // 리스트 다시 그리기
+                            voList = dao.selectAll();
+                            listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
+                            listView.setOnItemClickListener(MainActivity.this);
+                        } else {
+                            toast.setText("등록에 실패했습니다.");
+                            toast.show();
+                        }
 
                     }
 
@@ -159,6 +164,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             sMan.setChecked(false);
             sWoman.setChecked(true);
         }
+
+        // 다이얼로그 생성
+        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+        dialog.setIcon(R.mipmap.ic_launcher);
+        dialog.setTitle(voList.get(position).getSNAME());
+        dialog.setView(dialogView);
+        dialog.setPositiveButton("닫기", null);
+        dialog.show();
+
+
         // 수정하기 버튼 클릭 이벤트
         sBtnModify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 //Log.d("tag","수정완료");
                 // 입력값 받아오기
+                String sno = sSno.getText().toString();
                 String sname = sSname.getText().toString();
                 String syear = sSyear.getText().toString();
                 String gender;
@@ -193,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String score = sScore.getText().toString();
 
                 // 입력값 체크하기
-                boolean check = valueCheck(sname, syear, gender, major, score);
+                boolean check = valueCheck(sno, sname, syear, gender, major, score);
                 Log.d("tag", "valueCheck:" + check);
                 if (check) { // 데이터베이스 반영
                     // vo에 담을 변수
@@ -205,7 +221,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     int SCORE = Integer.parseInt(score);
                     // 변경된 데이터를 가지고 있는 vo
                     UIVO changeVo = new UIVO(SNO, SNAME, SYEAR, GENDER, MAJOR, SCORE);
-                    Log.d("tag", "changeVo: " + changeVo);
+                    //Log.d("tag", "changeVo: " + changeVo);
+                    boolean result = dao.updateStudent(changeVo);
+                    if(result){
+                        toast.setText("수정 성공");
+                        toast.show();
+                    } else {
+                        toast.setText("수정 실패");
+                        toast.show();
+                    }
+                    // 리스트 다시 그리기
+                    voList = dao.selectAll();
+                    listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
+                    listView.setOnItemClickListener(MainActivity.this);
                 }
             }
         });
@@ -222,22 +250,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 //Log.d("tag","삭제완료");
+                String sno = sSno.getText().toString();
+                boolean result = dao.deleteStudent(sno);
+                if(result){
+                    toast.setText("삭제 성공");
+                    toast.show();
+
+                } else {
+                    toast.setText("삭제 실패");
+                    toast.show();
+                }
+                // 리스트 다시 그리기
+                voList = dao.selectAll();
+                listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
+                listView.setOnItemClickListener(MainActivity.this);
             }
         });
 
-        // 다이얼로그 생성
-        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-        dialog.setIcon(R.mipmap.ic_launcher);
-        dialog.setTitle(voList.get(position).getSNAME());
-        dialog.setView(dialogView);
-        dialog.setPositiveButton("닫기", null);
-        dialog.show();
     }
 
 
     // 입력 데이터 체크
-    private boolean valueCheck(String sname, String syear,
+    private boolean valueCheck(String sno, String sname, String syear,
                                String gender, String major, String score) {
+        // 학번 값 체크
+        if(sno.trim().equals("")){ // 학번이 비었음
+            toast.setText("학번을 입력해주세요.");
+            toast.show();
+            return false;
+        }
         // 이름 값 체크
         if (sname.trim().equals("")) { // 이름이 비었음
             //toast.cancel();

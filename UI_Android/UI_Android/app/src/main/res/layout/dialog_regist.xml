@@ -39,7 +39,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:hint="20151065"/>
+            android:inputType="text"
+            android:maxLength="8"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,7 +63,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:hint="정병준"/>
+            android:inputType="text"
+            android:maxLength="3"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +87,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:hint="2"/>
+            android:inputType="numberDecimal"
+            android:maxLength="1"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -140,7 +143,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:hint="컴공"/>
+            android:inputType="text"
+            android:maxLength="3"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -162,7 +166,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:hint="100"/>
+            android:inputType="numberDecimal"
+            android:maxLength="3"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -171,6 +176,6 @@
             android:id="@+id/rBtnReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="등록학기"/>
+            android:text="등록완료"/>
     </LinearLayout>
 </LinearLayout>

@@ -39,7 +39,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:text="20151065"
+            android:inputType="text"
+            android:maxLength="8"
             android:enabled="false"/>
     </LinearLayout>
     <LinearLayout
@@ -63,7 +64,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:text="정병준"
+            android:inputType="text"
+            android:maxLength="3"
             android:enabled="false"/>
     </LinearLayout>
     <LinearLayout
@@ -87,7 +89,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:text="2"
+            android:inputType="numberDecimal"
+            android:maxLength="1"
             android:enabled="false"/>
     </LinearLayout>
     <LinearLayout
@@ -145,7 +148,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:text="컴공"
+            android:inputType="text"
+            android:maxLength="3"
             android:enabled="false"/>
     </LinearLayout>
     <LinearLayout
@@ -168,7 +172,8 @@
             android:background="#DCDCDC"
             android:gravity="center"
             android:textSize="25dp"
-            android:text="100"
+            android:inputType="numberDecimal"
+            android:maxLength="3"
             android:enabled="false"/>
     </LinearLayout>
     <LinearLayout
