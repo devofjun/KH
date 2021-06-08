@@ -45,7 +45,7 @@ public class ListFrame extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("학생 목록");
 		setSize(500, 710);
-		
+		setLocationRelativeTo(null);
 		dao = UIDao.getInstance();
 		voList = dao.getSelectAll();
 		
@@ -90,6 +90,8 @@ public class ListFrame extends JFrame implements ActionListener{
 		pnList.setBounds(40, 250, 400, 415);
 		c.add(pnList);
 		
+		voList = dao.getSelectAll();
+		taListPaint();
 	}
 
 	@Override
@@ -109,9 +111,9 @@ public class ListFrame extends JFrame implements ActionListener{
 					taListPaint();
 				}
 			}
-		} else if(e.getSource() == btnRegist) {
+		} else if(e.getSource() == btnRegist) { // 등록버튼
 			new RegistFrame();
-		} else if(e.getSource() == btnModify) {
+		} else if(e.getSource() == btnModify) { // 수정버튼
 			new ModifyFrame();
 		}
 		
@@ -119,7 +121,7 @@ public class ListFrame extends JFrame implements ActionListener{
 	
 	// 조회 결과 출력하기
 	private void taListPaint() {
-		taList.setText("학번 | 이름 | 학년 | 성별 | 학과 | 점수\n======================================================\n");
+		taList.setText("학번 | 이름 | 학년 | 성별 | 학과 | 점수\n------------------------------------------------------\n");
 		for(UIVo vo : voList) {
 			String sno = vo.getSno();
 			String sname = vo.getSname();

@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
-public class RegistFrame extends JFrame implements ActionListener{
+public class RegistFrame extends JFrame implements ActionListener {
 	Container c = getContentPane();
 
 	JPanel pnInput = new JPanel();
@@ -35,21 +35,22 @@ public class RegistFrame extends JFrame implements ActionListener{
 	JRadioButton rdoMan = new JRadioButton("남자");
 	JRadioButton rdoWoman = new JRadioButton("여자");
 	ButtonGroup grpGender = new ButtonGroup();
-	
+
 	JPanel pnButtons = new JPanel();
 	JButton btnCheck = new JButton("학번 확인");
-	JButton btnRegist = new JButton("등록"); 
+	JButton btnRegist = new JButton("등록");
 
+	ValueManager vmng = new ValueManager();
 	UIDao dao;
-	
+
 	public RegistFrame() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("학생 등록");
-		
+		setLocationRelativeTo(null);
 		dao = UIDao.getInstance();
 		setUI();
 
-		setSize(300, 400);
+		setSize(300, 350);
 		setVisible(true);
 	}
 
@@ -74,9 +75,9 @@ public class RegistFrame extends JFrame implements ActionListener{
 		pnInput.add(lblMajor);
 		pnInput.add(tfMajor);
 		pnInput.add(lblScore);
-		pnInput.add(tfScore);		
+		pnInput.add(tfScore);
 		c.add(pnInput);
-		
+
 		pnButtons.setBorder(new TitledBorder(null, "학생 정보 입력", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnButtons.setBounds(40, 220, 200, 70);
 		btnRegist.setEnabled(false);
@@ -90,34 +91,46 @@ public class RegistFrame extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object ov = e.getSource();
-		if(ov == btnCheck) { // 학번 유효성 체크
+		if (ov == btnCheck) { // 학번 유효성 체크
 			String sno = tfSno.getText();
-			boolean check = dao.checkSNO(sno);
-			if(check) {
+			// 학번 체크
+			if (sno.trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "학번을 입력해주세요.");
+			} else if (sno.trim().length() != sno.length()) {
+				JOptionPane.showMessageDialog(null, "학번에 빈칸은 넣을 수 없습니다.");
+			} else if (sno.length() != 8) {
+				JOptionPane.showMessageDialog(null, "학번은 8자리여야 합니다.");
+			} else if (dao.checkSNO(sno)) {
 				JOptionPane.showMessageDialog(RegistFrame.this, "사용 가능한 학번입니다.");
 				btnRegist.setEnabled(true);
 			} else {
-				JOptionPane.showMessageDialog(RegistFrame.this, "사용 할 수 없는 학번입니다.");
+				JOptionPane.showMessageDialog(RegistFrame.this, "중복되거나 사용 할 수 없는 학번입니다.");
 			}
-		} else if(ov == btnRegist) { // 등록
+		} else if (ov == btnRegist) { // 등록
 			String sno = tfSno.getText();
 			String sname = tfSname.getText();
-			int syear = Integer.parseInt(tfSyear.getText());
+			String syear = tfSyear.getText();
 			String gender = "";
-			if(rdoMan.isSelected()) {
+			if (rdoMan.isSelected()) {
 				gender = "남";
-			} else if(rdoWoman.isSelected()) {
+			} else if (rdoWoman.isSelected()) {
 				gender = "여";
 			}
 			String major = tfMajor.getText();
-			int score = Integer.parseInt(tfScore.getText());;
-			
-			UIVo vo = new UIVo(sno, sname, syear, gender, major, score);
-			boolean result = dao.insertStudent(vo);
-			if(result) {
-				JOptionPane.showMessageDialog(RegistFrame.this, "등록 성공");
-			} else {
-				JOptionPane.showMessageDialog(RegistFrame.this, "등록 실패");
+			String score = tfScore.getText();
+
+			// 다시한번 값을 체크하고 등록한다
+			if (vmng.valuesCheck(sno, sname, syear, gender, major, score)) {
+				int intSyear = Integer.parseInt(syear);
+				int intScore = Integer.parseInt(score);
+				UIVo vo = new UIVo(sno, sname, intSyear, gender, major, intScore);
+				boolean result = dao.insertStudent(vo);
+				if (result) {
+					JOptionPane.showMessageDialog(RegistFrame.this, "등록 성공");
+					RegistFrame.this.dispose();
+				} else {
+					JOptionPane.showMessageDialog(RegistFrame.this, "등록 실패");
+				}
 			}
 		}
 	}

@@ -16,13 +16,13 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
-public class ModifyFrame extends JFrame implements ActionListener{
+public class ModifyFrame extends JFrame implements ActionListener {
 	Container c = getContentPane();
-	
+
 	JPanel pnSearch = new JPanel();
 	JTextField tfSearch = new JTextField(8);
 	JButton btnSearch = new JButton("가져오기");
-	
+
 	JPanel pnInput = new JPanel();
 	JPanel pnGender = new JPanel();
 	JLabel lblSno = new JLabel("학번", JLabel.CENTER);
@@ -39,16 +39,18 @@ public class ModifyFrame extends JFrame implements ActionListener{
 	JRadioButton rdoMan = new JRadioButton("남자");
 	JRadioButton rdoWoman = new JRadioButton("여자");
 	ButtonGroup grpGender = new ButtonGroup();
-	
+
 	JPanel pnButtons = new JPanel();
 	JButton btnModify = new JButton("수정");
-	JButton btnDelete = new JButton("삭제"); 
-	
+	JButton btnDelete = new JButton("삭제");
+
+	ValueManager vmgr = new ValueManager();
 	UIDao dao;
-	
+
 	public ModifyFrame() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("학생 등록");
+		setLocationRelativeTo(null);
 		dao = UIDao.getInstance();
 		setUI();
 
@@ -58,7 +60,7 @@ public class ModifyFrame extends JFrame implements ActionListener{
 
 	private void setUI() {
 		c.setLayout(null);
-		
+
 		pnSearch.setBorder(new TitledBorder(null, "학번 입력", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnSearch.setBounds(10, 10, 260, 70);
 		pnSearch.add(tfSearch);
@@ -85,12 +87,12 @@ public class ModifyFrame extends JFrame implements ActionListener{
 		pnInput.add(lblMajor);
 		pnInput.add(tfMajor);
 		pnInput.add(lblScore);
-		pnInput.add(tfScore);		
+		pnInput.add(tfScore);
 		c.add(pnInput);
-		
+
 		pnButtons.setBorder(new TitledBorder(null, null, TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pnButtons.setBounds(40, 310, 200, 40);
-		//btnModify.setEnabled(false);
+		// btnModify.setEnabled(false);
 		pnButtons.add(btnModify);
 		pnButtons.add(btnDelete);
 		c.add(pnButtons);
@@ -101,45 +103,56 @@ public class ModifyFrame extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object ob = e.getSource();
-		if(ob == btnSearch) { // 학번 검색 버튼
+		if (ob == btnSearch) { // 가져오기 버튼
 			String search = tfSearch.getText();
-			UIVo vo = dao.getStudentinfo(search);
-			tfSno.setText(vo.getSno());
-			tfSname.setText(vo.getSname());
-			tfSyear.setText(vo.getSyear()+"");
-			if(vo.getGender().equals("남")) {
-				rdoMan.setSelected(true);
+			if (!(dao.checkSNO(search))) {
+				UIVo vo = dao.getStudentinfo(search);
+				tfSno.setText(vo.getSno());
+				tfSname.setText(vo.getSname());
+				tfSyear.setText(vo.getSyear() + "");
+				if (vo.getGender().equals("남")) {
+					rdoMan.setSelected(true);
+				} else {
+					rdoWoman.setSelected(true);
+				}
+				tfMajor.setText(vo.getMajor());
+				tfScore.setText(vo.getScore() + "");
 			} else {
-				rdoWoman.setSelected(true);
+				JOptionPane.showMessageDialog(ModifyFrame.this, "없는 학번입니다.");
 			}
-			tfMajor.setText(vo.getMajor());
-			tfScore.setText(vo.getScore()+"");
-		} else if(ob == btnModify) { // 수정 버튼
+		} else if (ob == btnModify) { // 수정 버튼
 			String sno = tfSno.getText();
 			String sname = tfSname.getText();
-			int syear = Integer.parseInt(tfSyear.getText());
+			String syear = tfSyear.getText();
 			String gender = "";
-			if(rdoMan.isSelected()) {
+			if (rdoMan.isSelected()) {
 				gender = "남";
-			} else if(rdoWoman.isSelected()) {
+			} else if (rdoWoman.isSelected()) {
 				gender = "여";
 			}
 			String major = tfMajor.getText();
-			int score = Integer.parseInt(tfScore.getText());;
-			
-			UIVo vo = new UIVo(sno, sname, syear, gender, major, score);
-			boolean result = dao.updateStudentInfo(vo);
-			if(result) {
-				JOptionPane.showMessageDialog(ModifyFrame.this, "수정 성공");
-			} else {
-				JOptionPane.showMessageDialog(ModifyFrame.this, "수정 실패");
+			String score = tfScore.getText();
+
+			// 값 체크후 수정실행
+			if (vmgr.modifyValuesCheck(sname, syear, gender, major, score)) {
+				int intSyear = Integer.parseInt(syear);
+				int intScore = Integer.parseInt(score);
+				UIVo vo = new UIVo(sno, sname, intSyear, gender, major, intScore);
+				boolean result = dao.updateStudent(vo);
+				if (result) {
+					JOptionPane.showMessageDialog(ModifyFrame.this, "수정 성공");
+					ModifyFrame.this.dispose();
+				} else {
+					JOptionPane.showMessageDialog(ModifyFrame.this, "수정 실패");
+				}
 			}
-			
-		} else if(ob == btnDelete) { // 삭제 버튼
+
+		} else if (ob == btnDelete) { // 삭제 버튼
 			String sno = tfSno.getText();
 			boolean result = dao.deleteStudent(sno);
-			if(result) {
+			if (result) {
 				JOptionPane.showMessageDialog(ModifyFrame.this, "삭제 성공");
+				ModifyFrame.this.dispose();
 			} else {
 				JOptionPane.showMessageDialog(ModifyFrame.this, "삭제 실패");
 			}

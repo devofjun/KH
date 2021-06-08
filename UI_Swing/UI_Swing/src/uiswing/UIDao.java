@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class UIDao {
 	static private UIDao instance;
 	private UIDao() {}
@@ -208,7 +210,7 @@ public class UIDao {
 			return vo; 
 		}
 		// 학생 정보 수정
-		public boolean updateStudentInfo(UIVo vo) {
+		public boolean updateStudent(UIVo vo) {
 			Connection conn = getConnection();
 			PreparedStatement pstmt = null;
 			String sql = "update tbl_student set" +
