@@ -14,7 +14,7 @@
 %>
 
 <%@ include file="include/header.jsp"%>
-<title>Insert title here</title>
+<title>학생 상세 정보 수정</title>
 <script>
 $(function() {
 	// 수정버튼 클릭
@@ -34,30 +34,26 @@ $(function() {
 		var major = $("#majorInput").val().trim();
 		var score = $("#scoreInput").val().trim();
 		
-		// 입력 데이터 조절
-		if(sno == ""){
-			$("#valCheck").text("학번을 입력해주세요");
-			return false;
-		} else if(sname == ""){
-			$("#valCheck").text("이름을 입력해주세요");
-			return false;
-		} else if(!(syear>0 && syear<10)){
-			$("#valCheck").text("학년은 한자리수로 입력해주세요.");
-			return false;
-		} else if(man == false && woman == false){
-			$("#valCheck").text("성별을 입력해주세요");
-			return false;
-		} else if(major == ""){
-			$("#valCheck").text("전공을 입력해주세요");
-			return false;
-		} else if(!(score>=0 && score<=100)){
-			$("#valCheck").text("점수는 0~100까지의 값만 넣어주세요. 기본값은 0입니다.");
-			$("#scoreInput").val("0");
-			return false;
-		}
+		var url = "/CheckValues";
+		var sendData = {
+			"sname" : sname,
+			"syear" : syear,
+			"man" : man,
+			"woman" : woman,
+			"major" : major,
+			"score" : score
+		};
 		
-		// 수정 실행
-		$("#frmContent").attr("action", "s_modify_run.jsp").submit();
+		$.post(url, sendData, function(rData) {
+			if(rData == "true"){
+				alert("정상적인 입력");
+				// 수정 실행
+				$("#frmContent").attr("action", "s_modify_run.jsp").submit();
+			} else {
+				alert(rData);
+				return false;
+			}
+		});
 	});
 	// 삭제버튼 클릭
 	$("#btnDelete").click(function() {

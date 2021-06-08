@@ -22,10 +22,24 @@ public class CheckSno extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		String sno = request.getParameter("SNO");
-		UIDao dao = UIDao.getInstance();
-		boolean result = dao.checkSNO(sno);
+		String result;
+		String sno = request.getParameter("sno");
 		
+		String trimError = "학번을 입력해주세요.";
+		String replaceError = "학번에 공백은 넣을 수 없습니다.";
+		String lengthError = "학번은 8자리 숫자를 입력 받습니다.";
+		//System.out.println(sno.trim());
+		if(sno.trim().equals("")) {
+			result=trimError;
+		} else if(sno.replace(" ", "").length() != sno.length()) {
+			result=replaceError;
+		} else if(sno.length() != 8) {
+			result=lengthError;
+		} else {
+			UIDao dao = UIDao.getInstance();
+			result = String.valueOf(dao.checkSNO(sno));
+		}
+		//System.out.println(result);
 		PrintWriter out = response.getWriter();
 		out.print(result);
 	}

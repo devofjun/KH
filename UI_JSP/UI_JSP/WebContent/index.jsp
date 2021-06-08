@@ -107,7 +107,7 @@
 					%>
 					<tr>
 						<td><%=vo.getSNO()%></td>
-						<td><a href="content.jsp?SNO=<%=vo.getSNO()%>"><%=vo.getSNAME()%></a></td>
+						<td><a href="studentInfo.jsp?SNO=<%=vo.getSNO()%>"><%=vo.getSNAME()%></a></td>
 						<td><%=vo.getSYEAR()%></td>
 						<td><%=vo.getGENDER()%></td>
 						<td><%=vo.getMAJOR()%></td>
