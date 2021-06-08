@@ -17,7 +17,7 @@
 	int i_score = Integer.parseInt(score);
 	
 	UIVo vo = new UIVo(sno, sname, i_syear, gender, major, i_score);
-	System.out.println("vo:"+vo);
+	//System.out.println("vo:"+vo);
 	UIDao dao = UIDao.getInstance();
 	boolean result = dao.updateContent(vo);
 	

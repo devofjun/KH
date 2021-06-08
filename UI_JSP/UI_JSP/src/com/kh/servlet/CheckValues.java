@@ -33,7 +33,7 @@ public class CheckValues extends HttpServlet {
 		String woman = request.getParameter("woman");
 		String major = request.getParameter("major");
 		String score = request.getParameter("score");
-		System.out.println(sno + sname + syear + man + woman + major + score);
+		//System.out.println(sno + sname + syear + man + woman + major + score);
 		PrintWriter out = response.getWriter();
 
 		String snoError = "1. 학번은 공백을 허용하지 않음\n" + "2. 학번은 8자리 입력해야함\n" + "3. '학번체크'버튼으로 유효성을 확인해야함";
