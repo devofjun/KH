@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="log" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="tag" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -26,52 +26,44 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:main" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fba8ffda-5677-41f8-8bcd-2c067289e09a" name="Default Changelist" comment="" />
+    <list default="true" id="c81bab6d-0971-4a94-823b-393c33114728" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/UIDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/UIDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/cell_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cell_view.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_regist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_regist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_student.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_modify.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[SerialNumber@127.0.0.1:62001]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view>
-          <tree_state>
-            <expand />
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectId" id="1tb4BXNZhOSr1TPjW4mfwsWaJMg" />
+  <component name="ProjectId" id="1tX2IKt7KiAb09ScgEfPyZgkI8I" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -81,8 +73,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\dev\KH\UI_Android\UI_Android\app\src\main\res\layout" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -154,11 +151,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fba8ffda-5677-41f8-8bcd-2c067289e09a" name="Default Changelist" comment="" />
-      <created>1623024319752</created>
+      <changelist id="c81bab6d-0971-4a94-823b-393c33114728" name="Default Changelist" comment="" />
+      <created>1622901033156</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1623024319752</updated>
+      <updated>1622901033156</updated>
     </task>
     <servers />
   </component>
@@ -175,21 +172,45 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="233" key="GridCell.Tab.0.bottom" timestamp="1623141143142">
+    <state x="969" y="244" key="#com.intellij.ide.util.MemberChooser" timestamp="1622990362276">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="233" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1623141143142" />
-    <state width="1877" height="233" key="GridCell.Tab.0.center" timestamp="1623141143142">
+    <state x="969" y="244" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622990362276" />
+    <state x="744" y="283" key="AndroidCreateResourceFileDialog" timestamp="1622946360783">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="233" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1623141143142" />
-    <state width="1877" height="233" key="GridCell.Tab.0.left" timestamp="1623141143142">
+    <state x="744" y="283" key="AndroidCreateResourceFileDialog/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622946360783" />
+    <state x="944" y="283" key="FileChooserDialogImpl" timestamp="1622909700931">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="233" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1623141143142" />
-    <state width="1877" height="233" key="GridCell.Tab.0.right" timestamp="1623141143142">
+    <state x="944" y="283" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622909700931" />
+    <state width="1877" height="246" key="GridCell.Tab.0.bottom" timestamp="1623168336968">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="233" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1623141143142" />
+    <state width="1877" height="246" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623168336968" />
+    <state width="1877" height="246" key="GridCell.Tab.0.center" timestamp="1623168336968">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="246" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623168336968" />
+    <state width="1877" height="246" key="GridCell.Tab.0.left" timestamp="1623168336967">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="246" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623168336967" />
+    <state width="1877" height="246" key="GridCell.Tab.0.right" timestamp="1623168336968">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="246" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623168336968" />
+    <state x="1924" y="202" width="1224" height="839" key="dock-window-1" timestamp="1622955818427">
+      <screen x="1920" y="0" width="1680" height="1050" />
+    </state>
+    <state x="1924" y="202" width="1224" height="839" key="dock-window-1/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622955818427" />
+    <state x="820" y="246" key="run.anything.popup" timestamp="1623159826019">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="820" y="246" key="run.anything.popup/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623159826019" />
+    <state x="827" y="234" width="672" height="678" key="search.everywhere.popup" timestamp="1622955530785">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="827" y="234" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622955530785" />
   </component>
 </project>

@@ -32,7 +32,7 @@
             android:textSize="25dp"
             android:text="학번" />
         <EditText
-            android:id="@+id/sSno"
+            android:id="@+id/mSno"
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -57,7 +57,7 @@
             android:textSize="25dp"
             android:text="이름" />
         <EditText
-            android:id="@+id/sSname"
+            android:id="@+id/mSname"
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -65,8 +65,7 @@
             android:gravity="center"
             android:textSize="25dp"
             android:inputType="text"
-            android:maxLength="3"
-            android:enabled="false"/>
+            android:maxLength="3" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,7 +81,7 @@
             android:textSize="25dp"
             android:text="학년" />
         <EditText
-            android:id="@+id/sSyear"
+            android:id="@+id/mSyear"
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -90,8 +89,7 @@
             android:gravity="center"
             android:textSize="25dp"
             android:inputType="numberDecimal"
-            android:maxLength="1"
-            android:enabled="false"/>
+            android:maxLength="1"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -114,17 +112,15 @@
             android:orientation="horizontal"
             android:gravity="center">
             <RadioButton
-                android:id="@+id/sMan"
+                android:id="@+id/mMan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="남자"
-                android:enabled="false"/>
+                android:text="남자"/>
             <RadioButton
-                android:id="@+id/sWoman"
+                android:id="@+id/mWoman"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="여자"
-                android:enabled="false"/>
+                android:text="여자"/>
         </RadioGroup>
     </LinearLayout>
     <LinearLayout
@@ -141,7 +137,7 @@
             android:textSize="25dp"
             android:text="전공" />
         <EditText
-            android:id="@+id/sMajor"
+            android:id="@+id/mMajor"
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -149,8 +145,7 @@
             android:gravity="center"
             android:textSize="25dp"
             android:inputType="text"
-            android:maxLength="3"
-            android:enabled="false"/>
+            android:maxLength="3"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -165,7 +160,7 @@
             android:textSize="25dp"
             android:text="점수" />
         <EditText
-            android:id="@+id/sScore"
+            android:id="@+id/mScore"
             android:layout_weight="3"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -173,43 +168,7 @@
             android:gravity="center"
             android:textSize="25dp"
             android:inputType="numberDecimal"
-            android:maxLength="3"
-            android:enabled="false"/>
+            android:maxLength="3"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/sBtnModify"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="수정하기"/>
-        <Button
-            android:id="@+id/sBtnModifyFin"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="수정완료"
-            android:enabled="false"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/sBtnDelete"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="삭제하기"/>
-        <Button
-            android:id="@+id/sBtnDeleteFin"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="삭제완료"
-            android:enabled="false"/>
-    </LinearLayout>
+
 </LinearLayout>

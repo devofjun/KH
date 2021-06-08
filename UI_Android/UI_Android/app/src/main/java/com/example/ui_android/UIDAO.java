@@ -52,6 +52,18 @@ public class UIDAO extends SQLiteOpenHelper {
         //
     }
 
+    // 학번 유효성 검사
+    public boolean checkSNO(String sno){
+        String sql = "select count(*) cnt from TBL_STUDENT where SNO='"+sno+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor.moveToNext()){
+            if(cursor.getInt(0) <= 0){
+                return true;
+            }
+        }
+        return false;
+    }
     // 전체 검색
     public ArrayList<UIVO> selectAll() {
         String sql = "select * from TBL_STUDENT";
