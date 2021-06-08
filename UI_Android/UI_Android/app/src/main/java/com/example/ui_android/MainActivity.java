@@ -3,6 +3,7 @@ package com.example.ui_android;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,9 +54,75 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listView.setOnItemClickListener(this);
     }
 
-    // 버튼 클릭 이벤트
+    // 입력 데이터 체크
+    private boolean valueCheck(String sno, String sname, String syear,
+                               String gender, String major, String score) {
+        // 학번 값 체크
+        if(sno.trim().equals("")){ // 학번이 비었음
+            toast.setText("학번을 입력해주세요.");
+            toast.show();
+            return false;
+        }
+        // 이름 값 체크
+        if (sname.trim().equals("")) { // 이름이 비었음
+            //toast.cancel();
+            toast.setText("이름을 입력해주세요.");
+            toast.show();
+            return false;
+        }// 이름도 최대 몇자까지인지 정해주기
+
+        // 학년 값 체크
+        try {
+            int year = Integer.parseInt(syear);
+            if (year <= 0 || year >= 10) { //1~9사이의 값이 아닐때
+                toast.setText("학년이 1~9값인지 확인하세요.");
+                toast.show();
+                return false;
+            }
+        } catch (Exception e) { // 숫자 변환이 안됐을때
+            //toast.cancel();
+            toast.setText("학년이 1~9값인지 확인하세요.");
+            toast.show();
+            return false;
+        }
+
+        // 성별 값 체크
+        if (gender.trim().equals("")) { // 성별이 비었음
+            //toast.cancel();
+            toast.setText("성별을 선택해주세요.");
+            toast.show();
+            return false;
+        }
+
+        // 전공 값 체크
+        if (major.trim().equals("")) { // 전공이 비었음
+            //toast.cancel();
+            toast.setText("전공을 입력해주세요.");
+            toast.show();
+            return false;
+        } // 전공도 최대 몇자까지 가능한지 체크해주기
+
+        // 점수 값 체크
+        try {
+            int i_score = Integer.parseInt(score);
+            if (i_score < 0 || i_score > 100) { // 점수가 0~100 사이의 값이 아닐때
+                toast.setText("점수(0~100)를 입력하세요.");
+                toast.show();
+                return false;
+            }
+        } catch (Exception e) {
+            //toast.cancel();
+            toast.setText("점수(0~100)를 입력하세요.");
+            toast.show();
+            return false;
+        }
+        return true;
+    }
+
+    // 버튼 클릭 이벤트 (검색, 등록하기)
     @Override
     public void onClick(View v) {
+        boolean check = false;
         if (v == btnSearch) { // 검색 버튼
             String search = edtSch.getText().toString();
             if (search.trim().equals("")) { // 검색창에 아무 입력이 없다면 전체 검색
@@ -69,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
             listView.setOnItemClickListener(MainActivity.this);
+
         } else if (v == btnCreate) { // 등록하기 버튼
             // 다이얼로그 전개자
             LayoutInflater inflater = getLayoutInflater();
@@ -78,8 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             dialog.setIcon(R.mipmap.ic_launcher);
             dialog.setTitle("학생등록");
             dialog.setView(dialogView);
-            dialog.setPositiveButton("닫기", null);
-            dialog.show();
+
             // 전개될 다이얼로그 컨텐츠 id
             EditText rSNO = dialogView.findViewById(R.id.rSno);
             EditText rSNAME = dialogView.findViewById(R.id.rSname);
@@ -89,10 +156,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             EditText rMAJOR = dialogView.findViewById(R.id.rMajor);
             EditText rSCORE = dialogView.findViewById(R.id.rScore);
             Button rBtnReg = dialogView.findViewById(R.id.rBtnReg);
-            // 등록하기 버튼 이벤트
+            // 등록하기 버튼 클릭
             rBtnReg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //
+
+                    //
+                }
+            });
+            dialog.setPositiveButton("등록하기", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.d("tag", "등록하기 눌림");
                     // 입력된 데이터
                     String SNO = rSNO.getText().toString();
                     String SNAME = rSNAME.getText().toString();
@@ -129,6 +205,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
             });
+
+            dialog.setNeutralButton("닫기", null);
+            dialog.show();
+
+
         }
     }
 
@@ -237,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-        // 삭제하기 버튼 클릭 이벤트
+        // 삭제하기 버튼 클릭
         sBtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sBtnDeleteFin.setEnabled(true);
             }
         });
-        // 삭제완료 버튼 클릭 이벤트
+        // 삭제완료 버튼 클릭
         sBtnDeleteFin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -270,68 +351,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    // 입력 데이터 체크
-    private boolean valueCheck(String sno, String sname, String syear,
-                               String gender, String major, String score) {
-        // 학번 값 체크
-        if(sno.trim().equals("")){ // 학번이 비었음
-            toast.setText("학번을 입력해주세요.");
-            toast.show();
-            return false;
-        }
-        // 이름 값 체크
-        if (sname.trim().equals("")) { // 이름이 비었음
-            //toast.cancel();
-            toast.setText("이름을 입력해주세요.");
-            toast.show();
-            return false;
-        }// 이름도 최대 몇자까지인지 정해주기
 
-        // 학년 값 체크
-        try {
-            int year = Integer.parseInt(syear);
-            if (year <= 0 || year >= 10) { //1~9사이의 값이 아닐때
-                toast.setText("학년이 1~9값인지 확인하세요.");
-                toast.show();
-                return false;
-            }
-        } catch (Exception e) { // 숫자 변환이 안됐을때
-            //toast.cancel();
-            toast.setText("학년이 1~9값인지 확인하세요.");
-            toast.show();
-            return false;
-        }
-
-        // 성별 값 체크
-        if (gender.trim().equals("")) { // 성별이 비었음
-            //toast.cancel();
-            toast.setText("성별을 선택해주세요.");
-            toast.show();
-            return false;
-        }
-
-        // 전공 값 체크
-        if (major.trim().equals("")) { // 전공이 비었음
-            //toast.cancel();
-            toast.setText("전공을 입력해주세요.");
-            toast.show();
-            return false;
-        } // 전공도 최대 몇자까지 가능한지 체크해주기
-
-        // 점수 값 체크
-        try {
-            int i_score = Integer.parseInt(score);
-            if (i_score < 0 || i_score > 100) { // 점수가 0~100 사이의 값이 아닐때
-                toast.setText("점수(0~100)를 입력하세요.");
-                toast.show();
-                return false;
-            }
-        } catch (Exception e) {
-            //toast.cancel();
-            toast.setText("점수(0~100)를 입력하세요.");
-            toast.show();
-            return false;
-        }
-        return true;
-    }
 }
