@@ -66,7 +66,7 @@ public class UIDAO extends SQLiteOpenHelper {
     }
     // 전체 검색
     public ArrayList<UIVO> selectAll() {
-        String sql = "select * from TBL_STUDENT";
+        String sql = "select * from TBL_STUDENT order by SNO";
         // 결과를 넘겨주기 위한 arraylist 생성
         ArrayList<UIVO> voList = new ArrayList<>();
         // 데이터베이스 실행(?)

@@ -35,9 +35,7 @@
     <list default="true" id="c81bab6d-0971-4a94-823b-393c33114728" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_regist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_regist.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/ModifyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/ModifyFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../sql/UI_JSP.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../sql/UI_JSP.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/UIDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/UIDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +70,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -182,10 +180,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="744" y="283" key="AndroidCreateResourceFileDialog/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622946360783" />
-    <state x="944" y="283" key="FileChooserDialogImpl" timestamp="1622909700931">
+    <state x="944" y="283" key="FileChooserDialogImpl" timestamp="1623269073308">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="944" y="283" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622909700931" />
+    <state x="944" y="283" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623269073308" />
     <state width="1877" height="113" key="GridCell.Tab.0.bottom" timestamp="1623259490575">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

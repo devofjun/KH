@@ -323,8 +323,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onClick(View v) {
                         String sno = mSno.getText().toString();
-                        toast.setText(sno);
-                        toast.show();
                         boolean check = !(dao.checkSNO(sno));
                         if(check){
                             boolean delResult = dao.deleteStudent(sno);
