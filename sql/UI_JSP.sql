@@ -1,4 +1,4 @@
-drop table TBL_STUDENT2;
+drop table TBL_STUDENT;
 create table TBL_STUDENT(
     SNO varchar2(8) constraint pk_SNO primary key,
     SNAME varchar2(10) not null,
@@ -6,7 +6,8 @@ create table TBL_STUDENT(
     GENDER varchar2(3) not null,
     MAJOR varchar(10) not null,
     SCORE number(3) default 0 constraint score_nn not null,
-    constraint score_chk check(SCORE between 0 and 100)
+    constraint score_chk check(SCORE between 0 and 100),
+    constraint year_chk check(SYEAR between 1 and 4)
 );
 
 alter table TBL_STUDENT modify (SCORE not null);
