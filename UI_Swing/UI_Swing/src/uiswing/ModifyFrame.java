@@ -22,7 +22,7 @@ public class ModifyFrame extends JFrame implements ActionListener {
 
 	JPanel pnSearch = new JPanel();
 	JTextField tfSearch = new JTextField(8);
-	JButton btnSearch = new JButton("가져오기");
+	JButton btnSearch = new JButton("불러오기");
 
 	JPanel pnInput = new JPanel();
 	JPanel pnGender = new JPanel();
