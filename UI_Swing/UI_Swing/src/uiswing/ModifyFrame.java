@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,11 +37,12 @@ public class ModifyFrame extends JFrame implements ActionListener {
 	JTextField tfSyear = new JTextField();
 	JTextField tfMajor = new JTextField();
 	JTextField tfScore = new JTextField();
-	JRadioButton rdoMan = new JRadioButton("남자");
-	JRadioButton rdoWoman = new JRadioButton("여자");
+	JRadioButton rdoMale = new JRadioButton("남자");
+	JRadioButton rdoFemale = new JRadioButton("여자");
 	ButtonGroup grpGender = new ButtonGroup();
 
 	JPanel pnButtons = new JPanel();
+	JCheckBox cbxContinue = new JCheckBox("계속");
 	JButton btnModify = new JButton("수정");
 	JButton btnDelete = new JButton("삭제");
 
@@ -49,7 +51,7 @@ public class ModifyFrame extends JFrame implements ActionListener {
 
 	public ModifyFrame() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("학생 등록");
+		setTitle("학생 정보 수정");
 		setLocationRelativeTo(null);
 		dao = UIDao.getInstance();
 		setUI();
@@ -72,10 +74,10 @@ public class ModifyFrame extends JFrame implements ActionListener {
 		pnInput.setBounds(10, 90, 260, 200);
 		pnInput.setLayout(new GridLayout(0, 2, 0, 0));
 		tfSno.setEditable(false);
-		grpGender.add(rdoMan);
-		grpGender.add(rdoWoman);
-		pnGender.add(rdoMan);
-		pnGender.add(rdoWoman);
+		grpGender.add(rdoMale);
+		grpGender.add(rdoFemale);
+		pnGender.add(rdoMale);
+		pnGender.add(rdoFemale);
 		pnInput.add(lblSno);
 		pnInput.add(tfSno);
 		pnInput.add(lblSname);
@@ -91,8 +93,11 @@ public class ModifyFrame extends JFrame implements ActionListener {
 		c.add(pnInput);
 
 		pnButtons.setBorder(new TitledBorder(null, null, TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pnButtons.setBounds(40, 310, 200, 40);
-		// btnModify.setEnabled(false);
+		pnButtons.setBounds(30, 310, 230, 40);
+		btnModify.setEnabled(false);
+		btnDelete.setEnabled(false);
+		cbxContinue.setEnabled(false);
+		pnButtons.add(cbxContinue);
 		pnButtons.add(btnModify);
 		pnButtons.add(btnDelete);
 		c.add(pnButtons);
@@ -111,12 +116,16 @@ public class ModifyFrame extends JFrame implements ActionListener {
 				tfSname.setText(vo.getSname());
 				tfSyear.setText(vo.getSyear() + "");
 				if (vo.getGender().equals("남")) {
-					rdoMan.setSelected(true);
+					rdoMale.setSelected(true);
 				} else {
-					rdoWoman.setSelected(true);
+					rdoFemale.setSelected(true);
 				}
 				tfMajor.setText(vo.getMajor());
 				tfScore.setText(vo.getScore() + "");
+				
+				cbxContinue.setEnabled(true);
+				btnModify.setEnabled(true);
+				btnDelete.setEnabled(true);
 			} else {
 				JOptionPane.showMessageDialog(ModifyFrame.this, "없는 학번입니다.");
 			}
@@ -125,9 +134,9 @@ public class ModifyFrame extends JFrame implements ActionListener {
 			String sname = tfSname.getText();
 			String syear = tfSyear.getText();
 			String gender = "";
-			if (rdoMan.isSelected()) {
+			if (rdoMale.isSelected()) {
 				gender = "남";
-			} else if (rdoWoman.isSelected()) {
+			} else if (rdoFemale.isSelected()) {
 				gender = "여";
 			}
 			String major = tfMajor.getText();
@@ -141,7 +150,19 @@ public class ModifyFrame extends JFrame implements ActionListener {
 				boolean result = dao.updateStudent(vo);
 				if (result) {
 					JOptionPane.showMessageDialog(ModifyFrame.this, "수정 성공");
-					ModifyFrame.this.dispose();
+					if(cbxContinue.isSelected()) {
+						tfSearch.setText("");
+						tfSno.setText("");
+						tfSname.setText("");
+						tfSyear.setText("");
+						tfMajor.setText("");
+						tfScore.setText("");
+						btnModify.setEnabled(false);
+						btnDelete.setEnabled(false);
+						cbxContinue.setEnabled(false);
+					} else {
+						ModifyFrame.this.dispose();						
+					}
 				} else {
 					JOptionPane.showMessageDialog(ModifyFrame.this, "수정 실패");
 				}
@@ -152,7 +173,19 @@ public class ModifyFrame extends JFrame implements ActionListener {
 			boolean result = dao.deleteStudent(sno);
 			if (result) {
 				JOptionPane.showMessageDialog(ModifyFrame.this, "삭제 성공");
-				ModifyFrame.this.dispose();
+				if(cbxContinue.isSelected()) {
+					tfSearch.setText("");
+					tfSno.setText("");
+					tfSname.setText("");
+					tfSyear.setText("");
+					tfMajor.setText("");
+					tfScore.setText("");
+					btnModify.setEnabled(false);
+					btnDelete.setEnabled(false);
+					cbxContinue.setEnabled(false);
+				} else {
+					ModifyFrame.this.dispose();						
+				}
 			} else {
 				JOptionPane.showMessageDialog(ModifyFrame.this, "삭제 실패");
 			}

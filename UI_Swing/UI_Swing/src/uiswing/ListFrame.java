@@ -44,7 +44,7 @@ public class ListFrame extends JFrame implements ActionListener{
 	public ListFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("학생 목록");
-		setSize(500, 710);
+		setSize(500, 720);
 		setLocationRelativeTo(null);
 		dao = UIDao.getInstance();
 		voList = dao.getSelectAll();

@@ -35,11 +35,14 @@
     <list default="true" id="c81bab6d-0971-4a94-823b-393c33114728" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/UIDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/UIDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/cell_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cell_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_regist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_regist.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_student.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_modify.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MyListAdaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MyListAdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/WebContent/regist_form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/WebContent/regist_form.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/WebContent/studentInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/WebContent/studentInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/src/com/kh/db/UIDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/src/com/kh/db/UIDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/src/com/kh/servlet/ListSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/src/com/kh/servlet/ListSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/ModifyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/ModifyFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/RegistFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/RegistFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/UIMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/UIMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +179,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="969" y="244" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622990362276" />
+    <state x="289" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1623210982727">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="289" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1623210982727" />
     <state x="744" y="283" key="AndroidCreateResourceFileDialog" timestamp="1622946360783">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

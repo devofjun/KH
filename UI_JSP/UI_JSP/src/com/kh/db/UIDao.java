@@ -254,7 +254,7 @@ public class UIDao {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		String sql = "delete from TBL_STUDENT"
-				+ "   where SNO = "+sno;
+				+ "   where SNO = '"+sno+"'";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			int count = pstmt.executeUpdate();

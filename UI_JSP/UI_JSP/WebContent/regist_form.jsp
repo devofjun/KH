@@ -58,7 +58,7 @@
 			
 			$.post(url, sendData, function(rData) {
 				if(rData == "true"){
-					alert("정상적인 입력");
+					//alert("정상적인 입력");
 					$("#frmRegist").submit();
 				} else {
 					alert(rData);
@@ -78,7 +78,12 @@
 			<div class="jumbotron">
 				<h2>학생 상세 정보</h2>
 				<p>학생 정보 상세보기입니다.</p>
+				<a class="btn btn-primary" href="index.jsp">전체보기</a>
 			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
 			<form id="frmRegist" role="form" action="" method="post">
 				<div class="form-group">
 
@@ -115,11 +120,13 @@
 					<label for="scoreInput"> 점수 </label> <input type="number"
 						class="form-control" id="scoreInput" name="SCORE" />
 				</div>
-				<a class="btn btn-primary" href="index.jsp">전체보기</a>
+				
 				<button type="button" class="btn btn-success" id="btnRegist"
 					style="display: none">등록</button>
 			</form>
-		</div>
+			</div>
+			<div class="col-md-4"></div>
+			</div>
 	</div>
 </div>
 

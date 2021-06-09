@@ -13,7 +13,7 @@ public class ValueManager {
 		if (sno.trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "학번을 입력해주세요.");
 			return false;
-		} else if (sno.trim().length() != sno.length()) {
+		} else if (sno.replace(" ","").length() != sno.length()) {
 			JOptionPane.showMessageDialog(null, "공백없이 입력해주세요.");
 			return false;
 		} else if (sno.length() != 8) {
@@ -28,7 +28,7 @@ public class ValueManager {
 		if (sname.trim().equals("")) { // 이름이 빈칸
 			JOptionPane.showMessageDialog(null, "이름을 입력해주세요.");
 			return false;
-		} else if (sname.trim().length() != sname.length()) {
+		} else if (sname.replace(" ","").length() != sname.length()) {
 			JOptionPane.showMessageDialog(null, "공백없이 입력해주세요.");
 			return false;
 		} else if (!(sname.length() <= 3)) { // 이름은 세자리까지 허용됨
@@ -54,7 +54,7 @@ public class ValueManager {
 		if (gender.trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "성별을 입력해주세요.");
 			return false;
-		} else if (gender.trim().length() != gender.length()) {
+		} else if (gender.replace(" ","").length() != gender.length()) {
 			JOptionPane.showMessageDialog(null, "공백없이 입력해주세요.");
 			return false;
 		} else if (!(gender.equals("남") || gender.equals("여"))) {
@@ -66,7 +66,7 @@ public class ValueManager {
 		if (major.trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "전공을 입력해주세요");
 			return false;
-		} else if (major.trim().length() != major.length()) {
+		} else if (major.replace(" ","").length() != major.length()) {
 			JOptionPane.showMessageDialog(null, "공백없이 입력해주세요.");
 			return false;
 		} else if (!(major.length() <= 3)) {
@@ -95,7 +95,7 @@ public class ValueManager {
 		if (sname.trim().equals("")) { // 이름이 빈칸
 			JOptionPane.showMessageDialog(null, "이름을 입력해주세요.");
 			return false;
-		} else if (sname.trim().length() != sname.length()) {
+		} else if (sname.replace(" ","").length() != sname.length()) {
 			JOptionPane.showMessageDialog(null, "공백없이 입력해주세요.");
 			return false;
 		} else if (!(sname.length() <= 3)) { // 이름은 세자리까지 허용됨
@@ -121,7 +121,7 @@ public class ValueManager {
 		if (gender.trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "성별을 입력해주세요.");
 			return false;
-		} else if (gender.trim().length() != gender.length()) {
+		} else if (gender.replace(" ","").length() != gender.length()) {
 			JOptionPane.showMessageDialog(null, "공백없이 입력해주세요.");
 			return false;
 		} else if (!(gender.equals("남") || gender.equals("여"))) {
@@ -133,7 +133,7 @@ public class ValueManager {
 		if (major.trim().equals("")) {
 			JOptionPane.showMessageDialog(null, "전공을 입력해주세요");
 			return false;
-		} else if (major.trim().length() != major.length()) {
+		} else if (major.replace(" ","").length() != major.length()) {
 			JOptionPane.showMessageDialog(null, "공백없이 입력해주세요.");
 			return false;
 		} else if (!(major.length() <= 3)) {

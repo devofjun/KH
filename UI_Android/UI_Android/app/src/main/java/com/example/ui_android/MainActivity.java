@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         voList = dao.selectAll();
 
         // 리스트뷰에 셀을 어댑터를 통해서 아이템을 추가한다.
-        listView.setAdapter(new MyListAdaper(this, R.layout.cell_view, voList));
+        listView.setAdapter(new MyListAdater(this, R.layout.cell_view, voList));
         // 각각의 아이템에 다이얼로그를 띄우기 위해 리스너을 추가한다.
         listView.setOnItemClickListener(this);
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         voList = dao.selectMajor(search);
                     }
                 }
-                listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
+                listView.setAdapter(new MyListAdater(MainActivity.this, R.layout.cell_view, voList));
                 listView.setOnItemClickListener(MainActivity.this);
                 break;
             // ===================================================
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 msg.show();
                                 // 리스트 다시 그리기
                                 voList = dao.selectAll();
-                                listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
+                                listView.setAdapter(new MyListAdater(MainActivity.this, R.layout.cell_view, voList));
                                 listView.setOnItemClickListener(MainActivity.this);
 
                                 if(cbxRemove.isChecked()){
@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         msg.show();
                                         // 리스트 다시 그리기
                                         voList = dao.selectAll();
-                                        listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
+                                        listView.setAdapter(new MyListAdater(MainActivity.this, R.layout.cell_view, voList));
                                         listView.setOnItemClickListener(MainActivity.this);
                                         dialog.dismiss();
                                     } else {
@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 msg.show();
                                 // 리스트 다시 그리기
                                 voList = dao.selectAll();
-                                listView.setAdapter(new MyListAdaper(MainActivity.this, R.layout.cell_view, voList));
+                                listView.setAdapter(new MyListAdater(MainActivity.this, R.layout.cell_view, voList));
                                 listView.setOnItemClickListener(MainActivity.this);
                                 // 다이얼로그 창 닫기
                                 dialog.dismiss();

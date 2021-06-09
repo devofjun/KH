@@ -53,7 +53,7 @@ public class ListSearch extends HttpServlet {
 		for(UIVo vo : voList) {
 			tbl += "<tr>\r\n" + 
 					"<td>"+vo.getSNO()+"</td>\r\n" + 
-					"<td><a href=\"content.jsp?SNO="+vo.getSNO()+"\">"+vo.getSNAME()+"</a></td>\r\n" + 
+					"<td><a href=\"studentInfo.jsp?SNO="+vo.getSNO()+"\">"+vo.getSNAME()+"</a></td>\r\n" + 
 					"<td>"+vo.getSYEAR()+"</td>\r\n" + 
 					"<td>"+vo.getGENDER()+"</td>\r\n" + 
 					"<td>"+vo.getMAJOR()+"</td>\r\n" + 

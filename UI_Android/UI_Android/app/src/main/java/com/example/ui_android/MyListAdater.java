@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MyListAdaper extends BaseAdapter {
+public class MyListAdater extends BaseAdapter {
     Context context;
     int cell_view; // res/layout/cell_view.xml
     ArrayList<UIVO> voList;
 
     // 생성자(유지될 context, 그리려는 뷰, 그려질 목록)
-    public MyListAdaper(Context context, int cell_view, ArrayList<UIVO> voList) {
+    public MyListAdater(Context context, int cell_view, ArrayList<UIVO> voList) {
         this.context = context;
         this.cell_view = cell_view;
         this.voList = voList;
