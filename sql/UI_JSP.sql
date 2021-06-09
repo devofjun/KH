@@ -13,13 +13,13 @@ create table TBL_STUDENT(
 alter table TBL_STUDENT modify (SCORE not null);
 
 insert into TBL_STUDENT(SNO, SNAME, SYEAR, GENDER, MAJOR, SCORE)
-values(20201001, '김학생', 2, '남', '컴공', 100);
+values('18-12345', '정병준', 2, '남', '컴퓨터', 100);
 insert into TBL_STUDENT(SNO, SNAME, SYEAR, GENDER, MAJOR, SCORE)
-values(20201002, '박학생', 2, '여', '컴공', 70);
+values('18-12346', '이름', 1, '남', '컴퓨터', 99);
 insert into TBL_STUDENT(SNO, SNAME, SYEAR, GENDER, MAJOR, SCORE)
-values(20201003, '정학생', 2, '남', '전자', 80);
+values('18-12347', '김이름', 2, '남', '컴퓨터', 12);
 insert into TBL_STUDENT(SNO, SNAME, SYEAR, GENDER, MAJOR, SCORE)
-values(20201004, '김학생', 2, '여', '물리', 23);
+values('19-54321', '테스터', 1, '남', '컴퓨터', 77);
 
 commit;
 
@@ -30,5 +30,5 @@ select * from TBL_STUDENT where SNAME='김학생' order by sno;
 
 
 update TBL_STUDENT
-set GENDER = '남'
-where SNO = '20201001';
+set SCORE = 95
+where SNO = '18-12345';
