@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 각각의 아이템에 다이얼로그를 띄우기 위해 리스너을 추가한다.
         listView.setOnItemClickListener(this);
 
+        toast = Toast.makeText(this.getApplicationContext(), "", Toast.LENGTH_SHORT);
+
         // 알림 메세지 설정
         msg = new AlertDialog.Builder(MainActivity.this);
         msg.setTitle("알림");
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 listView.setAdapter(new MyListAdater(MainActivity.this, R.layout.cell_view, voList));
                 listView.setOnItemClickListener(MainActivity.this);
+                toast.setText("검색완료");
+                toast.show();
                 break;
             // ===================================================
             // 등록 -> "새로운 학생 추가하기" 버튼 -> 학생 등록 다이얼로그
@@ -313,6 +317,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
+                // *삭제하기*
+                Button deleteButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String sno = mSno.getText().toString();
+                        toast.setText(sno);
+                        toast.show();
+                        boolean check = !(dao.checkSNO(sno));
+                        if(check){
+                            boolean delResult = dao.deleteStudent(sno);
+                            if(delResult){
+                                msg.setMessage("삭제 되었습니다.");
+                                msg.show();
+                                // 리스트 다시 그리기
+                                voList = dao.selectAll();
+                                listView.setAdapter(new MyListAdater(MainActivity.this, R.layout.cell_view, voList));
+                                listView.setOnItemClickListener(MainActivity.this);
+                                // 다이얼로그 창 닫기
+                                dialog.dismiss();
+                            } else {
+                                msg.setMessage("삭제 실패했습니다.");
+                                msg.show();
+                            }
+                        } else {
+                            msg.setMessage("유효하지 않은 학번입니다.");
+                            msg.show();
+                        }
+                    }
+                });
             }
         });
         dialog.show();
@@ -324,92 +358,126 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean valueCheck(String sno, String sname, String syear,
                                String gender, String major, String score) {
 
-        String snoError = "1. 학번은 공백을 허용하지 않음\n" + "2. 학번은 8자리 입력해야함\n" + "3. 학번은 중복값을 허용하지 않음";
-        String snameError = "1. 이름은 공백을 허용하지 않음\n" + "2. 이름은 3자리까지 입력가능함.";
-        String syearError = "1. 학년은 공백을 허용하지 않음\n" + "2. 학년은 문자를 입력 할 수 없음\n" + "3. 학년은 1부터4까지의 숫자를 입력할수있음";
-        String genderError = "1. 성별은 꼭 선택해야함";
-        String majorError = "1. 전공은 공백을 허용하지 않음\n" + "2. 전공을 3자리까지 입력가능함";
-        String scoreError = "1. 점수는 공백을 허용하지 않음\n" + "2. 점수는 문자를 입력 할 수 없음\n" + "3. 점수는 0부터 100까지의 수를 입력 할 수 있음";
+        String snoMsg = "1. 학번은 공백을 허용하지 않음\n" + "2. 학번은 8자리 입력해야함\n" + "3. 학번은 중복값을 허용하지 않음";
+        String snameMsg = "1. 이름은 공백을 허용하지 않음\n" + "2. 이름은 3자리까지 입력가능함.";
+        String syearMsg = "1. 학년은 공백을 허용하지 않음\n" + "2. 학년은 문자를 입력 할 수 없음\n" + "3. 학년은 1부터4까지의 숫자를 입력할수있음";
+        String genderMsg = "1. 성별은 꼭 선택해야함";
+        String majorMsg = "1. 전공은 공백을 허용하지 않음\n" + "2. 전공을 3자리까지 입력가능함";
+        String scoreMsg = "1. 점수는 공백을 허용하지 않음\n" + "2. 점수는 문자를 입력 할 수 없음\n" + "3. 점수는 0부터 100까지의 수를 입력 할 수 있음";
 
         // *학번 값 체크*
         if (sno != null) {
-            msg.setMessage(snoError);
+            msg.setMessage(snoMsg);
             if (sno.trim().equals("")) {
+                toast.setText("학번을 입력해주세요");
+                toast.show();
                 msg.show();
                 return false;
-            } else if (sno.trim().length() != sno.length()) {
+            } else if (sno.replace(" ","").length() != sno.length()) {
+                toast.setText("학번에 공백은 넣을 수 없습니다.");
+                toast.show();
                 msg.show();
                 return false;
             } else if (sno.length() != 8) {
+                toast.setText("학번은 8자리입니다.");
+                toast.show();
                 msg.show();
                 return false;
             } else if (!(dao.checkSNO(sno))) {
+                toast.setText("사용중인 학번입니다.");
+                toast.show();
                 msg.show();
                 return false;
             }
         }
 
         // *이름 값 체크*
-        msg.setMessage(snameError);
+        msg.setMessage(snameMsg);
         if (sname.trim().equals("")) {
+            toast.setText("이름을 입력해주세요.");
+            toast.show();
             msg.show();
             return false;
-        } else if (sname.trim().length() != sname.length()) {
+        } else if (sname.replace(" ","").length() != sname.length()) {
+            toast.setText("이름에 공백은 넣을 수 없습니다.");
+            toast.show();
             msg.show();
             return false;
         } else if (!(sname.length() <= 3)) { // 이름은 세자리까지 허용됨
+            toast.setText("이름은 최대 3글자입니다.");
+            toast.show();
             msg.show();
             return false;
         }
 
         // *학년 값 체크*
-        msg.setMessage(syearError);
+        msg.setMessage(syearMsg);
         try {
             int intYear = Integer.parseInt(syear);
             if (!(intYear >= 1 && intYear <= 4)) {
+                toast.setText("학년은 1~4로 입력해주세요.");
+                toast.show();
                 msg.show();
                 return false;
             }
         } catch (Exception e) {
+            toast.setText("학년은 숫자로 입력해주세요.");
+            toast.show();
             msg.show();
             return false;
         }
 
         // *성별값 체크*
-        msg.setMessage(genderError);
+        msg.setMessage(genderMsg);
         if (gender.trim().equals("")) {
+            toast.setText("성별을 선택해주세요.");
+            toast.show();
             msg.show();
             return false;
-        } else if (gender.trim().length() != gender.length()) {
+        } else if (gender.replace(" ","").length() != gender.length()) {
+            toast.setText("성별을 선택해주세요.");
+            toast.show();
             msg.show();
             return false;
         } else if (!(gender.equals("남") || gender.equals("여"))) {
+            toast.setText("성별을 선택해주세요.");
+            toast.show();
             msg.show();
             return false;
         }
 
         // *전공 값 체크*
-        msg.setMessage(majorError);
+        msg.setMessage(majorMsg);
         if (major.trim().equals("")) {
+            toast.setText("전공을 입력해주세요.");
+            toast.show();
             msg.show();
             return false;
-        } else if (major.trim().length() != major.length()) {
+        } else if (major.replace(" ","").length() != major.length()) {
+            toast.setText("전공에 공백은 넣을수 없습니다.");
+            toast.show();
             msg.show();
             return false;
         } else if (!(major.length() <= 3)) {
+            toast.setText("전공은 최대 세글자 입니다.");
+            toast.show();
             msg.show();
             return false;
         }
 
         // *점수 값 체크*
-        msg.setMessage(scoreError);
+        msg.setMessage(scoreMsg);
         try {
             int intScore = Integer.parseInt(score);
             if (intScore < 0 || intScore > 100) {
+                toast.setText("점수는 0~100까지의 수를 입력해주세요.");
+                toast.show();
                 msg.show();
                 return false;
             }
         } catch (Exception e) {
+            toast.setText("숫자만 입력해주세요.");
+            toast.show();
             msg.show();
             return false;
         }

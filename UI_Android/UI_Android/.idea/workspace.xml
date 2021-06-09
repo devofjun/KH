@@ -35,14 +35,9 @@
     <list default="true" id="c81bab6d-0971-4a94-823b-393c33114728" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MyListAdaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ui_android/MyListAdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/WebContent/regist_form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/WebContent/regist_form.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/WebContent/studentInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/WebContent/studentInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/src/com/kh/db/UIDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/src/com/kh/db/UIDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/src/com/kh/servlet/ListSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_JSP/UI_JSP/src/com/kh/servlet/ListSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dialog_regist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_regist.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/ModifyFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/ModifyFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/RegistFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/RegistFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/UIMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../UI_Swing/UI_Swing/src/uiswing/UIMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sql/UI_JSP.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../sql/UI_JSP.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,22 +186,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="944" y="283" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622909700931" />
-    <state width="1877" height="246" key="GridCell.Tab.0.bottom" timestamp="1623168336968">
+    <state width="1877" height="113" key="GridCell.Tab.0.bottom" timestamp="1623259490575">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="246" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623168336968" />
-    <state width="1877" height="246" key="GridCell.Tab.0.center" timestamp="1623168336968">
+    <state width="1877" height="113" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623259490575" />
+    <state width="1877" height="113" key="GridCell.Tab.0.center" timestamp="1623259490575">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="246" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623168336968" />
-    <state width="1877" height="246" key="GridCell.Tab.0.left" timestamp="1623168336967">
+    <state width="1877" height="113" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623259490575" />
+    <state width="1877" height="113" key="GridCell.Tab.0.left" timestamp="1623259490574">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="246" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623168336967" />
-    <state width="1877" height="246" key="GridCell.Tab.0.right" timestamp="1623168336968">
+    <state width="1877" height="113" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623259490574" />
+    <state width="1877" height="113" key="GridCell.Tab.0.right" timestamp="1623259490575">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="246" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623168336968" />
+    <state width="1877" height="113" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623259490575" />
     <state x="1924" y="202" width="1224" height="839" key="dock-window-1" timestamp="1622955818427">
       <screen x="1920" y="0" width="1680" height="1050" />
     </state>
@@ -215,9 +210,9 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="820" y="246" key="run.anything.popup/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623159826019" />
-    <state x="827" y="234" width="672" height="678" key="search.everywhere.popup" timestamp="1622955530785">
+    <state x="827" y="234" width="672" height="678" key="search.everywhere.popup" timestamp="1623260195873">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="827" y="234" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1622955530785" />
+    <state x="827" y="234" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/1920.0.1680.1050@0.0.1920.1050" timestamp="1623260195873" />
   </component>
 </project>

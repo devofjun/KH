@@ -171,16 +171,17 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
         <CheckBox
             android:id="@+id/cbxRemove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="입력지우기"/>
+            android:text="입력비우기"/>
         <Button
             android:id="@+id/rBtnContinue"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="등록 계속하기"/>
+            android:text="등록 계속"/>
     </LinearLayout>
 </LinearLayout>
