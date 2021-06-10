@@ -36,30 +36,32 @@ public class CheckValues extends HttpServlet {
 		//System.out.println(sno + sname + syear + man + woman + major + score);
 		PrintWriter out = response.getWriter();
 
+		/*
 		String snoError = "1. 학번은 공백을 허용하지 않음\n" + "2. 학번은 8자리 입력해야함\n" + "3. '학번체크'버튼으로 유효성을 확인해야함";
 		String snameError = "1. 이름은 공백을 허용하지 않음\n" + "2. 이름은 3자리까지 입력가능함.";
 		String syearError = "1. 학년은 공백을 허용하지 않음\n" + "2. 학년은 문자를 입력 할 수 없음\n" + "3. 학년은 1부터4까지의 숫자를 입력할수있음";
 		String genderError = "1. 성별은 꼭 선택해야함";
 		String majorError = "1. 전공은 공백을 허용하지 않음\n" + "2. 전공을 3자리까지 입력가능함";
 		String scoreError = "1. 점수는 공백을 허용하지 않음\n" + "2. 점수는 문자를 입력 할 수 없음\n" + "3. 점수는 0부터 100까지의 수를 입력 할 수 있음";
+		*/
 
 		// 학번 체크
 		if (sno != null) {
 			if (sno.trim().equals("")) {
-				result = snoError;
+				result = "학번을 입력해주세요.";
 				out.print(result);
 				return;
 			} else if (sno.replace(" ", "").length() != sno.length()) {
-				result = snoError;
+				result = "학번은 공백을 허용하지 않음";
 				out.print(result);
 				return;
 			} else if (sno.length() != 8) {
-				result = snoError;
+				result = "학번은 8자리 입력해야함";
 				out.print(result);
 				return;
 			} else {
 				if (!(dao.checkSNO(sno))) {
-					result = snoError;
+					result = "이미 사용중인 학번";
 					out.print(result);
 					return;
 				}
@@ -68,38 +70,38 @@ public class CheckValues extends HttpServlet {
 
 		// 이름 체크
 		if (sname.trim().equals("")) {
-			result = snameError;
+			result = "이름을 입력해주세요.";
 			out.print(result);
 			return;
 		} else if (sname.replace(" ", "").length() != sname.length()) {
-			result = snameError;
+			result = "이름은 공백을 허용하지 않음";
 			out.print(result);
 			return;
 		} else if (!(sname.length() >= 1 && sname.length() <= 3)) {
-			result = snameError;
+			result = "이름은 세글자까지 입력가능함";
 			out.print(result);
 			return;
 		}
 
 		// 학년 체크
 		if (syear.trim().equals("")) {
-			result = syearError;
+			result = "학년을 입력해주세요.";
 			out.print(result);
 			return;
 		} else if (syear.replace(" ", "").length() != syear.length()) {
-			result = syearError;
+			result = "학년은 공백을 허용하지 않음";
 			out.print(result);
 			return;
 		} else {
 			try {
 				int intSyear = Integer.parseInt(syear);
 				if (!(intSyear >= 1 && intSyear <= 4)) {
-					result = syearError;
+					result = "학년은 1~4까지의 수를 입력 할 수 있습니다.";
 					out.print(result);
 					return;
 				}
 			} catch (Exception e) {
-				result = syearError;
+				result = "학년은 숫자를 입력해야함";
 				out.print(result);
 				return;
 			}
@@ -107,45 +109,45 @@ public class CheckValues extends HttpServlet {
 
 		// 성별 체크
 		if (man.equals("false") && woman.equals("false")) {
-			result = genderError;
+			result = "성별을 선택해주세요.";
 			out.print(result);
 			return;
 		}
 
 		// 전공 체크
 		if (major.trim().equals("")) {
-			result = majorError;
+			result = "전공을 입력해주세요.";
 			out.print(result);
 			return;
 		} else if (major.replace(" ", "").length() != major.length()) {
-			result = majorError;
+			result = "전공은 공백을 허용하지 않습니다.";
 			out.print(result);
 			return;
 		} else if (!(major.length() >= 1 && major.length() <= 3)) {
-			result = majorError;
+			result = "전공은 세글자까지 입력 가능함.";
 			out.print(result);
 			return;
 		}
 
 		// 점수 체크
 		if (score.trim().equals("")) {
-			result = scoreError;
+			result = "점수를 입력해주세요.";
 			out.print(result);
 			return;
 		} else if (score.replace(" ", "").length() != score.length()) {
-			result = scoreError;
+			result = "점수는 공백을 허용하지 않습니다.";
 			out.print(result);
 			return;
 		} else {
 			try {
 				int intScore = Integer.parseInt(score);
 				if (!(intScore >= 0 && intScore <= 100)) {
-					result = scoreError;
+					result = "점수는 0~100까지의 수만 입력 가능합니다.";
 					out.print(result);
 					return;
 				}
 			} catch (Exception e) {
-				result = scoreError;
+				result = "점수는 숫자만 입력 할 수 있습니다.";
 				out.print(result);
 				return;
 			}

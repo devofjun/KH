@@ -8,6 +8,7 @@
 <%
 	UIDao dao = UIDao.getInstance();
 	ArrayList<UIVo> voList = dao.getSelectAll();
+	//dao.testData();
 %>
 <%@ include file="include/header.jsp"%>
 <title>학생 정보</title>

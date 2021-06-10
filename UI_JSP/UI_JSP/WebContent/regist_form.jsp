@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="include/header.jsp"%>
-<title>Insert title here</title>
+<title>학생 등록</title>
 
 <script>
 	$(function() {
@@ -76,8 +76,8 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="jumbotron">
-				<h2>학생 상세 정보</h2>
-				<p>학생 정보 상세보기입니다.</p>
+				<h2>학생 등록</h2>
+				<p>학생 등록 페이지입니다.</p>
 				<a class="btn btn-primary" href="index.jsp">전체보기</a>
 			</div>
 		</div>

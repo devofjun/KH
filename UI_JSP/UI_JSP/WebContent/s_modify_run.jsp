@@ -29,7 +29,7 @@
 	}
 %>
 <%@ include file="include/header.jsp"%>
-<title>Insert title here</title>
+<title>수정처리 결과</title>
 <%@ include file="include/bodystarter.jsp"%>
 <div class="row">
 	<div class="col-md-12">
