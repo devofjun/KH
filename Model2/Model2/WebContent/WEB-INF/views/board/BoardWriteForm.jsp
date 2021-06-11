@@ -26,24 +26,19 @@
 				<form role="form" action="/BoardWriteRun.do" method="post">
 					<div class="form-group">
 
-						<label for="exampleInputEmail1"> Email address </label> <input
-							type="email" class="form-control" id="exampleInputEmail1" />
+						<label for="b_title">글제목</label> <input
+							type="text" class="form-control" id="b_title" name="b_title"/>
 					</div>
 					<div class="form-group">
 
-						<label for="exampleInputPassword1"> Password </label> <input
-							type="password" class="form-control" id="exampleInputPassword1" />
+						<label for="b_content">글제목</label> <input
+							type="text" class="form-control" id="b_content" name="b_content"/>
 					</div>
+					
 					<div class="form-group">
 
-						<label for="exampleInputFile"> File input </label> <input
-							type="file" class="form-control-file" id="exampleInputFile" />
-						<p class="help-block">Example block-level help text here.</p>
-					</div>
-					<div class="checkbox">
-
-						<label> <input type="checkbox" /> Check me out
-						</label>
+						<label for="m_id">작성자</label> <input
+							type="text" class="form-control" id="m_id" name="m_id"/>
 					</div>
 					<button type="submit" class="btn btn-primary">작성완료</button>
 				</form>

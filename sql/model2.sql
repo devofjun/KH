@@ -27,5 +27,6 @@ create table tbl_board(
     b_filepath varchar2(200)
 );
 
-insert into tbl_board values(seq_bno.nextval, '力格1', '郴侩1', sysdate, 'hong', 0,0,0,0,'smile.png');
+insert into tbl_board values(seq_bno.nextval, '力格2', '郴侩2', sysdate, 'hong', 0,0,0,0,'smile.png');
+
 commit;

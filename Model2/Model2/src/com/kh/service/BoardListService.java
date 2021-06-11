@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.dao.BoardDao;
 import com.kh.vo.BoardVo;
 
-public class BoardService {
+public class BoardListService implements IService{
 	private BoardDao boardDao = BoardDao.getInstance();
 	
-	public List<BoardVo> execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<BoardVo> list = boardDao.getBoardList();
-		return list;
+		request.setAttribute("list", list);
+		return "board/BoardList";
 	}
 	
 }

@@ -30,7 +30,7 @@ public class BoardDao {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-			System.out.println("conn: " + conn);
+			//System.out.println("conn: " + conn);
 			return conn;
 		} catch (Exception e) {
 			e.printStackTrace();
