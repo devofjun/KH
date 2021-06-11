@@ -46,6 +46,7 @@ public class BoardController extends HttpServlet {
 		System.out.println(page);
 		if(page.startsWith(IService.REDIRECT)) {
 			String rPage = page.substring(IService.REDIRECT.length());
+			System.out.println("rPage:"+rPage);
 			response.sendRedirect(rPage);
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(PREFIX + page + SUFFiX);
