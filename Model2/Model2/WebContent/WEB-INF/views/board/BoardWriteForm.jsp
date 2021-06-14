@@ -23,7 +23,9 @@
 					<h2>글쓰기폼</h2>
 
 				</div>
-				<form role="form" action="/BoardWriteRun.do" method="post">
+				<!-- multipart/form-data : 폼의 데이터를 텍스트가 아닌 바이너리로 보낸다. -->
+				<form role="form" action="/BoardWriteRun.do" method="post"
+					enctype="multipart/form-data">
 					<div class="form-group">
 
 						<label for="b_title">글제목</label> <input type="text"

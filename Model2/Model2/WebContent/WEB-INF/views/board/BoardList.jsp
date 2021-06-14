@@ -36,6 +36,7 @@
 		}
 	});
 </script>	
+
 	
 <title>게시판 목록</title>
 </head>
@@ -83,11 +84,11 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 			</div>
 		</div>
 	</div>
-
-</body>
-</html>
 <%
+	// JSP의 session -> java, 내장객체
 	// 한번만 필요한 세션정보는 출력된 뒤에 지워주면 된다.
 	session.removeAttribute("resultWrite");
 	session.removeAttribute("resultDelete");
 %>
+</body>
+</html>
