@@ -3,6 +3,7 @@ package com.kh.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +30,11 @@ public class YourServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("YourServlet, doGet()...");
-		PrintWriter out = response.getWriter();
-		out.println("Hello");
+		//PrintWriter out = response.getWriter();
+		//out.println("Hello");
+		request.setAttribute("yourData", "Your Name");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/YourServlet.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**

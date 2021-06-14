@@ -27,7 +27,8 @@ public class MyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MyServlet, doGet()...");
-
+		request.setAttribute("myData", "My Name");
+		
 		// 리다이렉트
 		response.sendRedirect("/YourServlet"); // 브라우저한테 YourServlet으로 재요청 지시
 		
