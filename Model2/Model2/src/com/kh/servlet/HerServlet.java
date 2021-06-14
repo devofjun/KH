@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class HerServlet
@@ -31,7 +32,11 @@ public class HerServlet extends HttpServlet {
 		System.out.println("HerServlet, doGet()...");
 		String user_id = request.getParameter("user_id");
 		PrintWriter out = response.getWriter();
+		String hisData = (String)request.getAttribute("hisData");
 		out.println("Hi~~"+user_id);
+		out.println("hisData:"+hisData);
+		HttpSession session = request.getSession();
+		out.println("sessionData:" + (String)session.getAttribute("sessionData"));
 	}
 
 	/**

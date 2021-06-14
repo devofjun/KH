@@ -32,6 +32,7 @@ public class YourServlet extends HttpServlet {
 		System.out.println("YourServlet, doGet()...");
 		//PrintWriter out = response.getWriter();
 		//out.println("Hello");
+		// request는 forward 할 때는 유지됨.
 		request.setAttribute("yourData", "Your Name");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/YourServlet.jsp");
 		dispatcher.forward(request, response);

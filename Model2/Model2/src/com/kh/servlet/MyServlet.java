@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MyServlet
@@ -27,7 +28,12 @@ public class MyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MyServlet, doGet()...");
+		// request는 리다이렉트를 하게 되면 사라진다. => 요청당 처리됨
 		request.setAttribute("myData", "My Name");
+		
+		// 접속(브라우저)당 처리됨.
+		HttpSession session = request.getSession();
+		session.setAttribute("sessionData", "Session Name");
 		
 		// 리다이렉트
 		response.sendRedirect("/YourServlet"); // 브라우저한테 YourServlet으로 재요청 지시

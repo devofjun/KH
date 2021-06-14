@@ -2,6 +2,7 @@ package com.kh.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.dao.BoardDao;
 import com.kh.vo.BoardVo;
@@ -25,6 +26,9 @@ public class BoardModifyRunService implements IService {
 		boardVo.setB_content(b_content);
 		boardVo.setM_id(m_id);
 		boolean result = boardDao.updateArticle(boardVo);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("resultModify", result);
 		return IService.REDIRECT + "/BoardContent.do?b_no=" + b_no;
 	}
 

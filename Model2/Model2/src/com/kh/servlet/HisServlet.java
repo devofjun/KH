@@ -30,6 +30,8 @@ public class HisServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("HisServlet, doGet()...");
 		
+		request.setAttribute("hisData", "His Name");
+		
 		// 포워드
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/HerServlet"); // 요청을 돌려주기
 		dispatcher.forward(request, response); // 요청과 응답을 주기

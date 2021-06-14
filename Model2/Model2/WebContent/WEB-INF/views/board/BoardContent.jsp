@@ -15,6 +15,14 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
+		var resultModify = "${sessionScope.resultModify}";
+		if(resultModify == "true"){
+			alert("수정성공");
+		} else if(resultModify == "false"){
+			alert("수정실패");
+		}
+		
+		
 		$("#btnDelete").click(function() {
 			/*
 			var conf = confirm("삭제하시겠습니까?");
@@ -103,7 +111,7 @@
 							<th>조회수</th>
 							<td>${boardVo.b_readcount}</td>
 						<tr>
-						<tr>
+						<tr>	
 							<th>첨부파일</th>
 							<td>${boardVo.b_filepath}</td>
 						</tr>
@@ -112,5 +120,8 @@
 			</div>
 		</div>
 	</div>
+<% 
+	session.removeAttribute("resultModify");
+%>
 </body>
 </html>

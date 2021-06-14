@@ -18,6 +18,25 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+<script>
+	$(document).ready(function() {
+		var resultWrite = "${sessionScope.resultWrite}"; // 스크립트 안에서는 "" 를 붙여줘야한다.
+		if(resultWrite == "true"){
+			alert("글 등록 성공");
+		} else if(resultWrite == "false") {
+			alert("글 등록 실패");
+		}
+		
+		var resultDelete = "${sessionScope.resultDelete}";
+		if(resultDelete == "true"){
+			alert("글 삭제 성공");
+		} else if(resultDelete == "false"){
+			alert("글 삭제 실패");
+		}
+	});
+</script>	
+	
 <title>게시판 목록</title>
 </head>
 <body>
@@ -64,5 +83,11 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
+<%
+	// 한번만 필요한 세션정보는 출력된 뒤에 지워주면 된다.
+	session.removeAttribute("resultWrite");
+	session.removeAttribute("resultDelete");
+%>
