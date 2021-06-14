@@ -22,7 +22,7 @@ public class BoardWriteRunService implements IService{
 		// -> form에서 바이너리 데이터로 넘어온 경우에는 request 처리할 수 없다.
 		String uploadPath = request.getServletContext().getRealPath("upload"); // 프로젝트의 로컬에서의 실제 경로
 		System.out.println(uploadPath); // 톰캣의 자원을 이클립스에서 가져와서 쓰기 때문에 경로가 길 수 있다.
-		File f = new File(uploadPath);
+		File f = new File(uploadPath); // 파일 생성하기 위한 파일객체
 		if(!f.exists()) { // 존재하지 않다면
 			f.mkdir();
 		}
