@@ -2,8 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -12,8 +12,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
@@ -21,14 +21,14 @@
 <title>게시판 목록</title>
 </head>
 <body>
-<!-- EL : Expression Language -->
-<!-- 아래로 갈수록 범위가 커짐
+	<!-- EL : Expression Language -->
+	<!-- 아래로 갈수록 범위가 커짐
 pageContext - 페이지 범위
 requestScope - 요청 범위
 sessionScope - 세션 범위(로그인)
 applicationScope - 컨텍스트(Model2) 범위 -->
-<!-- ${requestScope.list} request범위에서 list찾기 -->
-<!-- ${list} 모든 범위에서 list찾기-->
+	<!-- ${requestScope.list} request범위에서 list찾기 -->
+	<!-- ${list} 모든 범위에서 list찾기-->
 
 	<div class="container-fluid">
 		<div class="row">
@@ -50,15 +50,15 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						</tr>
 					</thead>
 					<tbody>
-					<c:forEach var="vo" items="${list}">
-						<tr>
-							<td>${vo.b_no}</td>
-							<td>${vo.b_title}</td>
-							<td>${vo.m_id}</td>
-							<td>${vo.b_date}</td>
-							<td>${vo.b_readcount}</td>
-						</tr>
-					</c:forEach>
+						<c:forEach var="vo" items="${list}">
+							<tr>
+								<td>${vo.b_no}</td>
+								<td><a href="BoardContent.do?b_no=${vo.b_no}">${vo.b_title}</a></td>
+								<td>${vo.m_id}</td>
+								<td>${vo.b_date}</td>
+								<td>${vo.b_readcount}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
