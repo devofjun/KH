@@ -1,3 +1,7 @@
+create user model2 identified by 1234;
+grant connect, resource to model2;
+
+
 -- 글번호(PK) - b_no
 -- 글제목 - b_title
 -- 글내용 - b_content
