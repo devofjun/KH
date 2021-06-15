@@ -9,6 +9,13 @@ $(document).ready(function() {
 	} else if(resultWrite == "false") {
 		alert("글 작성 실패");
 	}
+	
+	var resultDelete = "${sessionScope.resultDelete}";
+	if(resultDelete == "true"){
+		alert("글 삭제 성공");
+	} else if(resultDelete == "false"){
+		alert("글 삭제 실패");
+	}
 });
 </script>
 <title>게시글 목록</title>
@@ -56,4 +63,5 @@ $(document).ready(function() {
 <%@ include file="/include/footer.jsp"%>
 <%
 	session.removeAttribute("resultWrite");
+	session.removeAttribute("resultDelete");
 %>

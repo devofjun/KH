@@ -149,4 +149,23 @@ public class BoardDao {
 
 		return vo;
 	}
+	
+	// 글 삭제
+	public boolean deleteArticle(int b_no) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "delete from tbl_board where b_no="+b_no;
+			pstmt = conn.prepareStatement(sql);
+			int count = pstmt.executeUpdate();
+			if(count>0) {
+				return true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		return false;
+	}
 }

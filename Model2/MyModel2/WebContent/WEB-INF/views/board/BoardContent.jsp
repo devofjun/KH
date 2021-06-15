@@ -1,9 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/include/header.jsp"%>
+<script>
+	$(document).ready(function() {
+		$("#btnDelete").click(function() {
+			$("#mymodal").trigger("click");
+		});
+		$("#modalYes").click(function() {
+			location.href = "BoardDeleteRun.do?b_no=${vo.b_no}";
+		});
+	});
+</script>
 <title>게시글</title>
 <%@ include file="/include/center.jsp"%>
 <div class="container-fluid">
+	<!-- 글 삭제 모달 -->
+	<div class="row">
+		<div class="col-md-12">
+			<a id="mymodal" href="#modal-container-983206" role="button"
+				class="btn" data-toggle="modal">Launch demo modal</a>
+
+			<div class="modal fade" id="modal-container-983206" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="myModalLabel">삭제 확인</h5>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">정말 삭제하시겠습니까?</div>
+						<div class="modal-footer">
+
+							<button type="button" class="btn btn-primary" id="modalYes">네</button>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">아니오</button>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- 글 삭제 모달 끝 -->
 	<div class="row">
 		<div class="col-md-12">
 			<div class="jumbotron">
@@ -38,7 +80,7 @@
 					<p>${vo.b_content}</p>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 </div>
