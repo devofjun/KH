@@ -64,7 +64,9 @@ public class BoardDao {
 		ResultSet rs = null;
 		List<BoardVo> list = new ArrayList<>();
 		try {
-			String sql = "select * from tbl_board" + "		order by b_date desc";
+			// 그룹번호로 정렬 + 그룹번호가 같다면 시퀀스(re_seq) 값으로 정렬
+			String sql = "select * from tbl_board"
+			+ "				order by re_group desc, re_seq asc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -117,11 +119,21 @@ public class BoardDao {
 		BoardVo boardVo = null;
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		
 		String sql = "select * from tbl_board" + "   where b_no = ?";
+		
+		String sql2 = "update tbl_board set"
+				+ "		b_readcount = b_readcount+1"
+				+ "		where b_no =?";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, b_no);
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setInt(1, b_no);
+			pstmt2.executeUpdate();
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				String b_title = rs.getString("b_title");
@@ -139,6 +151,7 @@ public class BoardDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			closeAll(null, pstmt2, null);
 			closeAll(rs, pstmt, conn);
 		}
 		return boardVo;
@@ -193,4 +206,6 @@ public class BoardDao {
 		}
 		return false;
 	}
+	
+	
 }

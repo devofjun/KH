@@ -17,6 +17,7 @@ import com.kh.service.BoardDeleteRunService;
 import com.kh.service.BoardListService;
 import com.kh.service.BoardModifyFormService;
 import com.kh.service.BoardModifyRunService;
+import com.kh.service.BoardReplyFormService;
 import com.kh.service.BoardWriteFormService;
 import com.kh.service.BoardWriteRunService;
 import com.kh.service.IService;
@@ -46,6 +47,7 @@ public class BoardController extends HttpServlet {
     	commandMap.put("BoardModifyForm", new BoardModifyFormService());
     	commandMap.put("BoardDeleteRun", new BoardDeleteRunService());
     	commandMap.put("BoardModifyRun", new BoardModifyRunService());
+    	commandMap.put("BoardReplyForm", new BoardReplyFormService());
     	System.out.println(commandMap);
     }
     

@@ -37,11 +37,23 @@
 		$("#modalYes").click(function() {
 			location.href = "BoardDeleteRun.do?b_no=${boardVo.b_no}";
 		});
+		
+		// 답글버튼
+		$("#btnReply").click(function() {
+			//location = "/BoardReplyForm.do?re_group=${boardVo.re_group}&re_seq=${boardVo.re_seq}&re_level=${boardVo.re_level}";
+			$("#frmReply").submit();
+		});
 	});
 </script>
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 답글에 필요한 정보를 넘겨주기 위한 폼 -->
+<form id="frmReply" action="/BoardReplyForm.do" method="get">
+	<input type="hidden" name="re_group" value="${boardVo.re_group}"/>
+	<input type="hidden" name="re_seq" value="${boardVo.re_seq}"/>
+	<input type="hidden" name="re_level" value="${boardVo.re_level}"/>
+</form>
 	<div class="container-fluid">
 		<!-- 모달 -->
 		<div class="row">
@@ -85,6 +97,8 @@
 							href="BoardModifyForm.do?b_no=${boardVo.b_no}">수정</a>
 						<button id="btnDelete" type="button" class="btn btn-danger">삭제</button>
 						<a class="btn btn-success" href="BoardList.do">목록</a>
+						<button type="button" class="btn btn_primary"
+							id="btnReply">답글</button>
 					</p>
 				</div>
 				<table class="table">
