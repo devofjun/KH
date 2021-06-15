@@ -80,11 +80,8 @@
 									data-dismiss="modal">아니오</button>
 							</div>
 						</div>
-
 					</div>
-
 				</div>
-
 			</div>
 		</div>
 		<!-- 모달 끝 -->
