@@ -3,3 +3,7 @@
 <%
 	response.sendRedirect("BoardList.do");
 %>
+<%@ include file="/include/header.jsp"%>
+<title></title>
+<%@ include file="/include/center.jsp"%>
+<%@ include file="/include/footer.jsp"%>

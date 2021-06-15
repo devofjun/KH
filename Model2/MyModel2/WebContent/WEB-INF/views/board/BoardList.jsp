@@ -40,7 +40,7 @@ $(document).ready(function() {
 							<td><c:if test="${not empty vo.b_filepath }">
 									<img src="/upload/${vo.b_filepath}" height=30 />
 								</c:if></td>
-							<td><a href=""> <c:if test="${vo.re_level > 0}">ㄴ</c:if>
+							<td><a href="/BoardContent.do?b_no=${vo.b_no}"> <c:if test="${vo.re_level > 0}">ㄴ</c:if>
 									${vo.b_title}
 							</a></td>
 							<td>${vo.m_id}</td>

@@ -18,6 +18,7 @@ public class BoardWriteRunService implements IBoardService {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String uploadPath = request.getServletContext().getRealPath("upload");
+		System.out.println(uploadPath);
 		File f = new File(uploadPath);
 		if(!f.exists()) {
 			f.mkdir();

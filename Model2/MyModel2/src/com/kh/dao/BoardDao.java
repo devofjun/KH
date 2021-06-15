@@ -41,7 +41,7 @@ public class BoardDao {
 		}
 		return null;
 	}
-	
+
 	// 연결 해제 메소드
 	private void closeAll(ResultSet rs, PreparedStatement pstmt, Connection conn) {
 		if (rs != null) {
@@ -66,7 +66,7 @@ public class BoardDao {
 			}
 		}
 	}
-	
+
 	// 목록 가져오기
 	public List<BoardVo> getBoardList() {
 		Connection conn = getConnection();
@@ -74,11 +74,10 @@ public class BoardDao {
 		ResultSet rs = null;
 		List<BoardVo> list = new ArrayList<>();
 		try {
-			String sql = "select * from tbl_board"
-					+ "		order by re_group desc, re_seq asc";
+			String sql = "select * from tbl_board" + "		order by re_group desc, re_seq asc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				int b_no = rs.getInt("b_no");
 				String b_filepath = rs.getString("b_filepath");
 				String b_title = rs.getString("b_title");
@@ -86,7 +85,7 @@ public class BoardDao {
 				Timestamp b_date = rs.getTimestamp("b_date");
 				int b_readcount = rs.getInt("b_readcount");
 				int re_level = rs.getInt("re_level");
-				
+
 				BoardVo vo = new BoardVo(b_no, b_title, null, b_date, m_id, b_readcount, 0, 0, re_level, b_filepath);
 				list.add(vo);
 			}
@@ -97,7 +96,7 @@ public class BoardDao {
 		}
 		return list;
 	}
-	
+
 	// 글작성하기
 	public boolean insertArticle(BoardVo vo) {
 		Connection conn = getConnection();
@@ -112,11 +111,42 @@ public class BoardDao {
 			pstmt.setString(4, vo.getB_filepath());
 			pstmt.executeUpdate();
 			return true;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeAll(null, pstmt, conn);
 		}
 		return false;
+	}
+
+	// 글보기
+	public BoardVo selectByBno(int b_no) {
+		BoardVo vo = null;
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "select * from tbl_board"
+					+ "		where b_no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, b_no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String b_title = rs.getString("b_title");
+				String b_content = rs.getString("b_content");
+				Timestamp b_date = rs.getTimestamp("b_date");
+				String m_id = rs.getString("m_id");
+				int b_readcount = rs.getInt("b_readcount");
+				String b_filepath = rs.getString("b_filepath");
+				vo = new BoardVo(b_no, b_title, b_content, b_date, m_id, b_readcount, 0, 0, 0, b_filepath);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+
+		return vo;
 	}
 }

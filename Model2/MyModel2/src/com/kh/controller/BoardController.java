@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.service.BoardContentService;
 import com.kh.service.BoardListService;
 import com.kh.service.BoardWriteFormService;
 import com.kh.service.BoardWriteRunService;
@@ -36,6 +37,7 @@ public class BoardController extends HttpServlet {
 		commandMap.put("BoardList", new BoardListService());
 		commandMap.put("BoardWriteForm", new BoardWriteFormService());
 		commandMap.put("BoardWriteRun", new BoardWriteRunService());
+		commandMap.put("BoardContent", new BoardContentService());
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
