@@ -63,6 +63,7 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 					<thead>
 						<tr>
 							<th>글번호</th>
+							<th>이미지</th>
 							<th>글제목</th>
 							<th>작성자</th>
 							<th>작성일</th>
@@ -73,6 +74,7 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						<c:forEach var="vo" items="${list}">
 							<tr>
 								<td>${vo.b_no}</td>
+								<td><img src="/upload/${vo.b_filepath}" height="50"/></td>
 								<td><a href="BoardContent.do?b_no=${vo.b_no}">${vo.b_title}</a></td>
 								<td>${vo.m_id}</td>
 								<td>${vo.b_date}</td>

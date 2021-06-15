@@ -42,6 +42,12 @@
 						<label for="m_id">작성자</label> <input type="text"
 							class="form-control" id="m_id" name="m_id" />
 					</div>
+					
+					<div class="form-group">
+
+						<label for="b_filepath">첨부파일</label> <input type="file"
+							class="form-control" id="b_filepath" name="b_filepath" />
+					</div>
 					<button type="submit" class="btn btn-primary">작성완료</button>
 				</form>
 			</div>

@@ -113,7 +113,7 @@
 						<tr>
 						<tr>	
 							<th>첨부파일</th>
-							<td>${boardVo.b_filepath}</td>
+							<td><img src="/upload/${boardVo.b_filepath}"/></td>
 						</tr>
 					</tbody>
 				</table>

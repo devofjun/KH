@@ -73,8 +73,9 @@ public class BoardDao {
 				String m_id = rs.getString("m_id");
 				Timestamp b_date = rs.getTimestamp("b_date");
 				int b_readcount = rs.getInt("b_readcount");
+				String b_filepath = rs.getString("b_filepath");
 
-				BoardVo vo = new BoardVo(b_no, b_title, null, b_date, m_id, b_readcount, 0, 0, 0, null);
+				BoardVo vo = new BoardVo(b_no, b_title, null, b_date, m_id, b_readcount, 0, 0, 0, b_filepath);
 				list.add(vo);
 			}
 			closeAll(rs, pstmt, conn);
@@ -91,12 +92,13 @@ public class BoardDao {
 	public boolean insertArticle(BoardVo boardVo) {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "insert into tbl_board(b_no, b_title, b_content, m_id)" + "   values(seq_bno.nextval, ?, ?, ?)";
+		String sql = "insert into tbl_board(b_no, b_title, b_content, m_id, b_filepath)" + "   values(seq_bno.nextval, ?, ?, ?, ?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, boardVo.getB_title());
 			pstmt.setString(2, boardVo.getB_content());
 			pstmt.setString(3, boardVo.getM_id());
+			pstmt.setString(4, boardVo.getB_filepath());
 			int count = pstmt.executeUpdate();
 			if (count > 0) {
 				return true;
