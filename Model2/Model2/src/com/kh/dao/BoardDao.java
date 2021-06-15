@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -213,25 +214,48 @@ public class BoardDao {
 	public boolean insertReply(BoardVo boardVo) {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "insert into tbl_board(b_no, b_title, b_content, m_id, re_group, re_seq, re_level)"
+		PreparedStatement pstmt2 = null;
+		String sql = "update tbl_board set"
+				+ "		re_seq = re_seq + 1"
+				+ "		where re_group = ?"
+				+ "		and re_seq > ?";
+		String sql2 = "insert into tbl_board(b_no, b_title, b_content, m_id, re_group, re_seq, re_level)"
 				+ "		values(seq_bno.nextval, ?, ?, ?, ?, ?, ?)";
 		try {
+			conn.setAutoCommit(false); // JDBC는 기본 자동커밋이라서 false로 설정해준다.
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, boardVo.getB_title());
-			pstmt.setString(2, boardVo.getB_content());
-			pstmt.setString(3, boardVo.getM_id());
-			pstmt.setInt(4, boardVo.getRe_group());
-			pstmt.setInt(5, boardVo.getRe_seq() + 1);
-			pstmt.setInt(6, boardVo.getRe_level() + 1);
+			pstmt.setInt(1, boardVo.getRe_group());
+			pstmt.setInt(2, boardVo.getRe_seq());
 			int count = pstmt.executeUpdate();
-			if(count > 0) {
-				closeAll(null, pstmt, conn);
+			
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setString(1, boardVo.getB_title());
+			pstmt2.setString(2, boardVo.getB_content());
+			pstmt2.setString(3, boardVo.getM_id());
+			pstmt2.setInt(4, boardVo.getRe_group());
+			pstmt2.setInt(5, boardVo.getRe_seq() + 1);
+			pstmt2.setInt(6, boardVo.getRe_level() + 1);
+			int count2 = pstmt2.executeUpdate();		
+			if(count > 0 && count2 > 0) {
+				conn.commit();
 				return true;
 			}
+			
 		}catch(Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}finally {
-			closeAll(null, pstmt, conn);
+			try {
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			closeAll(null, pstmt, null);
+			closeAll(null, pstmt2, conn);
 		}
 		return false;
 	}

@@ -82,7 +82,22 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						<c:forEach var="vo" items="${list}">
 							<tr>
 								<td>${vo.b_no}</td>
-								<td><img src="/upload/${vo.b_filepath}" height="50"/></td>
+								<td>
+								<c:choose>
+									<c:when test="${not empty vo.b_filepath}">
+										<img src="/upload/${vo.b_filepath}" height="30"/>
+									</c:when>
+									<c:otherwise>
+										<img src="/upload/smile.jpg" height="30"/>
+									</c:otherwise>
+								</c:choose>
+								
+								
+								<!-- path가 비어있지 않았을때만 이미지 출력하기 -->
+<%-- 								<c:if test="${not empty vo.b_filepath}"> --%>
+<%-- 									<img src="/upload/${vo.b_filepath}" height="50"/> --%>
+<%-- 								</c:if> --%>
+								</td>
 								<td><a href="BoardContent.do?b_no=${vo.b_no}"
 									style="margin-left:${vo.re_level * 30}px">
 									<!-- 조건문 -->
