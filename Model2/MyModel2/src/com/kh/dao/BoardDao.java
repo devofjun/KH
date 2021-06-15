@@ -168,4 +168,31 @@ public class BoardDao {
 		}
 		return false;
 	}
+	
+	// 글 내용 수정
+	public boolean updateArticle(BoardVo vo) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "update tbl_board set"
+					+ "		b_title = ?,"
+					+ "		b_content = ?,"
+					+ "		m_id = ?"
+					+ "		where b_no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getB_title());
+			pstmt.setString(2, vo.getB_content());
+			pstmt.setString(3, vo.getM_id());
+			pstmt.setInt(4, vo.getB_no());
+			int count = pstmt.executeUpdate();
+			if(count > 0) {
+				return true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		return false;
+	}
 }
