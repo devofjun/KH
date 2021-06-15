@@ -34,6 +34,13 @@
 		} else if(resultDelete == "false"){
 			alert("글 삭제 실패");
 		}
+		
+		var resultReply = "${resultReply}";
+		if(resultReply == "true"){
+			alert("답글 달기 성공");
+		} else if(resultReply == "false"){
+			alert("답글 달기 실패");
+		}
 	});
 </script>	
 
@@ -71,11 +78,16 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						</tr>
 					</thead>
 					<tbody>
+					<!-- 반복문 -->
 						<c:forEach var="vo" items="${list}">
 							<tr>
 								<td>${vo.b_no}</td>
 								<td><img src="/upload/${vo.b_filepath}" height="50"/></td>
-								<td><a href="BoardContent.do?b_no=${vo.b_no}">${vo.b_title}</a></td>
+								<td><a href="BoardContent.do?b_no=${vo.b_no}"
+									style="margin-left:${vo.re_level * 30}px">
+									<!-- 조건문 -->
+									<c:if test="${vo.re_level > 0}">ㄴ</c:if>
+									${vo.b_title}</a></td>
 								<td>${vo.m_id}</td>
 								<td>${vo.b_date}</td>
 								<td>${vo.b_readcount}</td>
@@ -91,6 +103,7 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 	// 한번만 필요한 세션정보는 출력된 뒤에 지워주면 된다.
 	session.removeAttribute("resultWrite");
 	session.removeAttribute("resultDelete");
+	session.removeAttribute("resultReply");
 %>
 </body>
 </html>
