@@ -33,7 +33,7 @@
 					</div>
 					<div class="form-group">
 
-						<label for="b_content">글제목</label> <input type="text"
+						<label for="b_content">글내용</label> <input type="text"
 							class="form-control" id="b_content" name="b_content" />
 					</div>
 
