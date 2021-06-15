@@ -38,7 +38,7 @@ $(document).ready(function() {
 						<tr>
 							<td>${vo.b_no}</td>
 							<td><c:if test="${not empty vo.b_filepath }">
-									<img src="/upload/${vo.b_filepath}" height=30 />
+									<img src="/upload/${vo.b_filepath}" height="30" />
 								</c:if></td>
 							<td><a href="/BoardContent.do?b_no=${vo.b_no}"> <c:if test="${vo.re_level > 0}">ㄴ</c:if>
 									${vo.b_title}

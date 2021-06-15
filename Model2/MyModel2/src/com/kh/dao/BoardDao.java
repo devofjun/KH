@@ -74,7 +74,8 @@ public class BoardDao {
 		ResultSet rs = null;
 		List<BoardVo> list = new ArrayList<>();
 		try {
-			String sql = "select * from tbl_board" + "		order by re_group desc, re_seq asc";
+			String sql = "select * from tbl_board"
+					+ "		order by re_group desc, re_seq asc, b_no desc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -119,7 +120,7 @@ public class BoardDao {
 		return false;
 	}
 
-	// 글보기
+	// 글 번호로 글 가져오기
 	public BoardVo selectByBno(int b_no) {
 		BoardVo vo = null;
 		Connection conn = getConnection();
@@ -127,12 +128,11 @@ public class BoardDao {
 		ResultSet rs = null;
 
 		try {
-			String sql = "select * from tbl_board"
-					+ "		where b_no = ?";
+			String sql = "select * from tbl_board" + "		where b_no = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, b_no);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				String b_title = rs.getString("b_title");
 				String b_content = rs.getString("b_content");
 				Timestamp b_date = rs.getTimestamp("b_date");
