@@ -10,35 +10,33 @@
 				<h2>글보기</h2>
 				<p>
 					<a type="button" class="btn btn-warning"
-						href="BoardModifyForm.do?b_no=${boardVo.b_no}">수정</a>
+						href="BoardModifyForm.do?b_no=${vo.b_no}">수정</a>
 					<button id="btnDelete" type="button" class="btn btn-danger">삭제</button>
 					<a class="btn btn-success" href="BoardList.do">목록</a>
 					<button type="button" class="btn btn-primary" id="btnReply">답글</button>
 				</p>
 			</div>
 			<div class="row">
-				<div class="col-md-9">
-					<h3>여기는 제목</h3>
+				<div class="col-md-8">
+					<h3>${vo.b_title}</h3>
+				</div>
+				<div class="col-md-2">
+					<span class="badge badge-default">${vo.b_date}</span>
 				</div>
 				<div class="col-md-1">
-					<span class="badge badge-default">작성일: </span>
+					<span class="badge badge-default">작성자: ${vo.m_id}</span>
 				</div>
 				<div class="col-md-1">
-					<span class="badge badge-default">작성자: </span>
-				</div>
-				<div class="col-md-1">
-					<span class="badge badge-default">조회수: </span>
+					<span class="badge badge-default">조회수: ${vo.b_readcount}</span>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-4" style="background: #F5F5F5">
 					<img alt="Bootstrap Image Preview"
 						src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
 				</div>
-				<div class="col-md-8">
-					<p>
-						여기는 글 내용
-					</p>
+				<div class="col-md-8" style="background: #DCDCDC">
+					<p>여기는 글 내용</p>
 				</div>
 			</div>
 		</div>

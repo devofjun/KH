@@ -33,4 +33,13 @@ create table tbl_board(
 
 insert into tbl_board values(seq_bno.nextval, '제목2', '내용2', sysdate, 'hong', 0,0,0,0,'smile.png');
 
+-- 이미 생성된 게시글에 그룹 번호 매기기
+update tbl_board set
+    re_group = b_no;
+
+
+select * from tbl_board;
 commit;
+
+delete from tbl_board
+where re_seq=3;
