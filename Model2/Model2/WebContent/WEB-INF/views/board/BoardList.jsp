@@ -79,8 +79,8 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						</c:choose>
 					</p>
 					<p>
-						<c:if test="${not empty membervo}">
-							<a class="btn btn-primary btn-large" href="/BoardWriteForm.do">글쓰기</a>
+						<c:if test="${not empty memberVo}">
+							<a class="btn btn-primary btn-large" href="/BoardWriteForm.mem">글쓰기</a>
 						</c:if>
 						<c:if test="${empty memberVo}">
 							<a class="btn btn-success btn-large" href="/MemberJoinForm.do">회원가입</a>
@@ -115,7 +115,7 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 									<%-- 								</c:if> --%></td>
 								<td><c:choose>
 										<c:when test="${not empty memberVo}">
-											<a href="BoardContent.do?b_no=${vo.b_no}"
+											<a href="BoardContent.mem?b_no=${vo.b_no}"
 												style="margin-left:${vo.re_level * 30}px"> <!-- 조건문 -->
 												<c:if test="${vo.re_level > 0}">ㄴ</c:if> ${vo.b_title}
 											</a>

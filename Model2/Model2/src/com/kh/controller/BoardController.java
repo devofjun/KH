@@ -33,7 +33,7 @@ import com.kh.vo.BoardVo;
  * Servlet implementation class BoardController
  */
 // 뒤에 .do가 달리면 요청을 받겠다는것
-@WebServlet("*.do")
+@WebServlet({"*.do", "*.mem"})
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String PREFIX = "/WEB-INF/views/";
@@ -46,20 +46,20 @@ public class BoardController extends HttpServlet {
     @Override
     public void init() throws ServletException { // 서블릿이 처음 실행될때 한번만 실행되는 메소드
     	super.init();
-    	commandMap.put("BoardList",new BoardListService());
-    	commandMap.put("BoardWriteForm", new BoardWriteFormService());
-    	commandMap.put("BoardWriteRun", new BoardWriteRunService());
-    	commandMap.put("BoardContent", new BoardContentService());
-    	commandMap.put("BoardModifyForm", new BoardModifyFormService());
-    	commandMap.put("BoardDeleteRun", new BoardDeleteRunService());
-    	commandMap.put("BoardModifyRun", new BoardModifyRunService());
-    	commandMap.put("BoardReplyForm", new BoardReplyFormService());
-    	commandMap.put("BoardReplyRun", new BoardReplyRunService());
-    	commandMap.put("MemberJoinForm", new MemberJoinFormService());
-    	commandMap.put("MemberJoinRun", new MemberJoinRunService());
-    	commandMap.put("MemberLoginForm", new MemberLoginFormService());
-    	commandMap.put("MemberLoginRun", new MemberLoginRunService());
-    	commandMap.put("MemberLogout", new MemberLogoutService());
+    	commandMap.put("BoardList.do",new BoardListService());
+    	commandMap.put("BoardWriteForm.mem", new BoardWriteFormService());
+    	commandMap.put("BoardWriteRun.mem", new BoardWriteRunService());
+    	commandMap.put("BoardContent.mem", new BoardContentService());
+    	commandMap.put("BoardModifyForm.mem", new BoardModifyFormService());
+    	commandMap.put("BoardDeleteRun.mem", new BoardDeleteRunService());
+    	commandMap.put("BoardModifyRun.mem", new BoardModifyRunService());
+    	commandMap.put("BoardReplyForm.mem", new BoardReplyFormService());
+    	commandMap.put("BoardReplyRun.mem", new BoardReplyRunService());
+    	commandMap.put("MemberJoinForm.do", new MemberJoinFormService());
+    	commandMap.put("MemberJoinRun.do", new MemberJoinRunService());
+    	commandMap.put("MemberLoginForm.do", new MemberLoginFormService());
+    	commandMap.put("MemberLoginRun.do", new MemberLoginRunService());
+    	commandMap.put("MemberLogout.mem", new MemberLogoutService());
     	
     	System.out.println(commandMap);
     }
@@ -93,8 +93,9 @@ public class BoardController extends HttpServlet {
 	
 	private String getCommand(HttpServletRequest request) {
 		String uri = request.getRequestURI();
-		int dotIndex = uri.lastIndexOf("."); 
-		String command = uri.substring(1, dotIndex);
+		//int dotIndex = uri.lastIndexOf("."); 
+		//String command = uri.substring(1, dotIndex);
+		String command = uri.substring(1);
 		return command;
 	}
 

@@ -24,7 +24,7 @@
 
 				</div>
 				<!-- multipart/form-data : 폼의 데이터를 텍스트가 아닌 바이너리로 보낸다. -->
-				<form role="form" action="/BoardReplyRun.do" method="post">
+				<form role="form" action="/BoardReplyRun.mem" method="post">
 					<input type="hidden" name="re_group" value="${boardVo.re_group}"/>
 					<input type="hidden" name="re_seq" value="${boardVo.re_seq}"/>
 					<input type="hidden" name="re_level" value="${boardVo.re_level}"/>

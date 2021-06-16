@@ -35,7 +35,7 @@
 			$("#myModal").trigger("click");
 		});
 		$("#modalYes").click(function() {
-			location.href = "BoardDeleteRun.do?b_no=${boardVo.b_no}";
+			location.href = "BoardDeleteRun.mem?b_no=${boardVo.b_no}";
 		});
 		
 		// 답글버튼
@@ -49,7 +49,7 @@
 </head>
 <body>
 <!-- 답글에 필요한 정보를 넘겨주기 위한 폼 -->
-<form id="frmReply" action="/BoardReplyForm.do" method="get">
+<form id="frmReply" action="/BoardReplyForm.mem" method="get">
 	<input type="hidden" name="re_group" value="${boardVo.re_group}"/>
 	<input type="hidden" name="re_seq" value="${boardVo.re_seq}"/>
 	<input type="hidden" name="re_level" value="${boardVo.re_level}"/>
@@ -91,7 +91,7 @@
 					<h2>상세보기</h2>
 					<p>
 						<a type="button" class="btn btn-warning"
-							href="BoardModifyForm.do?b_no=${boardVo.b_no}">수정</a>
+							href="BoardModifyForm.mem?b_no=${boardVo.b_no}">수정</a>
 						<button id="btnDelete" type="button" class="btn btn-danger">삭제</button>
 						<a class="btn btn-success" href="BoardList.do">목록</a>
 						<button type="button" class="btn btn_primary"
@@ -108,7 +108,7 @@
 							<td>${boardVo.b_title}</td>
 						<tr>
 							<th>글내용</th>
-							<td>${boardVo.b_content}</td>
+							<td>${boardVo.b_content}</td>	
 						<tr>
 
 							<th>작성일</th>

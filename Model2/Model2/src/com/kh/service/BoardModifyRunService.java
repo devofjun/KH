@@ -29,7 +29,7 @@ public class BoardModifyRunService implements IService {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("resultModify", result);
-		return IService.REDIRECT + "/BoardContent.do?b_no=" + b_no;
+		return IService.REDIRECT + "/BoardContent.mem?b_no=" + b_no;
 	}
 
 }

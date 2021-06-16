@@ -24,7 +24,7 @@
 
 				</div>
 				<!-- multipart/form-data : 폼의 데이터를 텍스트가 아닌 바이너리로 보낸다. -->
-				<form role="form" action="/BoardWriteRun.do" method="post"
+				<form role="form" action="/BoardWriteRun.mem" method="post"
 					enctype="multipart/form-data">
 					<div class="form-group">
 

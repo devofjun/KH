@@ -23,7 +23,7 @@
 					<h2>글쓰기 수정 폼</h2>
 
 				</div>
-				<form role="form" action="/BoardModifyRun.do" method="post">
+				<form role="form" action="/BoardModifyRun.mem" method="post">
 					<input type="hidden" name ="b_no" value="${boardVo.b_no}"/>
 					<div class="form-group">
 
