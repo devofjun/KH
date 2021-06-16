@@ -66,6 +66,8 @@ public class BoardDao {
 		List<BoardVo> list = new ArrayList<>();
 		try {
 			// 그룹번호로 정렬 + 그룹번호가 같다면 시퀀스(re_seq) 값으로 정렬
+			// rownum은 테이블의 갯수라고 생각하면 된다.
+			// 테이블 전체 데이터를 정렬해서 가져온다. -> 그 테이블에 rownum 값을 매긴다. -> 매겨진 rownum의 원하는 rownum으로 조건을 줘서 일부분만 가져온다.
 			String sql = "select * from" + 
 					"			(select rownum rnum, a.* from" + 
 					"				(select * from tbl_board" + 
