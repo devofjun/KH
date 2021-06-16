@@ -71,6 +71,7 @@ create sequence seq_bno;
 
 truncate table tbl_board;
 
+-- 반복문에서 insert하기
 begin
     for i in 1..500 loop
         insert into tbl_board(b_no, b_title, b_content, m_id, re_group)

@@ -43,9 +43,16 @@
 		}
 
 		var resultLogin = "${resultLogin}";
-		if (result == "true") {
+		if (resultLogin == "true") {
 			alert("로그인 성공");
 		}
+		
+		$("ul.pagination > li > a").click(function(e) {
+			e.preventDefault();
+			var page = $(this).attr("href");
+			console.log(page);
+			location.href = "/BoardList.do?page=" + page;
+		});
 	});
 </script>
 
@@ -53,7 +60,7 @@
 <title>게시판 목록</title>
 </head>
 <body>
-	<!-- EL : Expression Language -->
+	<!-- EL : Expression Language -->	`
 	<!-- 아래로 갈수록 범위가 커짐
 pageContext - 페이지 범위
 requestScope - 요청 범위
@@ -131,6 +138,30 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						</c:forEach>
 					</tbody>
 				</table>
+			</div>
+		</div>
+		<!-- Pagination -->
+		<div class="row">
+			<div class="col-md-12">
+				<nav>
+					<ul class="pagination">
+						<li class="page-item"><a class="page-link" href="#">이전</a></li>
+						
+						<c:forEach var="i" begin="1" end="10">
+						<li 
+							<c:choose>
+								<c:when test="${i == param.page}">
+									class="page-item active"
+								</c:when>
+								<c:otherwise>
+									class="page-item"
+								</c:otherwise>
+							</c:choose>
+						><a class="page-link" href="${i}">${i}</a></li>
+						</c:forEach>
+						<li class="page-item"><a class="page-link" href="#">다음</a></li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 	</div>

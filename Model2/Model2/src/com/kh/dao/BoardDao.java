@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.vo.BoardVo;
+import com.kh.vo.PagingDto;
 
 public class BoardDao {
 	private static BoardDao instance = new BoardDao();
@@ -59,7 +60,7 @@ public class BoardDao {
 	}
 
 	// 목록 가져오기
-	public List<BoardVo> getBoardList() {
+	public List<BoardVo> getBoardList(PagingDto pagingDto) {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -72,8 +73,10 @@ public class BoardDao {
 					"			(select rownum rnum, a.* from" + 
 					"				(select * from tbl_board" + 
 					"					order by re_group desc, re_seq asc) a)" + 
-					"	where rnum between 1 and 10";
+					"	where rnum between ? and ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, pagingDto.getStartRow());
+			pstmt.setInt(2, pagingDto.getEndRow());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int b_no = rs.getInt("b_no");
