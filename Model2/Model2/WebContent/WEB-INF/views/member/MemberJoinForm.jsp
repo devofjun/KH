@@ -8,6 +8,8 @@
 <title>회원가입폼</title>
 <script>
 $(document).ready(function() {
+	// 요청: "/CheckDupId.do" => 컨트롤러 => 서비스 => Dao => DB
+	// 응답: DB => 서비스  => 컨트롤러 => data.jsp로 응답 
 	$("#btnCheckDupId").click(function() {
 		var user_id = $("#user_id").val();
 		var url = "/CheckDupId.do";
@@ -18,6 +20,7 @@ $(document).ready(function() {
 		$.get(url, sendData, function(receivedData) {
 			//console.log(receivedData);
 			if(receivedData.trim() == "true"){
+				// 여기서 next()은 span태그를 가르킴
 				$("#btnCheckDupId").next().text("사용중인 아이디").css("color", "red");
 			} else {
 				$("#btnCheckDupId").next().text("사용가능한 아이디").css("color", "blue");

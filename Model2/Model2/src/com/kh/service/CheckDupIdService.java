@@ -14,7 +14,7 @@ public class CheckDupIdService implements IService {
 		String user_id = request.getParameter("user_id");
 		boolean result = memberDao.checkDupId(user_id);
 		request.setAttribute("data", result);
-		return "data"; // data.jsp
+		return IService.DATA; // data.jsp
 	}
 
 }

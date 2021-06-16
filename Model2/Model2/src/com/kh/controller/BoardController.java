@@ -1,8 +1,8 @@
 package com.kh.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -28,7 +28,6 @@ import com.kh.service.MemberJoinRunService;
 import com.kh.service.MemberLoginFormService;
 import com.kh.service.MemberLoginRunService;
 import com.kh.service.MemberLogoutService;
-import com.kh.vo.BoardVo;
 
 /**
  * Servlet implementation class BoardController
@@ -86,6 +85,11 @@ public class BoardController extends HttpServlet {
 		if(page.startsWith(IService.REDIRECT)) {
 			String rPage = page.substring(IService.REDIRECT.length());
 			response.sendRedirect(rPage);
+		} else if(page.startsWith(IService.DATA)) {
+			Object data = request.getAttribute("data");
+			PrintWriter out = response.getWriter();
+			response.setCharacterEncoding("utf-8");
+			out.print(data.toString());
 		} else {
 			// 웹브라우저에서는 "/WEB-INF" 로 접근 할 수 없지만 현재 Servlet에서 접근 가능하다.
 			dispatcher = request.getRequestDispatcher(PREFIX+page+SUFFIX);
