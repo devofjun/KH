@@ -71,7 +71,7 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						<c:choose>
 							<c:when test="${not empty memberVo}">
 								${memberVo.user_id}(${memberVo.user_name})님 반갑습니다.
-								<a href="/MemberLogout.do">로그아웃</a>
+								<a href="/MemberLogout.mem">로그아웃</a>
 							</c:when>
 							<c:otherwise>
 								<a href="/MemberLoginForm.do">로그인</a>

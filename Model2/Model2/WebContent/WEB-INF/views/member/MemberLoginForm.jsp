@@ -34,7 +34,8 @@ $(document).ready(function() {
 					<div class="form-group">
 
 						<label for="user_id"> 아이디 </label> <input
-							type="text" class="form-control" id="user_id" name="user_id"/>
+							type="text" class="form-control" id="user_id" name="user_id"
+							value="${cookie.user_id.value}"/>
 					</div>
 					<div class="form-group">
 

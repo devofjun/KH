@@ -1,5 +1,6 @@
 package com.kh.service;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,9 @@ public class MemberLoginRunService implements IService {
 		
 		MemberVo memberVo = memberDao.login(user_id, user_pw);
 		if(memberVo != null) { // 로그인 성공했다면 list로 돌아간다.
+			Cookie cookie = new Cookie("user_id",user_id);
+			cookie.setMaxAge(60 * 60 * 24 * 7);
+			response.addCookie(cookie);
 			session.setAttribute("memberVo", memberVo);
 			session.setAttribute("resultLogin", true);
 			page = IService.REDIRECT + "/BoardList.do";
