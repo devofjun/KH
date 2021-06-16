@@ -62,3 +62,34 @@ insert into tbl_board(b_no, b_title, b_content, m_id)
 values (seq_bno.nextval, '제목2', '내용2', 'hong2');
 
 commit;
+
+-----
+-- 페이징
+
+drop sequence seq_bno;
+create sequence seq_bno;
+
+truncate table tbl_board;
+
+begin
+    for i in 1..500 loop
+        insert into tbl_board(b_no, b_title, b_content, m_id, re_group)
+        values (seq_bno.nextval,
+            '제목' || i,
+            '내용' || i,
+            'hong',
+            seq_bno.nextval);
+    end loop;
+end;
+/
+commit;
+
+
+-- 10개 (500~491)
+select * from
+(select rownum rnum, a.* from
+(select * from tbl_board
+order by re_group desc, re_seq asc) a)
+where rnum >= 11 and rnum <= 20;
+
+

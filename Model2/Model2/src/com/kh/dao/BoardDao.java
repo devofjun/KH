@@ -66,8 +66,11 @@ public class BoardDao {
 		List<BoardVo> list = new ArrayList<>();
 		try {
 			// 그룹번호로 정렬 + 그룹번호가 같다면 시퀀스(re_seq) 값으로 정렬
-			String sql = "select * from tbl_board"
-			+ "				order by re_group desc, re_seq asc";
+			String sql = "select * from" + 
+					"			(select rownum rnum, a.* from" + 
+					"				(select * from tbl_board" + 
+					"					order by re_group desc, re_seq asc) a)" + 
+					"	where rnum between 1 and 10";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

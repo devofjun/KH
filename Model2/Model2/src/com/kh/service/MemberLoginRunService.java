@@ -24,7 +24,7 @@ public class MemberLoginRunService implements IService {
 		if(memberVo != null) { // 로그인 성공했다면 list로 돌아간다.
 			if(saveId != null && saveId.equals("true")) {
 				Cookie cookie = new Cookie("user_id",user_id);
-				cookie.setMaxAge(60 * 60 * 24 * 7); // 초단위
+				cookie.setMaxAge(60 * 60 * 24 * 7); // 초단위 => 일주일
 				response.addCookie(cookie);				
 			}
 			session.setAttribute("memberVo", memberVo);
