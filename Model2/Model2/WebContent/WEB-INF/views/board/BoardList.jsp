@@ -71,6 +71,7 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						<c:choose>
 							<c:when test="${not empty memberVo}">
 								${memberVo.user_id}(${memberVo.user_name})님 반갑습니다.
+								<a href="/MemberLogout.do">로그아웃</a>
 							</c:when>
 							<c:otherwise>
 								<a href="/MemberLoginForm.do">로그인</a>
@@ -78,7 +79,9 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						</c:choose>
 					</p>
 					<p>
-						<a class="btn btn-primary btn-large" href="/BoardWriteForm.do">글쓰기</a>
+						<c:if test="${not empty membervo}">
+							<a class="btn btn-primary btn-large" href="/BoardWriteForm.do">글쓰기</a>
+						</c:if>
 						<c:if test="${empty memberVo}">
 							<a class="btn btn-success btn-large" href="/MemberJoinForm.do">회원가입</a>
 						</c:if>
@@ -110,10 +113,17 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 									</c:choose> <!-- path가 비어있지 않았을때만 이미지 출력하기 --> <%-- 								<c:if test="${not empty vo.b_filepath}"> --%>
 									<%-- 									<img src="/upload/${vo.b_filepath}" height="50"/> --%>
 									<%-- 								</c:if> --%></td>
-								<td><a href="BoardContent.do?b_no=${vo.b_no}"
-									style="margin-left:${vo.re_level * 30}px"> <!-- 조건문 --> <c:if
-											test="${vo.re_level > 0}">ㄴ</c:if> ${vo.b_title}
-								</a></td>
+								<td><c:choose>
+										<c:when test="${not empty memberVo}">
+											<a href="BoardContent.do?b_no=${vo.b_no}"
+												style="margin-left:${vo.re_level * 30}px"> <!-- 조건문 -->
+												<c:if test="${vo.re_level > 0}">ㄴ</c:if> ${vo.b_title}
+											</a>
+										</c:when>
+										<c:otherwise>
+											<c:if test="${vo.re_level > 0}">ㄴ</c:if> ${vo.b_title}
+										</c:otherwise>
+									</c:choose></td>
 								<td>${vo.m_id}</td>
 								<td>${vo.b_date}</td>
 								<td>${vo.b_readcount}</td>
