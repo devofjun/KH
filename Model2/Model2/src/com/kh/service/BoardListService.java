@@ -28,3 +28,4 @@ public class BoardListService implements IService{
 	}
 	
 }
+	
