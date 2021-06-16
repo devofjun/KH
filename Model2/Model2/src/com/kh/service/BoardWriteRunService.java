@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.dao.BoardDao;
 import com.kh.vo.BoardVo;
+import com.kh.vo.MemberVo;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -36,7 +37,10 @@ public class BoardWriteRunService implements IService{
 		// 바이너리 데이터로 오기 때문에 request로는 읽을 수 없다. 그래서 multi로 바꿈
 		String b_title = multi.getParameter("b_title");
 		String b_content = multi.getParameter("b_content");
-		String m_id = multi.getParameter("m_id");
+		//String m_id = multi.getParameter("m_id");
+		HttpSession session = request.getSession();
+		MemberVo memberVo = (MemberVo)session.getAttribute("memberVo");
+		String m_id = memberVo.getUser_id();
 		String b_filepath = multi.getFilesystemName("b_filepath");
 		// ㄴ 서버쪽(upload)에 저장된 파일명
 		System.out.println("b_title: " + b_title);
@@ -52,7 +56,6 @@ public class BoardWriteRunService implements IService{
 		boolean result = boardDao.insertArticle(boardVo);
 		
 		// 세션은 서버쪽에 저장되는 정보이다.
-		HttpSession session = request.getSession();
 		session.setAttribute("resultWrite", result);
 		
 		return IService.REDIRECT + "/BoardList.do";

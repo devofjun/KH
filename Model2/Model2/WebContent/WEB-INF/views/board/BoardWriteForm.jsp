@@ -36,12 +36,6 @@
 						<label for="b_content">글내용</label> <input type="text"
 							class="form-control" id="b_content" name="b_content" />
 					</div>
-
-					<div class="form-group">
-
-						<label for="m_id">작성자</label> <input type="text"
-							class="form-control" id="m_id" name="m_id" />
-					</div>
 					
 					<div class="form-group">
 

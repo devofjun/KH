@@ -21,12 +21,14 @@
 					<div class="form-group">
 
 						<label for="user_id"> 아이디 </label> <input
-							type="text" class="form-control" id="user_id" name="user_id" />
+							type="text" class="form-control" id="user_id" name="user_id" 
+							value="hong"/>
 					</div>
 					<div class="form-group">
 
 						<label for="user_pw"> 비밀번호 </label> <input
-							type="password" class="form-control" id="user_pw" name="user_pw" />
+							type="password" class="form-control" id="user_pw" name="user_pw" 
+							value="1234"/>
 					</div>
 					<div class="form-group">
 

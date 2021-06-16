@@ -44,10 +44,21 @@ commit;
 delete from tbl_board
 where re_seq=3;
 
+truncate table tbl_board; -- 빠른 대신 rollback 안됨
 
 ----------------------
 create table tbl_member(
     user_id varchar2(20) constraint pk_member_id primary key,
     user_pw varchar2(20) not null,
-    user_name varchar2(20) not null,
+    user_name varchar2(20) not null
 );
+
+select * from tbl_member;
+
+insert into tbl_board(b_no, b_title, b_content, m_id)
+values (seq_bno.nextval, '제목1', '내용1', 'hong');
+
+insert into tbl_board(b_no, b_title, b_content, m_id)
+values (seq_bno.nextval, '제목2', '내용2', 'hong2');
+
+commit;
