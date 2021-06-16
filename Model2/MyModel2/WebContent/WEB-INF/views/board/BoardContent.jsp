@@ -9,16 +9,25 @@
 		$("#modalYes").click(function() {
 			location.href = "BoardDeleteRun.do?b_no=${vo.b_no}";
 		});
+		
+		$("btnReply").click(function() {
+			$("#frmReply").submit();
+		});
 	});
 </script>
 <title>게시글</title>
 <%@ include file="/include/center.jsp"%>
 <div class="container-fluid">
+<form id="frmReply" action="/BoardReplyForm.do" method="post">
+	<input type="hidden" name="re_group" value="${vo.re_group}"/>
+	<input type="hidden" name="re_seq" value="${vo.re_seq}"/>
+	<input type="hidden" name="re_level" value="${vo.re_level}"/>
+</form>
 	<!-- 글 삭제 모달 -->
 	<div class="row">
 		<div class="col-md-12">
 			<a id="mymodal" href="#modal-container-983206" role="button"
-				class="btn" data-toggle="modal">Launch demo modal</a>
+				class="btn" data-toggle="modal">삭제 모달</a>
 
 			<div class="modal fade" id="modal-container-983206" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
