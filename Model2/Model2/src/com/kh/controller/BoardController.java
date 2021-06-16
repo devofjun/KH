@@ -23,6 +23,9 @@ import com.kh.service.BoardWriteFormService;
 import com.kh.service.BoardWriteRunService;
 import com.kh.service.IService;
 import com.kh.service.MemberJoinFormService;
+import com.kh.service.MemberJoinRunService;
+import com.kh.service.MemberLoginFormService;
+import com.kh.service.MemberLoginRunService;
 import com.kh.vo.BoardVo;
 
 /**
@@ -52,6 +55,10 @@ public class BoardController extends HttpServlet {
     	commandMap.put("BoardReplyForm", new BoardReplyFormService());
     	commandMap.put("BoardReplyRun", new BoardReplyRunService());
     	commandMap.put("MemberJoinForm", new MemberJoinFormService());
+    	commandMap.put("MemberJoinRun", new MemberJoinRunService());
+    	commandMap.put("MemberLoginForm", new MemberLoginFormService());
+    	commandMap.put("MemberLoginRun", new MemberLoginRunService());
+    	
     	System.out.println(commandMap);
     }
     

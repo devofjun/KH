@@ -43,3 +43,11 @@ commit;
 
 delete from tbl_board
 where re_seq=3;
+
+
+----------------------
+create table tbl_member(
+    user_id varchar2(20) constraint pk_member_id primary key,
+    user_pw varchar2(20) not null,
+    user_name varchar2(20) not null,
+);
