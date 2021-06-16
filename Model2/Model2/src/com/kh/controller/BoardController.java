@@ -21,6 +21,7 @@ import com.kh.service.BoardReplyFormService;
 import com.kh.service.BoardReplyRunService;
 import com.kh.service.BoardWriteFormService;
 import com.kh.service.BoardWriteRunService;
+import com.kh.service.CheckDupIdService;
 import com.kh.service.IService;
 import com.kh.service.MemberJoinFormService;
 import com.kh.service.MemberJoinRunService;
@@ -60,6 +61,7 @@ public class BoardController extends HttpServlet {
     	commandMap.put("MemberLoginForm.do", new MemberLoginFormService());
     	commandMap.put("MemberLoginRun.do", new MemberLoginRunService());
     	commandMap.put("MemberLogout.mem", new MemberLogoutService());
+    	commandMap.put("CheckDupId.do", new CheckDupIdService());
     	
     	System.out.println(commandMap);
     }

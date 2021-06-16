@@ -100,4 +100,29 @@ public class MemberDao {
 		}
 		return null;
 	}
+	
+	// 아이디 중복확인
+	public boolean checkDupId(String user_id) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select count(*) cnt from tbl_member"
+					+ "		where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int cnt = rs.getInt("cnt");
+				if(cnt > 0) {
+					return true;
+				}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return false;
+	}
 }

@@ -6,6 +6,20 @@
 <%@ include file="../include/bootstrap_cdn.jsp" %>
 <meta charset="UTF-8">
 <title>회원가입폼</title>
+<script>
+$(document).ready(function() {
+	$("#btnCheckDupId").click(function() {
+		var user_id = $("#user_id").val();
+		var url = "/CheckDupId.do";
+		var sendData = {
+			"user_id" : user_id	
+		};
+		$.get(url, sendData, function(receivedData) {
+			console.log(receivedData);
+		});
+	});
+});
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -21,14 +35,14 @@
 					<div class="form-group">
 
 						<label for="user_id"> 아이디 </label> <input
-							type="text" class="form-control" id="user_id" name="user_id" 
-							value="hong"/>
+							type="text" class="form-control" id="user_id" name="user_id" />
+							<button type="button" id="btnCheckDupId">아이디 중복체크</button>
+							<span></span>
 					</div>
 					<div class="form-group">
 
 						<label for="user_pw"> 비밀번호 </label> <input
-							type="password" class="form-control" id="user_pw" name="user_pw" 
-							value="1234"/>
+							type="password" class="form-control" id="user_pw" name="user_pw"/>
 					</div>
 					<div class="form-group">
 
