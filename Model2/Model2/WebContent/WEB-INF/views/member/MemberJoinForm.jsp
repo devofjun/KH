@@ -14,8 +14,14 @@ $(document).ready(function() {
 		var sendData = {
 			"user_id" : user_id	
 		};
+		// 비동기 방식
 		$.get(url, sendData, function(receivedData) {
-			console.log(receivedData);
+			//console.log(receivedData);
+			if(receivedData.trim() == "true"){
+				$("#btnCheckDupId").next().text("사용중인 아이디").css("color", "red");
+			} else {
+				$("#btnCheckDupId").next().text("사용가능한 아이디").css("color", "blue");
+			}
 		});
 	});
 });
