@@ -64,6 +64,7 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 					<h2>글목록</h2>
 					<p>
 						<a class="btn btn-primary btn-large" href="/BoardWriteForm.do">글쓰기</a>
+						<a class="btn btn-success btn-large" href="/MemberJoinForm.do">회원가입</a>
 					</p>
 				</div>
 				<table class="table">

@@ -22,6 +22,7 @@ import com.kh.service.BoardReplyRunService;
 import com.kh.service.BoardWriteFormService;
 import com.kh.service.BoardWriteRunService;
 import com.kh.service.IService;
+import com.kh.service.MemberJoinFormService;
 import com.kh.vo.BoardVo;
 
 /**
@@ -50,6 +51,7 @@ public class BoardController extends HttpServlet {
     	commandMap.put("BoardModifyRun", new BoardModifyRunService());
     	commandMap.put("BoardReplyForm", new BoardReplyFormService());
     	commandMap.put("BoardReplyRun", new BoardReplyRunService());
+    	commandMap.put("MemberJoinForm", new MemberJoinFormService());
     	System.out.println(commandMap);
     }
     
