@@ -44,7 +44,7 @@ $(document).ready(function() {
 					</div>
 					<div class="checkbox">
 
-						<label> <input type="checkbox" /> 아이디 저장
+						<label> <input type="checkbox" name="saveId" value="true"/> 아이디 저장
 						</label>
 					</div>
 					<button type="submit" class="btn btn-primary">로그인</button>

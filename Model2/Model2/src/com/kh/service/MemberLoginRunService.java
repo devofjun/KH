@@ -16,15 +16,17 @@ public class MemberLoginRunService implements IService {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
-		
+		String saveId = request.getParameter("saveId");
 		HttpSession session = request.getSession();
 		String page = null;
 		
 		MemberVo memberVo = memberDao.login(user_id, user_pw);
 		if(memberVo != null) { // 로그인 성공했다면 list로 돌아간다.
-			Cookie cookie = new Cookie("user_id",user_id);
-			cookie.setMaxAge(60 * 60 * 24 * 7);
-			response.addCookie(cookie);
+			if(saveId != null && saveId.equals("true")) {
+				Cookie cookie = new Cookie("user_id",user_id);
+				cookie.setMaxAge(60 * 60 * 24 * 7); // 초단위
+				response.addCookie(cookie);				
+			}
 			session.setAttribute("memberVo", memberVo);
 			session.setAttribute("resultLogin", true);
 			page = IService.REDIRECT + "/BoardList.do";
