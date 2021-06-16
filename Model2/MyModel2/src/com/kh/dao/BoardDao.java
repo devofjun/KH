@@ -195,4 +195,27 @@ public class BoardDao {
 		}
 		return false;
 	}
+	
+	// 댓글 달기 *sql 작성하기*
+	public boolean insertReply(BoardVo vo) {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		try {
+			String sql = "";
+			String sql2 = ""; 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.executeUpdate();
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+		return false;
+	}
 }
