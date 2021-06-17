@@ -160,8 +160,9 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 							</c:choose>
 						><a class="page-link" href="${i}">${i}</a></li>
 						</c:forEach>
-						
+						<c:if test="${pagingDto.totalPage != pagingDto.endPage }">
 						<li class="page-item"><a class="page-link" href="${pagingDto.endPage + 1}">다음</a></li>
+						</c:if>
 					</ul>
 				</nav>
 			</div>

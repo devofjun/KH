@@ -32,12 +32,19 @@ public class PagingDto {
 	
 	public PagingDto(int page, int totalCount) {
 		this.page = page;
+		this.endRow = page * 10;
+		this.startRow = endRow - 9;
+		this.count = totalCount;
 		this.startPage = ((page-1)/10) * 10 + 1;
 		this.endPage = startPage + 9;
 		//this.totalPage = (totalCount / 10) + ((totalCount) % 10)
 		this.totalPage = totalCount / 10;
 		if(totalCount % 10 != 0) {
 			this.totalPage += 1;
+		}
+		// 끝페이지가 최대 페이지를 넘지 않도록
+		if(this.endPage > totalPage) {
+			this.endPage = this.totalPage;
 		}
 	}
 	
@@ -87,6 +94,14 @@ public class PagingDto {
 
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
+	}
+
+	public int getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
 	}
 
 	@Override
