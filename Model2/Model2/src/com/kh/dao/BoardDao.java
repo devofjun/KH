@@ -271,6 +271,7 @@ public class BoardDao {
 		return false;
 	}
 	
+	// 게시글 개수 
 	public int getCount() {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;

@@ -13,16 +13,20 @@ public class BoardListService implements IService{
 	private BoardDao boardDao = BoardDao.getInstance();
 	
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int perPage = 10;
-		String strPerPage = request.getParameter("perPage");
-		if(strPerPage != null) {
-			perPage = Integer.parseInt(strPerPage);
-		}
+		String searchType = request.getParameter("searchType");
+		String keyword = request.getParameter("keyword");
+		
 		
 		int page = 1;
 		String strPage = request.getParameter("page");
 		if(strPage != null) {
 			page = Integer.parseInt(strPage);
+		}
+		
+		int perPage = 10;
+		String strPerPage = request.getParameter("perPage");
+		if(strPerPage != null) {
+			perPage = Integer.parseInt(strPerPage);
 		}
 		
 		PagingDto pagingDto = new PagingDto(page, boardDao.getCount(), perPage);

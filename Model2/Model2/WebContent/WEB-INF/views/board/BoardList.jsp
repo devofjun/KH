@@ -51,13 +51,24 @@
 			e.preventDefault();
 			var page = $(this).attr("href");
 			console.log(page);
-			location.href = "/BoardList.do?page=" + page;
+			location.href = "/BoardList.do?page=" + page + "&perPage=${pagingDto.perPage}";
 		});
 		
 		$("#perPage").change(function() {
 			var perPage = $(this).val();
 			console.log("perPage", perPage);
 			location.href = "/BoardList.do?perPage=" + perPage;
+		});
+		
+		$("#btnSearch").click(function() {
+			var searchType = $("#searchType").val();
+			var keyword = $("#keyword").val();
+			console.log("searchType:" + searchType);
+			console.log("keyword:" + keyword);
+			//location.href = "/BoardList.do?"~~~~ 이렇게 하기도하고 아래처럼 폼을 이용해서 넘겨주기도 함.
+			$("#frmSearch").find("input[name=searchType]").val(searchType);
+			$("#frmSearch").find("input[name=keyword]").val(keyword);
+			$("#frmSearch").submit();
 		});
 	});
 </script>
@@ -74,7 +85,10 @@ sessionScope - 세션 범위(로그인)
 applicationScope - 컨텍스트(Model2) 범위 -->
 	<!-- ${requestScope.list} request범위에서 list찾기 -->
 	<!-- ${list} 모든 범위에서 list찾기-->
-
+	<form id="frmSearch" action="/BoardList.do" method="get">
+		<input type="hidden" name="searchType" />
+		<input type="hidden" name="keyword" />
+	</form>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -103,9 +117,25 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 				<div>
 					<select name="perPage" id="perPage">
 						<c:forEach var='v' begin="5" end="30" step="5">
-						<option value="${v}">${v}줄씩 보기</option>
+						<!-- 현재 선택된 perPage를 selected함. -->
+						<option value="${v}"
+						<c:if test="${v == pagingDto.perPage}">
+							selectedㄴ
+						</c:if>
+						>${v}줄씩 보기</option>
 						</c:forEach>
 					</select>
+					
+					<span style="margin:0px 20px">|</span>
+					<select id="searchType">
+						<option value="t">제목</option>
+						<option value="c">내용</option>
+						<option value="u">작성자</option>
+						<option value="tc">제목 + 내용</option>
+						<option value="tcu">제목 + 내용 + 작성자</option>
+					</select>
+					<input type="text" id="keyword">
+					<button type="button" id="btnSearch">검색</button>
 				</div>
 				<table class="table">
 					<thead>

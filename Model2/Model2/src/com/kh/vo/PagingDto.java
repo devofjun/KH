@@ -10,6 +10,9 @@ public class PagingDto {
 	private int totalPage;
 	private int perPage;
 	private final int PAGE_BLOCK = 10;
+	// 검색 관련 변수임. 따로 dto로 만들어도됨
+	private String searchType;
+	private String keyword;
 	
 	
 	public PagingDto() {
@@ -43,8 +46,9 @@ public class PagingDto {
 		this.startPage = ((page-1)/PAGE_BLOCK) * PAGE_BLOCK + 1;
 		this.endPage = startPage + PAGE_BLOCK-1;
 		//this.totalPage = (totalCount / 10) + ((totalCount) % 10)
-		this.totalPage = totalCount / PAGE_BLOCK;
-		if(totalCount % PAGE_BLOCK != 0) {
+		// 몇줄씩 보느냐에 달라지는 페이지수
+		this.totalPage = totalCount / perPage;
+		if(totalCount % perPage != 0) {
 			this.totalPage += 1;
 		}
 		// 끝페이지가 최대 페이지를 넘지 않도록
@@ -117,10 +121,27 @@ public class PagingDto {
 		this.perPage = perPage;
 	}
 
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 	@Override
 	public String toString() {
 		return "PagingDto [page=" + page + ", startRow=" + startRow + ", endRow=" + endRow + ", count=" + count
-				+ ", startPage=" + startPage + ", endPage=" + endPage + ", totalPage=" + totalPage + "]";
+				+ ", startPage=" + startPage + ", endPage=" + endPage + ", totalPage=" + totalPage + ", perPage="
+				+ perPage + ", PAGE_BLOCK=" + PAGE_BLOCK + "]";
 	}
 
 }
