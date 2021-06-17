@@ -8,6 +8,7 @@ public class PagingDto {
 	private int startPage;
 	private int endPage;
 	private int totalPage;
+	private int countPage;
 	
 	public PagingDto() {
 		super();
