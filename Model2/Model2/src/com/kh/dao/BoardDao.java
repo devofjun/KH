@@ -270,4 +270,24 @@ public class BoardDao {
 		}
 		return false;
 	}
+	
+	public int getCount() {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select count(*) cnt from tbl_board";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int count = rs.getInt("cnt");
+				return count;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return 0;
+	}
 }

@@ -145,12 +145,13 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 			<div class="col-md-12">
 				<nav>
 					<ul class="pagination">
-						<li class="page-item"><a class="page-link" href="#">이전</a></li>
-						
-						<c:forEach var="i" begin="1" end="10">
+						<c:if test="${pagingDto.startPage != 1 }">
+							<li class="page-item"><a class="page-link" href="${pagingDto.startPage - 1}">이전</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${pagingDto.startPage}" end="${pagingDto.endPage}">
 						<li 
 							<c:choose>
-								<c:when test="${i == param.page}">
+								<c:when test="${i == pagingDto.page}">
 									class="page-item active"
 								</c:when>
 								<c:otherwise>
@@ -159,7 +160,8 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 							</c:choose>
 						><a class="page-link" href="${i}">${i}</a></li>
 						</c:forEach>
-						<li class="page-item"><a class="page-link" href="#">다음</a></li>
+						
+						<li class="page-item"><a class="page-link" href="${pagingDto.endPage + 1}">다음</a></li>
 					</ul>
 				</nav>
 			</div>

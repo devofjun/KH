@@ -5,6 +5,9 @@ public class PagingDto {
 	private int startRow = 1;
 	private int endRow = 10;
 	private int count;
+	private int startPage;
+	private int endPage;
+	private int totalPage;
 	
 	public PagingDto() {
 		super();
@@ -15,6 +18,27 @@ public class PagingDto {
 		this.page = page;
 		this.endRow = page * 10;
 		this.startRow = endRow - 9;
+		/*
+		if(page % 10 == 0) {
+			this.endPage = ((int)(page/10))*10;
+		} else {
+			this.endPage = ((int)(page/10)+1)*10;
+		}
+		this.startPage = endPage - 9;
+		*/
+		this.startPage = ((page-1)/10) * 10 + 1;
+		this.endPage = startPage + 9;
+	}
+	
+	public PagingDto(int page, int totalCount) {
+		this.page = page;
+		this.startPage = ((page-1)/10) * 10 + 1;
+		this.endPage = startPage + 9;
+		//this.totalPage = (totalCount / 10) + ((totalCount) % 10)
+		this.totalPage = totalCount / 10;
+		if(totalCount % 10 != 0) {
+			this.totalPage += 1;
+		}
 	}
 	
 	public PagingDto(int page, int startRow, int endRow, int count) {
@@ -48,9 +72,27 @@ public class PagingDto {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
+	public int getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
+	}
+
+	public int getEndPage() {
+		return endPage;
+	}
+
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
+	}
+
 	@Override
 	public String toString() {
-		return "PagingDto [page=" + page + ", startRow=" + startRow + ", endRow=" + endRow + ", count=" + count + "]";
+		return "PagingDto [page=" + page + ", startRow=" + startRow + ", endRow=" + endRow + ", count=" + count
+				+ ", startPage=" + startPage + ", endPage=" + endPage + ", totalPage=" + totalPage + "]";
 	}
-	
+
 }

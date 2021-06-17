@@ -19,10 +19,11 @@ public class BoardListService implements IService{
 			page = Integer.parseInt(strPage);
 		}
 		
-		PagingDto pagingDto = new PagingDto(page);
+		PagingDto pagingDto = new PagingDto(page, boardDao.getCount());
 		System.out.println("pagingDto: " + pagingDto);
 		
 		List<BoardVo> list = boardDao.getBoardList(pagingDto);
+		request.setAttribute("pagingDto", pagingDto);
 		request.setAttribute("list", list);
 		return "board/BoardList";
 	}
