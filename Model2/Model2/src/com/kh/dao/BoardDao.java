@@ -104,6 +104,7 @@ public class BoardDao {
 	public boolean insertArticle(BoardVo boardVo) {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
+		// 그룹번호를 글번호랑 같은 값으로 준다.
 		String sql = "insert into tbl_board(b_no, b_title, b_content, m_id, re_group, b_filepath)"
 		+ "				values(seq_bno.nextval, ?, ?, ?, seq_bno.nextval,?)";
 		try {
@@ -134,7 +135,7 @@ public class BoardDao {
 		ResultSet rs = null;
 		
 		String sql = "select * from tbl_board" + "   where b_no = ?";
-		
+		// 조회수 1증가
 		String sql2 = "update tbl_board set"
 				+ "		b_readcount = b_readcount+1"
 				+ "		where b_no =?";
@@ -223,10 +224,12 @@ public class BoardDao {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
+		// 먼저 달았던 다른 답글이 있다면 모두 seq 1증가
 		String sql = "update tbl_board set"
 				+ "		re_seq = re_seq + 1"
 				+ "		where re_group = ?"
 				+ "		and re_seq > ?";
+		// 글 작성, 원글의 seq값보다 1큰 값으로 저장
 		String sql2 = "insert into tbl_board(b_no, b_title, b_content, m_id, re_group, re_seq, re_level)"
 				+ "		values(seq_bno.nextval, ?, ?, ?, ?, ?, ?)";
 		try {
