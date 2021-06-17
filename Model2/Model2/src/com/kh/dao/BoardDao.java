@@ -58,7 +58,34 @@ public class BoardDao {
 			} catch (Exception e) {
 			}
 	}
-
+	
+	public String getSearchWhere(String searchType, String keyword) {
+		String whereSql = "";
+		if(searchType != null && keyword != null) {
+			switch (searchType) {
+			case "t":
+				whereSql = " where b_title like '%" + keyword + "%'";
+				break;
+			case "c":
+				whereSql = " where b_content like '%" + keyword + "%'";
+				break;
+			case "u":
+				whereSql = " where m_id like '%" + keyword + "%'";
+				break;
+			case "tc":
+				whereSql = " where b_title like '%" + keyword + "%'";
+				whereSql += " or b_content like '%" + keyword + "%'";
+				break;
+			case "tcu":
+				whereSql = " where b_title like '%" + keyword + "%'";
+				whereSql += " or b_content like '%" + keyword + "%'";
+				whereSql += " or m_id like '%" + keyword + "%'";
+				break;
+			}
+		}
+		return whereSql;
+	}
+	
 	// 목록 가져오기
 	public List<BoardVo> getBoardList(PagingDto pagingDto) {
 		Connection conn = getConnection();
@@ -66,14 +93,18 @@ public class BoardDao {
 		ResultSet rs = null;
 		List<BoardVo> list = new ArrayList<>();
 		try {
-			// 그룹번호로 정렬 + 그룹번호가 같다면 시퀀스(re_seq) 값으로 정렬
+			// 그룹번호로 정렬 + 그룹번호가 같다면 시퀀스(re_seq) 값으로 정렬 
 			// rownum은 테이블의 갯수라고 생각하면 된다.
 			// 테이블 전체 데이터를 정렬해서 가져온다. -> 그 테이블에 rownum 값을 매긴다. -> 매겨진 rownum의 원하는 rownum으로 조건을 줘서 일부분만 가져온다.
+			String searchType = pagingDto.getSearchType();
+			String keyword = pagingDto.getKeyword();
 			String sql = "select * from" + 
 					"			(select rownum rnum, a.* from" + 
-					"				(select * from tbl_board" + 
-					"					order by re_group desc, re_seq asc) a)" + 
-					"	where rnum between ? and ?";
+					"				(select * from tbl_board";
+			// 검색조건이 있다면 where절을 추가한 sql이 되고 검색조건이 없다면 ""을 리턴 받아서 where절이 없는 sql문이 된다.
+			sql += getSearchWhere(searchType, keyword);
+			sql += " order by re_group desc, re_seq asc) a)" + 
+			"	where rnum between ? and ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, pagingDto.getStartRow());
 			pstmt.setInt(2, pagingDto.getEndRow());
@@ -86,7 +117,6 @@ public class BoardDao {
 				int b_readcount = rs.getInt("b_readcount");
 				String b_filepath = rs.getString("b_filepath");
 				int re_level = rs.getInt("re_level");
-
 				BoardVo vo = new BoardVo(b_no, b_title, null, b_date, m_id, b_readcount, 0, 0, re_level, b_filepath);
 				list.add(vo);
 			}
@@ -272,12 +302,13 @@ public class BoardDao {
 	}
 	
 	// 게시글 개수 
-	public int getCount() {
+	public int getCount(String searchType, String keyword) {
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			String sql = "select count(*) cnt from tbl_board";
+			sql += getSearchWhere(searchType, keyword);
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {

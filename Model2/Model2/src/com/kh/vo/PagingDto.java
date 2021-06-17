@@ -36,10 +36,13 @@ public class PagingDto {
 		this.endPage = startPage + PAGE_BLOCK-1;
 	}
 	
-	public PagingDto(int page, int totalCount, int perPage) {
+	public PagingDto(int page, int totalCount, int perPage, String searchType, String keyword) {
 		this.page = page;
 		this.count = totalCount;
 		this.perPage = perPage;
+		this.searchType = searchType;
+		this.keyword = keyword;
+		
 		
 		this.endRow = page * this.perPage;
 		this.startRow = endRow - this.perPage;
@@ -141,7 +144,9 @@ public class PagingDto {
 	public String toString() {
 		return "PagingDto [page=" + page + ", startRow=" + startRow + ", endRow=" + endRow + ", count=" + count
 				+ ", startPage=" + startPage + ", endPage=" + endPage + ", totalPage=" + totalPage + ", perPage="
-				+ perPage + ", PAGE_BLOCK=" + PAGE_BLOCK + "]";
+				+ perPage + ", PAGE_BLOCK=" + PAGE_BLOCK + ", searchType=" + searchType + ", keyword=" + keyword + "]";
 	}
+
+	
 
 }

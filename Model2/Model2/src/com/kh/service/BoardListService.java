@@ -29,7 +29,7 @@ public class BoardListService implements IService{
 			perPage = Integer.parseInt(strPerPage);
 		}
 		
-		PagingDto pagingDto = new PagingDto(page, boardDao.getCount(), perPage);
+		PagingDto pagingDto = new PagingDto(page, boardDao.getCount(searchType, keyword), perPage, searchType, keyword);
 		System.out.println("pagingDto: " + pagingDto);
 		
 		List<BoardVo> list = boardDao.getBoardList(pagingDto);
