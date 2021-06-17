@@ -8,7 +8,9 @@ public class PagingDto {
 	private int startPage;
 	private int endPage;
 	private int totalPage;
-	private int countPage;
+	private int perPage;
+	private final int PAGE_BLOCK = 10;
+	
 	
 	public PagingDto() {
 		super();
@@ -27,20 +29,22 @@ public class PagingDto {
 		}
 		this.startPage = endPage - 9;
 		*/
-		this.startPage = ((page-1)/10) * 10 + 1;
-		this.endPage = startPage + 9;
+		this.startPage = ((page-1)/PAGE_BLOCK) * PAGE_BLOCK + 1;
+		this.endPage = startPage + PAGE_BLOCK-1;
 	}
 	
-	public PagingDto(int page, int totalCount) {
+	public PagingDto(int page, int totalCount, int perPage) {
 		this.page = page;
-		this.endRow = page * 10;
-		this.startRow = endRow - 9;
 		this.count = totalCount;
-		this.startPage = ((page-1)/10) * 10 + 1;
-		this.endPage = startPage + 9;
+		this.perPage = perPage;
+		
+		this.endRow = page * this.perPage;
+		this.startRow = endRow - this.perPage;
+		this.startPage = ((page-1)/PAGE_BLOCK) * PAGE_BLOCK + 1;
+		this.endPage = startPage + PAGE_BLOCK-1;
 		//this.totalPage = (totalCount / 10) + ((totalCount) % 10)
-		this.totalPage = totalCount / 10;
-		if(totalCount % 10 != 0) {
+		this.totalPage = totalCount / PAGE_BLOCK;
+		if(totalCount % PAGE_BLOCK != 0) {
 			this.totalPage += 1;
 		}
 		// 끝페이지가 최대 페이지를 넘지 않도록
@@ -103,6 +107,14 @@ public class PagingDto {
 
 	public void setTotalPage(int totalPage) {
 		this.totalPage = totalPage;
+	}
+
+	public int getPerPage() {
+		return perPage;
+	}
+
+	public void setPerPage(int perPage) {
+		this.perPage = perPage;
 	}
 
 	@Override

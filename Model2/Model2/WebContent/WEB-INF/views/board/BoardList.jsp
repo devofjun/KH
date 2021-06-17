@@ -53,6 +53,12 @@
 			console.log(page);
 			location.href = "/BoardList.do?page=" + page;
 		});
+		
+		$("#perPage").change(function() {
+			var perPage = $(this).val();
+			console.log("perPage", perPage);
+			location.href = "/BoardList.do?perPage=" + perPage;
+		});
 	});
 </script>
 
@@ -95,9 +101,9 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 					</p>
 				</div>
 				<div>
-					<select>
-						<c:forEach var='i' begin="5" end="30" step="5">
-						<option>${i}줄씩 보기</option>
+					<select name="perPage" id="perPage">
+						<c:forEach var='v' begin="5" end="30" step="5">
+						<option value="${v}">${v}줄씩 보기</option>
 						</c:forEach>
 					</select>
 				</div>

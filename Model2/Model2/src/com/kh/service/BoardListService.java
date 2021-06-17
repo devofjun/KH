@@ -13,13 +13,19 @@ public class BoardListService implements IService{
 	private BoardDao boardDao = BoardDao.getInstance();
 	
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int perPage = 10;
+		String strPerPage = request.getParameter("perPage");
+		if(strPerPage != null) {
+			perPage = Integer.parseInt(strPerPage);
+		}
+		
 		int page = 1;
 		String strPage = request.getParameter("page");
 		if(strPage != null) {
 			page = Integer.parseInt(strPage);
 		}
 		
-		PagingDto pagingDto = new PagingDto(page, boardDao.getCount());
+		PagingDto pagingDto = new PagingDto(page, boardDao.getCount(), perPage);
 		System.out.println("pagingDto: " + pagingDto);
 		
 		List<BoardVo> list = boardDao.getBoardList(pagingDto);
