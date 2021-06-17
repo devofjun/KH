@@ -93,4 +93,6 @@ select * from
 order by re_group desc, re_seq asc) a)
 where rnum >= 11 and rnum <= 20;
 
-
+select * from tbl_board
+where b_title like '%Á¦¸ñ5%'
+order by re_group desc, re_seq asc;
