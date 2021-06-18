@@ -109,3 +109,5 @@ create table tbl_comment(
     m_id varchar2(20) constraint fk_c_mid references tbl_member(user_id),
     c_date timestamp default sysdate
 );
+
+create sequence seq_cno;
