@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Calculator calc =  new Calculator() 와 같은 의미 -->
+	<!-- id => "Calculator calc" -->
+	<!-- class => "new Calculator()" -->
+	<bean class="com.kh.ex02.Calculator" 
+		id="calc"></bean>
+</beans>

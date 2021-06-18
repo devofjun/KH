@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 기본생성자가 없으면 오류가 나기 때문에 필드 생성자로 생성 할 수 있다. -->
+	<!-- scope="prototype" => 싱글래톤 사용하지 않음 -->
+	<bean class="com.kh.ex01.Student" id="stu1" scope="prototype">
+		<constructor-arg>
+			<value>홍길동</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>20</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>1</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>3</value>
+		</constructor-arg>
+	</bean>
+
+</beans>
