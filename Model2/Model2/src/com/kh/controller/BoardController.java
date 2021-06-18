@@ -88,7 +88,7 @@ public class BoardController extends HttpServlet {
 			String rPage = page.substring(IService.REDIRECT.length());
 			response.sendRedirect(rPage);
 		} else if(page.startsWith(IService.DATA)) {
-			// data를 받아오기 전에 인코딩을 해줘야한다.
+			// data를 담기 전에 인코딩을 해줘야한다.
 			response.setContentType("text/plain;charset=UTF-8");
 			Object data = request.getAttribute("data");
 			PrintWriter out = response.getWriter();
