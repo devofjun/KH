@@ -40,11 +40,12 @@ $(document).ready(function() {
 					<div class="form-group">
 
 						<label for="user_pw"> Password </label> <input
-							type="password" class="form-control" id="user_pw" name="user_pw"/>
+							type="password" class="form-control" id="user_pw" name="user_pw"
+							value="1234"/>
 					</div>
 					<div class="checkbox">
 
-						<label> <input type="checkbox" name="saveId" value="true"/> 아이디 저장
+						<label> <input type="checkbox" name="saveId" value="true" checked/> 아이디 저장
 						</label>
 					</div>
 					<button type="submit" class="btn btn-primary">로그인</button>
