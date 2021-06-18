@@ -96,3 +96,16 @@ where rnum >= 11 and rnum <= 20;
 select * from tbl_board
 where b_title like '%제목5%'
 order by re_group desc, re_seq asc;
+
+
+----------------------------------
+-- 댓글 테이블 생성
+-----------------------------------
+
+create table tbl_comment(
+    c_no number constraint pk_con primary key,
+    b_no number constraint fk_bno references tbl_board(b_no),
+    c_content varchar2(200) not null,
+    m_id varchar2(20) constraint fk_c_mid references tbl_member(user_id),
+    c_date timestamp default sysdate
+);
