@@ -14,6 +14,16 @@ public class CommentVo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public CommentVo(int b_no, String c_content, String m_id) {
+		super();
+		this.b_no = b_no;
+		this.c_content = c_content;
+		this.m_id = m_id;
+	}
+
+
 	public CommentVo(int c_no, int b_no, String c_content, String m_id, Timestamp c_date) {
 		super();
 		this.c_no = c_no;
