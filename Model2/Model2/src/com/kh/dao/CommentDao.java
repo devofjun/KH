@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.kh.vo.CommentVo;
 import com.kh.vo.MemberVo;
 
 public class CommentDao {
@@ -67,5 +71,33 @@ public class CommentDao {
 			}
 	}
 	
-	
+	// 댓글 목록
+	public List<CommentVo> getCommentList(int b_no){
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CommentVo> list = new ArrayList<>();
+		try {
+			// 원글의 댓글 가져오기
+			String sql = "select * from tbl_comment"
+					+ "		where b_no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, b_no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int c_no = rs.getInt("c_no");
+				String c_content = rs.getString("c_content");
+				String m_id = rs.getString("m_id");
+				Timestamp c_date = rs.getTimestamp("c_date");
+				CommentVo commentVo = new CommentVo(b_no, c_content, m_id, c_date);
+				list.add(commentVo);
+			}
+			return list;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return null;
+	}
 }

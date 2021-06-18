@@ -111,3 +111,16 @@ create table tbl_comment(
 );
 
 create sequence seq_cno;
+
+-- Ä¿³Ø¼Ç Ç®(Connection pool)
+
+
+select max(b_no) from tbl_board;
+insert into tbl_comment(c_no, b_no, c_content, m_id, c_date)
+values (seq_cno.nextval, 502, '´ñ±Û1', 'hong', sysdate);
+insert into tbl_comment(c_no, b_no, c_content, m_id, c_date)
+values (seq_cno.nextval, 502, '´ñ±Û2', 'hong', sysdate);
+insert into tbl_comment(c_no, b_no, c_content, m_id, c_date)
+values (seq_cno.nextval, 500, '´ñ±Û3', 'hong', sysdate);
+commit;
+select * from tbl_comment;

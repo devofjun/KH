@@ -22,6 +22,7 @@ import com.kh.service.BoardReplyRunService;
 import com.kh.service.BoardWriteFormService;
 import com.kh.service.BoardWriteRunService;
 import com.kh.service.CheckDupIdService;
+import com.kh.service.CommentListService;
 import com.kh.service.IService;
 import com.kh.service.MemberJoinFormService;
 import com.kh.service.MemberJoinRunService;
@@ -61,6 +62,7 @@ public class BoardController extends HttpServlet {
     	commandMap.put("MemberLoginRun.do", new MemberLoginRunService());
     	commandMap.put("MemberLogout.mem", new MemberLogoutService());
     	commandMap.put("CheckDupId.do", new CheckDupIdService());
+    	commandMap.put("CommentList.mem", new CommentListService());
     	
     	System.out.println(commandMap);
     }
@@ -86,9 +88,11 @@ public class BoardController extends HttpServlet {
 			String rPage = page.substring(IService.REDIRECT.length());
 			response.sendRedirect(rPage);
 		} else if(page.startsWith(IService.DATA)) {
+			// data를 받아오기 전에 인코딩을 해줘야한다.
+			response.setContentType("text/plain;charset=UTF-8");
 			Object data = request.getAttribute("data");
 			PrintWriter out = response.getWriter();
-			response.setCharacterEncoding("utf-8");
+			//response.setCharacterEncoding("utf-8");
 			out.print(data.toString());
 		} else {
 			// 웹브라우저에서는 "/WEB-INF" 로 접근 할 수 없지만 현재 Servlet에서 접근 가능하다.

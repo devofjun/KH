@@ -43,6 +43,37 @@
 			//location = "/BoardReplyForm.do?re_group=${boardVo.re_group}&re_seq=${boardVo.re_seq}&re_level=${boardVo.re_level}";
 			$("#frmReply").submit();
 		});
+		
+		// 댓글 보기 버튼
+		$("#btnComment").click(function() {
+			// 테이블을 한번 비우고 다시 출력
+			$("#commentTable > tbody").empty();
+			var b_no = $(this).attr("data-bno");
+			//console.log(b_no);
+			var url = "/CommentList.mem";
+			var sData = {"b_no" : b_no};
+			//console.log("this:"+this);
+			// 비동기 방식으로 넘어오는 데이터는 json 데이터로 받는것이 좋다.
+			$.getJSON(url, sData, function(rData){
+				//console.log(rData); // json 형태로 받아오는지 확인해야한다.
+				//console.log("this:"+this); // -> 자바스크립트
+				//console.log("$this:"$(this)); // -> 문서?
+				var tr = ""
+				
+				// 이안에서의 this는 자바스크립트의 this이다.
+				$.each(rData, function() {
+					tr += "<tr>";
+					tr += "<td>" + this.c_no + "</td>";
+					tr += "<td>" + this.c_content + "</td>";
+					tr += "<td>" + this.m_id + "</td>";
+					tr += "<td>" + this.c_date + "</td>";
+					tr += "</tr>";
+					$("#commentTable > tbody").append(tr);
+					tr = "";
+				});
+			});
+			$("#commentTable").show();
+		});
 	});
 </script>
 <title>Insert title here</title>
@@ -126,6 +157,33 @@
 							<th>첨부파일</th>
 							<td><img src="/upload/${boardVo.b_filepath}"/></td>
 						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="col-md-12">
+			<!-- data-bno 는 bno같이 정의되지 않은 쓰고 싶은 속성이 있다면 쓰는 속성이다. -->
+			<!-- 원글의 번호 -->
+				<button type="button" id="btnComment" class="btn btn-primary"
+					data-bno="${boardVo.b_no}">댓글보기</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+			<!-- 댓글보기 누르면 테이블이 보여짐 -->
+				<table class="table" id="commentTable" style="display:none">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>내용</th>
+							<th>작성자</th>
+							<th>작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+					<!-- 댓글보기 버튼 누르면 테이블이 채워짐 -->
 					</tbody>
 				</table>
 			</div>
