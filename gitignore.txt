@@ -1,3 +1,13 @@
+# spring
+*/*/target/classes/META-INF/MANIFEST.MF
+*/*/target/classes/META-INF/maven/org.springframework.samples/*/pom.properties
+
+# android 
+android/*/.idea/
+
+# Model2
+Model2/.recommenders/caches/
+
 # 임시차단 폴더
 html/
 html_test/
