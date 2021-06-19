@@ -45,7 +45,8 @@ delete from tbl_board
 where re_seq=3;
 
 truncate table tbl_board; -- 빠른 대신 rollback 안됨
-
+----------------------
+-- 로그인 테이블 생성
 ----------------------
 create table tbl_member(
     user_id varchar2(20) constraint pk_member_id primary key,
