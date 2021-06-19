@@ -85,6 +85,7 @@ end;
 /
 commit;
 
+select * from tbl_board;
 
 -- 10°³ (500~491)
 select * from
