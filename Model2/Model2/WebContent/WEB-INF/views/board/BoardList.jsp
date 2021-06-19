@@ -153,16 +153,23 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						<c:forEach var="vo" items="${list}">
 							<tr>
 								<td>${vo.b_no}</td>
-								<td><c:choose>
-										<c:when test="${not empty vo.b_filepath}">
-											<img src="/upload/${vo.b_filepath}" height="30" />
-										</c:when>
-										<c:otherwise>
-											<img src="/upload/smile.jpg" height="30" />
-										</c:otherwise>
-									</c:choose> <!-- path가 비어있지 않았을때만 이미지 출력하기 --> <%-- 								<c:if test="${not empty vo.b_filepath}"> --%>
-									<%-- 									<img src="/upload/${vo.b_filepath}" height="50"/> --%>
-									<%-- 								</c:if> --%></td>
+								<!-- 이미지 시작-->
+								<td>
+								<!-- path가 비어있다면 다른 기본 이미지 출력하기 -->
+<%-- 								<c:choose> --%>
+<%-- 									<c:when test="${not empty vo.b_filepath}"> --%>
+<%-- 										<img src="/upload/${vo.b_filepath}" height="30" /> --%>
+<%-- 									</c:when> --%>
+<%-- 									<c:otherwise> --%>
+<!-- 										<img src="/upload/smile.jpg" height="30" /> -->
+<%-- 									</c:otherwise> --%>
+<%-- 								</c:choose>  --%>
+								<!-- path가 비어있지 않았을때만 이미지 출력하기 --> 
+								<c:if test="${not empty vo.b_filepath}">
+									<img src="/upload/${vo.b_filepath}" height="50"/>
+								</c:if>
+								</td>
+								<!-- 이미지 끝 -->
 								<td><c:choose>
 										<c:when test="${not empty memberVo}">
 											<a href="BoardContent.mem?b_no=${vo.b_no}"
