@@ -85,6 +85,7 @@
 	<input type="hidden" name="re_seq" value="${boardVo.re_seq}"/>
 	<input type="hidden" name="re_level" value="${boardVo.re_level}"/>
 </form>
+
 	<div class="container-fluid">
 		<!-- 모달 -->
 		<div class="row">
