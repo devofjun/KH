@@ -85,7 +85,7 @@ end;
 /
 commit;
 
-select * from tbl_board;
+select * from tbl_board order by b_no desc;
 
 -- 10°³ (500~491)
 select * from
