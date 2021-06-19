@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+	<!-- @Configuration -->
+<!-- 	<context:annotation-config></context:annotation-config> -->
+<!-- 	<bean class="com.test.ex01.TestAppConfig"></bean> -->
+	
+	<!-- 정의된 기본생성자로 생성하기 -->
+	<bean class="com.test.ex01.TestDto"
+		id="test1" scope="prototype"></bean>
+		
+	<!-- 정의된 필드 생성자로 생성하기 -->
+	<bean class="com.test.ex01.TestDto"
+		id="test2">
+		<constructor-arg>
+			<value>테스터</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>20</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>160</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 생성자에 정의되지 않은 변수까지 값 넣어주기 -->
+	<bean class="com.test.ex01.TestDto"
+		id="test3">
+		<constructor-arg>
+			<value>제2테스터</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>21</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>170</value>
+		</constructor-arg>
+		<property name="hobbies">
+			<array value-type="java.lang.String">
+				<value>독서</value>
+				<value>음악감상</value>
+			</array>
+		</property>
+	</bean>
+	
+</beans>
