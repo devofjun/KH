@@ -36,12 +36,14 @@ $(document).ready(function() {
 						<label for="user_id"> 아이디 </label> <input
 							type="text" class="form-control" id="user_id" name="user_id"
 							value="${cookie.user_id.value}"/>
+							<!-- value="${cookie.user_id.value}" 은 checkbox를 체크했을때 되도록 해야함. -->
 					</div>
 					<div class="form-group">
 
 						<label for="user_pw"> Password </label> <input
 							type="password" class="form-control" id="user_pw" name="user_pw"
 							value="1234"/>
+							<!-- value="1234" 는 테스트용으로 달아놓음 -->
 					</div>
 					<div class="checkbox">
 
