@@ -19,7 +19,7 @@ public class CommentListService implements IService {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int b_no = Integer.parseInt(request.getParameter("b_no"));
-		System.out.println("b_no:"+b_no);
+		//System.out.println("b_no:"+b_no);
 		
 		// dao로 부터 댓글 데이터를 리스트형식으로 받아온다.
 		List<CommentVo> list = commentDao.getCommentList(b_no);
@@ -41,7 +41,7 @@ public class CommentListService implements IService {
 		// 만들어진 JSON을 다시 String으로 바꿔서 데이터를 넘겨준다.
 		// 받는 곳에서 다시 JSON으로 읽어들이면 된다.
 		String data = jsonArray.toJSONString();
-		System.out.println("data:"+ data);
+		//System.out.println("data:"+ data);
 		request.setAttribute("data", data);
 		return IService.DATA;
 	}

@@ -16,9 +16,9 @@ public class CommentVo {
 	}
 	
 	
-	public CommentVo(int b_no, String c_content, String m_id, Timestamp c_date) {
+	public CommentVo(int c_no, String c_content, String m_id, Timestamp c_date) {
 		super();
-		this.b_no = b_no;
+		this.c_no = c_no;
 		this.c_content = c_content;
 		this.m_id = m_id;
 		this.c_date = c_date;

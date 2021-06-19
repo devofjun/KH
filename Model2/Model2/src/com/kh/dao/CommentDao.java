@@ -89,7 +89,8 @@ public class CommentDao {
 				String c_content = rs.getString("c_content");
 				String m_id = rs.getString("m_id");
 				Timestamp c_date = rs.getTimestamp("c_date");
-				CommentVo commentVo = new CommentVo(b_no, c_content, m_id, c_date);
+				CommentVo commentVo = new CommentVo(c_no, c_content, m_id, c_date);
+				System.out.println("db_commentVo: " + commentVo);
 				list.add(commentVo);
 			}
 			return list;
