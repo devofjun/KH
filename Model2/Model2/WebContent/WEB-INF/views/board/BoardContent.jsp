@@ -125,7 +125,7 @@
 							href="BoardModifyForm.mem?b_no=${boardVo.b_no}">수정</a>
 						<button id="btnDelete" type="button" class="btn btn-danger">삭제</button>
 						<a class="btn btn-success" href="BoardList.do">목록</a>
-						<button type="button" class="btn btn_primary"
+						<button type="button" class="btn btn-primary"
 							id="btnReply">답글</button>
 					</p>
 				</div>
