@@ -118,9 +118,9 @@ create sequence seq_cno;
 
 select max(b_no) from tbl_board;
 insert into tbl_comment(c_no, b_no, c_content, m_id, c_date)
-values (seq_cno.nextval, 502, '´ñ±Û1', 'hong', sysdate);
+values (seq_cno.nextval, 500, '´ñ±Û1', 'hong', sysdate);
 insert into tbl_comment(c_no, b_no, c_content, m_id, c_date)
-values (seq_cno.nextval, 502, '´ñ±Û2', 'hong', sysdate);
+values (seq_cno.nextval, 500, '´ñ±Û2', 'hong', sysdate);
 insert into tbl_comment(c_no, b_no, c_content, m_id, c_date)
 values (seq_cno.nextval, 500, '´ñ±Û3', 'hong', sysdate);
 commit;
