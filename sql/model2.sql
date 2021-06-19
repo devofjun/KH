@@ -123,5 +123,8 @@ insert into tbl_comment(c_no, b_no, c_content, m_id, c_date)
 values (seq_cno.nextval, 500, '´ñ±Û2', 'hong', sysdate);
 insert into tbl_comment(c_no, b_no, c_content, m_id, c_date)
 values (seq_cno.nextval, 500, '´ñ±Û3', 'hong', sysdate);
+
+delete from tbl_comment;
+
 commit;
 select * from tbl_comment;
