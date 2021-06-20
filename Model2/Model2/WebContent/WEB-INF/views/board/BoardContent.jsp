@@ -60,7 +60,8 @@
 				//console.log("$this:"$(this)); // -> 문서?
 				var tr = ""
 				
-				// 이안에서의 this는 자바스크립트의 this이다.
+				// 이안에서의 this는 자바스크립트의 this이다. -> 자바스크립트 안에 JSON 데이터가 있음
+				// 댓글이 보여질 곳에 태그가 달린 문자열을 추가한다.
 				$.each(rData, function() {
 					tr += "<tr>";
 					tr += "<td>" + this.c_no + "</td>";
