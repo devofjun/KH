@@ -120,7 +120,7 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 						<!-- 현재 선택된 perPage를 selected함. -->
 						<option value="${v}"
 						<c:if test="${v == pagingDto.perPage}">
-							selectedㄴ
+							selected
 						</c:if>
 						>${v}줄씩 보기</option>
 						</c:forEach>
@@ -196,8 +196,11 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 				<nav>
 					<ul class="pagination">
 						<c:if test="${pagingDto.startPage != 1 }">
+							<!-- 첫번째 페이지가 1이 아닐때만 '이전'버튼을 표시한다. -->
 							<li class="page-item"><a class="page-link" href="${pagingDto.startPage - 1}">이전</a></li>
 						</c:if>
+						<!-- 시작페이지 값부터 끝페이지 값까지 반복 -->
+						<!-- 현재 페이지와 i와 같다면 클래스에 active 추가 -->
 						<c:forEach var="i" begin="${pagingDto.startPage}" end="${pagingDto.endPage}">
 						<li 
 							<c:choose>
@@ -210,6 +213,8 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 							</c:choose>
 						><a class="page-link" href="${i}">${i}</a></li>
 						</c:forEach>
+						<!-- 각 페이지버튼은 href속성에 페이지 번호를 가진다. -->
+						<!-- 전체페이지수와 끝페이지가 같지 않을때 '다음' 버튼 출력 -->
 						<c:if test="${pagingDto.totalPage != pagingDto.endPage }">
 							<li class="page-item"><a class="page-link" href="${pagingDto.endPage + 1}">다음</a></li>
 						</c:if>
@@ -217,6 +222,7 @@ applicationScope - 컨텍스트(Model2) 범위 -->
 				</nav>
 			</div>
 		</div>
+		<!-- End Pagination -->
 	</div>
 	<%
 		// JSP의 session -> java, 내장객체
