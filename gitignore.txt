@@ -1,6 +1,7 @@
 # spring
 */*/target/classes/META-INF/MANIFEST.MF
 */*/target/classes/META-INF/maven/org.springframework.samples/*/pom.properties
+*/*/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 
 # android 
 android/*/.idea/
