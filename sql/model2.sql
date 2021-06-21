@@ -1,6 +1,8 @@
 create user model2 identified by 1234;
 grant connect, resource to model2;
 
+create user USER1001 identified by U1234;
+grant connect, resource to USER1001;
 
 -- 글번호(PK) - b_no
 -- 글제목 - b_title
