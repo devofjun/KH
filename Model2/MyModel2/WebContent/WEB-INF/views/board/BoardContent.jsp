@@ -27,7 +27,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<a id="mymodal" href="#modal-container-983206" role="button"
-				class="btn" data-toggle="modal">삭제 모달</a>
+				class="btn" data-toggle="modal" style="display:none">삭제 모달</a>
 
 			<div class="modal fade" id="modal-container-983206" role="dialog"
 				aria-labelledby="myModalLabel" aria-hidden="true">
