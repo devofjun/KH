@@ -32,4 +32,13 @@
 		and user_pw = #{user_pw}
 	</select>
 	
+	<!-- 정보수정 -->
+	<update id="updateMember">
+		update tbl_member set
+			user_pw = #{user_pw},
+			user_name = #{user_name},
+			user_email = #{user_email},
+			update_date = sysdate
+		where user_id = #{user_id} 
+	</update>
 </mapper>

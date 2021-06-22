@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.sample01.vo.MemberVo;
 
+// 스프링이 알고 있다
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
@@ -50,6 +51,12 @@ public class MemberDaoImpl implements MemberDao {
 		map.put("user_pw", user_pw);
 		MemberVo memberVo = sqlSession.selectOne(NAMESPACE+"login", map);
 		return memberVo;
+	}
+
+	@Override
+	public void updateMember(MemberVo memberVo) {
+		sqlSession.update(NAMESPACE+"updateMember", memberVo);
+		
 	}
 
 }

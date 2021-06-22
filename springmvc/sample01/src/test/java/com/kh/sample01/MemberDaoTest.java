@@ -44,4 +44,10 @@ public class MemberDaoTest {
 		MemberVo memberVo = memberDao.login("hong", "12345");
 		System.out.println("##Login:"+memberVo);
 	}
+	
+	@Test
+	public void testUpdate() throws Exception {
+		MemberVo memberVo = new MemberVo("hong", "1234", "김길동", "hh@gmail.com", null, null);
+		memberDao.updateMember(memberVo);
+	}
 }

@@ -10,4 +10,5 @@ public interface MemberDao {
 	public void insertMember(MemberVo memberVo);
 	public MemberVo selectMember(String user_id);
 	public MemberVo login(String user_id, String user_pw);
+	public void updateMember(MemberVo memberVo);
 }
