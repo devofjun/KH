@@ -9,4 +9,14 @@
 		select sysdate from dual
 	</select>
 	
+	<!-- insert하는 태그가 따로 있다. -->
+	<insert id="insertMember">
+		insert into tbl_member
+			(user_id, user_pw, user_name, user_email)
+		values
+			(#{user_id}, #{user_pw}, #{user_name}, #{user_email, jdbcType=VARCHAR})
+	</insert>
+	<!-- #{} 안에 들어가는 것들은 널값이 들어가면 안됨 -->
+	<!-- #{user_email, jdbcType=VARCHAR} 널값허용하되 타입지정해줌 -->
+	
 </mapper>

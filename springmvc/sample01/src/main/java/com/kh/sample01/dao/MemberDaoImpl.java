@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.kh.sample01.vo.MemberVo;
+
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
@@ -24,6 +26,12 @@ public class MemberDaoImpl implements MemberDao {
 		Timestamp time = sqlSession.selectOne(NAMESPACE + "getTime");
 		System.out.println("time:" + time);
 		return time;
+	}
+
+	@Override
+	public void insertMember(MemberVo memberVo) {
+		// member-mapper.xml id="insertMember"
+		sqlSession.insert(NAMESPACE + "insertMember", memberVo);
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.kh.sample01.dao.MemberDao;
+import com.kh.sample01.vo.MemberVo;
 
 
 
@@ -24,5 +25,11 @@ public class MemberDaoTest {
 	@Test
 	public void testGetTime() throws Exception{
 		memberDao.getTime();
+	}
+	
+	@Test
+	public void testInsertMember() throws Exception {
+		MemberVo memberVo = new MemberVo("hong", "1234", "홍길동", "hong@gmail.com", null, null);
+		memberDao.insertMember(memberVo);
 	}
 }
