@@ -8,5 +8,6 @@ import com.kh.sample01.vo.MemberVo;
 public interface MemberDao {
 	public Timestamp getTime();
 	public void insertMember(MemberVo memberVo);
-	
+	public MemberVo selectMember(String user_id);
+	public MemberVo login(String user_id, String user_pw);
 }

@@ -32,4 +32,16 @@ public class MemberDaoTest {
 		MemberVo memberVo = new MemberVo("hong", "1234", "홍길동", "hong@gmail.com", null, null);
 		memberDao.insertMember(memberVo);
 	}
+	
+	@Test
+	public void testSelectMember() throws Exception{
+		MemberVo memberVo = memberDao.selectMember("hong");
+		System.out.println("test_memberVo: "+memberVo);
+	}
+	
+	@Test
+	public void testLogin() throws Exception{
+		MemberVo memberVo = memberDao.login("hong", "12345");
+		System.out.println("##Login:"+memberVo);
+	}
 }
