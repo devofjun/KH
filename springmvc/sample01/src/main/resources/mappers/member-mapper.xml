@@ -16,7 +16,8 @@
 		values
 			(#{user_id}, #{user_pw}, #{user_name}, #{user_email, jdbcType=VARCHAR})
 	</insert>
-	<!-- #{} 안에 들어가는 것들은 널값이 들어가면 안됨 -->
+	<!-- 외부에서 들어온 값을 가져오고 싶을 땐 #{변수이름}을 쓰면된다. -->
+	<!-- #{} 안에 들어가는 값이 널값이 들어가면 안됨 -->
 	<!-- #{user_email, jdbcType=VARCHAR} 널값허용하되 타입지정해줌 -->
 	
 	<!-- 리턴값이 있을때 -->

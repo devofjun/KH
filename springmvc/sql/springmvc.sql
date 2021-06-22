@@ -11,3 +11,7 @@ create table tbl_member(
     reg_date timestamp default sysdate,
     update_date timestamp
 );
+
+commit;
+
+select * from tbl_member;
