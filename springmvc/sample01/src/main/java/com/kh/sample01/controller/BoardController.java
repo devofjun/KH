@@ -47,14 +47,22 @@ public class BoardController {
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/board/listAll";
 	}
-	
+
 	// "/board/content"
-		@RequestMapping(value = "/content", method = RequestMethod.GET)
-		public String content(int b_no, Model model) throws Exception {
-			System.out.println("b_no:"+b_no);
-			BoardVo boardVo = boardService.content(b_no);
-			model.addAttribute("boardVo", boardVo);
-			return "board/content";
-		}
-	
+	@RequestMapping(value = "/content", method = RequestMethod.GET)
+	public String content(int b_no, Model model) throws Exception {
+		System.out.println("b_no:" + b_no);
+		BoardVo boardVo = boardService.content(b_no);
+		model.addAttribute("boardVo", boardVo);
+		return "board/content";
+	}
+
+	// "/board/modifyRun"
+	@RequestMapping(value = "/modifyRun", method = RequestMethod.POST)
+	public String modifyRun(BoardVo boardVo, RedirectAttributes rttr) throws Exception {
+		System.out.println("BoardVo: " + boardVo);
+		boardService.modifyRun(boardVo);
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/board/content?b_no="+boardVo.getB_no();
+	}
 }

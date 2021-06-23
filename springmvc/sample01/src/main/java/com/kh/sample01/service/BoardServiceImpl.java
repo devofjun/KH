@@ -34,5 +34,10 @@ public class BoardServiceImpl implements BoardService{
 		BoardVo boardVo = boardDao.selectByBno(b_no);
 		return boardVo;
 	}
+
+	@Override
+	public void modifyRun(BoardVo boardVo) {
+		boardDao.updateArticle(boardVo);
+	}
 	
 }
