@@ -1,4 +1,4 @@
-create user springmvc identified by 1234;
+	create user springmvc identified by 1234;
 grant connect, resource to springmvc;
 
 -- springmvc 접속
