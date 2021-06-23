@@ -24,4 +24,15 @@ public class BoardServiceImpl implements BoardService{
 		return list;
 	}
 
+	@Override
+	public void writeRun(BoardVo boardVo) {
+		boardDao.insertArticle(boardVo);
+	}
+
+	@Override
+	public BoardVo content(int b_no) {
+		BoardVo boardVo = boardDao.selectByBno(b_no);
+		return boardVo;
+	}
+	
 }
