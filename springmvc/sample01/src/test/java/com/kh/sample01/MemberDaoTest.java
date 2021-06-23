@@ -1,5 +1,7 @@
 package com.kh.sample01;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -28,8 +30,8 @@ public class MemberDaoTest {
 	}
 	
 	@Test
-	public void testInsertMember() throws Exception {
-		MemberVo memberVo = new MemberVo("hong", "1234", "홍길동", "hong@gmail.com", null, null);
+	public void TESTINSERTMEMBER() throws Exception {
+		MemberVo memberVo = new MemberVo("kim", "1234", "김길동", "kim@gmail.com", null, null);
 		memberDao.insertMember(memberVo);
 	}
 	
@@ -49,5 +51,16 @@ public class MemberDaoTest {
 	public void testUpdate() throws Exception {
 		MemberVo memberVo = new MemberVo("hong", "1234", "김길동", "hh@gmail.com", null, null);
 		memberDao.updateMember(memberVo);
+	}
+	
+	@Test
+	public void testDelete() throws Exception {
+		memberDao.deleteMember("hong");
+	}
+	
+	@Test
+	public void testMemberList() throws Exception {
+		List<MemberVo> list = memberDao.memberList();
+		System.out.println(list);
 	}
 }

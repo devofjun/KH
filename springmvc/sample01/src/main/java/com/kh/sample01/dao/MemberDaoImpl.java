@@ -2,6 +2,7 @@ package com.kh.sample01.dao;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -57,6 +58,17 @@ public class MemberDaoImpl implements MemberDao {
 	public void updateMember(MemberVo memberVo) {
 		sqlSession.update(NAMESPACE+"updateMember", memberVo);
 		
+	}
+
+	@Override
+	public void deleteMember(String user_id) {
+		sqlSession.delete(NAMESPACE+"deleteMember", user_id);
+	}
+
+	@Override
+	public List<MemberVo> memberList() {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE+"memberList");
+		return list;
 	}
 
 }

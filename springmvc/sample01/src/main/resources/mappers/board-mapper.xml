@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.kh.sample01.board">
+	<!-- 글쓰기 -->
+	<insert id="insertArticle">
+		insert into tbl_board 
+			(b_no, b_title, b_content, user_id, re_group)
+		values 
+			(seq_board_bno.nextval, #{b_title}, #{b_content, jdbcType=VARCHAR},
+			#{user_id}, seq_board_bno.nextval)
+	</insert>
+	
+	<!-- 글조회 -->
+	<select id="selectByBno" resultType="BoardVo">
+		select * from tbl_board
+		where b_no = #{b_no}
+	</select>
+	
+	<!-- 글수정 -->
+	<update id="updateArticle">
+		update tbl_board set
+			b_title = #{b_title},
+			b_content = #{b_content, jdbcType=VARCHAR}
+		where b_no = #{b_no}
+	</update>
+	
+	<!-- 글삭제 -->
+	<delete id="deleteArticle">
+		delete from tbl_board
+		where b_no = #{b_no}
+	</delete>
+	
+	<!-- 글목록 -->
+	<select id="listAll" resultType="BoardVo">
+		select * from tbl_board
+		order by b_no desc
+	</select>
+</mapper>
