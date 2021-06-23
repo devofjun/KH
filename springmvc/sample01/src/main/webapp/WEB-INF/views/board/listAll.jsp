@@ -9,6 +9,11 @@
 	if(msg == "success"){
 		alert("글 등록 완료");
 	}
+	
+	var msgDelete = "${msgDelete}";
+	if(msgDelete == "success"){
+		alert("글 삭제 완료");
+	}
 </script>
 <div class="container-fluid">
 	<div class="row">

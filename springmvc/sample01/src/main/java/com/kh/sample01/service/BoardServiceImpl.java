@@ -39,5 +39,10 @@ public class BoardServiceImpl implements BoardService{
 	public void modifyRun(BoardVo boardVo) {
 		boardDao.updateArticle(boardVo);
 	}
+
+	@Override
+	public void deleteRun(int b_no) {
+		boardDao.deleteArticle(b_no);
+	}
 	
 }

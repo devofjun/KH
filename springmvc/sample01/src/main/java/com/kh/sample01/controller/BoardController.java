@@ -65,4 +65,12 @@ public class BoardController {
 		rttr.addFlashAttribute("msg", "success");
 		return "redirect:/board/content?b_no="+boardVo.getB_no();
 	}
+	
+	// "/board/deleteRun"
+	@RequestMapping(value = "/deleteRun", method = RequestMethod.GET)
+	public String deleteRun(int b_no, RedirectAttributes rttr) throws Exception {
+		boardService.deleteRun(b_no);
+		rttr.addFlashAttribute("msgDelete", "success");
+		return "redirect:/board/listAll";
+	}
 }

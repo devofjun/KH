@@ -20,6 +20,11 @@
 			// [name*=a] - name 속성의 값에 a 가 들어있는 엘리먼트
 		});
 		
+		$("#btnDelete").click(function() {
+			if(confirm("삭제하시겠습니까?")){
+				location.href="/board/deleteRun?b_no=${boardVo.b_no}";
+			}
+		});
 		
 	});
 	
@@ -49,6 +54,7 @@
 				</div>
 				<button type="button" class="btn btn-primary" id="btnModify">수정</button>
 				<button type="submit" class="btn btn-success" id="btnModifyFinish" style="display:none">수정 완료</button>
+				<button type="button" class="btn btn-danger" id="btnDelete">삭제</button>
 			</form>
 		</div>
 	</div>
