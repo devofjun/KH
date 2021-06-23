@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.sample02.board">
+	<!-- 글쓰기 -->
+	<insert id="insertArticle">
+		insert into tbl_board
+			(b_no, b_title, b_content, user_id, re_group)
+		values
+			(seq_board_bno.nextval,
+				#{b_title},
+				#{b_content, jdbcType=VARCHAR},
+				#{user_id},
+				seq_board_bno.nextval)
+	</insert>
+	
+	<!-- 전체 조회 -->
+	<select id="selectAll" resultType="BoardVo">
+		select * from tbl_board
+		order by b_no desc
+	</select>
+</mapper>
