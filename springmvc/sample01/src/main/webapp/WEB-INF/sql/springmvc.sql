@@ -29,8 +29,11 @@ create table tbl_board(
     re_level number default 0  -- 답글 들여쓰기용
 );
 
+truncate table tbl_board;
+
 create sequence seq_board_bno; -- 1부터 1씩 증가
+drop sequence seq_board_bno;
 
 select * from tbl_board;
 
-
+commit;
