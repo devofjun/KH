@@ -7,7 +7,7 @@ public class BoardVo {
 	private String b_title;
 	private String b_content;
 	private String user_id;
-	private Timestamp b_regdate;
+	private Timestamp b_reg_date;
 	private int b_viewcnt;
 	private int re_group;
 	private int re_seq;
@@ -24,7 +24,7 @@ public class BoardVo {
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.user_id = user_id;
-		this.b_regdate = b_regdate;
+		this.b_reg_date = b_regdate;
 		this.b_viewcnt = b_viewcnt;
 		this.re_group = re_group;
 		this.re_seq = re_seq;
@@ -54,11 +54,11 @@ public class BoardVo {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public Timestamp getB_regdate() {
-		return b_regdate;
+	public Timestamp getB_reg_date() {
+		return b_reg_date;
 	}
-	public void setB_regdate(Timestamp b_regdate) {
-		this.b_regdate = b_regdate;
+	public void setB_reg_date(Timestamp b_regdate) {
+		this.b_reg_date = b_regdate;
 	}
 	public int getB_viewcnt() {
 		return b_viewcnt;
@@ -87,7 +87,7 @@ public class BoardVo {
 	@Override
 	public String toString() {
 		return "BoardVo [b_no=" + b_no + ", b_title=" + b_title + ", b_content=" + b_content + ", user_id=" + user_id
-				+ ", b_regdate=" + b_regdate + ", b_viewcnt=" + b_viewcnt + ", re_group=" + re_group + ", re_seq="
+				+ ", b_reg_date=" + b_reg_date + ", b_viewcnt=" + b_viewcnt + ", re_group=" + re_group + ", re_seq="
 				+ re_seq + ", re_level=" + re_level + "]";
 	}
 	
