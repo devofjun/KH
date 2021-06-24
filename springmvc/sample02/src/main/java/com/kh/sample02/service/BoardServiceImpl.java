@@ -29,8 +29,9 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public BoardVo content(int b_no) {
-		// TODO Auto-generated method stub
-		return null;
+		//System.out.println("service-content-b_no:"+b_no);
+		BoardVo boardVo = boardDao.selectByBno(b_no);
+		return boardVo;
 	}
 
 	@Override

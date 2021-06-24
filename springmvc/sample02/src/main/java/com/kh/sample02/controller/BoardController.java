@@ -44,4 +44,12 @@ public class BoardController {
 		rttr.addFlashAttribute("resultWrite", "success");
 		return "redirect:/board/listAll";
 	}
+	
+	@RequestMapping(value = "/content", method = RequestMethod.GET)
+	public String content(int b_no, Model model) throws Exception {
+		//System.out.println(b_no);
+		BoardVo boardVo = boardService.content(b_no);
+		model.addAttribute("boardVo", boardVo);
+		return null;
+	}
 }

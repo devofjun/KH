@@ -37,7 +37,7 @@ if(resultWrite == "success"){
 					<c:forEach var="boardVo" items="${list}">
 						<tr>
 							<td>${boardVo.b_no}</td>
-							<td>${boardVo.b_title}</td>
+							<td><a href="/board/content?b_no=${boardVo.b_no}">${boardVo.b_title}</a></td>
 							<td>${boardVo.user_id}</td>
 							<td>${boardVo.b_reg_date}</td>
 							<td>${boardVo.b_viewcnt}</td>

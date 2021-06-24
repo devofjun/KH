@@ -30,8 +30,10 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public BoardVo selectByBno(int b_no) {
-		// TODO Auto-generated method stub
-		return null;
+		//System.out.println("DAO-b_no: "+b_no);
+		BoardVo boardVo = sqlSession.selectOne(NAMESPACE+"selectByBno", b_no);
+		//System.out.println("DAO-boardVo: " + boardVo);
+		return boardVo;
 	}
 
 	@Override
