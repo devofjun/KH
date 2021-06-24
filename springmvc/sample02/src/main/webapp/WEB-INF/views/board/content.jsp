@@ -55,7 +55,7 @@ $(document).ready(function() {
 					<textarea class="form-control" id="b_content" name="b_content" readonly>${boardVo.b_content}</textarea>
 					<!-- name 값이 vo에 들어있는 필드명과 같아	야한다. -->
 				</div>
-				
+				// test
 				<button id="btnModify" type="button" class="btn btn-primary">수정</button>
 				<button id="btnRemove" type="button" class="btn btn-danger">삭제</button>
 			</form>
