@@ -7,7 +7,12 @@
 // 글쓰기결과
 var resultWrite = "${resultWrite}";
 if(resultWrite == "success"){
-	alert("성공");
+	alert("작성성공");
+}
+
+var removeResult = "${removeResult}";
+if(removeResult == "success") {
+	alert("삭제성공");
 }
 </script>
 <div class="container-fluid">
