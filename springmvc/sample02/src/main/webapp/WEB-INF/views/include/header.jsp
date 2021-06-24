@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,11 +37,11 @@
 <script src="/resources/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="/resources/vendor/chart.js/Chart.min.js"></script>
+<!-- <script src="/resources/vendor/chart.js/Chart.min.js"></script> -->
 
 <!-- Page level custom scripts -->
-<script src="/resources/js/demo/chart-area-demo.js"></script>
-<script src="/resources/js/demo/chart-pie-demo.js"></script>
+<!-- <script src="/resources/js/demo/chart-area-demo.js"></script> -->
+<!-- <script src="/resources/js/demo/chart-pie-demo.js"></script> -->
 
 </head>
 
@@ -206,7 +207,6 @@
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
-
 						<!-- Nav Item - Search Dropdown (Visible Only XS) -->
 						<li class="nav-item dropdown no-arrow d-sm-none"><a
 							class="nav-link dropdown-toggle" href="#" id="searchDropdown"
