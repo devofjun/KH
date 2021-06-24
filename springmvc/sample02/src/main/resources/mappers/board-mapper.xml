@@ -26,4 +26,17 @@
 		select * from tbl_board
 		where b_no = #{b_no}
 	</select>
+	
+	<!-- 글 수정 -->
+	<update id="updateArticle">
+		update tbl_board set
+			b_title = #{b_title},
+			b_content = #{b_content, jdbcType=VARCHAR}
+		where b_no = #{b_no}
+	</update>
+	
+	<delete id="deleteArticle">
+		delete from tbl_board
+		where b_no = #{b_no}
+	</delete>
 </mapper>

@@ -3,19 +3,25 @@
 <%@ include file="../include/header.jsp"%>
 <script>
 $(document).ready(function() {
+	var modifyResult = "${modifyResult}";
+	if(modifyResult == "success"){
+		alert("수정성공");
+	}
+	
 	$("#btnModify").click(function(){
-		if($(this.attr("class")) == "btn btn-primary"){
+		//console.log($(this).prop("class"));
+		if($(this).attr("class") == "btn btn-primary"){
 			$(this).attr("class", "btn btn-success");
 			$("[name^=b_]").prop("readonly", false);
-		} else if($(this.attr("class")) == "btn btn-success"){
-			$("#frmModify").sumbit();
+		} else if($(this).attr("class") == "btn btn-success"){
+			$("#frmModify").submit();
 		}
 	});
 	
-	$("#btnDelete").click(function() {
+	$("#btnRemove").click(function() {
 		//var b_no = $("#b_no").val();
-		if(confitm("삭제하시겠습니까?")){
-			location.href="/board/deleteRun?b_no=${boardVo.b_no}";
+		if(confirm("삭제하시겠습니까?")){
+			location.href="/board/RemoveRun?b_no=${boardVo.b_no}";
 		}
 	});
 });
@@ -48,7 +54,7 @@ $(document).ready(function() {
 				</div>
 				
 				<button id="btnModify" type="button" class="btn btn-primary">수정</button>
-				<button id="btnDelete" type="button" class="btn btn-danger">삭제</button>
+				<button id="btnRemove" type="button" class="btn btn-danger">삭제</button>
 			</form>
 		</div>
 	</div>

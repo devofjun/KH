@@ -50,6 +50,20 @@ public class BoardController {
 		//System.out.println(b_no);
 		BoardVo boardVo = boardService.content(b_no);
 		model.addAttribute("boardVo", boardVo);
-		return null;
+		return "board/content";
+	}
+	
+	@RequestMapping(value = "/modifyRun", method = RequestMethod.POST)
+	public String modifyRun(BoardVo boardVo, RedirectAttributes rttr) throws Exception {
+		boardService.modifyRun(boardVo);
+		rttr.addFlashAttribute("modifyResult", "success");
+		return "redirect:/board/content?b_no="+boardVo.getB_no();
+	}
+	
+	@RequestMapping(value = "/RemoveRun", method = RequestMethod.GET)
+	public String RemoveRun(int b_no, RedirectAttributes rttr) throws Exception {
+		boardService.removeRun(b_no);
+		rttr.addFlashAttribute("removeResult", "success");
+		return "redirect:/board/listAll";
 	}
 }

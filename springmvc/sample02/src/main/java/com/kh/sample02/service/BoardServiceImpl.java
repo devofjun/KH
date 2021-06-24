@@ -36,13 +36,12 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void removeRun(int b_no) {
-		// TODO Auto-generated method stub
-		
+		boardDao.deleteArticle(b_no);
 	}
 
 	@Override
 	public void modifyRun(BoardVo boardVo) {
-		// TODO Auto-generated method stub
+		boardDao.updateArticle(boardVo);
 		
 	}
 }
