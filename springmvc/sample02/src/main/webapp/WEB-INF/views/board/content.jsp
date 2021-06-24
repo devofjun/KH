@@ -8,16 +8,19 @@ $(document).ready(function() {
 		alert("수정성공");
 	}
 	
+	// 수정버튼
 	$("#btnModify").click(function(){
 		//console.log($(this).prop("class"));
 		if($(this).attr("class") == "btn btn-primary"){
 			$(this).attr("class", "btn btn-success");
 			$("[name^=b_]").prop("readonly", false);
+			$(this).text("수정완료");
 		} else if($(this).attr("class") == "btn btn-success"){
 			$("#frmModify").submit();
 		}
 	});
 	
+	// 삭제버튼
 	$("#btnRemove").click(function() {
 		//var b_no = $("#b_no").val();
 		if(confirm("삭제하시겠습니까?")){
