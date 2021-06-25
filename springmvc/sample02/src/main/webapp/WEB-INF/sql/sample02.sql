@@ -57,4 +57,4 @@ select * from
 (select * from tbl_board order by b_no desc)a)
 where rnum between 1 and 10;
 
-
+select count(*) from tbl_board;
