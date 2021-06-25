@@ -6,12 +6,12 @@
 <%@ include file="../include/header.jsp"%>
 <script>
 	var msg = "${msg}";
-	if(msg == "success"){
+	if (msg == "success") {
 		alert("글 등록 완료");
 	}
-	
+
 	var msgDelete = "${msgDelete}";
-	if(msgDelete == "success"){
+	if (msgDelete == "success") {
 		alert("글 삭제 완료");
 	}
 </script>
@@ -27,6 +27,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- 데이터목록 -->
 	<div class="row">
 		<div class="col-md-12">
 			<table class="table">
@@ -39,7 +40,7 @@
 						<th>조회수</th>
 					</tr>
 				</thead>
-				
+
 				<tbody>
 					<c:forEach var="boardVo" items="${list}">
 						<tr>
@@ -55,5 +56,21 @@
 			</table>
 		</div>
 	</div>
+	<!-- // 데이터목록 -->
+	<!-- 페이지 -->
+	<div class="row">
+		<div class="col-md-12">
+			<nav>
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+					<c:forEach var="p" begin="1" end="10">
+					<li class="page-item"><a class="page-link" href="${p}">${p}</a></li>
+					</c:forEach>
+					<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- // 페이지 -->
 </div>
 <%@ include file="../include/footer.jsp"%>
