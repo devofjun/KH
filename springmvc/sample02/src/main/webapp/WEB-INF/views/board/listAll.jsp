@@ -20,7 +20,7 @@ $(document).ready(function() {
 	$(".pagination > li > a").click(function(e) {
 		e.preventDefault();
 		//console.log($(this).attr("href"));
-		
+		$("#frmPaging > input[name=page]")
 	});
 	
 });
@@ -29,8 +29,8 @@ $(document).ready(function() {
 <form id="frmPaging">
 	<input type="text" name="page" />
 	<input type="text" name="perPage" />
-	<input type="text" name="page" />
-	<input type="text" name="page" />
+	<input type="text" name="searchType" />
+	<input type="text" name="keyword" />e
 </form>
 <div class="container-fluid">
 	<div class="row">
