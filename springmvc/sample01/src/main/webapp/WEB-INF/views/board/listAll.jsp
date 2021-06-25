@@ -17,6 +17,7 @@
 			alert("글 삭제 완료");
 		}
 
+		// 페이지 번호
 		$(".pagination > li > a").click(function(e) {
 			e.preventDefault();
 			var page = $(this).attr("href");
@@ -48,15 +49,16 @@
 			}
 			
 			$("#frmPaging > input[name=keyword]").val(keyword);
+			$("#frmPaging > input[name=page]").val("1");
 			$("#frmPaging").submit();
 		});
 	});
 </script>
 <form id="frmPaging" action="/board/listAll" method="get">
-	<input type="hidden" name="page" value="${pagingDto.page}" />
-	<input type="hidden" name="perPage" value="10" /> 
-	<input type="hidden" name="searchType" /> 
-	<input type="hidden" name="keyword" />
+	<input type="text" name="page" value="${pagingDto.page}" />
+	<input type="text" name="perPage" value="${pagingDto.perPage}" /> 
+	<input type="text" name="searchType" value="${pagingDto.searchType}"/> 
+	<input type="text" name="keyword" value="${pagingDto.keyword}"/>
 </form>
 <div class="container-fluid">
 
@@ -81,7 +83,15 @@
 
 				<button class="btn btn-default dropdown-toggle" type="button"
 					id="dropdownMenuButton" data-toggle="dropdown">검색옵션</button>
-					<span id="spanSearchType" style="color:#336699"></span>
+					<span id="spanSearchType" style="color:#336699">
+					<c:choose>
+						<c:when test="${pagingDto.searchType == 't'}">제목</c:when>
+						<c:when test="${pagingDto.searchType == 'c'}">내용</c:when>
+						<c:when test="${pagingDto.searchType == 'u'}">작성자</c:when>
+						<c:when test="${pagingDto.searchType == 'tc'}">제목+내용</c:when>
+						<c:when test="${pagingDto.searchType == 'tcu'}">제목+내용+작성자</c:when>
+					</c:choose>
+					</span>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					<a class="dropdown-item searchType" href="t">제목</a> <a
 						class="dropdown-item searchType" href="c">내용</a> <a
@@ -94,7 +104,7 @@
 					<div class="input-group">
 						<input id="txtSearch"type="text" class="form-control bg-light border-0 small" placeholder="검색어 입력..."
 							placeholder="Search for..." aria-label="Search"
-							aria-describedby="basic-addon2">
+							aria-describedby="basic-addon2" value="${pagingDto.keyword}">
 						<div class="input-group-append">
 							<button id="btnSearch"class="btn btn-primary" type="button">
 								<i class="fas fa-search fa-sm"></i>
@@ -149,7 +159,7 @@
 					</c:if>
 					<c:forEach var="p" begin="${pagingDto.startPage}"
 						end="${pagingDto.endPage}">
-						<li class="page-item"><a class="page-link" href="${p}">${p}</a></li>
+						<li class="page-item "><a class="page-link" href="${p}">${p}</a></li>
 					</c:forEach>
 					<c:if test="${pagingDto.endPage < pagingDto.totalPage}">
 						<li class="page-item"><a class="page-link"
