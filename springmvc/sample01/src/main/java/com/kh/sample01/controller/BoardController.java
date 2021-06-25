@@ -30,6 +30,7 @@ public class BoardController {
 		System.out.println("listAll : " + pagingDto);
 		List<BoardVo> list = boardService.listAll(pagingDto);
 		model.addAttribute("list", list);
+		model.addAttribute("pagingDto", pagingDto);
 		return "board/listAll"; // /WEB-INF/views/board/listAll.jsp
 	}
 

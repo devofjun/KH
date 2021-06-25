@@ -38,6 +38,28 @@
 		select * from
 			(select rownum rnum, a.* from
 				(select * from tbl_board
+				<if test="searchType != null">
+					<choose>
+						<when test='searchType == "t"'>
+							where b_title like '%' || #{keyword} || '%'
+						</when>
+						<when test='searchType == "c"'>
+							where b_content like '%' || #{keyword} || '%'
+						</when>
+						<when test='searchType == "u"'>
+							where user_id like '%' || #{keyword} || '%'
+						</when>
+						<when test='searchType == "tc"'>
+							where b_title like '%' || #{keyword} || '%'
+							or b_content like '%' || #{keyword} || '%'							
+						</when>
+						<when test='searchType == "tcu"'>
+							where b_title like '%' || #{keyword} || '%'
+							or b_content like '%' || #{keyword} || '%'
+							or user_id like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</if>
 				order by re_group desc)a)
 		where rnum between #{startRow} and #{endRow}
 	</select>

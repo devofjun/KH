@@ -52,3 +52,17 @@ begin
     end loop;
 end;
 /
+commit;
+
+
+select * from
+(select rownum rnum, a.* from
+(select * from tbl_board
+order by re_group desc)a)
+where rnum between 1 and 10;
+
+select * from tbl_board
+where b_title like '%제목3%';
+
+select * from tbl_board
+where b_title like '%'||'제목3'||'%';

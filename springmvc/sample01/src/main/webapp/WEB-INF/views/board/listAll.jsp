@@ -4,35 +4,64 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../include/header.jsp"%>
-<script>
-$(document).ready(function() {
-	var msg = "${msg}";
-	if (msg == "success") {
-		alert("글 등록 완료");
-	}
 
-	var msgDelete = "${msgDelete}";
-	if (msgDelete == "success") {
-		alert("글 삭제 완료");
-	}
-	
-	$(".pagination > li > a").click(function(e) {
-		e.preventDefault();
-		var page = $(this).attr("href");
-		//console.log(page);
-		var frmPaging = $("#frmPaging");
-		frmPaging.find("[name=page]").val(page);
-		frmPaging.submit();
+<script>
+	$(document).ready(function() {
+		var msg = "${msg}";
+		if (msg == "success") {
+			alert("글 등록 완료");
+		}
+
+		var msgDelete = "${msgDelete}";
+		if (msgDelete == "success") {
+			alert("글 삭제 완료");
+		}
+
+		$(".pagination > li > a").click(function(e) {
+			e.preventDefault();
+			var page = $(this).attr("href");
+			//console.log(page);
+			var frmPaging = $("#frmPaging");
+			frmPaging.find("[name=page]").val(page);
+			frmPaging.submit();
+		});
+
+		// 검색 옵션 선택
+		$(".searchType").click(function(e) {
+			e.preventDefault();
+			var searchType = $(this).attr("href");
+			$("#frmPaging > input[name=searchType]").val(searchType);
+			$("#spanSearchType").text($(this).text());
+		});
+		
+		$("#btnSearch").click(function() {
+			var searchType = $("#frmPaging > input[name=searchType]").val();
+			if(searchType == ""){
+				alert("검색 옵션을 먼저 선택해주세요.");
+				return;
+			}
+			
+			var keyword = $("#txtSearch").val().trim();
+			if(keyword== ""){
+				alert("검색어를 입력해 주세요.");
+				return;
+			}
+			
+			$("#frmPaging > input[name=keyword]").val(keyword);
+			$("#frmPaging").submit();
+		});
 	});
-});
 </script>
 <form id="frmPaging" action="/board/listAll" method="get">
-	<input type="hidden" name="page" value="${page}"/>
-	<input type="hidden" name="perPage" value="10"/>
-	<input type="hidden" name="searchType"/>
-	<input type="hidden" name="keyword"/>
+	<input type="hidden" name="page" value="${pagingDto.page}" />
+	<input type="hidden" name="perPage" value="10" /> 
+	<input type="hidden" name="searchType" /> 
+	<input type="hidden" name="keyword" />
 </form>
 <div class="container-fluid">
+
+
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="jumbotron">
@@ -44,6 +73,41 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+
+	<!-- 검색  -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="dropdown">
+
+				<button class="btn btn-default dropdown-toggle" type="button"
+					id="dropdownMenuButton" data-toggle="dropdown">검색옵션</button>
+					<span id="spanSearchType" style="color:#336699"></span>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item searchType" href="t">제목</a> <a
+						class="dropdown-item searchType" href="c">내용</a> <a
+						class="dropdown-item searchType" href="u">작성자</a> <a
+						class="dropdown-item searchType" href="tc">제목+내용</a> <a
+						class="dropdown-item searchType" href="tcu">제목+내용+작성자</a>
+				</div>
+				<form
+					class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+					<div class="input-group">
+						<input id="txtSearch"type="text" class="form-control bg-light border-0 small" placeholder="검색어 입력..."
+							placeholder="Search for..." aria-label="Search"
+							aria-describedby="basic-addon2">
+						<div class="input-group-append">
+							<button id="btnSearch"class="btn btn-primary" type="button">
+								<i class="fas fa-search fa-sm"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+				<!-- 				<button id="btnSearch" type="button" class="btn btn-success">검색</button> -->
+			</div>
+		</div>
+	</div>
+	<!-- //검색  -->
+
 	<!-- 데이터목록 -->
 	<div class="row">
 		<div class="col-md-12">
@@ -77,13 +141,20 @@ $(document).ready(function() {
 	<!-- 페이지  -->
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<nav style="width: 30%; float:none; margin:0 auto">
+			<nav style="width: 30%; float: none; margin: 0 auto">
 				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-					<c:forEach var="p" begin="1" end="10">
+					<c:if test="${pagingDto.startPage != 1 }">
+						<li class="page-item"><a class="page-link"
+							href="${pagingDto.startPage - 1}">&laquo;</a></li>
+					</c:if>
+					<c:forEach var="p" begin="${pagingDto.startPage}"
+						end="${pagingDto.endPage}">
 						<li class="page-item"><a class="page-link" href="${p}">${p}</a></li>
 					</c:forEach>
-					<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+					<c:if test="${pagingDto.endPage < pagingDto.totalPage}">
+						<li class="page-item"><a class="page-link"
+							href="${pagingDto.endPage + 1}">&raquo;</a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</div>
