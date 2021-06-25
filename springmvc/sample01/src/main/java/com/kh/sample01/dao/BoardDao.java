@@ -17,5 +17,5 @@ public interface BoardDao {
 	// 글목록
 	public List<BoardVo> listAll(PagingDto pagingDto);
 	// 글갯수
-	public int getCount();
+	public int getCount(PagingDto pagingDto);
 }

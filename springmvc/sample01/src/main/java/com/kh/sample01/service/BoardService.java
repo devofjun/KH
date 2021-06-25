@@ -11,5 +11,5 @@ public interface BoardService {
 	public BoardVo content(int b_no);
 	public void modifyRun(BoardVo boardVo);
 	public void deleteRun(int b_no);
-	public  int getCount();
+	public  int getCount(PagingDto pagingDto);
 }

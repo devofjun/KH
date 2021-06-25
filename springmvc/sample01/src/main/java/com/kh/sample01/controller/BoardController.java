@@ -25,10 +25,11 @@ public class BoardController {
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
 	public String listAll(PagingDto pagingDto, Model model) throws Exception { // Model은 요청에 대한 정보가 담겨져있음
 		// PagingDto는 기본생성자가 실행된다. => 그래서 기본생성자가 있어야함
-		int count = boardService.getCount();
+		int count = boardService.getCount(pagingDto);
 		pagingDto.setCount(count);
-		System.out.println("listAll : " + pagingDto);
+		//System.out.println("listAll : " + pagingDto);
 		List<BoardVo> list = boardService.listAll(pagingDto);
+		System.out.println(pagingDto);
 		model.addAttribute("list", list);
 		model.addAttribute("pagingDto", pagingDto);
 		return "board/listAll"; // /WEB-INF/views/board/listAll.jsp
