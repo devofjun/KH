@@ -44,4 +44,10 @@ public class BoardServiceImpl implements BoardService{
 		boardDao.updateArticle(boardVo);
 		
 	}
+
+	@Override
+	public int getCount() {
+		int count = boardDao.getCount();
+		return count;
+	}
 }

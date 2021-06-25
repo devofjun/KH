@@ -17,8 +17,10 @@
 	
 	<!-- 전체 조회 -->
 	<select id="selectAll" resultType="BoardVo">
-		select * from tbl_board
-		order by b_no desc
+		select * from
+			(select rownum rnum, a.* from
+				(select * from tbl_board order by b_no desc)a)
+		where rnum between 1 and 10
 	</select>
 	
 	<!-- 글 보기 -->
@@ -39,4 +41,9 @@
 		delete from tbl_board
 		where b_no = #{b_no}
 	</delete>
+	
+	<!-- 글 수 -->
+	<select id="getCount" resultType="int">
+		select count(*) from tbl_board
+	</select>
 </mapper>

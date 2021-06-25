@@ -10,4 +10,5 @@ public interface BoardDao {
 	public BoardVo selectByBno(int b_no);
 	public void deleteArticle(int b_no);
 	public void updateArticle(BoardVo boardVo);
+	public int getCount();
 }

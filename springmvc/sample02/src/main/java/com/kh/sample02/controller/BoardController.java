@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.sample02.service.BoardService;
 import com.kh.sample02.vo.BoardVo;
+import com.kh.sample02.vo.PagingDto;
 
 @Controller
 @RequestMapping(value="/board")
@@ -21,9 +22,12 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public String listAll(Model model) throws Exception {
+	public String listAll(PagingDto pagingDto, Model model) throws Exception {
+		int count = boardService.getCount();
+		pagingDto.setCount(count);
+		System.out.println(pagingDto);
 		List<BoardVo> list = boardService.listAll();
-		System.out.println(list);
+		//System.out.println(list);
 		model.addAttribute("list", list);
 		return "board/listAll";
 	}

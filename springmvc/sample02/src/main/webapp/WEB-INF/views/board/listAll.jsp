@@ -4,17 +4,34 @@
 
 <%@ include file="../include/header.jsp"%>
 <script>
-// 글쓰기결과
-var resultWrite = "${resultWrite}";
-if(resultWrite == "success"){
-	alert("작성성공");
-}
+$(document).ready(function() {
 
-var removeResult = "${removeResult}";
-if(removeResult == "success") {
-	alert("삭제성공");
-}
+	// 글쓰기결과
+	var resultWrite = "${resultWrite}";
+	if (resultWrite == "success") {
+		alert("작성성공");
+	}
+
+	var removeResult = "${removeResult}";
+	if (removeResult == "success") {
+		alert("삭제성공");
+	}
+	
+	$(".pagination > li > a").click(function(e) {
+		e.preventDefault();
+		//console.log($(this).attr("href"));
+		
+	});
+	
+});
 </script>
+
+<form id="frmPaging">
+	<input type="text" name="page" />
+	<input type="text" name="perPage" />
+	<input type="text" name="page" />
+	<input type="text" name="page" />
+</form>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -50,6 +67,23 @@ if(removeResult == "success") {
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<nav>
+				<!-- justify-content-center 가운데 정렬 -->
+				<ul class="pagination justify-content-center">
+					<li class="page-item"><a class="page-link" href="#">Previous</a>
+					</li>
+					<li class="page-item"><a class="page-link" href="1">1</a></li>
+					<li class="page-item"><a class="page-link" href="2">2</a></li>
+					<li class="page-item"><a class="page-link" href="3">3</a></li>
+					<li class="page-item"><a class="page-link" href="4">4</a></li>
+					<li class="page-item"><a class="page-link" href="5">5</a></li>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
+			</nav>
 		</div>
 	</div>
 </div>

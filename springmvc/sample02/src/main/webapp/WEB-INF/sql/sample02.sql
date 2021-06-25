@@ -1,7 +1,7 @@
 create user springmvc2 identified by 1234;
 grant connect, resource to springmvc2;
 
-drop table tbl_member;
+drop table tbl_member;  
 create table tbl_member(
     user_id varchar2(50) primary key,
     user_pw varchar2(50) not null,
@@ -34,6 +34,27 @@ create table tbl_board(
 drop sequence seq_board_bno;
 create sequence seq_board_bno;
 
+truncate table tbl_board;
+
 select * from tbl_board;
 
 commit;
+
+begin
+    for i in 1..500 loop
+        insert into tbl_board(b_no, b_title, b_content, user_id, re_group)
+        values(seq_board_bno.nextval,
+                '제목' || i,
+                '내용' || i,
+                'test',
+                seq_board_bno.nextval);
+    end loop;
+end;
+/
+
+select * from 
+(select rownum rnum, a.* from 
+(select * from tbl_board order by b_no desc)a)
+where rnum between 1 and 10;
+
+
