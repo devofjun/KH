@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.sample01.service.BoardService;
 import com.kh.sample01.vo.BoardVo;
+import com.kh.sample01.vo.PagingDto;
 
 @Controller
 @RequestMapping(value = "/board") // 안에 속하는 모든 메소드가 적용됨 -> "localhost/board"
@@ -22,8 +23,12 @@ public class BoardController {
 
 	// "/board/listAll" + get 방식에 대한 요청을 받는다.
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
-	public String listAll(Model model) throws Exception { // Model은 요청에 대한 정보가 담겨져있음
-		List<BoardVo> list = boardService.listAll();
+	public String listAll(PagingDto pagingDto, Model model) throws Exception { // Model은 요청에 대한 정보가 담겨져있음
+		// PagingDto는 기본생성자가 실행된다. => 그래서 기본생성자가 있어야함
+		int count = boardService.getCount();
+		pagingDto.setCount(count);
+		System.out.println("listAll : " + pagingDto);
+		List<BoardVo> list = boardService.listAll(pagingDto);
 		model.addAttribute("list", list);
 		return "board/listAll"; // /WEB-INF/views/board/listAll.jsp
 	}

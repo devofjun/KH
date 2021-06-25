@@ -5,6 +5,7 @@
 
 <%@ include file="../include/header.jsp"%>
 <script>
+$(document).ready(function() {
 	var msg = "${msg}";
 	if (msg == "success") {
 		alert("글 등록 완료");
@@ -14,7 +15,23 @@
 	if (msgDelete == "success") {
 		alert("글 삭제 완료");
 	}
+	
+	$(".pagination > li > a").click(function(e) {
+		e.preventDefault();
+		var page = $(this).attr("href");
+		//console.log(page);
+		var frmPaging = $("#frmPaging");
+		frmPaging.find("[name=page]").val(page);
+		frmPaging.submit();
+	});
+});
 </script>
+<form id="frmPaging" action="/board/listAll" method="get">
+	<input type="hidden" name="page" value="${page}"/>
+	<input type="hidden" name="perPage" value="10"/>
+	<input type="hidden" name="searchType"/>
+	<input type="hidden" name="keyword"/>
+</form>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -57,14 +74,14 @@
 		</div>
 	</div>
 	<!-- // 데이터목록 -->
-	<!-- 페이지 -->
+	<!-- 페이지  -->
 	<div class="row">
-		<div class="col-md-12">
-			<nav>
+		<div class="col-md-12 text-center">
+			<nav style="width: 30%; float:none; margin:0 auto">
 				<ul class="pagination">
 					<li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
 					<c:forEach var="p" begin="1" end="10">
-					<li class="page-item"><a class="page-link" href="${p}">${p}</a></li>
+						<li class="page-item"><a class="page-link" href="${p}">${p}</a></li>
 					</c:forEach>
 					<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
 				</ul>

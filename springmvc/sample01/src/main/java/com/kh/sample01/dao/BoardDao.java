@@ -3,6 +3,7 @@ package com.kh.sample01.dao;
 import java.util.List;
 
 import com.kh.sample01.vo.BoardVo;
+import com.kh.sample01.vo.PagingDto;
 
 public interface BoardDao {
 	// 글쓰기
@@ -14,5 +15,7 @@ public interface BoardDao {
 	// 글삭제
 	public void deleteArticle(int b_no);
 	// 글목록
-	public List<BoardVo> listAll();
+	public List<BoardVo> listAll(PagingDto pagingDto);
+	// 글갯수
+	public int getCount();
 }

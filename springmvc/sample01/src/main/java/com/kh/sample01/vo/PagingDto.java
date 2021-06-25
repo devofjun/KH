@@ -8,7 +8,7 @@ public class PagingDto {
 	private int startPage;
 	private int endPage;
 	private int totalPage;
-	private int perPage;
+	private int perPage = 10;
 	private final int PAGE_BLOCK = 10;
 	// 검색 관련 변수임. 따로 dto로 만들어도됨
 	private String searchType;
@@ -34,34 +34,6 @@ public class PagingDto {
 		*/
 		this.startPage = ((page-1)/PAGE_BLOCK) * PAGE_BLOCK + 1;
 		this.endPage = startPage + PAGE_BLOCK-1;
-	}
-	
-	public PagingDto(int page, int totalCount, int perPage, String searchType, String keyword) {
-		this.page = page;				// 요청한 페이지
-		this.count = totalCount;		// 전체 게시글 수
-		this.perPage = perPage;			// 한 페이지에 보여질 게시글 수
-		this.searchType = searchType;	// 검색타입
-		this.keyword = keyword;			// 검색 키워드
-		
-		// 마지막 줄 = 요청한 페이지 * 보여질 페이지수
-		this.endRow = page * this.perPage;
-		// 첫번째 줄 = 마지막 줄 - 보여질 페이지수 + 1
-		this.startRow = endRow - this.perPage + 1;
-		// (요청한 페이지-1) => 10 페이지 까지 보이게 하기 위해
-		// 1의 자리수 탈락 시키기 위한 식
-		this.startPage = ((page-1)/PAGE_BLOCK) * PAGE_BLOCK + 1;
-		// 끝 페이지는 시작페이지보다 9크다.
-		this.endPage = startPage + PAGE_BLOCK-1;
-		// 몇줄씩 보느냐에 달라지는 전체 페이지수(보여질글수의 단위)
-		this.totalPage = totalCount / perPage;
-		// 전체 페이지수의 단위가 보여질 글수의 단위이기 때문에 나머지 페이지가 있을 경우에 전체페이지수를 1늘린다. 
-		if(totalCount % perPage != 0) {
-			this.totalPage += 1;
-		}
-		// 끝페이지가 최대 페이지를 넘지 않도록
-		if(this.endPage > totalPage) {
-			this.endPage = this.totalPage;
-		}
 	}
 	
 	public PagingDto(int page, int startRow, int endRow, int count) {
@@ -94,6 +66,17 @@ public class PagingDto {
 	}
 	public void setCount(int count) {
 		this.count = count;
+		this.endRow = page * this.perPage;
+		this.startRow = endRow - this.perPage + 1;
+		this.startPage = ((page-1)/PAGE_BLOCK) * PAGE_BLOCK + 1;
+		this.endPage = startPage + PAGE_BLOCK-1;
+		this.totalPage = count / perPage; 
+		if(count % perPage != 0) {
+			this.totalPage += 1;
+		}
+		if(this.endPage > totalPage) {
+			this.endPage = this.totalPage;
+		}
 	}
 	
 	public int getStartPage() {

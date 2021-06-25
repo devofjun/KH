@@ -60,7 +60,7 @@ public class BoardDaoTest {
 	
 	@Test
 	public void testListAll() throws Exception {
-		List<BoardVo> list = boardDao.listAll();
-		System.out.println(list);
+		//List<BoardVo> list = boardDao.listAll();
+		//System.out.println(list);
 	}
 }

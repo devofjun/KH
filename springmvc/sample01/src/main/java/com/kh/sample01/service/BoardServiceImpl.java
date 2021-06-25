@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.sample01.dao.BoardDao;
 import com.kh.sample01.vo.BoardVo;
+import com.kh.sample01.vo.PagingDto;
 
 
 @Service
@@ -19,8 +20,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDao boardDao;
 	
 	@Override
-	public List<BoardVo> listAll() {
-		List<BoardVo> list = boardDao.listAll();
+	public List<BoardVo> listAll(PagingDto pagingDto) {
+		List<BoardVo> list = boardDao.listAll(pagingDto);
 		return list;
 	}
 
@@ -43,6 +44,12 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteRun(int b_no) {
 		boardDao.deleteArticle(b_no);
+	}
+
+	@Override
+	public int getCount() {
+		int count = boardDao.getCount();
+		return count;
 	}
 	
 }

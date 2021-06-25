@@ -36,11 +36,11 @@
 <script src="/resources/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="/resources/vendor/chart.js/Chart.min.js"></script>
+<!-- <script src="/resources/vendor/chart.js/Chart.min.js"></script> -->
 
 <!-- Page level custom scripts -->
-<script src="/resources/js/demo/chart-area-demo.js"></script>
-<script src="/resources/js/demo/chart-pie-demo.js"></script>
+<!-- <script src="/resources/js/demo/chart-area-demo.js"></script> -->
+<!-- <script src="/resources/js/demo/chart-pie-demo.js"></script> -->
 
 </head>
 
@@ -292,7 +292,7 @@
 								<h6 class="dropdown-header">Message Center</h6>
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="img/undraw_profile_1.svg"
+										<img class="rounded-circle" src="/resources/img/undraw_profile_1.svg"
 											alt="...">
 										<div class="status-indicator bg-success"></div>
 									</div>
@@ -303,7 +303,7 @@
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="img/undraw_profile_2.svg"
+										<img class="rounded-circle" src="/resources/img/undraw_profile_2.svg"
 											alt="...">
 										<div class="status-indicator"></div>
 									</div>
@@ -314,7 +314,7 @@
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="img/undraw_profile_3.svg"
+										<img class="rounded-circle" src="/resources/img/undraw_profile_3.svg"
 											alt="...">
 										<div class="status-indicator bg-warning"></div>
 									</div>

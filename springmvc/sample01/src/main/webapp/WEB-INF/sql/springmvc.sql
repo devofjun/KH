@@ -36,4 +36,19 @@ drop sequence seq_board_bno;
 
 select * from tbl_board;
 
+select count(*) from tbl_board;
+
 commit;
+
+-- 데이터 500개
+begin
+    for i in 1..500 loop
+        insert into tbl_board(b_no, b_title, b_content, user_id, re_group)
+        values (seq_board_bno.nextval,
+            '제목' || i,
+            '내용' || i,
+            'hong',
+            seq_board_bno.nextval);
+    end loop;
+end;
+/
