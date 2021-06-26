@@ -54,7 +54,9 @@ end;
 
 select * from 
 (select rownum rnum, a.* from 
-(select * from tbl_board order by b_no desc)a)
+(select * from tbl_board 
+where b_title like '%제목6%'
+order by b_no desc)a)
 where rnum between 1 and 10;
 
 select count(*) from tbl_board;
