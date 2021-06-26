@@ -19,7 +19,9 @@
 	<select id="selectAll" resultType="BoardVo">
 		select * from
 			(select rownum rnum, a.* from
-				(select * from tbl_board order by b_no desc)a)
+				(select * from tbl_board
+					<include refid="search"></include>
+				 	order by b_no desc)a)
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	
@@ -45,5 +47,31 @@
 	<!-- 글 수 -->
 	<select id="getCount" resultType="int">
 		select count(*) from tbl_board
+		<include refid="search"></include>
 	</select>
+	
+	<sql id="search">
+		<if  test="searchType != null">
+			<choose>
+				<when test='searchType == "t"'>
+					where b_title like '%' || #{keyword} || '%'
+				</when>
+				<when test='searchType == "c"'>
+					where b_content like '%' || #{keyword} || '%'
+				</when>
+				<when test='searchType == "u"'>
+					where user_id like '%' || #{keyword} || '%'
+				</when>
+				<when test='searchType == "tc"'>
+					where b_title like '%' || #{keyword} || '%'
+					or b_content like '%' || #{keyword} || '%'
+				</when>
+				<when test='searchType == "tcu"'>
+					where b_title like '%' || #{keyword} || '%'
+					or b_content like '%' || #{keyword} || '%'
+					or user_id like '%' || #{keyword} || '%'
+				</when>
+			</choose>
+		</if>
+	</sql>
 </mapper>

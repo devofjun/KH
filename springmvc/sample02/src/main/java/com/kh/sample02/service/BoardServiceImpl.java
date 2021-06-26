@@ -46,8 +46,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int getCount() {
-		int count = boardDao.getCount();
+	public int getCount(PagingDto pagingDto) {
+		int count = boardDao.getCount(pagingDto);
 		return count;
 	}
 }

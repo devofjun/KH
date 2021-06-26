@@ -4,38 +4,58 @@
 
 <%@ include file="../include/header.jsp"%>
 <script>
-$(document).ready(function() {
-	console.log("${pagingDto}")
-	// 글쓰기결과 메세지
-	var resultWrite = "${resultWrite}";
-	if (resultWrite == "success") {
-		alert("작성성공");
-	}
-	// 삭제결과 메세지
-	var removeResult = "${removeResult}";
-	if (removeResult == "success") {
-		alert("삭제성공");
-	}
-	
-	// 페이지 번호 클릭시
-	$(".pagination > li > a").click(function(e) {
-		e.preventDefault();
-		//console.log($(this).attr("href"));
-		var page = $(this).attr("href");
-		$("#frmPaging > input[name=page]").val(page);
-		$("#frmPaging").submit();
+	$(document).ready(function() {
+		console.log("${pagingDto}")
+		// 글쓰기결과 메세지
+		var resultWrite = "${resultWrite}";
+		if (resultWrite == "success") {
+			alert("작성성공");
+		}
+		// 삭제결과 메세지
+		var removeResult = "${removeResult}";
+		if (removeResult == "success") {
+			alert("삭제성공");
+		}
+
+		// 페이지 번호 클릭시
+		$(".pagination > li > a").click(function(e) {
+			e.preventDefault();
+			//console.log($(this).attr("href"));
+			var page = $(this).attr("href");
+			$("#frmPaging > input[name=page]").val(page);
+			$("#frmPaging").submit();
+		});
+		
+		// 검색버튼 클릭시
+		$("#btnSearch").click(function() {
+			var keyword =$("#searchKeyword").val();
+			$("#frmPaging > input[name=keyword]").val(keyword);
+			$("#frmPaging > input[name=page]").val("1");
+			$("#frmPaging").submit();
+		});
+		
+		// 검색 옵션 선택시
+		$(".searchType").click(function(e){
+			e.preventDefault();
+			var type = $(this).attr("href");
+			$("#frmPaging > input[name=searchType]").val(type);
+			var textType =$(this).text();
+			$("#dropdownMenuLink").text(textType);
+		});
+		
+
 	});
-	
-});
 </script>
 
-<form id="frmPaging">
-	page:<input type="text" name="page" value="${pagingDto.page}"/>
-	perPage:<input type="text" name="perPage" value="${pagingDto.perPage}"/>
-	searchType:<input type="text" name="searchType" value="${pagingDto.searchType}"/>
-	keyword:<input type="text" name="keyword" value="${pagingDto.keyword}"/>
+<form id="frmPaging" action="/board/listAll" method="post">
+	page:<input type="text" name="page" value="${pagingDto.page}" />
+	perPage:<input type="text" name="perPage" value="${pagingDto.perPage}" />
+	searchType:<input type="text" name="searchType"
+		value="${pagingDto.searchType}" /> keyword:<input type="text"
+		name="keyword" value="${pagingDto.keyword}" />
 </form>
 <div class="container-fluid">
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="jumbotron">
@@ -46,6 +66,35 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<form
+			class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+			<div class="input-group">
+				<div class="dropdown" style="margin-right: 5px;">
+					<a class="btn btn-default dropdown-toggle" href="#" role="button"
+						id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> 검색 옵션 </a>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<a class="dropdown-item searchType" href="t">제목</a>
+						<a class="dropdown-item searchType" href="c">내용</a>
+						<a class="dropdown-item searchType" href="u">작성자</a> 
+						<a class="dropdown-item searchType" href="tc">제목 + 내용</a> 
+						<a class="dropdown-item searchType" href="tcu">제목 + 내용 + 작성자</a>
+					</div>
+				</div>
+				<input id="searchKeyword" type="text" class="form-control bg-light border-0 small"
+					placeholder="검색어 입력" aria-label="Search" aria-describedby="basic-addon2"
+					value="${pagingDto.keyword}">
+				<div class="input-group-append">
+					<button id="btnSearch" class="btn btn-primary" type="button">
+						<i class="fas fa-search fa-sm"></i>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 			<table class="table">
@@ -72,17 +121,32 @@ $(document).ready(function() {
 			</table>
 		</div>
 	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 			<nav>
 				<!-- justify-content-center 가운데 정렬 -->
 				<ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link" href="#">Previous</a>
-					</li>
-					<c:forEach var="p" begin="${startPage}" end="${endPage}">
-						<li class="page-item"><a class="page-link" href="1">1</a></li>
+					<c:if test="${pagingDto.startPage != 1 }">
+						<li class="page-item"><a class="page-link"
+							href="${pagingDto.startPage-1}">&laquo;</a></li>
+					</c:if>
+					<c:forEach var="p" begin="${pagingDto.startPage}"
+						end="${pagingDto.endPage}">
+						<c:choose>
+							<c:when test="${pagingDto.page == p}">
+								<li class="page-item active"><a class="page-link"
+									href="${p}">${p}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link" href="${p}">${p}</a></li>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					<c:if test="${pagingDto.endPage < pagingDto.totalPage }">
+						<li class="page-item"><a class="page-link"
+							href="${pagingDto.endPage+1}">&raquo;</a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</div>

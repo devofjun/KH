@@ -49,8 +49,8 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int getCount() {
-		int count = sqlSession.selectOne(NAMESPACE+"getCount");
+	public int getCount(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE+"getCount", pagingDto);
 		return count;
 	}
 

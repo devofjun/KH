@@ -21,9 +21,9 @@ public class BoardController {
 	@Inject
 	private BoardService boardService;
 	
-	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/listAll")
 	public String listAll(PagingDto pagingDto, Model model) throws Exception {
-		int count = boardService.getCount();
+		int count = boardService.getCount(pagingDto);
 		pagingDto.setCount(count);
 		System.out.println(pagingDto);
 		List<BoardVo> list = boardService.listAll(pagingDto);
