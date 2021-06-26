@@ -3,12 +3,12 @@ package com.kh.sample02.service;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Qualifier;
 
 import org.springframework.stereotype.Service;
 
 import com.kh.sample02.dao.BoardDao;
 import com.kh.sample02.vo.BoardVo;
+import com.kh.sample02.vo.PagingDto;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -22,8 +22,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVo> listAll() {
-		List<BoardVo> list = boardDao.selectAll();
+	public List<BoardVo> listAll(PagingDto pagingDto) {
+		List<BoardVo> list = boardDao.selectAll(pagingDto);
 		return list;
 	}
 

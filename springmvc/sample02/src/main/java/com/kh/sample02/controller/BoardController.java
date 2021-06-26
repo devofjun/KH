@@ -26,7 +26,7 @@ public class BoardController {
 		int count = boardService.getCount();
 		pagingDto.setCount(count);
 		System.out.println(pagingDto);
-		List<BoardVo> list = boardService.listAll();
+		List<BoardVo> list = boardService.listAll(pagingDto);
 		//System.out.println(list);
 		model.addAttribute("list", list);
 		return "board/listAll";

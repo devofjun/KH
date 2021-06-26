@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.kh.sample02.vo.BoardVo;
+import com.kh.sample02.vo.PagingDto;
 
 @Repository("dao1")
 public class BoardDaoImpl implements BoardDao {
@@ -23,8 +24,8 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<BoardVo> selectAll() {
-		List<BoardVo> list = sqlSession.selectList(NAMESPACE+"selectAll");
+	public List<BoardVo> selectAll(PagingDto pagingDto) {
+		List<BoardVo> list = sqlSession.selectList(NAMESPACE+"selectAll", pagingDto);
 		return list;
 	}
 

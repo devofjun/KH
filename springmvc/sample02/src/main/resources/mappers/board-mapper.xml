@@ -20,7 +20,7 @@
 		select * from
 			(select rownum rnum, a.* from
 				(select * from tbl_board order by b_no desc)a)
-		where rnum between 1 and 10
+		where rnum between #{startRow} and #{endRow}
 	</select>
 	
 	<!-- 글 보기 -->

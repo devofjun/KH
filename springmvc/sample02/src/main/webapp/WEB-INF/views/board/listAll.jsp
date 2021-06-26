@@ -5,32 +5,35 @@
 <%@ include file="../include/header.jsp"%>
 <script>
 $(document).ready(function() {
-
-	// 글쓰기결과
+	console.log("${pagingDto}")
+	// 글쓰기결과 메세지
 	var resultWrite = "${resultWrite}";
 	if (resultWrite == "success") {
 		alert("작성성공");
 	}
-
+	// 삭제결과 메세지
 	var removeResult = "${removeResult}";
 	if (removeResult == "success") {
 		alert("삭제성공");
 	}
 	
+	// 페이지 번호 클릭시
 	$(".pagination > li > a").click(function(e) {
 		e.preventDefault();
 		//console.log($(this).attr("href"));
-		$("#frmPaging > input[name=page]")
+		var page = $(this).attr("href");
+		$("#frmPaging > input[name=page]").val(page);
+		$("#frmPaging").submit();
 	});
 	
 });
 </script>
 
 <form id="frmPaging">
-	<input type="text" name="page" />
-	<input type="text" name="perPage" />
-	<input type="text" name="searchType" />
-	<input type="text" name="keyword" />e
+	page:<input type="text" name="page" value="${pagingDto.page}"/>
+	perPage:<input type="text" name="perPage" value="${pagingDto.perPage}"/>
+	searchType:<input type="text" name="searchType" value="${pagingDto.searchType}"/>
+	keyword:<input type="text" name="keyword" value="${pagingDto.keyword}"/>
 </form>
 <div class="container-fluid">
 	<div class="row">
@@ -76,11 +79,9 @@ $(document).ready(function() {
 				<ul class="pagination justify-content-center">
 					<li class="page-item"><a class="page-link" href="#">Previous</a>
 					</li>
-					<li class="page-item"><a class="page-link" href="1">1</a></li>
-					<li class="page-item"><a class="page-link" href="2">2</a></li>
-					<li class="page-item"><a class="page-link" href="3">3</a></li>
-					<li class="page-item"><a class="page-link" href="4">4</a></li>
-					<li class="page-item"><a class="page-link" href="5">5</a></li>
+					<c:forEach var="p" begin="${startPage}" end="${endPage}">
+						<li class="page-item"><a class="page-link" href="1">1</a></li>
+					</c:forEach>
 					<li class="page-item"><a class="page-link" href="#">Next</a></li>
 				</ul>
 			</nav>
