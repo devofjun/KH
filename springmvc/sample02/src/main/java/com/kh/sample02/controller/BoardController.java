@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -49,15 +50,14 @@ public class BoardController {
 		return "redirect:/board/listAll";
 	}
 	
-	@RequestMapping(value = "/content", method = RequestMethod.POST)
-	public String content(PagingDto pagingDto,int b_no, Model model) throws Exception {
+	@RequestMapping(value = "/content", method = RequestMethod.GET)
+	public String content(@ModelAttribute("pagingDto") PagingDto pagingDto,int b_no, Model model) throws Exception {
 		//System.out.println(b_no);
+		// @ModelAttribute 파라미터로 넘어온값을 view로 바로 전달하고 싶을때 사용한다.
+		// 하지만 없어도 잘되는거 보니 자동으로 해주기도 하는듯 하다.
 		BoardVo boardVo = boardService.content(b_no);
 		model.addAttribute("boardVo", boardVo);
-		
-//		int count = boardService.getCount(pagingDto);
-//		pagingDto.setCount(count);
-		model.addAttribute("paingDto", pagingDto);
+		//model.addAttribute("paingDto", pagingDto);
 		return "board/content";
 	}
 	

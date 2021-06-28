@@ -55,7 +55,8 @@
 	});
 </script>
 
-<form id="frmPaging" action="/board/listAll" method="post">
+<!-- 링크 공유가 가능하게 하기 위해서 get방식으로 보내는게 좋음 -->
+<form id="frmPaging" action="/board/listAll" method="get">
 	page:<input type="text" name="page" value="${pagingDto.page}" />
 	perPage:<input type="text" name="perPage" value="${pagingDto.perPage}" />
 	searchType:<input type="text" name="searchType" value="${pagingDto.searchType}" />
