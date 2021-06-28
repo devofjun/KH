@@ -90,3 +90,5 @@ values(seq_comment_cno.nextval, 500, 'test', '댓글3');
 select * from tbl_comment
 where b_no = 500
 order by c_no desc;
+
+commit;

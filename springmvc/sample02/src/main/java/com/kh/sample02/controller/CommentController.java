@@ -43,8 +43,6 @@ public class CommentController {
 	@RequestMapping(value="/insertComment", method=RequestMethod.POST)
 	public String insertComment(@RequestBody CommentVo commentVo) throws Exception {
 		//System.out.println(commentVo);
-		// 그런데 여기서 쓰이는 user_id는 현재 접속하고 있는 유저의 데이터니깐 memberVo의 user_id 인데
-		// 게시글의 user_id와는 별개이지 않나? 게시글의 user_id 변수명을 다른걸로 변경 해야 할 거 같은데?
 		
 		commentService.insertComment(commentVo);
 		return "success";
@@ -64,4 +62,14 @@ public class CommentController {
 		
 		return "success";	
 	}
+	
+	/* 이런 식으로 해도 된다.
+	@RequestMapping(value="/deleteComment", method=RequestMethod.GET)
+	public String commentDelete2(int c_no) throws Exception {
+		System.out.println("[##Del_cno] : "+c_no);
+		//commentService.deleteComment(c_no);
+		
+		return "success";	
+	}
+	*/
 }

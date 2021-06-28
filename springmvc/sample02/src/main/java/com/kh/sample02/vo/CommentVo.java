@@ -3,11 +3,11 @@ package com.kh.sample02.vo;
 import java.sql.Timestamp;
 
 public class CommentVo {
-	private int c_no;
-	private int b_no;
-	private	String user_id;
-	private String c_content;
-	private Timestamp c_regdate;
+	private int c_no; // 댓글 번호
+	private int b_no; // 게시글 번호
+	private	String user_id; // 댓글 작성자
+	private String c_content; // 댓글 내용
+	private Timestamp c_regdate; // 댓글 작성일
 	public CommentVo() {
 		super();
 		// TODO Auto-generated constructor stub
