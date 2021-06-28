@@ -32,6 +32,20 @@ $(document).ready(function() {
 	$("#btnList").click(function() {
 		location.href="/board/listAll?page=${pagingDto.page}&perPage=${pagingDto.perPage}&searchType=${pagingDto.searchType}&keyword=${pagingDto.keyword}";
 	});
+	
+	// 댓글 버튼
+	$("#btnCommentList").click(function() {
+		// 비동기 요청: $.ajax, $.get, $.post, $.getJSON
+		
+		var url = "/comment/getCommentList";
+		var sendData = {
+			"b_no" : ${boardVo.b_no}	
+		};
+		$.get(url, sendData, function(receivedData){
+			console.log(receivedData);
+		});
+		
+	});
 });
 </script>
 <div class="container-fluid">
@@ -64,6 +78,9 @@ $(document).ready(function() {
 				<button id="btnModify" type="button" class="btn btn-primary">수정</button>
 				<button id="btnRemove" type="button" class="btn btn-danger">삭제</button>
 				<button id="btnList" type="button"class="btn btn-warning">목록</button>
+				<hr/>
+				<button id="btnCommentList" type="button" class="btn btn-info">댓글목록</button>
+				
 			</form>
 		</div>
 	</div>
