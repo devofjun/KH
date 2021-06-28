@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
+<!-- 날짜 포멧 함수 -->
+<script src="/resources/js/my-script.js"></script>
 <script>
 $(document).ready(function() {
 	var modifyResult = "${modifyResult}";
@@ -46,12 +48,10 @@ $(document).ready(function() {
 			$.each(receivedData,function() {
 				var cloneTr = $("#commentTable > tbody > tr:first").clone();
 				var td = cloneTr.find("td");
-				var timestamp = this.c_regdate;
-				var date = new Date(timestamp);
 				td.eq(0).text(this.c_no);
 				td.eq(1).text(this.c_content);
 				td.eq(2).text(this.user_id);
-				td.eq(3).text(date);
+				td.eq(3).text(changeDateString(this.c_regdate));
 				
 				$("#commentTable > tbody").append(cloneTr);
 				//cloneTr.css("display", "block");
