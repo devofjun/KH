@@ -21,4 +21,9 @@ public class CommentServiceImpl implements CommentService {
 		return list;
 	}
 
+	@Override
+	public void insertComment(CommentVo commentVo) {
+		commentDao.insertComment(commentVo);
+	}
+
 }

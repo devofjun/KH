@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,4 +38,15 @@ public class CommentController {
 		return list;
 	}
 	
+	// 댓글 쓰기 - c_content, b_no, user_id
+	// 비동기 방식으로 들어오는 요청데이터를 받기 위해선 @RequestBody 를 써야한다.
+	@RequestMapping(value="/insertComment", method=RequestMethod.POST)
+	public String insertComment(@RequestBody CommentVo commentVo) throws Exception {
+		System.out.println(commentVo);
+		// 그런데 여기서 쓰이는 user_id는 현재 접속하고 있는 유저의 데이터니깐 memberVo의 user_id 인데
+		// 게시글의 user_id와는 별개이지 않나? 게시글의 user_id 변수명을 다른걸로 변경 해야 할 거 같은데?
+		
+		commentService.insertComment(commentVo);
+		return "success";
+	}
 }

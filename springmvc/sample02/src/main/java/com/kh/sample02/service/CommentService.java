@@ -6,5 +6,5 @@ import com.kh.sample02.vo.CommentVo;
 
 public interface CommentService {
 	public List<CommentVo> getCommentList(int b_no);
-	
+	public void insertComment(CommentVo commentVo);
 }

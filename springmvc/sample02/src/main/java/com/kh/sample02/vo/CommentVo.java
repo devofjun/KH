@@ -52,7 +52,7 @@ public class CommentVo {
 	}
 	@Override
 	public String toString() {
-		return "CommnetVo [c_no=" + c_no + ", b_no=" + b_no + ", user_id=" + user_id + ", c_content=" + c_content
+		return "CommentVo [c_no=" + c_no + ", b_no=" + b_no + ", user_id=" + user_id + ", c_content=" + c_content
 				+ ", c_regdate=" + c_regdate + "]";
 	}
 	

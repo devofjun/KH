@@ -23,4 +23,10 @@ public class CommentDaoImpl implements CommentDao {
 		List<CommentVo> list = sqlSession.selectList(NAMESPACE+"getCommentList", b_no);
 		return list;
 	}
+
+	@Override
+	public void insertComment(CommentVo commentVo) {
+		System.out.println("DAO_commentVo:" + commentVo);
+		sqlSession.insert(NAMESPACE+"insertComment", commentVo);
+	}
 }

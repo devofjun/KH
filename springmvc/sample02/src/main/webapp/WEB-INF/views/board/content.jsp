@@ -45,6 +45,7 @@ $(document).ready(function() {
 		var url = "/comment/getCommentList/${boardVo.b_no}";
 		$.get(url, function(receivedData) {
 			console.log(receivedData);
+			$("#commentTable > tbody > tr:gt(0)").remove();
 			$.each(receivedData,function() {
 				var cloneTr = $("#commentTable > tbody > tr:first").clone();
 				var td = cloneTr.find("td");
@@ -59,8 +60,41 @@ $(document).ready(function() {
 			});
 		});
 	});
+	
+	// 댓글 입력 버튼
+	$("#btnCommentInsert").click(function() {
+		var c_content = $("#c_content").val();
+		var b_no = parseInt("${boardVo.b_no}"); // 숫자로 변환 하는 이유가 뭘까?
+		var user_id = "test";
+		var url = "/comment/insertComment";
+		var sendData = {
+			"c_content" : c_content,
+			"b_no" : b_no,
+			"user_id" : user_id
+		};
+		//$.get, $.post의 원형
+		// 객체를 하나 만들어서 보낸다.
+		$.ajax({
+			"url" : url,
+			"headers" : {"Content-Type" : "application/json"},
+			"method" : "post",
+			"dataType" : "text", 
+			"data" : JSON.stringify(sendData),
+			"success" : function(receivedData){
+				console.log(receivedData);
+				// 처리가 잘 되었다면, 댓글 목록 버튼을 클릭시켜서 목록을 새로 얻음
+				if(receivedData == "success"){
+					$("#btnCommentList").trigger("click");
+				}
+			}
+		});
+		// headers: 요청할때 어떤 데이터인지 설명한다. 옵션은 다양함.
+		// dataType: http에선 text와 바이너리 두종류가 있다.
+		// JSON.stringify() : json 데이터를 문자열로 변환
+	});
 });
 </script>
+<!-- 게시글 내용 -->
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -98,11 +132,25 @@ $(document).ready(function() {
 			</form>
 		</div>
 	</div>
+	<!-- //게시글 내용 -->
+	
+	
+	
+	<!-- 댓글 목록 -->
 	<div class="row">
 		<div class="col-md-12">
 			<hr />
 			<button id="btnCommentList" type="button" class="btn btn-info">댓글목록</button>
 			<hr />
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<input type="text" class="form-control" placeholder="댓글을 입력하세요." id="c_content"/>
+				</div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-primary" id="btnCommentInsert">입력</button>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<table id="commentTable" class="table">
