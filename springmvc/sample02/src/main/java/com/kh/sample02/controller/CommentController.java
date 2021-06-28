@@ -1,11 +1,15 @@
 package com.kh.sample02.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kh.sample02.service.CommentService;
 import com.kh.sample02.vo.CommentVo;
 
 
@@ -17,14 +21,19 @@ import com.kh.sample02.vo.CommentVo;
 @RequestMapping("/comment")
 public class CommentController {
 	
+	@Inject
+	private CommentService commentService;
+	
 	// 댓글 목록
-	@RequestMapping("/getCommentList")
-	public List<CommentVo> getCommentList(int b_no) throws Exception {
-		List<CommentVo> list = new ArrayList<>();
+	@RequestMapping(value="/getCommentList/{b_no}", method=RequestMethod.GET)
+	public List<CommentVo> getCommentList(@PathVariable("b_no") int b_no) throws Exception {
+		/*List<CommentVo> list = new ArrayList<>();
 		for(int i=1; i<=10; i++) {
 			CommentVo vo = new CommentVo(i, b_no, "test", "댓글"+i, null);
 			list.add(vo);
-		}
+		}*/
+		List<CommentVo> list = commentService.getCommentList(b_no);
+		System.out.println(list);
 		return list;
 	}
 	
