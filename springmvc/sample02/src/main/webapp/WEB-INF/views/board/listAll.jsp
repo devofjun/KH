@@ -43,16 +43,24 @@
 			$("#dropdownMenuLink").text(textType);
 		});
 		
-
+		// 글제목 클릭시
+		$(".a_title").click(function(e){
+			e.preventDefault();
+			// 페이징 정보도 넘겨주기 위함
+			var bno = $(this).attr("data-bno");
+			$("#frmPaging > input[name=b_no]").val(bno);
+			$("#frmPaging").attr("action", "/board/content");
+			$("#frmPaging").submit();
+		});
 	});
 </script>
 
 <form id="frmPaging" action="/board/listAll" method="post">
 	page:<input type="text" name="page" value="${pagingDto.page}" />
 	perPage:<input type="text" name="perPage" value="${pagingDto.perPage}" />
-	searchType:<input type="text" name="searchType"
-		value="${pagingDto.searchType}" /> keyword:<input type="text"
-		name="keyword" value="${pagingDto.keyword}" />
+	searchType:<input type="text" name="searchType" value="${pagingDto.searchType}" />
+	keyword:<input type="text" name="keyword" value="${pagingDto.keyword}" />
+	b_no:<input type="text" name="b_no"/>
 </form>
 <div class="container-fluid">
 
@@ -111,7 +119,7 @@
 					<c:forEach var="boardVo" items="${list}">
 						<tr>
 							<td>${boardVo.b_no}</td>
-							<td><a href="/board/content?b_no=${boardVo.b_no}">${boardVo.b_title}</a></td>
+							<td><a class="a_title" href="#" data-bno="${boardVo.b_no}">${boardVo.b_title}</a></td>
 							<td>${boardVo.user_id}</td>
 							<td>${boardVo.b_reg_date}</td>
 							<td>${boardVo.b_viewcnt}</td>

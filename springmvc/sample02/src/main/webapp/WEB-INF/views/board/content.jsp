@@ -27,6 +27,11 @@ $(document).ready(function() {
 			location.href="/board/RemoveRun?b_no=${boardVo.b_no}";
 		}
 	});
+	
+	// 목록 버튼
+	$("#btnList").click(function() {
+		location.href="/board/listAll?page=${pagingDto.page}&perPage=${pagingDto.perPage}&searchType=${pagingDto.searchType}&keyword=${pagingDto.keyword}";
+	});
 });
 </script>
 <div class="container-fluid">
@@ -55,9 +60,10 @@ $(document).ready(function() {
 					<textarea class="form-control" id="b_content" name="b_content" readonly>${boardVo.b_content}</textarea>
 					<!-- name 값이 vo에 들어있는 필드명과 같아	야한다. -->
 				</div>
-				// test
+				
 				<button id="btnModify" type="button" class="btn btn-primary">수정</button>
 				<button id="btnRemove" type="button" class="btn btn-danger">삭제</button>
+				<button id="btnList" type="button"class="btn btn-warning">목록</button>
 			</form>
 		</div>
 	</div>

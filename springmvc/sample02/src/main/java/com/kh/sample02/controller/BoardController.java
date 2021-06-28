@@ -49,11 +49,15 @@ public class BoardController {
 		return "redirect:/board/listAll";
 	}
 	
-	@RequestMapping(value = "/content", method = RequestMethod.GET)
-	public String content(int b_no, Model model) throws Exception {
+	@RequestMapping(value = "/content", method = RequestMethod.POST)
+	public String content(PagingDto pagingDto,int b_no, Model model) throws Exception {
 		//System.out.println(b_no);
 		BoardVo boardVo = boardService.content(b_no);
 		model.addAttribute("boardVo", boardVo);
+		
+//		int count = boardService.getCount(pagingDto);
+//		pagingDto.setCount(count);
+		model.addAttribute("paingDto", pagingDto);
 		return "board/content";
 	}
 	
