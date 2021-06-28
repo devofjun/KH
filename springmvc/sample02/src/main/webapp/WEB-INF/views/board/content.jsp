@@ -53,7 +53,8 @@ $(document).ready(function() {
 				td.eq(1).text(this.c_content);
 				td.eq(2).text(this.user_id);
 				td.eq(3).text(changeDateString(this.c_regdate));
-				
+				td.eq(5).find("button").attr("data-cno", this.c_no);
+				// changeDateString 직접 만든 자바스크립트 함수
 				$("#commentTable > tbody").append(cloneTr);
 				//cloneTr.css("display", "block");
 				cloneTr.slideDown(100);
@@ -92,8 +93,102 @@ $(document).ready(function() {
 		// dataType: http에선 text와 바이너리 두종류가 있다.
 		// JSON.stringify() : json 데이터를 문자열로 변환
 	});
+	
+	// 댓글 수정 버튼
+	// 비동기방식 등으로 추가된 엘리먼트에 대해서 이벤트 처리는
+	// 처음 로딩된 상태에서 존재하는 엘리먼트에 설정한다.
+	$("#commentTable").on("click", ".commentModify", function() {
+		//console.log("click");
+		// 눌러진 버튼의 해당하는 댓글의 번호와 내용을 셀렉트해서 text값을 가져옴
+		var c_no = $(this).parent().parent().find("td").eq(0).text();
+		var c_content = $(this).parent().parent().find("td").eq(1).text();
+		$(".modal-body > .c_content").val(c_content);
+		$("#btnModalOk").attr("data-cno", c_no);
+		$("#modal-912157").trigger("click");
+	});
+	
+	// 댓글 수정완료 버튼
+	$("#btnModalOk").click(function() {
+		var c_no = $(this).attr("data-cno");
+		var c_content = $(".modal-body > .c_content").val();
+		var url = "/comment/updateComment";
+		var sendData = {
+				"c_no" : c_no,
+				"c_content" : c_content
+		};
+		console.log(sendData);
+		$.ajax({
+			"url" : url,
+			"headers" : {"Content-Type" : "application/json"},
+			"method" : "post",
+			"dataType" : "text", 
+			"data" : JSON.stringify(sendData),
+			"success" : function(receivedData){
+				console.log(receivedData);
+				if(receivedData == "success"){
+					$("#btnCommentList").trigger("click");
+					$("#btnModalClose").trigger("click");
+				}
+			}
+		});
+	});
+	
+	// 댓글 삭제 버튼
+	$("#commentTable").on("click", ".commentDelete", function() {
+		//console.log("click");
+		var c_no = $(this).attr("data-cno");
+		if(confirm("해당 댓글을 삭제하시겠습니까?")){
+			//var c_no = $(this).parent().parent().find("td").eq(0).text();
+			//location.href="/comment/deleteComment/"+c_no;
+			var url = "/comment/deleteComment/"+c_no;
+			$.get(url, function(rData){
+				if(rData == "success"){
+					$("#btnCommentList").trigger("click");
+					alert("삭제되었습니다.");
+				}
+			});
+		}
+	});
 });
 </script>
+
+<!-- 모달창 -->
+<!-- 작동받식은 트리거롤 통해서 열리게 한다. -->
+<div class="row">
+	<div class="col-md-12">
+		<a style="display:none" id="modal-912157" href="#modal-container-912157" role="button"
+			class="btn" data-toggle="modal">Launch demo modal</a>
+
+		<div class="modal fade" id="modal-container-912157" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="myModalLabel">수정</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control c_content"/>
+					</div>
+					<div class="modal-footer">
+
+						<button id="btnModalOk" type="button" class="btn btn-primary">수정완료</button>
+						<button id="btnModalClose" type="button" class="btn btn-secondary"
+							data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+<!-- //모달창 -->
+
+
 <!-- 게시글 내용 -->
 <div class="container-fluid">
 	<div class="row">
@@ -127,8 +222,6 @@ $(document).ready(function() {
 				<button id="btnModify" type="button" class="btn btn-primary">수정</button>
 				<button id="btnRemove" type="button" class="btn btn-danger">삭제</button>
 				<button id="btnList" type="button" class="btn btn-warning">목록</button>
-
-
 			</form>
 		</div>
 	</div>
@@ -168,6 +261,8 @@ $(document).ready(function() {
 								<td></td>
 								<td></td>
 								<td></td>
+								<td><button type="button" class="btn btn-sm btn-warning commentModify">수정</button></td>
+								<td><button type="button" class="btn btn-sm btn-danger commentDelete">삭제</button></td>
 							</tr>
 						</tbody>
 					</table>

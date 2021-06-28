@@ -34,7 +34,7 @@ public class CommentController {
 			list.add(vo);
 		}*/
 		List<CommentVo> list = commentService.getCommentList(b_no);
-		System.out.println(list);
+		//System.out.println(list);
 		return list;
 	}
 	
@@ -42,11 +42,26 @@ public class CommentController {
 	// 비동기 방식으로 들어오는 요청데이터를 받기 위해선 @RequestBody 를 써야한다.
 	@RequestMapping(value="/insertComment", method=RequestMethod.POST)
 	public String insertComment(@RequestBody CommentVo commentVo) throws Exception {
-		System.out.println(commentVo);
+		//System.out.println(commentVo);
 		// 그런데 여기서 쓰이는 user_id는 현재 접속하고 있는 유저의 데이터니깐 memberVo의 user_id 인데
 		// 게시글의 user_id와는 별개이지 않나? 게시글의 user_id 변수명을 다른걸로 변경 해야 할 거 같은데?
 		
 		commentService.insertComment(commentVo);
 		return "success";
+	}
+	
+	@RequestMapping(value="/updateComment", method=RequestMethod.POST)
+	public String updateComment(@RequestBody CommentVo commentVo) throws Exception{
+		System.out.println(commentVo);
+		commentService.updateComment(commentVo);
+		return "success";
+	}
+	
+	@RequestMapping(value="/deleteComment/{c_no}", method=RequestMethod.GET)
+	public String commentDelete(@PathVariable("c_no") int c_no) throws Exception {
+		System.out.println("[Del_cno] : "+c_no);
+		commentService.deleteComment(c_no);
+		
+		return "success";	
 	}
 }

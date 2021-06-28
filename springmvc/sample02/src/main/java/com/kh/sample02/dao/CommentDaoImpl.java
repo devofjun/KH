@@ -26,7 +26,17 @@ public class CommentDaoImpl implements CommentDao {
 
 	@Override
 	public void insertComment(CommentVo commentVo) {
-		System.out.println("DAO_commentVo:" + commentVo);
+		//System.out.println("DAO_commentVo:" + commentVo);
 		sqlSession.insert(NAMESPACE+"insertComment", commentVo);
+	}
+
+	@Override
+	public void updateComment(CommentVo commentVo) {
+		sqlSession.update(NAMESPACE+"updateComment", commentVo);
+	}
+
+	@Override
+	public void deleteComment(int c_no) {
+		sqlSession.delete(NAMESPACE+"deleteComment", c_no);
 	}
 }
