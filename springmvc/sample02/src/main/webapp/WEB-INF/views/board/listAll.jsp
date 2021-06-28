@@ -46,7 +46,7 @@
 		// 글제목 클릭시
 		$(".a_title").click(function(e){
 			e.preventDefault();
-			// 페이징 정보도 넘겨주기 위함
+			// 페이징 정보도 넘겨주기 위함 => 목록으로 다시 돌아갈때 보고 있던 페이지 출력하기
 			var bno = $(this).attr("data-bno");
 			$("#frmPaging > input[name=b_no]").val(bno);
 			$("#frmPaging").attr("action", "/board/content");
