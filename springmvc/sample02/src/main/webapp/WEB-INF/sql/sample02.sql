@@ -14,7 +14,7 @@ create table tbl_member(
 );
 
 insert into tbl_member(user_id, user_pw, user_name)
-values('test', '1234', 'beng');
+values('kim', '1234', '김길동');
 
 select * from tbl_member;
 
@@ -40,7 +40,7 @@ create sequence seq_board_bno;
 
 truncate table tbl_board;
 
-select * from tbl_board;
+select * from tbl_board order by b_no desc;
 
 commit;
 
@@ -91,4 +91,48 @@ select * from tbl_comment
 where b_no = 500
 order by c_no desc;
 
+commit;
+
+
+
+-- 메세지(쪽지) 테이블
+create table tbl_message(
+	msg_no number primary key, -- 쪽지 번호
+	msg_content varchar2(200) not null, -- 쪽지 내용
+	msg_sender varchar2(50) references tbl_member(user_id), -- 보낸사람
+	msg_receiver varchar2(50) references tbl_member(user_id), -- 받는사람
+	msg_senddate timestamp default sysdate, -- 보낸시각
+	msg_opendate timestamp -- 읽은시각	
+);
+
+-- 쪽지 번호용 시퀀스
+create sequence seq_message_no;
+
+-- 포인트 카테고리(타입) 테이블
+create table tbl_point_cate(
+	point_code varchar(4) primary key,
+	point_desc varchar(30)	not null
+);
+
+-- 포인트 테이블
+create table tbl_point(
+	point_no number primary key, -- 포인트번호
+	user_id varchar2(50) references tbl_member(user_id), -- 아이디
+	point_code  varchar2(4) references tbl_point_cate(point_code), -- 포인트코드
+	point_score number default 0,
+	point_date timestamp default sysdate
+);
+
+-- 포인트 번호용 시퀀스
+create sequence seq_point_no;
+
+-- 사용자 테이블에 포인트 컬럼 추가
+alter table tbl_member
+add (user_point number default 0);
+
+-- 포인트 카테고리(타입) 테이블에 쪽지보내기/쓰기에 대한 데이터 추가
+insert into tbl_point_cate(point_code, point_desc)
+values ('1001', '쪽지보내기');
+insert into tbl_point_cate(point_code, point_desc)
+values ('1002', '쪽지읽기');
 commit;
