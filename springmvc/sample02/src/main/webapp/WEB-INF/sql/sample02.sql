@@ -108,6 +108,10 @@ create table tbl_message(
 -- 쪽지 번호용 시퀀스
 create sequence seq_message_no;
 
+-- 메세지 테이블 확인
+select * from tbl_message;
+
+
 -- 포인트 카테고리(타입) 테이블
 create table tbl_point_cate(
 	point_code varchar(4) primary key,
