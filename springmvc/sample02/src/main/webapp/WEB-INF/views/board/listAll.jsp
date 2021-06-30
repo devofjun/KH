@@ -52,17 +52,90 @@
 			$("#frmPaging").attr("action", "/board/content");
 			$("#frmPaging").submit();
 		});
+		
+		$(".sendMessage").click(function() {
+			var user_id = $(this).attr("data-user_id");
+			$("#btnSendMessage").attr("data-msg_receiver", user_id);
+		});
+		
+		// 쪽지보내기 링크
+		$("#btnSendMessage").click(function() {
+			var that = $(this);
+			var msg_sender = "hong";
+			var msg_receiver = $(this).attr("data-msg_receiver");
+			var msg_content = $("#msg_content").val();
+			var sendData = {
+				"msg_sender" : msg_sender,
+				"msg_receiver" : msg_receiver,
+				"msg_content" : msg_content
+			};
+			console.log(sendData);
+			var url = "/message/sendMessage";
+// 			$.post(url, sendData, function(rData){
+// 				console.log(rData);
+// 			})
+			$.ajax({
+				"url" : url,
+				"method" : "post",
+				"dataType" : "text", // 응답 데이터에 대한 타입
+				"headers" : {
+					"Content-Type" : "application/json" 
+				},
+				"data" : JSON.stringify(sendData), // 문자열 객체로 변환시켜줌
+				"success" : function(receivedData){
+					console.log(receivedData)
+					if(receivedData == "success"){ 
+						that.next().trigger("click"); // 창닫기
+					}
+				}
+			});
+		});
 	});
 </script>
 
 <!-- 링크 공유가 가능하게 하기 위해서 get방식으로 보내는게 좋음 -->
 <form id="frmPaging" action="/board/listAll" method="get">
-	page:<input type="text" name="page" value="${pagingDto.page}" />
-	perPage:<input type="text" name="perPage" value="${pagingDto.perPage}" />
-	searchType:<input type="text" name="searchType" value="${pagingDto.searchType}" />
-	keyword:<input type="text" name="keyword" value="${pagingDto.keyword}" />
-	b_no:<input type="text" name="b_no"/>
+	<!-- page: --><input type="hidden" name="page" value="${pagingDto.page}" />
+	<!-- perPage: --><input type="hidden" name="perPage" value="${pagingDto.perPage}" />
+	<!-- searchType: --><input type="hidden" name="searchType" value="${pagingDto.searchType}" />
+	<!-- keyword: --><input type="hidden" name="keyword" value="${pagingDto.keyword}" />
+	<!-- b_no: --><input type="hidden" name="b_no"/>
 </form>
+
+<!-- 쪽지 보내기 모달창 -->
+<div class="row">
+	<div class="col-md-12">
+		<!-- <a id="modal-388406" href="#modal-container-388406" role="button"
+			class="btn" data-toggle="modal">모달</a> -->
+
+		<div class="modal fade" id="modal-container-388406" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="myModalLabel">쪽지 보내기</h5>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control" id="msg_content"/>
+					</div>
+					<div class="modal-footer">
+
+						<button type="button" class="btn btn-primary"
+							id="btnSendMessage">보내기</button>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- //쪽지 보내기 모달창 -->
+
 <div class="container-fluid">
 
 	<div class="row">
@@ -121,7 +194,20 @@
 						<tr>
 							<td>${boardVo.b_no}</td>
 							<td><a class="a_title" href="#" data-bno="${boardVo.b_no}">${boardVo.b_title}</a></td>
-							<td>${boardVo.user_id}</td>
+							<td>
+								<div class="dropdown">
+
+									<button class="btn btn-default" type="button"
+										id="dropdownMenuButton" data-toggle="dropdown">
+										${boardVo.user_id}</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item sendMessage" 
+									href="#modal-container-388406" data-toggle="modal"
+									data-user_id="${boardVo.user_id}">쪽지 보내기</a>
+									<a class="dropdown-item" href="#">포인트 선물하기</a>
+									</div>
+								</div>
+							</td>
 							<td>${boardVo.b_reg_date}</td>
 							<td>${boardVo.b_viewcnt}</td>
 						</tr>

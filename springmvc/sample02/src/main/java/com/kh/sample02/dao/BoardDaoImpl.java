@@ -54,4 +54,9 @@ public class BoardDaoImpl implements BoardDao {
 		return count;
 	}
 
+	@Override
+	public void updateViewCnt(int b_no) {
+		sqlSession.update(NAMESPACE+"updateViewCnt", b_no);
+	}
+
 }

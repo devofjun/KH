@@ -42,7 +42,7 @@ public class BoardController {
 	public String writeRun(BoardVo boardVo, RedirectAttributes rttr) throws Exception{
 		System.out.println(boardVo.getB_title());
 		System.out.println(boardVo.getB_content());
-		boardVo.setUser_id("test");
+		//boardVo.setUser_id("kim");
 		boardService.writeRun(boardVo);
 		// => 여기서 도중에 에러가 난다면 아래 코드로 넘어가지 않는다.
 		//System.out.println("테스트중입니다. 여기까지 오나요?");

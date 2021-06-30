@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 	// 목록 버튼
 	$("#btnList").click(function() {
-		location.href = "/board/listAll?page=${pagingDto.page}perPage=${pagingDto.perPage}&searchType=${pagingDto.searchType}&keyword=${pagingDto.keyword}";
+		location.href = "/board/listAll?page=${pagingDto.page}&perPage=${pagingDto.perPage}&searchType=${pagingDto.searchType}&keyword=${pagingDto.keyword}";
 	});
 
 	// 댓글 버튼

@@ -50,6 +50,7 @@
 		<include refid="search"></include>
 	</select>
 	
+	<!-- 검색 -->
 	<sql id="search">
 		<if  test="searchType != null">
 			<choose>
@@ -74,4 +75,11 @@
 			</choose>
 		</if>
 	</sql>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateViewCnt">
+		update tbl_board set
+			b_viewcnt = b_viewcnt + 1
+		where b_no = #{b_no}
+	</update>
 </mapper>

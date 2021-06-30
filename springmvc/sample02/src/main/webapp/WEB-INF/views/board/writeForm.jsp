@@ -11,6 +11,7 @@
 				</p>
 			</div>
 			<form role="form" action="/board/writeRun" method="post">
+				<input type="hidden" name="user_id" value="kim"/>
 				<div class="form-group">
 
 					<label for="b_title"> 글제목 </label> <input

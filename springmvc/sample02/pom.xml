@@ -80,7 +80,7 @@
     <version>4.1.7.RELEASE</version>
 </dependency>
 
-<!-- 혹시 몰라 설치한다? -->
+
 <!-- aspectjrt -->
 <dependency>
     <groupId>org.aspectj</groupId>
@@ -88,14 +88,13 @@
     <version>1.5.4</version>
 </dependency>
 
-<!--  -->
 <!-- spring-tx -->
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-tx</artifactId>
     <version>4.1.7.RELEASE</version>
 </dependency>
-
+<!-- //트랜잭션 -->
 	
 	
 	

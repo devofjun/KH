@@ -12,4 +12,5 @@ public interface BoardDao {
 	public void deleteArticle(int b_no);
 	public void updateArticle(BoardVo boardVo);
 	public int getCount(PagingDto pagingDto);
+	public void updateViewCnt(int b_no);
 }

@@ -31,6 +31,7 @@ public class BoardServiceImpl implements BoardService{
 	public BoardVo content(int b_no) {
 		//System.out.println("service-content-b_no:"+b_no);
 		BoardVo boardVo = boardDao.selectByBno(b_no);
+		boardDao.updateViewCnt(b_no);
 		return boardVo;
 	}
 
