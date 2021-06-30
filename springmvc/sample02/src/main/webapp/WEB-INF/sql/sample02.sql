@@ -14,7 +14,7 @@ create table tbl_member(
 );
 
 insert into tbl_member(user_id, user_pw, user_name)
-values('kim', '1234', '김길동');
+values('hong', '1234', '홍길동');
 
 select * from tbl_member;
 
