@@ -28,4 +28,12 @@
 	<!-- 트랜잭션 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
+	<!-- 파일 업로드를 위한 Bean 등록 -->
+	<!-- 최대 업로드 용략 10MB -->
+	<beans:bean
+		id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+	
 </beans:beans>

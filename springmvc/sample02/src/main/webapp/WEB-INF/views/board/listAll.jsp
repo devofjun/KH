@@ -79,7 +79,7 @@
 				"method" : "post",
 				"dataType" : "text", // 응답 데이터에 대한 타입
 				"headers" : {
-					"Content-Type" : "application/json" 
+					"Content-Type" : "application/json" // 요청 데이터에 대한 타입
 				},
 				"data" : JSON.stringify(sendData), // 문자열 객체로 변환시켜줌
 				"success" : function(receivedData){

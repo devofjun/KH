@@ -1,7 +1,5 @@
 package com.kh.sample02;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -10,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.kh.sample02.util.MyFileUploadUtil;
 
 /**
  * Handles requests for the application home page.
@@ -35,6 +37,19 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		*/
 		return "redirect:/board/listAll";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/uploadAjax", method=RequestMethod.POST)
+	public String uploadAjax(MultipartFile file) throws Exception {
+		// 파일이 넘어온건가?
+		// 파일 이름 출력
+		System.out.println("file:"+file.getOriginalFilename());
+		String originalFilename = file.getOriginalFilename();
+		String filePath = MyFileUploadUtil.uploadFile("D:/upload", originalFilename, file.getBytes());
+		//System.out.println("file:"+file.getContentType());
+		
+		return filePath;
 	}
 	
 }
