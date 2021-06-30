@@ -82,4 +82,11 @@
 			b_viewcnt = b_viewcnt + 1
 		where b_no = #{b_no}
 	</update>
+	
+	<!-- 해당 게시글의 댓글 갯수 변경 -->
+	<update id="updateCommentCnt">
+		update tbl_board set
+			comment_cnt = comment_cnt + #{count}
+		where b_no = #{b_no}
+	</update>
 </mapper>

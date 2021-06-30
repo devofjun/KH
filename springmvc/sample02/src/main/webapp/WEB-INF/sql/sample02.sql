@@ -147,9 +147,25 @@ truncate table tbl_message;
 -- 포인트 테이블 내용 지우기
 truncate table tbl_point;
 -- 포인트는 모두 0점으로 설정
-update tbl_memver set
+update tbl_member set
     user_point = 0;
+commit;
 
 select * from tbl_message;
 select * from tbl_point;
 select * from tbl_member;
+
+
+insert into tbl_message(msg_no, msg_content, msg_sender, msg_receiver) values (seq_message_no.nextval, 
+'123', 'hong', 'kim');
+
+
+-- 게시판 테이블에 댓글 갯수 컬럼 추가
+alter table tbl_board
+add(comment_cnt number default 0);
+commit;
+
+-- 기존에 입력한 댓글이 있긴 떄문에, 입력된 갯수만큼 댓글수 변경
+update tbl_board set
+    comment_cnt = (select count(*) from tbl_comment where b_no = 500)
+where b_no = 500;

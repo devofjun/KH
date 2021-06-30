@@ -92,7 +92,6 @@
 		});
 	});
 </script>
-
 <!-- 링크 공유가 가능하게 하기 위해서 get방식으로 보내는게 좋음 -->
 <form id="frmPaging" action="/board/listAll" method="get">
 	<!-- page: --><input type="hidden" name="page" value="${pagingDto.page}" />
@@ -193,7 +192,15 @@
 					<c:forEach var="boardVo" items="${list}">
 						<tr>
 							<td>${boardVo.b_no}</td>
-							<td><a class="a_title" href="#" data-bno="${boardVo.b_no}">${boardVo.b_title}</a></td>
+							<!-- 제목 -->
+							<td> 
+								<ul class="nav nav-pills">
+									<li class="nav-item"><a class="a_title nav-link" href="#"
+										data-bno="${boardVo.b_no}">${boardVo.b_title} <span
+											class="badge badge-info">${boardVo.comment_cnt}</span>
+									</a></li>
+								</ul>
+							</td>
 							<td>
 								<div class="dropdown">
 
@@ -201,10 +208,10 @@
 										id="dropdownMenuButton" data-toggle="dropdown">
 										${boardVo.user_id}</button>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item sendMessage" 
-									href="#modal-container-388406" data-toggle="modal"
-									data-user_id="${boardVo.user_id}">쪽지 보내기</a>
-									<a class="dropdown-item" href="#">포인트 선물하기</a>
+										<a class="dropdown-item sendMessage"
+											href="#modal-container-388406" data-toggle="modal"
+											data-user_id="${boardVo.user_id}">쪽지 보내기</a> <a
+											class="dropdown-item" href="#">포인트 선물하기</a>
 									</div>
 								</div>
 							</td>

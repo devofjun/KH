@@ -137,10 +137,11 @@ $(document).ready(function() {
 	$("#commentTable").on("click", ".commentDelete", function() {
 		//console.log("click");
 		var c_no = $(this).attr("data-cno");
+		var b_no = "${boardVo.b_no}";
 		if(confirm("해당 댓글을 삭제하시겠습니까?")){
 			//var c_no = $(this).parent().parent().find("td").eq(0).text();
 			//location.href="/comment/deleteComment/"+c_no;
-			var url = "/comment/deleteComment/"+c_no;
+			var url = "/comment/deleteComment/"+c_no+"/"+b_no;
 			$.get(url, function(rData){
 				if(rData == "success"){
 					$("#btnCommentList").trigger("click");
