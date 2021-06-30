@@ -96,6 +96,7 @@ commit;
 
 
 -- 메세지(쪽지) 테이블
+truncate table tbl_message;
 create table tbl_message(
 	msg_no number primary key, -- 쪽지 번호
 	msg_content varchar2(200) not null, -- 쪽지 내용
@@ -140,3 +141,15 @@ values ('1001', '쪽지보내기');
 insert into tbl_point_cate(point_code, point_desc)
 values ('1002', '쪽지읽기');
 commit;
+
+-- 쪽지 테이블 내용 지우기
+truncate table tbl_message;
+-- 포인트 테이블 내용 지우기
+truncate table tbl_point;
+-- 포인트는 모두 0점으로 설정
+update tbl_memver set
+    user_point = 0;
+
+select * from tbl_message;
+select * from tbl_point;
+select * from tbl_member;

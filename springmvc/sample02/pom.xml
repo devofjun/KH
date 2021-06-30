@@ -65,8 +65,37 @@
     <version>11.2.0.4</version>
 </dependency>
 
+<!-- 트랜잭션 -->
+<!-- aspectjweaver -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjweaver</artifactId>
+    <version>1.6.10</version>
+</dependency>
 
-	
+<!-- spring-aop -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-aop</artifactId>
+    <version>4.1.7.RELEASE</version>
+</dependency>
+
+<!-- 혹시 몰라 설치한다? -->
+<!-- aspectjrt -->
+<dependency>
+    <groupId>org.aspectj</groupId>
+    <artifactId>aspectjrt</artifactId>
+    <version>1.5.4</version>
+</dependency>
+
+<!--  -->
+<!-- spring-tx -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-tx</artifactId>
+    <version>4.1.7.RELEASE</version>
+</dependency>
+
 	
 	
 	
