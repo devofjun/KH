@@ -10,7 +10,14 @@
 		margin : 20px auto;
 		border : 2px dashed blue;
 	}
+	
+	/* 이미지박스  */
+	.divUploaded {
+		width : 150px;
+		float : left;
+	}
 </style>
+<script src="/resources/js/my-script.js"></script>
 <script>
 $(document).ready(function() {
 	// 해당 영역 진입하는 시점, 해당 영역에 있을때
@@ -40,20 +47,100 @@ $(document).ready(function() {
 			"url" : "/uploadAjax",
 			"method" : "post",
 			"data" : formData,
-			"success" : function(receivedData) {
+			"success" : function(receivedData) {	
 				console.log(receivedData);
-				var arrStr = receivedData.split("_");
+					//var arrStr = receivedData.split("_");
 				//console.log(arrStr);
-				var fileName = arrStr[1];
-				alert(fileName);
-				$("#uploadedList").append("<span style='margin:10px'>" + fileName + "</span>")
+					//var fileName = arrStr[2];
+				//alert(fileName);
+				var fileName = receivedData.substring(receivedData.lastIndexOf("_")+1);
+				var cloneDiv = $("#uploadedList").prev().clone();
+				var img = cloneDiv.find("img");
+				if(isImage(fileName)){
+					img.attr("src", "http://localhost/displayImage?fileName="+receivedData);
+				}
+				//$("#uploadedList").append("<span style='margin:10px'>" + fileName + "</span>")
+				cloneDiv.find("span").text(fileName);
+				cloneDiv.find(".a_times").attr("href", receivedData);
+				$("#uploadedList").append(cloneDiv.show());
+				
+// 				// 모달 열기
+// 				$("modal-273731").trigger("click");
+// 				// 2초 뒤 실행 되는 함수
+// 				setTimeout(function() {
+// 					$("#modal-container-273731 .close").trigger("click");
+// 					$("#uploadedList").append(cloneDiv.show());
+// 				},2000);
 			}
 		});
+	});
+	
+	// 첨부파일 삭제 링크
+	$("#uploadedList").on("click", ".a_times", function(e) {
+		e.preventDefault();
+		var that = $(this);
+		console.log	("클릭");
+		var fileName = $(this).attr("href");
+		console.log(fileName);
+		var url = "/deleteFile?fileName=" + fileName;
+		$.get(url, function(rData) {
+			if(rData == "success"){
+				that.parent().remove();
+			}
+		});
+	});
+	
+	
+	$("#frmWrite").submit(function() {
+		// 올린 이미지가 썸네일로 표시되는 div
+		var div = $("#uploadedList .divUploaded");
+		// 생성하기 전에 비우고 생성함(날림)
+		$(this).find("[name^=files]").remove();
+		div.each(function(index) {
+			var fileName = $(this).find(".a_times").attr('href');
+			var html = "<input type='hidden' name='files["+index+"]' value='"+fileName+"''/>";
+			$("#frmWrite").prepend(html);
+		});
+		return false;
 	});
 });
 </script>
 
 <div class="container-fluid">
+	<!-- 파일 업로드 안내 모달 -->
+	<div class="row">
+		<div class="col-md-12">
+			<a id="modal-273731" href="#modal-container-273731" role="button"
+				class="btn" data-toggle="modal" style="display:none">Launch demo modal</a>
+
+			<div class="modal fade" id="modal-container-273731" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="myModalLabel">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">...</div>
+						<div class="modal-footer">
+
+							<button type="button" class="btn btn-primary">Save
+								changes</button>
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<!-- //파일 업로드 안내 모달 -->
+	
 	<div class="row">
 		<div class="col-md-12">
 			<div class="jumbotron">
@@ -62,8 +149,11 @@ $(document).ready(function() {
 <!-- 					<a class="btn btn-primary btn-large" href="#">Learn more</a> -->
 				</p>
 			</div>
-			<form role="form" action="/board/writeRun" method="post">
+			
+			<!-- 글 작성하기 폼 -->
+			<form id="frmWrite" role="form" action="/board/writeRun" method="post">
 				<input type="hidden" name="user_id" value="kim"/>
+				
 				<div class="form-group">
 
 					<label for="b_title"> 글제목 </label> <input
@@ -86,13 +176,21 @@ $(document).ready(function() {
 					</div>
 				<!-- //첨부파일 -->
 				
+				<!-- 기본이미지 -->
+				<div style="display:none;" class="divUploaded">
+					<img height="50" src="/resources/img/default_image.png"
+						class="img-rounded"/><br/>
+					<span>default</span>
+					<a href="#" class="a_times">&times;</a>
+				</div>
+				<!-- 기본이미지 -->
 				
 				<div id="uploadedList">
-					
 				</div>
 				
-				
-				<button type="submit" class="btn btn-primary">글쓰기</button>
+				<hr/>
+				<button type="submit" class="btn btn-primary"
+					style="clear:bath">글쓰기</button>
 			</form>
 		</div>
 	</div>

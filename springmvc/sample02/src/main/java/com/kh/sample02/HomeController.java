@@ -1,7 +1,9 @@
 package com.kh.sample02;
 
+import java.io.FileInputStream;
 import java.util.Locale;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,7 @@ public class HomeController {
 		return "redirect:/board/listAll";
 	}
 	
+	// 이미지 업로드
 	@ResponseBody
 	@RequestMapping(value = "/uploadAjax", method=RequestMethod.POST)
 	public String uploadAjax(MultipartFile file) throws Exception {
@@ -52,4 +55,22 @@ public class HomeController {
 		return filePath;
 	}
 	
+	// 썸네일 이미지 요청 -> 바이너리 파일은 결국 byte 배열이다.
+	@RequestMapping(value="/displayImage", method=RequestMethod.GET)
+	@ResponseBody
+	public byte[] displayImage(String fileName) throws Exception {
+		FileInputStream fis = new FileInputStream(fileName);
+		byte[] bytes = IOUtils.toByteArray(fis);
+		fis.close();
+		return bytes;
+	}
+	
+	// 첨부파일 삭제
+	@RequestMapping(value="/deleteFile", method=RequestMethod.GET)
+	@ResponseBody
+	public String deleteFile(String fileName) throws Exception {
+		MyFileUploadUtil.deleteFile(fileName);
+		System.out.println("파일 삭제 끝");
+		return "success";
+	}
 }

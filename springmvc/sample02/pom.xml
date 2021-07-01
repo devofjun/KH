@@ -105,7 +105,23 @@
 </dependency>
 
 <!-- //파일 업로드 -->
-	
+
+<!--  썸네일 이미지 -->
+<!-- https://mvnrepository.com/artifact/org.imgscalr/imgscalr-lib -->
+<dependency>
+    <groupId>org.imgscalr</groupId>
+    <artifactId>imgscalr-lib</artifactId>
+    <version>4.2</version>
+</dependency>
+
+<!-- 용량문제로 변환, 저장 안될때 필요함 -->
+<!-- https://mvnrepository.com/artifact/com.twelvemonkeys.imageio/imageio-jpeg -->
+<dependency>
+    <groupId>com.twelvemonkeys.imageio</groupId>
+    <artifactId>imageio-jpeg</artifactId>
+    <version>3.3.1</version>
+</dependency>
+<!-- 썸네일 이미지 -->
 	
 	
 	

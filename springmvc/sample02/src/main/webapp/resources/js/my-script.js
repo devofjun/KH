@@ -20,3 +20,13 @@ function changeDateString(timestamp){
 	return year + "-" + month + "-" + date  + "-" +  hour  + "-" +  minute  + "-" +  second;
 	//return d.toLocaleString();
 }
+
+// 이미지 확인
+function isImage(fileName) {
+	var dotIndex = fileName.lastIndexOf(".");
+	var ext = fileName.substring(dotIndex + 1).toUpperCase();
+	if(ext == "JPG" || ext == "GIF" || ext == "PNG") {
+		return true;
+	}
+	return false;
+}
