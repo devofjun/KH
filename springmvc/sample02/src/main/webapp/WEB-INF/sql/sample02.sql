@@ -177,3 +177,4 @@ create table tbl_attach(
     file_Name varchar2(200) primary key,
     b_no number references tbl_board(b_no)
 );
+commit;

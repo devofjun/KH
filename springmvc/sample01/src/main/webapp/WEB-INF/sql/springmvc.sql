@@ -12,11 +12,15 @@ create table tbl_member(
     update_date timestamp
 );
 
+insert into tbl_member(user_id, user_pw, user_name)
+values('hong', '1234', '홍길동');
+
 commit;
 
 select * from tbl_member;
 
 -- 게시판 테이블(tbl_board)
+truncate table tbl_board;
 create table tbl_board(
     b_no number primary key, -- 글번호
     b_title varchar2(100) not null, -- 글제목
@@ -29,10 +33,8 @@ create table tbl_board(
     re_level number default 0  -- 답글 들여쓰기용
 );
 
-truncate table tbl_board;
-
-create sequence seq_board_bno; -- 1부터 1씩 증가
 drop sequence seq_board_bno;
+create sequence seq_board_bno; -- 1부터 1씩 증가
 
 select * from tbl_board;
 
