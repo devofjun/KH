@@ -46,10 +46,67 @@ $(document).ready(function() {
 		var option = $(this).attr("data-option");
 		$("#searchOption").val(option);
 	}); */
+	
+	// 학생 클릭 => 상담목록
+	$(".oneStudent").click(function() {
+		//console.log("test");
+		var sno = $(this).find("td").eq(0).text();
+		var url = "/consult/showList/"+sno;
+		
+		$("#consultList > tr:gt(0)").remove();
+		$.get(url, function(rData){
+			console.log(rData);
+			$.each(rData, function(){
+				var clone = $("#consultList > tr:first").clone();
+				var td = clone.find("td");
+				var date = new Date(this.consult_date);
+				td.eq(0).text(this.consult_no);
+				td.eq(1).text(this.sname);
+				td.eq(2).text(this.consult_content);
+				td.eq(3).text(date.toLocaleString());
+				$("#consultList").append(clone);
+				clone.show();
+			});
+		});
+	});
+	
+// 	$("#btnAddConsult").click(function() {
+// 		console.log($(this).attr("date-sname"));
+// 		$(".modal-title").text("님 상담내역 추가");
+// 	});
+	
 });
 </script>
 </head>
 <body>
+	<!-- 상담추가 모달 -->
+	<a id="modal-273731" href="#modal-container-273731" role="button"
+		class="btn" data-toggle="modal" style="display:none">Launch demo modal</a>
+
+	<div class="modal fade" id="modal-container-273731" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="myModalLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">...</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-primary">Save changes
+					</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<!-- //상담추가 모달 -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -88,6 +145,7 @@ $(document).ready(function() {
 						</form>
 					</div>
 				</nav> -->
+				<!-- //검색 -->
 				
 				<!-- 학생목록 -->
 				<table class="table">
@@ -103,7 +161,7 @@ $(document).ready(function() {
 					</thead>
 					<tbody>
 						<c:forEach var="stdVo" items="${list}">
-						<tr>
+						<tr class="oneStudent">
 							<td>${stdVo.sno}</td>
 							<td>${stdVo.sname}</td>
 							<td>${stdVo.syear}</td>
@@ -118,12 +176,35 @@ $(document).ready(function() {
 							<td>
 							<button type="button" class="btnModify btn btn-warning btn-sm" data-sno="${stdVo.sno}">수정</button>
 							<button type="button" class="btnRemove btn btn-danger btn-sm" data-sno="${stdVo.sno}">삭제</button>
+							<a type="button" class="btnAddConsult btn btn-info btn-sm" data-sno="${stdVo.sno}" data-sname="${stdVo.sname}"
+							href="#modal-container-273731" data-toggle="modal">상담추가</a>
 							</td>
 						</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<!-- //학생목록 -->
+				
+				<!-- 상담목록 -->
+				<table  class="table">
+					<thead>
+						<tr>
+							<th>상담번호</th>
+							<th>상담학생</th>
+							<th>상담내용</th>
+							<th>상담일시</th>
+						</tr>
+					</thead>
+					<tbody id="consultList">
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- //상담목록 -->
 			</div>
 		</div>
 	</div>

@@ -12,5 +12,6 @@
 </h1>
 
 <P>  My name is ${myName}. </P>
+<a href="/std/stdList">학생목록</a>
 </body>
 </html>
