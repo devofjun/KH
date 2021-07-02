@@ -15,4 +15,5 @@ public interface MemberDao {
 	public void deleteMember(String user_id);
 	public List<MemberVo> memberList();
 	public void updatePoint(String user_id, int point_score);
+	public boolean checkDupId(String user_id);
 }

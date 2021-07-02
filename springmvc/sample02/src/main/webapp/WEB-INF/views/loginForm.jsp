@@ -7,6 +7,10 @@ $(document).ready(function() {
 // 	if(resultLogin == "fail"){
 // 		alert("로그인 실패");
 // 	}
+// 	var registMsg = "${registMsg}";
+// 	if(registMsg == "success"){
+// 		alert("가입완료");
+// 	}
 });
 </script>
 <div class="container-fluid">
@@ -26,6 +30,7 @@ $(document).ready(function() {
 					</label>
 				</div>
 				<button type="submit" class="btn btn-primary">login</button>
+				<a type="button" class="btn btn-info" href="/memberJoinForm">회원가입</a>
 			</form>
 		</div>
 	</div>

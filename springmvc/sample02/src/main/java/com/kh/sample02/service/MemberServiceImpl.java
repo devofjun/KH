@@ -18,5 +18,17 @@ public class MemberServiceImpl implements MemberService {
 		MemberVo memberVo = memberDao.login(user_id, user_pw);
 		return memberVo;
 	}
+
+	@Override
+	public boolean checkDupId(String user_id) {
+		return memberDao.checkDupId(user_id);
+	}
+
+	@Override
+	public void insertMember(MemberVo memberVo) {
+		memberDao.insertMember(memberVo);
+	}
+	
+	
 	
 }

@@ -23,7 +23,7 @@ public interface BoardDao {
 	//
 	public void updateCommentCnt(int b_no, int count);
 	
-	// nextval 얻기
+	// 첨부파일과 게시글의 고유번호 nextval 얻기
 	public int getNextVal();
 	// 첨부파일 쓰기
 	public void insertAttach(BoardVo boardVo);

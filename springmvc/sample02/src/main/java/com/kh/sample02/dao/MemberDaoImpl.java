@@ -80,4 +80,13 @@ public class MemberDaoImpl implements MemberDao {
 		sqlSession.update(NAMESPACE+"updatePoint", map);
 	}
 
+	@Override
+	public boolean checkDupId(String user_id) {
+		int count = sqlSession.selectOne(NAMESPACE+"checkDupId", user_id);
+		if(count > 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

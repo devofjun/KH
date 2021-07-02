@@ -7,10 +7,10 @@
 
 	<!-- 회원가입 -->
 	<insert id="insertMember">
-		insert into tbl_memeber
-			(user_id, user_pw, user_name, user_email)
+		insert into tbl_member
+			(user_id, user_pw, user_name, user_email, user_pic)
 		values
-			(#{user_id}, #{user_pw}, #{user_name}, #{user_email, jdbcType=VARCHAR})
+			(#{user_id}, #{user_pw}, #{user_name}, #{user_email, jdbcType=VARCHAR}, #{user_pic, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 로그인 -->
@@ -45,4 +45,10 @@
 			user_point = user_point + #{point_score}
 		where user_id = #{user_id}
 	</update>
+	
+	<!-- 아이디 중복체크 -->
+	<select id="checkDupId" resultType="int">
+		select count(*) from tbl_member
+		where user_id = #{user_id}
+	</select>
 </mapper>

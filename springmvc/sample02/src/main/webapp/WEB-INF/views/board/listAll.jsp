@@ -71,7 +71,7 @@
 			var msg_receiver = $(this).attr("data-msg_receiver");
 			var msg_content = $("#msg_content").val();
 			var sendData = {
-				"msg_sender" : msg_sender,
+				//"msg_sender" : msg_sender,
 				"msg_receiver" : msg_receiver,
 				"msg_content" : msg_content
 			};

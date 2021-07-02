@@ -105,4 +105,5 @@
 			comment_cnt = comment_cnt + #{count}
 		where b_no = #{b_no}
 	</update>
+
 </mapper>

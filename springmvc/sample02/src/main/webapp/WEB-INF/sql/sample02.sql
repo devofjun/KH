@@ -178,3 +178,15 @@ create table tbl_attach(
     b_no number references tbl_board(b_no)
 );
 commit;
+
+select * from tbl_attach;
+select * from tbl_board order by b_no desc;
+
+select seq_board_bno.nextval
+		from dual;
+        
+        
+-- 회원 테이블에 사진 컬럼 추가
+alter table tbl_member
+add(user_pic varchar2(100));
+commit;

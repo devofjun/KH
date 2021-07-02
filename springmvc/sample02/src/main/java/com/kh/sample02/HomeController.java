@@ -106,4 +106,34 @@ public class HomeController {
 		rttr.addFlashAttribute("msg", msg);
 		return page;
 	}
+	
+	// 회원가입 폼
+	@RequestMapping(value="/memberJoinForm", method=RequestMethod.GET)
+	public String memberJoinForm() throws Exception {
+		return "memberJoinForm";
+	}
+	
+	// 아이디 중복 확인
+	@RequestMapping(value="/checkDupId", method=RequestMethod.GET)
+	@ResponseBody
+	public String checkDupId(String user_id) throws Exception {
+		boolean result = memberService.checkDupId(user_id);
+		return String.valueOf(result);
+	}
+	
+	// 회원가입 실행
+	@RequestMapping(value="/memberJoinRun", method=RequestMethod.POST)
+	public String memberJoinRun(MemberVo memberVo, MultipartFile file, RedirectAttributes rttr) throws Exception {
+		String orgfileName = file.getOriginalFilename();
+		System.out.println("orgfileName:"+orgfileName);
+		String filePath = MyFileUploadUtil.uploadFile("D:/user_pic", orgfileName, file.getBytes());
+		memberVo.setUser_pic(filePath);
+		System.out.println("memberVo:"+memberVo);
+		
+		memberService.insertMember(memberVo);
+		
+		rttr.addFlashAttribute("registMsg", "succes");
+		return "redirect:/board/listAll";
+		//return null;
+	}
 }
