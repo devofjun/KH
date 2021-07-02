@@ -20,6 +20,7 @@ public class BoardServiceImpl implements BoardService{
 	@Transactional
 	@Override
 	public void writeRun(BoardVo boardVo) {
+		// 
 		int nextval = boardDao.getNextVal();
 		boardVo.setB_no(nextval);
 		boardDao.insertArticle(boardVo);

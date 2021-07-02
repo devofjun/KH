@@ -36,4 +36,22 @@
 		<beans:property name="maxUploadSize" value="10485760"></beans:property>
 	</beans:bean>
 	
+	
+	<!-- 인터셉터 -->
+	<beans:bean class="com.kh.sample02.interceptor.SampleInterceptor" id="SampleInterceptor"></beans:bean>
+	<beans:bean class="com.kh.sample02.interceptor.AuthIntercepter" id="authInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/doA"/>
+			<mapping path="/doB"/>
+			<beans:ref bean="SampleInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/board/**/*"/>
+			<mapping path="/message/**/*"/>
+			<exclude-mapping path="/board/listAll"/> 
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

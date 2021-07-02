@@ -50,6 +50,7 @@ public class MemberDaoImpl implements MemberDao {
 		Map<String, String> map = new HashMap<>();
 		map.put("user_id", user_id);
 		map.put("user_pw", user_pw);
+		System.out.println(map);
 		MemberVo memberVo = sqlSession.selectOne(NAMESPACE+"login", map);
 		return memberVo;
 	}

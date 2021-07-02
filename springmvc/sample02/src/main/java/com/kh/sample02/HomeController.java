@@ -3,6 +3,9 @@ package com.kh.sample02;
 import java.io.FileInputStream;
 import java.util.Locale;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,20 +15,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.sample02.service.MemberService;
 import com.kh.sample02.util.MyFileUploadUtil;
+import com.kh.sample02.vo.MemberVo;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	@Inject
+	private MemberService memberService;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		/*
@@ -43,7 +47,8 @@ public class HomeController {
 	
 	// 이미지 업로드
 	@ResponseBody
-	@RequestMapping(value = "/uploadAjax", method=RequestMethod.POST)
+	@RequestMapping(value = "/uploadAjax", method=RequestMethod.POST,
+			produces="application/text;charset=utf-8")
 	public String uploadAjax(MultipartFile file) throws Exception {
 		// 파일이 넘어온건가?
 		// 파일 이름 출력
@@ -55,7 +60,7 @@ public class HomeController {
 		return filePath;
 	}
 	
-	// 썸네일 이미지 요청 -> 바이너리 파일은 결국 byte 배열이다.
+	// 썸네일 이미지 요청 -> 바이너리 파일은 결국 byte 배열이다. -> 파일크기 줄임
 	@RequestMapping(value="/displayImage", method=RequestMethod.GET)
 	@ResponseBody
 	public byte[] displayImage(String fileName) throws Exception {
@@ -72,5 +77,32 @@ public class HomeController {
 		MyFileUploadUtil.deleteFile(fileName);
 		System.out.println("파일 삭제 끝");
 		return "success";
+	}
+	
+	// 로그인 폼
+	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
+	public String loginForm() throws Exception {
+		return "loginForm";
+	}
+	
+	// 로그인 실행
+	@RequestMapping(value="/loginRun", method=RequestMethod.POST)
+	public String loginRun(String user_id, String user_pw,
+			RedirectAttributes rttr, HttpSession session) throws Exception {
+		System.out.println("id: " + user_id + "pw: " +user_pw);
+		MemberVo memberVo = memberService.login(user_id, user_pw);
+		String msg = null;
+		String page = null;
+		if(memberVo != null) { // 로그인 성공
+			msg = "success";
+			page = "redirect:/board/listAll";
+			session.setAttribute("loginVo", memberVo);
+		} else { // 로그인 실패
+			msg = "fail";
+			page = "redirect:/loginForm";
+		}
+		
+		rttr.addFlashAttribute("msg", msg);
+		return page;
 	}
 }
