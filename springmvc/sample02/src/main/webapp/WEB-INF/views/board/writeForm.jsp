@@ -101,7 +101,8 @@ $(document).ready(function() {
 			var html = "<input type='hidden' name='files["+index+"]' value='"+fileName+"''/>";
 			$("#frmWrite").prepend(html);
 		});
-		return false;
+		// 폼 전송 막기
+		//return false;
 	});
 });
 </script>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.sample02.dao.BoardDao;
 import com.kh.sample02.vo.BoardVo;
@@ -16,9 +17,13 @@ public class BoardServiceImpl implements BoardService{
 	//@Qualifier("dao1") // 같은 dao가 있을때
 	private BoardDao boardDao;
 
+	@Transactional
 	@Override
 	public void writeRun(BoardVo boardVo) {
+		int nextval = boardDao.getNextVal();
+		boardVo.setB_no(nextval);
 		boardDao.insertArticle(boardVo);
+		boardDao.insertAttach(boardVo);
 	}
 
 	@Override

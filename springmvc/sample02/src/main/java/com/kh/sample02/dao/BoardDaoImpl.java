@@ -69,4 +69,23 @@ public class BoardDaoImpl implements BoardDao {
 		sqlSession.update(NAMESPACE+"updateCommentCnt", map);
 	}
 
+	
+	// 첨부파일에서 쓸 번호
+	@Override
+	public int getNextVal() {
+		int nextval = sqlSession.selectOne(NAMESPACE+"getNextVal");
+		return nextval;
+	}
+
+	@Override
+	public void insertAttach(BoardVo boardVo) {
+		String[] files = boardVo.getFiles();
+		for(String file : files) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("file_name", file);
+			map.put("b_no", boardVo.getB_no());
+			sqlSession.insert(NAMESPACE+"insertAttach", map);
+		}
+	}
+
 }

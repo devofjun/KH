@@ -1,6 +1,7 @@
 package com.kh.sample02.vo;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class BoardVo {
 	private int b_no;
@@ -13,6 +14,9 @@ public class BoardVo {
 	private int re_seq;
 	private int re_level;
 	private int comment_cnt;
+	// 첨부파일
+	private String[] files;
+	
 	
 	public BoardVo() {
 		super();
@@ -114,12 +118,23 @@ public class BoardVo {
 		this.comment_cnt = comment_cnt;
 	}
 
+	public String[] getFiles() {
+		return files;
+	}
+
+	public void setFiles(String[] files) {
+		this.files = files;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardVo [b_no=" + b_no + ", b_title=" + b_title + ", b_content=" + b_content + ", user_id=" + user_id
 				+ ", b_reg_date=" + b_reg_date + ", b_viewcnt=" + b_viewcnt + ", re_group=" + re_group + ", re_seq="
-				+ re_seq + ", re_level=" + re_level + ", comment_cnt=" + comment_cnt + "]";
+				+ re_seq + ", re_level=" + re_level + ", comment_cnt=" + comment_cnt + ", files="
+				+ Arrays.toString(files) + "]";
 	}
+
+	
 	
 	
 	

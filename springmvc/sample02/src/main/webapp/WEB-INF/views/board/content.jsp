@@ -202,8 +202,8 @@ $(document).ready(function() {
 			</div>
 			<form id="frmModify" role="form" action="/board/modifyRun"
 				method="post">
-				<input type="hidden" id="user_id" value="test" /> <input
-					type="hidden" id="b_no" name="b_no" value="${boardVo.b_no}" />
+				<input type="hidden" id="user_id" value="test" />
+				<input type="hidden" id="b_no" name="b_no" value="${boardVo.b_no}" />
 				<div class="form-group">
 
 					<label for="b_title"> 글제목 </label> <input type="text"

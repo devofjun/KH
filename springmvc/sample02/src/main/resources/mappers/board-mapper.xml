@@ -3,17 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.sample02.board">
+	
+	<!-- 다음 게시판 번호 생성해서 번호 가져오기 -->
+	<select id="getNextVal" resultType="int">
+		select seq_board_bno.nextval
+		from dual
+	</select>
+
 	<!-- 글쓰기 -->
 	<insert id="insertArticle">
 		insert into tbl_board
 			(b_no, b_title, b_content, user_id, re_group)
 		values
-			(seq_board_bno.nextval,
+			(#{b_no},
 				#{b_title},
 				#{b_content, jdbcType=VARCHAR},
 				#{user_id},
-				seq_board_bno.nextval)
+				#{b_no})
 	</insert>
+	
+	<!-- 첨부파일 -->
+	<insert id="insertAttach">
+		insert into tbl_attach
+			(file_name, b_no)
+		values
+			(#{file_name}, #{b_no}) 
+	</insert>
+	
 	
 	<!-- 전체 조회 -->
 	<select id="selectAll" resultType="BoardVo">

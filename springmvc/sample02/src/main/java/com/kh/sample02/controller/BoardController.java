@@ -40,8 +40,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/writeRun", method = RequestMethod.POST)
 	public String writeRun(BoardVo boardVo, RedirectAttributes rttr) throws Exception{
-		System.out.println(boardVo.getB_title());
-		System.out.println(boardVo.getB_content());
+		System.out.println("글작성될 VO:"+boardVo);
 		//boardVo.setUser_id("kim");
 		boardService.writeRun(boardVo);
 		// => 여기서 도중에 에러가 난다면 아래 코드로 넘어가지 않는다.
