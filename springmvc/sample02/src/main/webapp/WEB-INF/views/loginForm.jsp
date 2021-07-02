@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp" %>
-
+<script>
+$(document).ready(function() {
+// 	var resultLogin = "${msg}";
+// 	if(resultLogin == "fail"){
+// 		alert("로그인 실패");
+// 	}
+});
+</script>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">

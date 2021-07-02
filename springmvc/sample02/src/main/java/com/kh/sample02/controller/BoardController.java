@@ -3,6 +3,7 @@ package com.kh.sample02.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.sample02.service.BoardService;
 import com.kh.sample02.vo.BoardVo;
+import com.kh.sample02.vo.MemberVo;
 import com.kh.sample02.vo.PagingDto;
 
 @Controller
@@ -39,12 +41,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/writeRun", method = RequestMethod.POST)
-	public String writeRun(BoardVo boardVo, RedirectAttributes rttr) throws Exception{
-		System.out.println("글작성될 VO:"+boardVo);
-		//boardVo.setUser_id("kim");
+	public String writeRun(BoardVo boardVo, RedirectAttributes rttr, HttpSession session) throws Exception{
+		System.out.println("작성될 글 VO:"+boardVo);
+		
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+		boardVo.setUser_id(memberVo.getUser_id());
+		System.out.println("ID삽입된 VO:"+boardVo);
 		boardService.writeRun(boardVo);
 		// => 여기서 도중에 에러가 난다면 아래 코드로 넘어가지 않는다.
-		//System.out.println("테스트중입니다. 여기까지 오나요?");
 		rttr.addFlashAttribute("resultWrite", "success");
 		return "redirect:/board/listAll";
 	}

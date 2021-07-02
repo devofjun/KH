@@ -3,6 +3,7 @@ package com.kh.sample02.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.sample02.service.CommentService;
 import com.kh.sample02.vo.CommentVo;
+import com.kh.sample02.vo.MemberVo;
 
 
 // 모든 메서드에 @ResponseBody 가 붙어있다.
@@ -41,9 +43,10 @@ public class CommentController {
 	// 댓글 쓰기 - c_content, b_no, user_id
 	// 비동기 방식으로 들어오는 요청데이터를 받기 위해선 @RequestBody 를 써야한다.
 	@RequestMapping(value="/insertComment", method=RequestMethod.POST)
-	public String insertComment(@RequestBody CommentVo commentVo) throws Exception {
+	public String insertComment(@RequestBody CommentVo commentVo, HttpSession session) throws Exception {
 		//System.out.println(commentVo);
-		
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+		commentVo.setUser_id(memberVo.getUser_id());
 		commentService.insertComment(commentVo);
 		return "success";
 	}

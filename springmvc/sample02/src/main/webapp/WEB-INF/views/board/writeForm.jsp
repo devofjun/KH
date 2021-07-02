@@ -153,7 +153,8 @@ $(document).ready(function() {
 			
 			<!-- 글 작성하기 폼 -->
 			<form id="frmWrite" role="form" action="/board/writeRun" method="post">
-				<input type="hidden" name="user_id" value="kim"/>
+<!-- 				<input type="hidden" name="user_id" value="kim"/> -->
+				
 				
 				<div class="form-group">
 

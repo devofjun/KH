@@ -39,7 +39,7 @@
 	
 	<!-- 인터셉터 -->
 	<beans:bean class="com.kh.sample02.interceptor.SampleInterceptor" id="SampleInterceptor"></beans:bean>
-	<beans:bean class="com.kh.sample02.interceptor.AuthIntercepter" id="authInterceptor"></beans:bean>
+	<beans:bean class="com.kh.sample02.interceptor.AuthInterceptor" id="authInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
@@ -48,7 +48,8 @@
 			<beans:ref bean="SampleInterceptor"/>
 		</interceptor>
 		<interceptor>
-			<mapping path="/board/**/*"/>
+<!-- 			<mapping path="/board/**/*"/> -->
+			<mapping path="/board/*"/>
 			<mapping path="/message/**/*"/>
 			<exclude-mapping path="/board/listAll"/> 
 			<beans:ref bean="authInterceptor"/>

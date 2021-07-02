@@ -75,7 +75,7 @@ public class HomeController {
 	@ResponseBody
 	public String deleteFile(String fileName) throws Exception {
 		MyFileUploadUtil.deleteFile(fileName);
-		System.out.println("파일 삭제 끝");
+		System.out.println(fileName+"파일 삭제 끝");
 		return "success";
 	}
 	
@@ -89,7 +89,8 @@ public class HomeController {
 	@RequestMapping(value="/loginRun", method=RequestMethod.POST)
 	public String loginRun(String user_id, String user_pw,
 			RedirectAttributes rttr, HttpSession session) throws Exception {
-		System.out.println("id: " + user_id + "pw: " +user_pw);
+		
+		System.out.println("id: " + user_id + "pw: " + user_pw);
 		MemberVo memberVo = memberService.login(user_id, user_pw);
 		String msg = null;
 		String page = null;

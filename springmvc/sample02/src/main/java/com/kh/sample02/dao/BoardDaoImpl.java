@@ -80,11 +80,13 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public void insertAttach(BoardVo boardVo) {
 		String[] files = boardVo.getFiles();
-		for(String file : files) {
-			Map<String, Object> map = new HashMap<>();
-			map.put("file_name", file);
-			map.put("b_no", boardVo.getB_no());
-			sqlSession.insert(NAMESPACE+"insertAttach", map);
+		if(files != null && files.length > 0) {
+			for(String file : files) {
+				Map<String, Object> map = new HashMap<>();
+				map.put("file_name", file);
+				map.put("b_no", boardVo.getB_no());
+				sqlSession.insert(NAMESPACE+"insertAttach", map);
+			}			
 		}
 	}
 

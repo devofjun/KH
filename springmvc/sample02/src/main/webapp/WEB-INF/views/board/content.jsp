@@ -66,12 +66,11 @@ $(document).ready(function() {
 	$("#btnCommentInsert").click(function() {
 		var c_content = $("#c_content").val();
 		var b_no = parseInt("${boardVo.b_no}"); // 숫자로 변환 하는 이유가 뭘까?
-		var user_id = "test";
+		//var user_id = "test";
 		var url = "/comment/insertComment";
 		var sendData = {
 			"c_content" : c_content,
-			"b_no" : b_no,
-			"user_id" : user_id
+			"b_no" : b_no
 		};
 		//$.get, $.post의 원형
 		// 객체를 하나 만들어서 보낸다.

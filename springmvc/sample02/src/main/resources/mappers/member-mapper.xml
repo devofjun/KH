@@ -18,6 +18,11 @@
 		select * from tbl_member
 		where user_id=#{user_id} and user_pw=#{user_pw} 
 	</select>
+	<!-- 유저 정보 -->
+	<select id="selectMember" resultType="MemberVo">
+		select * from tbl_member
+		where user_id=#{user_id} and user_pw=#{user_pw} 
+	</select>
 	
 	<!-- 회원 정보 수정 -->
 	<update id="updateMember">

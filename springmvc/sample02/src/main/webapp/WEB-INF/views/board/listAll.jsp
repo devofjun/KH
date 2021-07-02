@@ -5,7 +5,13 @@
 <%@ include file="../include/header.jsp"%>
 <script>
 	$(document).ready(function() {
-		console.log("${pagingDto}")
+		// 로그인 결과 메세지
+// 		var resultLogin = "${msg}";
+// 		if(resultLogin=="success"){
+// 			alert("로그인성공");
+// 		}
+		
+		//console.log("${pagingDto}")
 		// 글쓰기결과 메세지
 		var resultWrite = "${resultWrite}";
 		if (resultWrite == "success") {
@@ -61,7 +67,7 @@
 		// 쪽지보내기 링크
 		$("#btnSendMessage").click(function() {
 			var that = $(this);
-			var msg_sender = "hong";
+			//var msg_sender = "hong";
 			var msg_receiver = $(this).attr("data-msg_receiver");
 			var msg_content = $("#msg_content").val();
 			var sendData = {
