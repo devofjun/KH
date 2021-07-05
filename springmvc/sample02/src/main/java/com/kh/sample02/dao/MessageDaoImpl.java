@@ -1,5 +1,6 @@
 package com.kh.sample02.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,6 +39,26 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public List<MessageVo> messageListReceive(String msg_receiver) {
 		return sqlSession.selectList(NAMESPACE+"messageListReceive", msg_receiver);
+	}
+
+	@Override
+	public void updateOpenDate(int msg_no) {
+		sqlSession.update(NAMESPACE+"updateOpenDate", msg_no);
+	}
+
+	@Override
+	public MessageVo readMessage(int msg_no) {
+		return sqlSession.selectOne(NAMESPACE+"readMessage", msg_no);
+	}
+
+	@Override
+	public Timestamp getOpendate(int msg_no) {
+		return sqlSession.selectOne(NAMESPACE+"getOpendate", msg_no);
+	}
+
+	@Override
+	public void deleteMessage(int msg_no) {
+		sqlSession.update(NAMESPACE+"deleteMessage", msg_no);
 	}
 
 }

@@ -223,3 +223,18 @@ insert into tbl_point (point_no, user_id, point_code, point_score)
 values (seq_point_no.nextval, 'kim', '1002', 5);
 
 commit;
+
+select * from tbl_point;
+
+-- 메세지 삭제처리를 위한 컬럼 추가
+alter table tbl_message
+add (msg_del varchar2(1));
+commit;
+
+alter table tbl_message
+drop column del_msg;
+
+select * from tbl_message
+		where msg_receiver = 'hong';
+		and msg_del is null
+		order by msg_no desc;

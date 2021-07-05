@@ -9,5 +9,6 @@ public interface MemberService {
 	public boolean checkDupId(String user_id);
 	// 회원가입
 	public void insertMember(MemberVo memberVo);
-	
+	// 포인트 가져오기
+	public int getUserPoint(String user_id);
 }

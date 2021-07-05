@@ -89,4 +89,9 @@ public class MemberDaoImpl implements MemberDao {
 		return false;
 	}
 
+	@Override
+	public int getUserPoint(String user_id) {
+		return sqlSession.selectOne(NAMESPACE+"getUserPoint", user_id);
+	}
+
 }

@@ -51,4 +51,10 @@
 		select count(*) from tbl_member
 		where user_id = #{user_id}
 	</select>
+	
+	<!-- 포인트 값 가져오기 -->
+	<select id="getUserPoint" resultType="int">
+		select user_point from tbl_member
+		where user_id = #{user_id}
+	</select>
 </mapper>

@@ -28,11 +28,41 @@
 	<select id="messageListReceive" resultType="MessageVo">
 		select * from tbl_message
 		where msg_receiver = #{msg_receiver}
+		and msg_del is null
 		order by msg_no desc
 	</select>
 	
-	<!--  -->
+	<!-- 보낸메세지 목록 -->
 	<select id="messageListsender" resultType="MessageVo">
-		
+		select * from tbl_message
+		where msg_sender = #{msg_sender}
+		and msg_del is null
+		order by msg_no desc
 	</select>
+	
+	<!-- 메세지 읽은 상태로 변경 -->
+	<update id="updateOpenDate">
+		update tbl_message set
+			msg_opendate = sysdate
+		where msg_no = #{msg_no}
+	</update>
+	
+	<!-- 메세지 내용 가져오기 -->
+	<select id="readMessage" resultType="MessageVo">
+		select * from tbl_message
+		where msg_no = #{msg_no}
+	</select>
+	
+	<!-- 읽은 날짜 가져오기 -->
+	<select id="getOpendate" resultType="java.sql.Timestamp">
+		select msg_opendate from tbl_message
+		where msg_no = #{msg_no}
+	</select>
+	
+	<!-- 삭제처리 하기 -->
+	<update id="deleteMessage">
+		update tbl_message set
+			msg_del = 'T'
+		where msg_no = #{msg_no}
+	</update>
 </mapper>

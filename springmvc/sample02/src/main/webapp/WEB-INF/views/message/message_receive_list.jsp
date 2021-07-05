@@ -3,6 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 
+<script>
+$(document).ready(function() {
+	$(".messages").click(function() {
+		$(".messages").removeClass("active");
+		$(this).addClass("active");
+	});
+});
+</script>
 
 <div class="container mt-3">
 	<h2>받은 쪽지 목록</h2>
@@ -10,9 +18,8 @@
 
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link active" href="#home">보낸
-				쪽지함</a></li>
-		<li class="nav-item"><a class="nav-link" href="#menu1">받은 쪽지함</a></li>
+		<li class="nav-item"><a class="messages nav-link active" href="#home">받은 쪽지함</a></li>
+		<li class="nav-item"><a class="messages nav-link " href="#menu1">보낸 쪽지함</a></li>
 	</ul>
 
 	<div class="row">
@@ -23,7 +30,7 @@
 						<th>#</th>
 						<th>쪽지내용</th>
 						<th>보낸사람</th>
-						<th>받은날짜</th>
+						<th>보낸날짜</th>
 						<th>읽은날짜</th>
 					</tr>
 				</thead>
@@ -31,10 +38,12 @@
 					<c:forEach var="messageVo" items="${list}">
 					<tr>
 						<td>${messageVo.msg_no}</td>
-						<td><span<c:if test="${empty messageVo.msg_opendate }">
+						<td><span
+								<c:if test="${empty messageVo.msg_opendate }">
 									style="font-weight:bold"
 								</c:if>
-							>${messageVo.msg_content}</span></td>
+							><a href="/message/messageRead?msg_no=${messageVo.msg_no}">${messageVo.msg_content}</a>
+							</span></td>
 						<td>${messageVo.msg_sender}</td>
 						<td>${messageVo.msg_senddate}</td>
 						<td>
@@ -54,12 +63,12 @@
 		</div>
 	</div>
 
-	<p class="act">
-		<b>Active Tab</b>: <span></span>
-	</p>
-	<p class="prev">
-		<b>Previous Tab</b>: <span></span>
-	</p>
+<!-- 	<p class="act"> -->
+<!-- 		<b>Active Tab</b>: <span></span> -->
+<!-- 	</p> -->
+<!-- 	<p class="prev"> -->
+<!-- 		<b>Previous Tab</b>: <span></span> -->
+<!-- 	</p> -->
 </div>
 
 

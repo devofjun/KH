@@ -1,5 +1,6 @@
 package com.kh.sample02.service;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kh.sample02.dao.MemberDao;
 import com.kh.sample02.dao.MessageDao;
 import com.kh.sample02.dao.PointDao;
+import com.kh.sample02.vo.MemberVo;
 import com.kh.sample02.vo.MessageVo;
 import com.kh.sample02.vo.PointVo;
 
@@ -54,6 +56,34 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public List<MessageVo> messageListReceive(String msg_receiver) {
 		return messageDao.messageListReceive(msg_receiver);
+	}
+
+	@Override
+	@Transactional
+	public MessageVo messageRead(String user_id, int msg_no) {
+		// 메세지 내용 읽어오기
+		MessageVo messageVo = messageDao.readMessage(msg_no);
+		// 읽었던 메세지가 아니라면 포인트와 읽은 날짜 업데이트 
+		if(messageVo.getMsg_opendate() == null) {
+			// 메세지 읽은 상태로 변경
+			messageDao.updateOpenDate(msg_no);
+			// 읽은 사람 5포인트 부여
+			memberDao.updatePoint(user_id, 5);
+			// 포인트 내역 추가
+			PointVo pointVo = new PointVo(user_id, PointDao.READ_MESSAGE_CODE, PointDao.READ_MESSAGE_POINT);
+			pointDao.insertPoint(pointVo);
+//			// 읽은 날짜를 받아오기 위해 한번 더 읽는다.
+//			messageVo = messageDao.readMessage(msg_no);
+			// 읽은 날짜 동기화
+			messageVo.setMsg_opendate(messageDao.getOpendate(msg_no));
+		}
+		
+		return messageVo;
+	}
+
+	@Override
+	public void deleteMessage(int msg_no) {
+		messageDao.deleteMessage(msg_no);
 	}
 
 }
