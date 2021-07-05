@@ -29,6 +29,4 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.insertMember(memberVo);
 	}
 	
-	
-	
 }

@@ -1,5 +1,7 @@
 package com.kh.sample02.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -36,6 +38,22 @@ public class MessageServiceImpl implements MessageService {
 		pointDao.insertPoint(pointVo);
 		// 보내는 사람의 포인트 증가
 		memberDao.updatePoint(messageVo.getMsg_sender(), PointDao.SEND_MESSAGE_POINT);
+	}
+
+	@Override
+	public int notReadCount(String msg_receiver) {
+		return messageDao.notReadCount(msg_receiver);
+	}
+
+	@Override
+	public List<MessageVo> messageListNotRead(String msg_receiver) {
+		//System.out.println("###service: " + msg_receiver);
+		return messageDao.messageListNotRead(msg_receiver);
+	}
+
+	@Override
+	public List<MessageVo> messageListReceive(String msg_receiver) {
+		return messageDao.messageListReceive(msg_receiver);
 	}
 
 }

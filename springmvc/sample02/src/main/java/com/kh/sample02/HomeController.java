@@ -1,6 +1,7 @@
 package com.kh.sample02;
 
 import java.io.FileInputStream;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -18,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.sample02.service.MemberService;
+import com.kh.sample02.service.MessageService;
 import com.kh.sample02.util.MyFileUploadUtil;
 import com.kh.sample02.vo.MemberVo;
+import com.kh.sample02.vo.MessageVo;
 
 
 @Controller
@@ -29,6 +32,9 @@ public class HomeController {
 	
 	@Inject
 	private MemberService memberService;
+	
+	@Inject
+	private MessageService messageService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -92,11 +98,16 @@ public class HomeController {
 		
 		System.out.println("id: " + user_id + "pw: " + user_pw);
 		MemberVo memberVo = memberService.login(user_id, user_pw);
+
 		String msg = null;
 		String page = null;
 		if(memberVo != null) { // 로그인 성공
 			msg = "success";
 			page = "redirect:/board/listAll";
+			
+			int notReadCount = messageService.notReadCount(user_id);
+			memberVo.setNotReadCount(notReadCount);
+			
 			session.setAttribute("loginVo", memberVo);
 		} else { // 로그인 실패
 			msg = "fail";
@@ -136,4 +147,15 @@ public class HomeController {
 		return "redirect:/board/listAll";
 		//return null;
 	}
+	
+	// 로그아웃
+	// 한 세션만 로그아웃 되려면?
+	// 메소드로 받으면 해당 세션의 정보만 넘어오기 때문에 해당 세션만 지울수있다.
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.invalidate(); // 현재 세션 무효화 => removeAttribute() 모두
+		return "redirect:/loginForm";
+	}
+	
+	
 }

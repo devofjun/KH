@@ -190,3 +190,36 @@ select seq_board_bno.nextval
 alter table tbl_member
 add(user_pic varchar2(100));
 commit;
+
+-- 읽지 않은 메세지 갯수
+select count(*) from tbl_message
+where msg_receiver = 'kim'
+and msg_opendate is null;
+-- null 값을 비교하려면 is를 써야한다.
+
+-- 읽지 않은 메세지 목록
+select * from tbl_message
+where msg_receiver = 'kim'
+and msg_opendate is null;
+
+-- 받은 메세지 목록
+select * from tbl_message
+where msg_receiver = 'kim';
+
+-- 보낸 쪽지 목록
+select * from tbl_message
+where msg_sender = 'kim';
+
+-- 28번 쪽지를 읽은 상태로 변경
+update tbl_message set
+    msg_opendate = sysdate
+where msg_no = 16;
+-- kim 에 쪽지읽기 포인트(5점) 부여
+update tbl_member set
+    user_point = user_point + 5
+where user_id = 'kim';
+-- 포인트 테이블에 포인트 내역 추가
+insert into tbl_point (point_no, user_id, point_code, point_score)
+values (seq_point_no.nextval, 'kim', '1002', 5);
+
+commit;

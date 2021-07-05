@@ -42,7 +42,39 @@
 <!-- Page level custom scripts -->
 <!-- <script src="/resources/js/demo/chart-area-demo.js"></script> -->
 <!-- <script src="/resources/js/demo/chart-pie-demo.js"></script> -->
-
+<style>
+/* 	body{ */
+/* 		clear: both; */
+/* 	} */
+/* 	#mySidebar { */
+/* 		float: right; */
+/* 	} */
+/* 	#content-wrapper { */
+/* 		float: left; */
+/* 	} */
+</style>
+<script src="/resources/js/my-script.js"></script>
+<script>
+$(document).ready(function() {
+	$("#messagesDropdown").click(function() {
+		var url = "/message/messageListNotRead";
+		$.get(url,function(rData){
+			console.log(rData);
+			$(".list-item").remove();
+			$.each(rData, function() {
+				var cloneItem = $("#msgItem").clone();
+				cloneItem.find(".text-truncate").text(this.msg_content);
+				cloneItem.find(".text-gray-500").text(changeDateString(this.msg_senddate));
+				cloneItem.removeAttr("id"); // id가 중복될테니 클론 엘리먼트는 id 속성을 삭제한다. 
+				cloneItem.addClass("list-item"); // 대신 엘리먼트를 삭제하기 위해 class를 삭제한다.
+				cloneItem.insertAfter($("#msgItem")); // 
+				cloneItem.show();
+			});
+			
+		});
+	});
+});
+</script>
 </head>
 
 <body id="page-top">
@@ -51,9 +83,10 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
+		<div id="mySidebar">
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+			id="accordionSidebar" style="">
 
 			<!-- Sidebar - Brand -->
 			<a
@@ -172,6 +205,7 @@
 			</div>
 
 		</ul>
+		</div>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -248,7 +282,7 @@
 							class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-								<span class="badge badge-danger badge-counter">3+</span>
+								<span class="badge badge-danger badge-counter">+</span>
 						</a> <!-- Dropdown - Alerts -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -292,64 +326,24 @@
 
 						<!-- Nav Item - Messages -->
 						<li class="nav-item dropdown no-arrow mx-1"><a
-							class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
+							class="nav-link dropdown-toggle" href="/messageListNotRead" id="messagesDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i>
 								<!-- Counter - Messages --> <span
-								class="badge badge-danger badge-counter">7</span>
+								class="badge badge-danger badge-counter">${sessionScope.loginVo.notReadCount}</span>
 						</a> <!-- Dropdown - Messages -->
 							<div
 								class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="messagesDropdown">
-								<h6 class="dropdown-header">Message Center</h6>
-								<a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="/resources/img/undraw_profile_1.svg"
-											alt="...">
-										<div class="status-indicator bg-success"></div>
-									</div>
+								<h6 class="dropdown-header">읽지 않은 쪽지 목록</h6>
+								<a id="msgItem" class="dropdown-item d-flex align-items-center" href="#" style="display:none">
 									<div class="font-weight-bold">
-										<div class="text-truncate">Hi there! I am wondering if
-											you can help me with a problem I've been having.</div>
-										<div class="small text-gray-500">Emily Fowler · 58m</div>
+										<div class="text-truncate"></div>
+										<div class="small text-gray-500"></div>
 									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="/resources/img/undraw_profile_2.svg"
-											alt="...">
-										<div class="status-indicator"></div>
-									</div>
-									<div>
-										<div class="text-truncate">I have the photos that you
-											ordered last month, how would you like them sent to you?</div>
-										<div class="small text-gray-500">Jae Chun · 1d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="/resources/img/undraw_profile_3.svg"
-											alt="...">
-										<div class="status-indicator bg-warning"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Last month's report looks
-											great, I am very happy with the progress so far, keep up the
-											good work!</div>
-										<div class="small text-gray-500">Morgan Alvarez · 2d</div>
-									</div>
-								</a> <a class="dropdown-item d-flex align-items-center" href="#">
-									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle"
-											src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
-										<div class="status-indicator bg-success"></div>
-									</div>
-									<div>
-										<div class="text-truncate">Am I a good boy? The reason I
-											ask is because someone told me that people say this to all
-											dogs, even if they aren't good...</div>
-										<div class="small text-gray-500">Chicken the Dog · 2w</div>
-									</div>
-								</a> <a class="dropdown-item text-center small text-gray-500"
-									href="#">Read More Messages</a>
+								</a>
+								<a class="dropdown-item text-center small text-gray-500"
+									href="/message/messageListReceive">받은 쪽지함으로 가기</a>
 							</div></li>
 
 						<div class="topbar-divider d-none d-sm-block"></div>
@@ -391,7 +385,7 @@
 										<a class="dropdown-item" href="#" data-toggle="modal"
 											data-target="#logoutModal"> <i
 											class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-											Logout
+											로그아웃
 										</a>
 									</div></li>
 						</ul>

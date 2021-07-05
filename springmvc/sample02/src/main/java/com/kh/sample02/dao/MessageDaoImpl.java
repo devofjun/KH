@@ -1,5 +1,7 @@
 package com.kh.sample02.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,6 +19,25 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public void insertMessage(MessageVo messageVo) {
 		sqlSession.insert(NAMESPACE+"insertMessage", messageVo);
+	}
+
+	@Override
+	public int notReadCount(String msg_receiver) {
+		int count = sqlSession.selectOne(NAMESPACE+"notReadCount", msg_receiver);
+		return count;
+	}
+
+	@Override
+	public List<MessageVo> messageListNotRead(String msg_receiver) {
+		System.out.println("###service: " + msg_receiver);
+		List<MessageVo> list = sqlSession.selectList(NAMESPACE+"messageListNotRead", msg_receiver);
+		System.out.println(list);
+		return list;
+	}
+
+	@Override
+	public List<MessageVo> messageListReceive(String msg_receiver) {
+		return sqlSession.selectList(NAMESPACE+"messageListReceive", msg_receiver);
 	}
 
 }
