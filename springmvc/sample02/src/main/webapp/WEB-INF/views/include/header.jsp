@@ -213,7 +213,7 @@
 								<a href="/loginForm"
 									class="btn btn-sm btn-success">로그인</a>
 									<a href="/loginRun"
-									class="btn btn-sm btn-warning">로그인</a>
+									class="btn btn-sm btn-warning">회원가입</a>
 							</div>
 						</c:when>
 						<c:otherwise>
@@ -359,9 +359,20 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-									McGee</span> <img class="img-profile rounded-circle"
-								src="/resources/img/undraw_profile.svg">
+								class="mr-2 d-none d-lg-inline text-gray-600 small">
+								${sessionScope.loginVo.user_name}
+								(${sessionScope.loginVo.user_id})- [${sessionScope.loginVo.user_point} 포인트]
+								</span>
+								<img class="img-profile rounded-circle"
+								<c:choose>
+									<c:when test="${not empty sessionScope.loginVo.user_pic}">
+										src="/displayImage?fileName=${sessionScope.loginVo.user_pic}"
+									</c:when>
+									<c:otherwise>
+										src="/resources/img/undraw_profile.svg"
+									</c:otherwise>
+								</c:choose>
+								/>
 						</a> <!-- Dropdown - User Information -->
 									
 									<div
