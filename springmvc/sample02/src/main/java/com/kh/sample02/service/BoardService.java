@@ -3,6 +3,7 @@ package com.kh.sample02.service;
 import java.util.List;
 
 import com.kh.sample02.vo.BoardVo;
+import com.kh.sample02.vo.LikeVo;
 import com.kh.sample02.vo.PagingDto;
 
 public interface BoardService {
@@ -12,4 +13,5 @@ public interface BoardService {
 	public void removeRun(int b_no);
 	public void modifyRun(BoardVo boardVo);
 	public int getCount(PagingDto pagingDto);
+	public int updateLikeCount(LikeVo likeVo);
 }

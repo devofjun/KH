@@ -28,4 +28,8 @@ public interface BoardDao {
 	// 첨부파일 쓰기
 	public void insertAttach(BoardVo boardVo);
 	
+	// 좋아요 수 변경하기
+	public void updateLikeCount(int b_no, int count);
+	// 좋아요 수 반환
+	public int selectLikeCount(int b_no);
 }

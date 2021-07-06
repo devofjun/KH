@@ -90,4 +90,16 @@ public class BoardDaoImpl implements BoardDao {
 		}
 	}
 
+	@Override
+	public void updateLikeCount(int b_no, int count) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("b_no", b_no);
+		map.put("count", count);
+		sqlSession.update(NAMESPACE+"updateLikeCount", map);
+	}
+
+	@Override
+	public int selectLikeCount(int b_no) {
+		return sqlSession.selectOne(NAMESPACE+"selectLikeCount", b_no);		
+	}
 }

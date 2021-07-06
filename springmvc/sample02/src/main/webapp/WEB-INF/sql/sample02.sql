@@ -106,6 +106,8 @@ create table tbl_message(
 	msg_opendate timestamp -- 읽은시각	
 );
 
+
+
 -- 쪽지 번호용 시퀀스
 create sequence seq_message_no;
 
@@ -229,12 +231,34 @@ select * from tbl_point;
 -- 메세지 삭제처리를 위한 컬럼 추가
 alter table tbl_message
 add (msg_del varchar2(1));
+-- 메세지 삭제처리 컬럼 제약 조건
+alter table tbl_message add constraint check_msg_del check(msg_del = 'T' or msg_del = 'F' or msg_del = null);
+alter table tbl_message drop constraint check_msg_del;
 commit;
 
 alter table tbl_message
 drop column del_msg;
 
 select * from tbl_message
-		where msg_receiver = 'hong';
+		where msg_receiver = 'hong'
 		and msg_del is null
 		order by msg_no desc;
+        
+
+-- 좋아요 테이블 + 칼럼
+create table tbl_like(
+    b_no number references tbl_board(b_no),
+    user_id varchar2(50) references tbl_member(user_id)
+);
+
+alter table tbl_board add (like_count number default 0);
+alter table tbl_board drop column like_count;
+
+insert into tbl_like values(500,'hong');
+delete from tbl_like;
+
+
+select * from tbl_board where b_no=518;
+select * from tbl_like;
+
+commit;

@@ -16,7 +16,8 @@ public class BoardVo {
 	private int comment_cnt;
 	// 첨부파일
 	private String[] files;
-	
+	// 좋아요 수
+	private int like_count;
 	
 	public BoardVo() {
 		super();
@@ -125,18 +126,22 @@ public class BoardVo {
 	public void setFiles(String[] files) {
 		this.files = files;
 	}
+	
+	public int getLike_count() {
+		return like_count;
+	}
+
+	public void setLike_count(int like_count) {
+		this.like_count = like_count;
+	}
 
 	@Override
 	public String toString() {
 		return "BoardVo [b_no=" + b_no + ", b_title=" + b_title + ", b_content=" + b_content + ", user_id=" + user_id
 				+ ", b_reg_date=" + b_reg_date + ", b_viewcnt=" + b_viewcnt + ", re_group=" + re_group + ", re_seq="
 				+ re_seq + ", re_level=" + re_level + ", comment_cnt=" + comment_cnt + ", files="
-				+ Arrays.toString(files) + "]";
+				+ Arrays.toString(files) + ", like_count=" + like_count + "]";
 	}
 
-	
-	
-	
-	
 	
 }

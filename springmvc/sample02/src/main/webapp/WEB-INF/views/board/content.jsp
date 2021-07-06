@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <!-- 날짜 포멧 함수 -->
+
 <script src="/resources/js/my-script.js"></script>
 <script>
 $(document).ready(function() {
@@ -149,6 +150,21 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
+	$("#btnLike").click(function(){
+		var that = $(this);
+		url="/board/updateLike?b_no=${boardVo.b_no}";
+		$.get(url, function(rData){
+			console.log(rData);
+			if(rData > 0){
+				that.text("♥");
+			} else {
+				that.text("♡");
+			}
+			var likeCount = "["+rData+"]";
+			that.next().text(likeCount);
+		});
+	});
 });
 </script>
 
@@ -222,6 +238,15 @@ $(document).ready(function() {
 				<button id="btnModify" type="button" class="btn btn-primary">수정</button>
 				<button id="btnRemove" type="button" class="btn btn-danger">삭제</button>
 				<button id="btnList" type="button" class="btn btn-warning">목록</button>
+<!-- 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"> -->
+<!--   					<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> -->
+<!-- 				</svg> -->
+				<span id="btnLike" style="font-size:25px">
+				<c:choose>
+					<c:when test="${boardVo.like_count > 0 }">♥</c:when>
+					<c:otherwise>♡</c:otherwise>
+				</c:choose>
+				</span><span>[${boardVo.like_count}]</span>
 			</form>
 		</div>
 	</div>
@@ -263,6 +288,7 @@ $(document).ready(function() {
 								<td></td>
 								<td><button type="button" class="btn btn-sm btn-warning commentModify">수정</button></td>
 								<td><button type="button" class="btn btn-sm btn-danger commentDelete">삭제</button></td>
+								
 							</tr>
 						</tbody>
 					</table>

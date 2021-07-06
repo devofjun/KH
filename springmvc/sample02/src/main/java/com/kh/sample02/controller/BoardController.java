@@ -10,10 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.sample02.service.BoardService;
 import com.kh.sample02.vo.BoardVo;
+import com.kh.sample02.vo.LikeVo;
 import com.kh.sample02.vo.MemberVo;
 import com.kh.sample02.vo.PagingDto;
 
@@ -76,5 +78,15 @@ public class BoardController {
 		boardService.removeRun(b_no);
 		rttr.addFlashAttribute("removeResult", "success");
 		return "redirect:/board/listAll";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateLike", method = RequestMethod.GET)
+	public int updateLike(int b_no, HttpSession session) throws Exception {
+		MemberVo loginVo = (MemberVo)session.getAttribute("loginVo");
+		String user_id = loginVo.getUser_id();
+		LikeVo likeVo = new LikeVo(b_no, user_id);
+		System.out.println("likeVo: "+likeVo);
+		return boardService.updateLikeCount(likeVo);
 	}
 }
