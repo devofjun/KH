@@ -1,5 +1,5 @@
-create user springmvc2 identified by 1234;
-grant connect, resource to springmvc2;
+create user kmerz identified by 1234;
+grant connect, resource to kmerz;
 
 -- 회원 테이블 
 
