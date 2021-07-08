@@ -26,12 +26,9 @@ public class LikeDaoImpl implements LikeDao {
 	}
 
 	@Override
-	public boolean checkLike(LikeVo likeVo) {
-		int count = sqlSession.selectOne(NAMESPACE+"selectLike", likeVo);
-		if(count > 0) {
-			return true;
-		}
-		return false;
+	public LikeVo checkLike(LikeVo likeVo) {
+		LikeVo vo = sqlSession.selectOne(NAMESPACE+"selectLike", likeVo);
+		return vo;
 	}
 
 }

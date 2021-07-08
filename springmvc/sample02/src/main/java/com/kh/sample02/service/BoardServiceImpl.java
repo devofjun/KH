@@ -67,7 +67,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int updateLikeCount(LikeVo likeVo) {
 		// 이미 좋아요를 눌렀다면 true, 누른적 없다면 false
-		if(likeDao.checkLike(likeVo)) {
+		if(likeDao.checkLike(likeVo) != null) {
 			likeDao.deleteLike(likeVo);
 			boardDao.updateLikeCount(likeVo.getB_no(), -1);
 		} else {
@@ -76,4 +76,11 @@ public class BoardServiceImpl implements BoardService{
 		}
 		return boardDao.selectLikeCount(likeVo.getB_no());
 	}
+
+	@Override
+	public LikeVo checkLike(LikeVo likeVo) {
+		LikeVo resultVo = likeDao.checkLike(likeVo);
+		return resultVo;
+	}
+	
 }

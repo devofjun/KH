@@ -56,12 +56,18 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/content", method = RequestMethod.GET)
-	public String content(@ModelAttribute("pagingDto") PagingDto pagingDto,int b_no, Model model) throws Exception {
+	public String content(@ModelAttribute("pagingDto") PagingDto pagingDto,int b_no, HttpSession session,Model model) throws Exception {
 		//System.out.println(b_no);
 		// @ModelAttribute 파라미터로 넘어온값을 view로 바로 전달하고 싶을때 사용한다.
 		// 하지만 없어도 잘되는거 보니 자동으로 해주기도 하는듯 하다.
 		BoardVo boardVo = boardService.content(b_no);
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+		String user_id = memberVo.getUser_id();
+		LikeVo likeVo = new LikeVo(b_no, user_id);
+		
+		LikeVo resultLikeVo = boardService.checkLike(likeVo);
 		model.addAttribute("boardVo", boardVo);
+		model.addAttribute("resultLikeVo", resultLikeVo);
 		//model.addAttribute("paingDto", pagingDto);
 		return "board/content";
 	}
@@ -82,11 +88,13 @@ public class BoardController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/updateLike", method = RequestMethod.GET)
-	public int updateLike(int b_no, HttpSession session) throws Exception {
+	public int updateLike(int b_no, HttpSession session, Model model) throws Exception {
 		MemberVo loginVo = (MemberVo)session.getAttribute("loginVo");
 		String user_id = loginVo.getUser_id();
 		LikeVo likeVo = new LikeVo(b_no, user_id);
 		System.out.println("likeVo: "+likeVo);
+		LikeVo resultLikeVo = boardService.checkLike(likeVo);
+		model.addAttribute("resultLikeVo", resultLikeVo);
 		return boardService.updateLikeCount(likeVo);
 	}
 }

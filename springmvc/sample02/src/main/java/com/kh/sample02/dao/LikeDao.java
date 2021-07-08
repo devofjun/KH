@@ -5,5 +5,5 @@ import com.kh.sample02.vo.LikeVo;
 public interface LikeDao {
 	public void insertLike(LikeVo likeVo);
 	public void deleteLike(LikeVo likeVo);
-	public boolean checkLike(LikeVo likeVo);
+	public LikeVo checkLike(LikeVo likeVo);
 }

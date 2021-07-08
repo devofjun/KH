@@ -14,4 +14,5 @@ public interface BoardService {
 	public void modifyRun(BoardVo boardVo);
 	public int getCount(PagingDto pagingDto);
 	public int updateLikeCount(LikeVo likeVo);
+	public LikeVo checkLike(LikeVo likeVo);
 }
