@@ -107,8 +107,13 @@ public class HomeController {
 			
 			int notReadCount = messageService.notReadCount(user_id);
 			memberVo.setNotReadCount(notReadCount);
-			
 			session.setAttribute("loginVo", memberVo);
+			
+			String requestPath = (String)session.getAttribute("requestPath");
+			session.removeAttribute("requestPath"); // 더이상 필요없는 세션은 지운다.
+			if(requestPath != null) {
+				page = "redirect:" + requestPath;
+			}
 		} else { // 로그인 실패
 			msg = "fail";
 			page = "redirect:/loginForm";
